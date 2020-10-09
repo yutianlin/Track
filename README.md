@@ -6,7 +6,7 @@ To setup the project:
 
 1. `brew install postgresql`
 
-1. Setup Postgres Database on terminal (<variable> indicates a variable you could fill in)\
+1. Setup Postgres Database on terminal, (`<variable>` indicates a variable you could fill in)\
 `psql postgres`\
 postgres=# `CREATE ROLE <custom role name> WITH LOGIN PASSWORD '<password for role>';`\
 postgres=# `ALTER ROLE <custom role name> CREATEDB;`\
