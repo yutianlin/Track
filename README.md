@@ -15,7 +15,9 @@ postgres=# `\q`\
 postgres=> `CREATE DATABASE <database name>;`\
 postgres=> `\c <database name>`\
 <database name> =>
-` CREATE TABLE users ( ID SERIAL PRIMARY KEY, name VARCHAR(30), email VARCHAR(30) ); `
+` CREATE TABLE users ( ID SERIAL PRIMARY KEY, name VARCHAR(30), email VARCHAR(30) ); `\
+<database name> => 
+`INSERT INTO users (name, email) VALUES ('Jerry', 'jerry@example.com'), ('George', 'george@example.com');`
 
 1. cpsc-304-project\$ `cp .env.example .env`
 
