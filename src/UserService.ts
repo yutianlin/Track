@@ -1,4 +1,4 @@
-import QueryService from './QueryService';
+import QueryService from "./QueryService";
 
 export default class UserService {
   queryService: QueryService;
@@ -8,6 +8,6 @@ export default class UserService {
   }
 
   getUsers = async () => {
-    return this.queryService.query('SELECT * FROM users')
-  }
+    return this.queryService.query("SELECT * FROM users");
+  };
 }
