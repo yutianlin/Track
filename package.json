@@ -4,20 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "yarn compile",
-    "precompile": "yarn clean",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "start": "node dist/index.js",
-    "compile": "tsc -b tsconfig.json"
+    "start": "tsc-watch --onSuccess \"node ./dist/index.js\""
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "pg": "^8.3.3",
-    "prettier": "^2.1.2"
+    "pg": "^8.4.0",
+    "prettier": "^2.1.2",
+    "tsc-watch": "^4.2.9"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
     "@types/node": "^14.11.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   }
 }
