@@ -1,0 +1,22 @@
+# Ignore artifacts
+node_modules/
+dist/
+dist.zip
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# Ignore sensitive files
+.env
+id_rsa
+
+# Ignore intermediate
+.DS_Store
+tsconfig.tsbuildinfo
+
+# Ignore coverage JEST
+coverage
+
+# Ignore temp files
+tmp/
