@@ -1,11 +1,15 @@
-import UserService from "./UserService";
+// important configuration files to load
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
+// setup express
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+
+// setup routes
+require("./user/user.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
@@ -14,12 +18,8 @@ app.use(
   })
 );
 
-const userService = new UserService();
 app.get("/", (request: any, response: any) =>
   response.json({ info: `hi ${process.env.POSTGRES_USER}!` })
-);
-app.get("/users", async (request: any, response: any) =>
-  response.json(await userService.getUsers())
 );
 
 var server = app.listen(port, "localhost", () => {
