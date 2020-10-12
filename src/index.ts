@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 // setup routes
-require("./user/user.controller")(app);
+require("./users/user.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
