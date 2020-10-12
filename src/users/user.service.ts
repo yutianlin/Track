@@ -1,5 +1,5 @@
 import QueryService from "../QueryService";
-import { GetAllUsers, GetUserById } from "./UserQueries";
+import { GetAllUsers, GetUserById } from "./user.queries";
 
 export default class UserService {
   queryService: QueryService;
