@@ -53,6 +53,9 @@ INSERT INTO ubc_building(building_code, name, building_number, street, postal_co
 INSERT INTO ubc_building(building_code, name, building_number, street, postal_code)
     VALUES('CHEM', 'Chemistry', '2036', 'Main Mall', 'V6T1Z1');
 
+INSERT INTO ubc_building(building_code, name, building_number, street, postal_code)
+    VALUES('ALRD', 'Allard School of Law', '1822', 'E Mall', 'V6T1Z1');
+
 INSERT INTO room(room_number, building_code, room_type)
     VALUES('110', 'DMP', 'Classroom');
 
