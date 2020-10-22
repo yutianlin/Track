@@ -66,7 +66,7 @@ INSERT INTO room(room_number, building_code, room_type)
     VALUES('100', 'MATH', 'Classroom');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('X139', 'ICCS', 'Meeting Room');
+    VALUES('X139', 'ICCS', 'MeetingRoom');
 
 INSERT INTO room(room_number, building_code, room_type)
     VALUES('X841', 'ICCS', 'Office');

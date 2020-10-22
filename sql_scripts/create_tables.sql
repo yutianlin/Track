@@ -19,7 +19,7 @@ CREATE TABLE postal_address(
 CREATE TABLE ubc_building(
 	building_code varchar(10) PRIMARY KEY,
 	name varchar(100) NOT NULL,
-	postal_code varchar(6),
+	postal_code char(6),
 	building_number varchar(100) NOT NULL,
 	street varchar(100) NOT NULL,
 	FOREIGN KEY (postal_code) REFERENCES postal_address(postal_code)
@@ -29,7 +29,9 @@ CREATE TABLE ubc_building(
 CREATE TABLE room(
 	room_number varchar(10),
 	building_code varchar(4),
-	room_type varchar(100) NOT NULL,
+	room_type varchar(100)
+	    CHECK(room_type = 'Classroom' OR room_type = 'MeetingRoom' OR room_type='Office')
+	    NOT NULL,
 	PRIMARY KEY (room_number, building_code),
 	FOREIGN KEY (building_code) REFERENCES ubc_building(building_code)
 		ON DELETE CASCADE
@@ -71,7 +73,8 @@ CREATE TABLE person(
     in_app_notification boolean NOT NULL,
     student_id varchar(30),
     faculty_id varchar(30),
-    job_title varchar(100)
+    job_title varchar(100),
+    CONSTRAINT valid_faculty CHECK(faculty_id IS NULL OR job_title IS NOT NULL)
 );
 
 CREATE TABLE bubble_person(
@@ -92,7 +95,7 @@ CREATE TABLE covid_testing_centre(
 	covid_testing_centre_id serial PRIMARY KEY,
 	building_number varchar(250) NOT NULL,
 	street_number varchar(250) NOT NULL,
-	postal_code varchar(250) NOT NULL,
+	postal_code char(6) NOT NULL,
 	name varchar(250) NOT NULL,
 	FOREIGN KEY (postal_code) REFERENCES postal_address(postal_code)
 	    ON DELETE SET NULL
@@ -143,7 +146,9 @@ CREATE TABLE scheduled_class_person(
 
 CREATE TABLE notification(
 	notification_id serial PRIMARY KEY,
-	category varchar(100),
+	category varchar(5)
+	    CHECK(category = 'email' OR category ='inApp' or category = 'text')
+	    NOT NULL,
 	subject_line varchar(100),
 	body varchar(100) NOT NULL
 );
