@@ -234,40 +234,40 @@ INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
  CPSC 304 and locations
  */
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(1, 'Tuesday', '110', 'DMP');
+    VALUES(1, 'tuesday', '110', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(1, 'Thursday', '110', 'DMP');
+    VALUES(1, 'thursday', '110', 'DMP');
 
 /*
  CPSC 313 and locations
  */
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(2, 'Monday', '110', 'DMP');
+    VALUES(2, 'monday', '110', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(2, 'Wednesday', '100', 'MATH');
+    VALUES(2, 'wednesday', '100', 'MATH');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(2, 'Friday', '301', 'DMP');
+    VALUES(2, 'friday', '301', 'DMP');
 
 /*
  Math 100 and locations
  */
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(3, 'Monday', '301', 'DMP');
+    VALUES(3, 'monday', '301', 'DMP');
 
 /*
  Chem 121 and locations
  */
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(4, 'Wednesday', '301', 'DMP');
+    VALUES(4, 'wednesday', '301', 'DMP');
 
 /*
  Phys 100 and locations
  */
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES(5, 'Friday', '100', 'MATH');
+    VALUES(5, 'friday', '100', 'MATH');
 
 /*
  Einstein rode bike 1ac456789 on Oct 4

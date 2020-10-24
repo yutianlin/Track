@@ -23,12 +23,11 @@ CREATE TABLE ubc_building(
 	building_number varchar(100) NOT NULL,
 	street varchar(100) NOT NULL,
 	FOREIGN KEY (postal_code) REFERENCES postal_address(postal_code)
-	    ON DELETE SET NULL
 );
 
 CREATE TABLE room(
 	room_number varchar(10),
-	building_code varchar(4),
+	building_code varchar(10),
 	room_type varchar(100)
 	    CHECK(room_type = 'classroom' OR room_type = 'meeting_room' OR room_type='office')
 	    NOT NULL,
@@ -41,7 +40,9 @@ CREATE TABLE room(
 CREATE TABLE class_day(
 	scheduled_class_id int,
 	class_day_id serial,
-	day_of_week varchar(10) NOT NULL,
+	day_of_week varchar(10)
+	    CHECK(day_of_week IN ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'))
+	    NOT NULL,
 	room_number varchar(10),
 	building_code varchar(10),
 	PRIMARY KEY(scheduled_class_id, class_day_id),
@@ -53,7 +54,7 @@ CREATE TABLE class_day(
 CREATE TABLE entrance(
 	entrance_code serial,
 	room_number varchar(10),
-	building_code varchar(4) NOT NULL,
+	building_code varchar(10) NOT NULL,
 	PRIMARY KEY (entrance_code),
 	FOREIGN KEY (room_number, building_code) REFERENCES room(room_number, building_code),
 	FOREIGN KEY (building_code) REFERENCES ubc_building(building_code)
@@ -75,11 +76,15 @@ CREATE TABLE person(
     name varchar (250) NOT NULL,
     email varchar (250),
     phone_number varchar(20),
-    in_app_notification boolean NOT NULL,
+    in_app_notification boolean
+        DEFAULT FALSE
+        NOT NULL,
     student_id varchar(30),
     faculty_id varchar(30),
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
-	    ON DELETE SET NULL
+	    ON DELETE SET NULL,
+	CONSTRAINT has_notification_setting
+	    CHECK(in_app_notification = TRUE OR phone_number is not NULL OR email is not NULL)
 );
 
 CREATE TABLE bubble_person(
@@ -156,7 +161,10 @@ CREATE TABLE notification(
 	    CHECK(category = 'email' OR category ='inApp' or category = 'text')
 	    NOT NULL,
 	subject_line varchar(100),
-	body varchar(100) NOT NULL
+	body varchar(100) NOT NULL,
+	CONSTRAINT subject_line_constraint
+	    CHECK(category = 'email' AND subject_line IS NOT NULL OR
+	         (category = 'inApp' or category = 'text') AND subject_line IS NULL)
 );
 
 CREATE TABLE person_notification(
