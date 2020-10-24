@@ -5,7 +5,6 @@
  Drops tables in order of foreign key constraints to clear all data
  */
 
-
 DROP TABLE person_time_entrance;
 DROP TABLE person_shared_bike;
 DROP TABLE scheduled_class_person;
@@ -21,5 +20,6 @@ DROP TABLE entrance;
 DROP TABLE scheduled_class;
 DROP TABLE room;
 DROP TABLE person;
+DROP TABLE faculty;
 DROP TABLE ubc_building;
 DROP TABLE postal_address;

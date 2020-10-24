@@ -57,19 +57,19 @@ INSERT INTO ubc_building(building_code, name, building_number, street, postal_co
     VALUES('ALRD', 'Allard School of Law', '1822', 'E Mall', 'V6T1Z1');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('110', 'DMP', 'Classroom');
+    VALUES('110', 'DMP', 'classroom');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('301', 'DMP', 'Classroom');
+    VALUES('301', 'DMP', 'classroom');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('100', 'MATH', 'Classroom');
+    VALUES('100', 'MATH', 'classroom');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('X139', 'ICCS', 'MeetingRoom');
+    VALUES('X139', 'ICCS', 'meeting_room');
 
 INSERT INTO room(room_number, building_code, room_type)
-    VALUES('X841', 'ICCS', 'Office');
+    VALUES('X841', 'ICCS', 'office');
 
 INSERT INTO entrance(room_number, building_code)
     VALUES('110', 'DMP');
@@ -101,20 +101,44 @@ INSERT INTO bubble(title, description)
 INSERT INTO bubble(title, description)
     VALUES('CS Lunch Hangout Group', 'The group of people who hang out at ICICS X120 during lunch time');
 
-INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id, job_title)
-    VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, '123456789', NULL, NULL);
+INSERT INTO faculty(faculty_id, job_title)
+    VALUES('987654321123', 'Professor');
 
-INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id, job_title)
-    VALUES('Albert Einstein', NULL, '6041234567', TRUE, NULL, '987654321123', 'Professor');
+INSERT INTO faculty(faculty_id, job_title)
+    VALUES('987654321124', 'Course Coordinator');
 
-INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id, job_title)
-    VALUES('Iron Man', NULL, '6041234568', TRUE, NULL, '987654321124', 'Course Coordinator');
+INSERT INTO faculty(faculty_id, job_title)
+    VALUES('987654321125', 'Associate Professor');
 
-INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id, job_title)
-    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', '6041234578', FALSE, '1234151565', NULL, NULL);
+INSERT INTO faculty(faculty_id, job_title)
+    VALUES('987654321126', 'Assistant Professor');
 
-INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id, job_title)
-    VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, '123456789', NULL, NULL);
+INSERT INTO faculty(faculty_id, job_title)
+    VALUES('987654321127', 'Lecturer');
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, '123456789', NULL);
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Albert Einstein', NULL, '6041234567', TRUE, NULL, '987654321123');
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Iron Man', NULL, '6041234568', TRUE, NULL, '987654321124');
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', '6041234578', FALSE, '1234151565', NULL);
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, '123456789', NULL);
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Jolly Associate', 'fake_email_pls_dont_use7@gmail.com', NULL, FALSE, NULL, '987654321125');
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Jolly Assistant', 'fake_email_pls_dont_use5@gmail.com', NULL, FALSE, NULL, '987654321126');
+
+INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
+    VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, '987654321127');
 
 /*
  Jake in The Bois
@@ -146,20 +170,20 @@ INSERT INTO bubble_person(person_id, bubble_id)
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(4,4);
 
-INSERT INTO shared_bike(shared_bike_id)
-    VALUES('1ac456789');
+INSERT INTO shared_bike(shared_bike_id, is_rentable)
+    VALUES('1ac456789', TRUE);
 
-INSERT INTO shared_bike(shared_bike_id)
-    VALUES('123466789');
+INSERT INTO shared_bike(shared_bike_id, is_rentable)
+    VALUES('123466789', TRUE);
 
-INSERT INTO shared_bike(shared_bike_id)
-    VALUES('123476789');
+INSERT INTO shared_bike(shared_bike_id, is_rentable)
+    VALUES('123476789', TRUE);
 
-INSERT INTO shared_bike(shared_bike_id)
-    VALUES('123486789');
+INSERT INTO shared_bike(shared_bike_id, is_rentable)
+    VALUES('123486789', TRUE);
 
-INSERT INTO shared_bike(shared_bike_id)
-    VALUES('123496789');
+INSERT INTO shared_bike(shared_bike_id, is_rentable)
+    VALUES('123496789', TRUE);
 
 INSERT INTO covid_testing_centre(building_number, street_number, postal_code, name)
     VALUES('6110', 'Boundary Rd', 'V5S3R3', 'Burnaby Central Park Covid-19 Assessment Centre');
@@ -180,31 +204,31 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
  Jake tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 1, 1, 'negative');
+    VALUES('2020-10-05'::TIMESTAMP, 1, 1, FALSE);
 
 /*
  Einstein tested positive
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 2, 1, 'positive');
+    VALUES('2020-10-05'::TIMESTAMP, 2, 1, TRUE);
 
 /*
  Iron Man tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 3, 1, 'negative');
+    VALUES('2020-10-05'::TIMESTAMP, 3, 1, FALSE);
 
 /*
  Chris tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 4, 2, 'negative');
+    VALUES('2020-10-05'::TIMESTAMP, 4, 2, FALSE);
 
 /*
  Richard tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 5, 3, 'negative');
+    VALUES('2020-10-05'::TIMESTAMP, 5, 3, FALSE);
 
 /*
  CPSC 304 and locations

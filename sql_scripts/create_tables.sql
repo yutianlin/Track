@@ -30,7 +30,7 @@ CREATE TABLE room(
 	room_number varchar(10),
 	building_code varchar(4),
 	room_type varchar(100)
-	    CHECK(room_type = 'Classroom' OR room_type = 'MeetingRoom' OR room_type='Office')
+	    CHECK(room_type = 'classroom' OR room_type = 'meeting_room' OR room_type='office')
 	    NOT NULL,
 	PRIMARY KEY (room_number, building_code),
 	FOREIGN KEY (building_code) REFERENCES ubc_building(building_code)
@@ -65,6 +65,11 @@ CREATE TABLE bubble(
 	description varchar(100) NOT NULL
 );
 
+CREATE TABLE faculty(
+	faculty_id varChar(30) PRIMARY KEY,
+    job_title varChar(100) NOT NULL
+);
+
 CREATE TABLE person(
     person_id serial PRIMARY KEY,
     name varchar (250) NOT NULL,
@@ -73,8 +78,8 @@ CREATE TABLE person(
     in_app_notification boolean NOT NULL,
     student_id varchar(30),
     faculty_id varchar(30),
-    job_title varchar(100),
-    CONSTRAINT valid_faculty CHECK(faculty_id IS NULL OR job_title IS NOT NULL)
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
+	    ON DELETE SET NULL
 );
 
 CREATE TABLE bubble_person(
@@ -88,7 +93,8 @@ CREATE TABLE bubble_person(
 );
 
 CREATE TABLE shared_bike(
-	shared_bike_id varchar(100) PRIMARY KEY
+	shared_bike_id varchar(100) PRIMARY KEY,
+	is_rentable boolean NOT NULL
 );
 
 CREATE TABLE covid_testing_centre(
@@ -105,7 +111,7 @@ CREATE TABLE covid_test(
 	test_time timestamp,
 	person_id integer,
 	covid_testing_centre_id integer,
-	status varchar(50) NOT NULL,
+	status boolean,
 	PRIMARY KEY (test_time, person_id, covid_testing_centre_id),
 	FOREIGN KEY (person_id) REFERENCES Person,
 	FOREIGN KEY (covid_testing_centre_id) REFERENCES covid_testing_centre(covid_testing_centre_id)
@@ -127,7 +133,7 @@ CREATE TABLE person_shared_bike(
 	shared_bike_id varchar(100),
 	person_id integer,
 	rental_time timestamp NOT NULL,
-	PRIMARY KEY(shared_bike_id, person_id),
+	PRIMARY KEY(shared_bike_id, person_id, rental_time),
 	FOREIGN KEY (shared_bike_id) REFERENCES shared_bike(shared_bike_id)
 	    ON DELETE CASCADE,
 	FOREIGN KEY (person_id) REFERENCES person(person_id)
