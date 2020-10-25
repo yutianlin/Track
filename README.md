@@ -19,7 +19,7 @@ To setup the project:
    `CREATE TABLE users ( ID SERIAL PRIMARY KEY, name VARCHAR(30), email VARCHAR(30) );`\
    <database name> =>
    `INSERT INTO users (name, email) VALUES ('Jerry', 'jerry@example.com'), ('George', 'george@example.com');`
-   postgres=> `\q`\
+   postgres=> `\q`
 
 1. cpsc-304-project\$ `cp .env.example .env`
 
