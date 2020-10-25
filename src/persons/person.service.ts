@@ -22,5 +22,9 @@ export default class UserService {
     const phone_number = attributes.hasOwnProperty('phone_number') ? attributes.phone_number : null;
     const in_app_notification = attributes.in_app_notification;
     return this.queryService.query(CreatePerson(name, in_app_notification, email, phone_number));
+  };
+
+  updatePerson = async (attributes: any) => {
+
   }
 }
