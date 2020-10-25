@@ -27,7 +27,7 @@ To setup the project:
 
 1. cpsc-304-project\$ `yarn`
 
-1. cd sql_scripts\
+1. `cd sql_scripts`\
    `source reset_tables.sh`
 
 To start the project:
