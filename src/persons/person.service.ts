@@ -1,5 +1,15 @@
 import QueryService from "../QueryService";
-import { GetAllPersons, GetPersonById, CreatePerson } from "./person.queries";
+import { GetAllPersons, GetPersonById, CreatePerson, UpdatePerson } from "./person.queries";
+import { updateValues, insertValues } from "../helpers";
+
+const NotNullableStringProperties = ["name"];
+const NullableStringProperties = [
+  "email",
+  "phone_number",
+  "student_id",
+  "faculty_id",
+];
+const NullableBooleanProperties = ["in_app_notification"];
 
 export default class UserService {
   queryService: QueryService;
@@ -17,14 +27,13 @@ export default class UserService {
   };
 
   createPerson = async (attributes: any) => {
-    const name = `'${attributes.name}'`;
-    const email = attributes.hasOwnProperty('email') ? `'${attributes.email}'` : null;
-    const phone_number = attributes.hasOwnProperty('phone_number') ? attributes.phone_number : null;
-    const in_app_notification = attributes.in_app_notification;
-    return this.queryService.query(CreatePerson(name, in_app_notification, email, phone_number));
+    const {properties, values} = insertValues(attributes, NotNullableStringProperties, NullableStringProperties, [], NullableBooleanProperties, [], []);
+    return this.queryService.query(CreatePerson(properties, values));
   };
 
-  updatePerson = async (attributes: any) => {
-
-  }
+  updatePerson = async (id: number, attributes: any) => {
+    const {set} = updateValues(attributes, [], [...NotNullableStringProperties, ...NullableStringProperties], [], NullableBooleanProperties, [], [] );
+    await this.queryService.query(UpdatePerson(set, id));
+    return this.getPersonById(id);
+  };
 }
