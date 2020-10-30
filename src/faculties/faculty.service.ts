@@ -23,7 +23,6 @@ export default class Faculty {
   };
 
   getFacultyById = async (id: number) => {
-    console.log(GetFacultyById(id));
     return this.queryService.query(GetFacultyById(id));
   };
 

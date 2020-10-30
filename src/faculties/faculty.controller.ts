@@ -48,7 +48,7 @@ module.exports = function (app: any) {
       }
 
       try {
-        response.json(await facultyService.updateFacultyById(value, id));
+        response.json(await facultyService.updateFacultyById(id, value));
       } catch (e) {
         response.json(e);
       }
