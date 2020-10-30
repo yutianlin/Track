@@ -1,4 +1,3 @@
-import { any } from "joi";
 import { InvalidParameterError } from "../errors";
 import { ExpectedValueTypes } from "./ExpectedValueTypes";
 
@@ -32,12 +31,6 @@ export const updateValues = (
 export const getPropertiesAndValues = (
   attributes: any,
   types: ExpectedValueTypes,
-//   notNullableStrings: string[],
-//   nullableStrings: string[],
-//   notNullableBooleans: string[],
-//   nullableBooleans: string[],
-//   notNullableNumbers: string[],
-//   nullableNumbers: string[],
 ): { properties: string[]; values: string[] } => {
     const properties: string[] = [];
     const values: any[] = [];
