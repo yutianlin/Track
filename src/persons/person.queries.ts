@@ -16,5 +16,4 @@ export const CreatePerson = (
 export const UpdatePerson = (
     valuesPairs: string,
     id: number
-// ) => `UPDATE person SET phone_number = 12345 WHERE person_id = 13;`;
 ) => `UPDATE ${PERSON_TABLE.tableName} SET ${valuesPairs} WHERE ${PERSON_TABLE.personId} = ${id};`;

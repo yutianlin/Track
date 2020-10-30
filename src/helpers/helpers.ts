@@ -1,68 +1,53 @@
-import { InvalidParameterError } from "./errors";
+import { any } from "joi";
+import { InvalidParameterError } from "../errors";
+import { ExpectedValueTypes } from "./ExpectedValueTypes";
 
 export const insertValues = (
     attributes: any,
-    notNullableStrings: string[],
-    nullableStrings: string[],
-    notNullableBooleans: string[],
-    nullableBooleans: string[],
-    notNullableNumbers: string[],
-    nullableNumbers: string[],
+    types: ExpectedValueTypes
 ): { properties: string; values: string } => {
     const {properties, values} = getPropertiesAndValues(
         attributes,
-        notNullableStrings,
-        nullableStrings,
-        notNullableBooleans,
-        nullableBooleans,
-        notNullableNumbers,
-        nullableNumbers
+        types,
     );
     return {properties: parenthesis(properties), values: parenthesis(values)};
 };
 
+
+
 export const updateValues = (
     attributes: any,
-    notNullableStrings: string[],
-    nullableStrings: string[],
-    notNullableBooleans: string[],
-    nullableBooleans: string[],
-    notNullableNumbers: string[],
-    nullableNumbers: string[],
-): {set: string} => {
+    types: ExpectedValueTypes
+): string => {
     const {properties, values} = getPropertiesAndValues(
         attributes,
-        notNullableStrings,
-        nullableStrings,
-        notNullableBooleans,
-        nullableBooleans,
-        notNullableNumbers,
-        nullableNumbers
+        types,
     );
 
     const map = properties.map((prop, i) => { return `${prop} = ${values[i]}`});
     
-    return {set: listify(map)};
+    return listify(map);
 }
 
 export const getPropertiesAndValues = (
   attributes: any,
-  notNullableStrings: string[],
-  nullableStrings: string[],
-  notNullableBooleans: string[],
-  nullableBooleans: string[],
-  notNullableNumbers: string[],
-  nullableNumbers: string[],
+  types: ExpectedValueTypes,
+//   notNullableStrings: string[],
+//   nullableStrings: string[],
+//   notNullableBooleans: string[],
+//   nullableBooleans: string[],
+//   notNullableNumbers: string[],
+//   nullableNumbers: string[],
 ): { properties: string[]; values: string[] } => {
     const properties: string[] = [];
     const values: any[] = [];
 
-    notNullableStrings.forEach(property => {
+    types.getNotNullableStrings().forEach(property => {
       properties.push(property);
       values.push(getStringFromAttributes(attributes, property, false));
     });
 
-    nullableStrings.forEach(property => {
+    types.getNullableStrings().forEach(property => {
         const value = getStringFromAttributes(attributes, property, true);
         if (value) {
             properties.push(property);
@@ -70,12 +55,12 @@ export const getPropertiesAndValues = (
         }
     })
 
-    notNullableBooleans.forEach(property => {
+    types.getNotNullableBooleans().forEach(property => {
         properties.push(property);
         values.push(getFromAttributes(attributes, property, 'boolean', false));
     })
 
-    nullableBooleans.forEach(property => {
+    types.getNullableBooleans().forEach(property => {
         const value = getFromAttributes(attributes, property, 'boolean', true);
         if (value) {
             properties.push(property);
@@ -83,12 +68,12 @@ export const getPropertiesAndValues = (
         }
     })
 
-    notNullableNumbers.forEach(property => {
+    types.getNotNullableNumbers().forEach(property => {
         properties.push(property);
         values.push(getFromAttributes(attributes, property, 'number', false));
     })
 
-    nullableNumbers.forEach(property => {
+    types.getNullableNumbers().forEach(property => {
         const value = getFromAttributes(attributes, property, 'number', true);
         if (value) {
             properties.push(property);

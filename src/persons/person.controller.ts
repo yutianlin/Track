@@ -25,7 +25,11 @@ module.exports = function (app: any) {
       response.json({ error: error });
       return;
     }
-    response.json(await personService.createPerson(value));
+    try {
+      response.json(await personService.createPerson(value));
+    } catch (e) {
+      response.json(e);
+    }
   });
 
   app.patch("/persons/:id", jsonParser, async (request: any, response: any) => {
@@ -37,6 +41,10 @@ module.exports = function (app: any) {
       response.json({ error: error });
       return;
     }
-    response.json(await personService.updatePerson(id, value));
+    try {
+      response.json(await personService.updatePerson(id, value));
+    } catch (e) {
+      response.json(e);
+    }
   });
 };

@@ -1,6 +1,7 @@
 import QueryService from "../QueryService";
 import { GetAllPersons, GetPersonById, CreatePerson, UpdatePerson } from "./person.queries";
-import { updateValues, insertValues } from "../helpers";
+import { insertValues, updateValues } from "../helpers/helpers";
+import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 
 const NotNullableStringProperties = ["name"];
 const NullableStringProperties = [
@@ -27,12 +28,19 @@ export default class UserService {
   };
 
   createPerson = async (attributes: any) => {
-    const {properties, values} = insertValues(attributes, NotNullableStringProperties, NullableStringProperties, [], NullableBooleanProperties, [], []);
+    const types = new ExpectedValueTypes();
+    types.setNotNullableStrings(NotNullableStringProperties);
+    types.setNullableStrings(NullableStringProperties);
+    types.setNullableBooleans(NullableBooleanProperties);
+    const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreatePerson(properties, values));
   };
 
   updatePerson = async (id: number, attributes: any) => {
-    const {set} = updateValues(attributes, [], [...NotNullableStringProperties, ...NullableStringProperties], [], NullableBooleanProperties, [], [] );
+    const types = new ExpectedValueTypes();
+    types.setNullableStrings([...NullableStringProperties, ...NotNullableStringProperties]);
+    types.setNullableBooleans(NullableBooleanProperties);
+    const set = updateValues(attributes, types);
     await this.queryService.query(UpdatePerson(set, id));
     return this.getPersonById(id);
   };
