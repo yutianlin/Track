@@ -1,0 +1,179 @@
+_type: export
+__export_format: 4
+__export_date: 2020-10-30T18:06:39.262Z
+__export_source: insomnia.desktop.app:v2020.4.1
+resources:
+  - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1603636455574
+    created: 1601848558552
+    url: http://127.0.0.1:3000/
+    name: ping
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1603636443273
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_e188ea2ddca7457a9232b418d63c1e45
+    parentId: null
+    modified: 1601798953205
+    created: 1601798953205
+    name: cpsc-304
+    description: ""
+    scope: null
+    _type: workspace
+  - _id: req_5f00928b1dad4bfca9a361bf4423f656
+    parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
+    modified: 1603636447452
+    created: 1601848570799
+    url: http://127.0.0.1:3000/persons
+    name: GET /persons
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1602715556111
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_fa367acdd0824f988aba7f7ec2f45c7f
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1603636443223
+    created: 1603636443223
+    name: person
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443223
+    _type: request_group
+  - _id: req_aa942c790ee64616b9b869ce381bc2cb
+    parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
+    modified: 1604081171535
+    created: 1602500992472
+    url: http://127.0.0.1:3000/persons/9
+    name: GET /persons/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1602715556086
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c39a56ffbc6f4eecba349bac732df7b4
+    parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
+    modified: 1604081150857
+    created: 1602715556061
+    url: http://127.0.0.1:3000/persons
+    name: POST /persons
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": 
+        	{
+        		"name": "test",
+        		"in_app_notification": true,
+        		"email": "asd@email.com",
+        		"phone_number": "7789097890",
+        		"faculty_id": "987654321126"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_255815e6cbf847f69a28918851e2e5c3
+    authentication: {}
+    metaSortKey: -1602715556076.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3832e39ce5b64a169461ea54b8bd6728
+    parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
+    modified: 1604081158132
+    created: 1603658199343
+    url: http://127.0.0.1:3000/persons/19
+    name: PATCH /persons/:id
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": 
+        	{
+        		"phone_number": "123123",
+        		"name": "mew name"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_97737d4a2abd4e21af72a733f1a29e1f
+    authentication: {}
+    metaSortKey: -1602715556067.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_6d0f7a250dfe385e7a5db9cbdfbc9d8b1530dc54
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1601798953559
+    created: 1601798953559
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1601798953559
+    _type: environment
+  - _id: jar_6d0f7a250dfe385e7a5db9cbdfbc9d8b1530dc54
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1601798953565
+    created: 1601798953565
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_5919528681b84396aeb87c42c00022b9
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1601798953214
+    created: 1601798953214
+    fileName: cpsc-304
+    contents: ""
+    contentType: yaml
+    _type: api_spec
