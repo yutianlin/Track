@@ -7,7 +7,7 @@
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "test": "tsc -b tsconfig.json && jest --config ./jest.config.json",
-    "format": "prettier . --write"
+    "format": "prettier src --write"
   },
   "dependencies": {
     "@types/jest": "^26.0.14",

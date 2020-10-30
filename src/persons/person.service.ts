@@ -1,18 +1,19 @@
 import QueryService from "../QueryService";
-import { GetAllPersons, GetPersonById, CreatePerson, UpdatePerson } from "./person.queries";
+import {
+  GetAllPersons,
+  GetPersonById,
+  CreatePerson,
+  UpdatePersonById,
+} from "./person.queries";
 import { insertValues, updateValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 
-const NotNullableStringProperties = ["name"];
-const NullableStringProperties = [
-  "email",
-  "phone_number",
-  "student_id",
-  "faculty_id",
-];
-const NullableBooleanProperties = ["in_app_notification"];
+const NOTNULLABLESTRINGPROPERTIES = ["name"];
+const NULLABLESTRINGPROPERTIES = ["email", "phone_number"];
+const NULLABLENUMBERPROPERTIES = ["student_id", "faculty_id"];
+const NULLABLEBOOLEANPROPERTIES = ["in_app_notification"];
 
-export default class UserService {
+export default class PersonService {
   queryService: QueryService;
 
   constructor() {
@@ -29,19 +30,24 @@ export default class UserService {
 
   createPerson = async (attributes: any) => {
     const types = new ExpectedValueTypes();
-    types.setNotNullableStrings(NotNullableStringProperties);
-    types.setNullableStrings(NullableStringProperties);
-    types.setNullableBooleans(NullableBooleanProperties);
+    types.setNotNullableStrings(NOTNULLABLESTRINGPROPERTIES);
+    types.setNullableStrings(NULLABLESTRINGPROPERTIES);
+    types.setNullableBooleans(NULLABLEBOOLEANPROPERTIES);
+    types.setNullableNumbers(NULLABLENUMBERPROPERTIES);
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreatePerson(properties, values));
   };
 
-  updatePerson = async (id: number, attributes: any) => {
+  updatePersonById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes();
-    types.setNullableStrings([...NullableStringProperties, ...NotNullableStringProperties]);
-    types.setNullableBooleans(NullableBooleanProperties);
+    types.setNullableStrings([
+      ...NULLABLESTRINGPROPERTIES,
+      ...NOTNULLABLESTRINGPROPERTIES,
+    ]);
+    types.setNullableBooleans(NULLABLEBOOLEANPROPERTIES);
+    types.setNullableNumbers(NULLABLENUMBERPROPERTIES);
     const set = updateValues(attributes, types);
-    await this.queryService.query(UpdatePerson(set, id));
+    await this.queryService.query(UpdatePersonById(set, id));
     return this.getPersonById(id);
   };
 }

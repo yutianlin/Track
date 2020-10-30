@@ -10,6 +10,7 @@ const port = 3000;
 
 // setup routes
 require("./persons/person.controller")(app);
+require("./faculties/faculty.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

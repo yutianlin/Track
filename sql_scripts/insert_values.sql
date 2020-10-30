@@ -102,43 +102,43 @@ INSERT INTO bubble(title, description)
     VALUES('CS Lunch Hangout Group', 'The group of people who hang out at ICICS X120 during lunch time');
 
 INSERT INTO faculty(faculty_id, job_title)
-    VALUES('987654321123', 'Professor');
+    VALUES(987654321123, 'Professor');
 
 INSERT INTO faculty(faculty_id, job_title)
-    VALUES('987654321124', 'Course Coordinator');
+    VALUES(987654321124, 'Course Coordinator');
 
 INSERT INTO faculty(faculty_id, job_title)
-    VALUES('987654321125', 'Associate Professor');
+    VALUES(987654321125, 'Associate Professor');
 
 INSERT INTO faculty(faculty_id, job_title)
-    VALUES('987654321126', 'Assistant Professor');
+    VALUES(987654321126, 'Assistant Professor');
 
 INSERT INTO faculty(faculty_id, job_title)
-    VALUES('987654321127', 'Lecturer');
+    VALUES(987654321127, 'Lecturer');
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, '123456789', NULL);
+    VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Albert Einstein', NULL, '6041234567', TRUE, NULL, '987654321123');
+    VALUES('Albert Einstein', NULL, 6041234567, TRUE, NULL, 987654321123);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Iron Man', NULL, '6041234568', TRUE, NULL, '987654321124');
+    VALUES('Iron Man', NULL, 6041234568, TRUE, NULL, 987654321124);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', '6041234578', FALSE, '1234151565', NULL);
+    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', 6041234578, FALSE, 1234151565, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, '123456789', NULL);
+    VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Associate', 'fake_email_pls_dont_use7@gmail.com', NULL, FALSE, NULL, '987654321125');
+    VALUES('Jolly Associate', 'fake_email_pls_dont_use7@gmail.com', NULL, FALSE, NULL, 987654321125);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Assistant', 'fake_email_pls_dont_use5@gmail.com', NULL, FALSE, NULL, '987654321126');
+    VALUES('Jolly Assistant', 'fake_email_pls_dont_use5@gmail.com', NULL, FALSE, NULL, 987654321126);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, '987654321127');
+    VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, 987654321127);
 
 /*
  Jake in The Bois

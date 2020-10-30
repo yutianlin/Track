@@ -67,7 +67,7 @@ CREATE TABLE bubble(
 );
 
 CREATE TABLE faculty(
-	faculty_id varChar(30) PRIMARY KEY,
+	faculty_id bigint PRIMARY KEY,
     job_title varChar(100) NOT NULL
 );
 
@@ -79,8 +79,8 @@ CREATE TABLE person(
     in_app_notification boolean
         DEFAULT FALSE
         NOT NULL,
-    student_id varchar(30),
-    faculty_id varchar(30),
+    student_id bigint,
+    faculty_id bigint,
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
 	    ON DELETE SET NULL,
 	CONSTRAINT has_notification_setting

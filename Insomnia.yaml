@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-10-30T18:06:39.262Z
+__export_date: 2020-10-30T20:13:34.771Z
 __export_source: insomnia.desktop.app:v2020.4.1
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -32,6 +32,121 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_c7dbe644986f45248e7e9f09f79c5f59
+    parentId: fld_2f3c9523166447fa8ad631cc7b489855
+    modified: 1604085854608
+    created: 1604085843877
+    url: http://127.0.0.1:3000/faculties
+    name: GET /faculties
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604085843877
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_2f3c9523166447fa8ad631cc7b489855
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604085833714
+    created: 1604085829892
+    name: faculty
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443248
+    _type: request_group
+  - _id: req_5826514915b740e18ad8c449429de6c0
+    parentId: fld_2f3c9523166447fa8ad631cc7b489855
+    modified: 1604086402169
+    created: 1604085871390
+    url: http://127.0.0.1:3000/faculties/987654321125
+    name: GET /faculties/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604085843827
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_590328b51a1c4f56a77df555f754893e
+    parentId: fld_2f3c9523166447fa8ad631cc7b489855
+    modified: 1604086529876
+    created: 1604086418360
+    url: http://127.0.0.1:3000/faculties
+    name: POST /faculties
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": 
+        	{
+        		"faculty_id": "12345",
+        		"job_title": "Technician"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b9e3b815b45c41a988cf88e2f160bf83
+    authentication: {}
+    metaSortKey: -1604085843777
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cfcc507bdf12403280e2c0ca1bfd3d73
+    parentId: fld_2f3c9523166447fa8ad631cc7b489855
+    modified: 1604087651860
+    created: 1604087602808
+    url: http://127.0.0.1:3000/faculties/987654321123
+    name: PATCH /faculties/:id
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": 
+        	{
+        		"job_title": "New Job"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_c9d7c4babbb44d6e86063d8a1f43e65c
+    authentication: {}
+    metaSortKey: -1604085843727
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_5f00928b1dad4bfca9a361bf4423f656
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
     modified: 1603636447452
@@ -65,9 +180,9 @@ resources:
     _type: request_group
   - _id: req_aa942c790ee64616b9b869ce381bc2cb
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604081171535
+    modified: 1604085925590
     created: 1602500992472
-    url: http://127.0.0.1:3000/persons/9
+    url: http://127.0.0.1:3000/persons/1
     name: GET /persons/:id
     description: ""
     method: GET
@@ -86,7 +201,7 @@ resources:
     _type: request
   - _id: req_c39a56ffbc6f4eecba349bac732df7b4
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604081150857
+    modified: 1604087076301
     created: 1602715556061
     url: http://127.0.0.1:3000/persons
     name: POST /persons
@@ -99,7 +214,7 @@ resources:
         	{
         		"name": "test",
         		"in_app_notification": true,
-        		"email": "asd@email.com",
+        		"email": "as@email.com",
         		"phone_number": "7789097890",
         		"faculty_id": "987654321126"
         	}
@@ -121,9 +236,9 @@ resources:
     _type: request
   - _id: req_3832e39ce5b64a169461ea54b8bd6728
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604081158132
+    modified: 1604085929640
     created: 1603658199343
-    url: http://127.0.0.1:3000/persons/19
+    url: http://127.0.0.1:3000/persons/1
     name: PATCH /persons/:id
     description: ""
     method: PATCH

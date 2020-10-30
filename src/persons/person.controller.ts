@@ -42,7 +42,7 @@ module.exports = function (app: any) {
       return;
     }
     try {
-      response.json(await personService.updatePerson(id, value));
+      response.json(await personService.updatePersonById(id, value));
     } catch (e) {
       response.json(e);
     }
