@@ -1,17 +1,16 @@
 import QueryService from "../QueryService";
-import { GetAllPersons, GetPersonById, CreatePerson, UpdatePersonById } from "./person.queries";
+import {
+  GetAllPersons,
+  GetPersonById,
+  CreatePerson,
+  UpdatePersonById,
+} from "./person.queries";
 import { insertValues, updateValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 
 const NOTNULLABLESTRINGPROPERTIES = ["name"];
-const NULLABLESTRINGPROPERTIES = [
-  "email",
-  "phone_number"
-];
-const NULLABLENUMBERPROPERTIES = [
-  "student_id",
-  "faculty_id",
-]
+const NULLABLESTRINGPROPERTIES = ["email", "phone_number"];
+const NULLABLENUMBERPROPERTIES = ["student_id", "faculty_id"];
 const NULLABLEBOOLEANPROPERTIES = ["in_app_notification"];
 
 export default class PersonService {
@@ -41,7 +40,10 @@ export default class PersonService {
 
   updatePersonById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes();
-    types.setNullableStrings([...NULLABLESTRINGPROPERTIES, ...NOTNULLABLESTRINGPROPERTIES]);
+    types.setNullableStrings([
+      ...NULLABLESTRINGPROPERTIES,
+      ...NOTNULLABLESTRINGPROPERTIES,
+    ]);
     types.setNullableBooleans(NULLABLEBOOLEANPROPERTIES);
     types.setNullableNumbers(NULLABLENUMBERPROPERTIES);
     const set = updateValues(attributes, types);
