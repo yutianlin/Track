@@ -17,3 +17,9 @@ export const POSTAL_TABLE = {
   tableName: "postal_address",
   postalCode: "postal_code",
 }
+
+export const ROOM_TABLE = {
+  tableName: "room",
+  buildingCode: BUILDING_TABLE.buildingCode,
+  roomNumber: "room_number",
+}
