@@ -13,6 +13,7 @@ require("./persons/person.controller")(app);
 require("./faculties/faculty.controller")(app);
 require("./buildings/building.controller")(app);
 require("./postals/postal.controller")(app);
+require("./rooms/room.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

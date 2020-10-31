@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-10-31T07:15:42.289Z
+__export_date: 2020-10-31T07:33:51.406Z
 __export_source: insomnia.desktop.app:v2020.4.1
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -128,6 +128,58 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1604127101690
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_43245b1238cd4b8ab32cb096bf0d3dc8
+    parentId: fld_89508926af434eb6b60a396270989ab3
+    modified: 1604129477067
+    created: 1604129243943
+    url: http://127.0.0.1:3000/rooms/DMP/110
+    name: GET /rooms/:building_code/:room_number
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604129243943
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_89508926af434eb6b60a396270989ab3
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604129198555
+    created: 1604129184974
+    name: room
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443254.25
+    _type: request_group
+  - _id: req_f5171c6a02974c94b34426c8ce8871bf
+    parentId: fld_89508926af434eb6b60a396270989ab3
+    modified: 1604129221829
+    created: 1604129212926
+    url: http://127.0.0.1:3000/rooms
+    name: GET /rooms
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604129212984
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
