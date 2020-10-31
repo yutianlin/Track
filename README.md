@@ -30,9 +30,21 @@ To setup the project:
 1. `cd sql_scripts`\
    `source reset_tables.sh`
 
-To start the project:
+To start the project, in two terminals:
 
-cpsc-304-project\$ `yarn start`
+cpsc-304-project/ `cd server`
+
+cpsc-304-project/server$ `yarn start`
+
+
+cpsc-304-project/ `cd client`
+
+cpsc-304-project/client$ `yarn start`
+
+The client will run in localhost:5000, while the server runs in localhost:3000
+
+Going to localhost:3000/ will load the last built files, 
+for client hot reload go to localhost:3000
 
 Additional Details:
 

@@ -18,9 +18,11 @@ app.use(
   })
 );
 
-app.get("/", (request: any, response: any) =>
-  response.json({ info: `hi ${process.env.POSTGRES_USER}!` })
-);
+app.use(express.static(path.join(__dirname, "..", "..", "client", 'build')));
+
+app.get("/", (request: any, response: any) => {
+    response.sendFile(path.join(__dirname, "..", "..", "client", 'build', 'index.html'));
+});
 
 var server = app.listen(port, "localhost", () => {
   var host = server.address().address;
