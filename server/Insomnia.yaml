@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-10-30T20:13:34.771Z
+__export_date: 2020-10-31T07:15:42.289Z
 __export_source: insomnia.desktop.app:v2020.4.1
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -32,6 +32,110 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_ff17fa27e03e4e3bbacc1209f80b2b8c
+    parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
+    modified: 1604128500619
+    created: 1604128484704
+    url: http://127.0.0.1:3000/postal_addresses/V6T1Z2
+    name: GET /postal_addresses/:code
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604128484704
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_bc8ec008421a48619b1fe3ccdf1f58a1
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604128419084
+    created: 1604128416217
+    name: postal_address
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443266.75
+    _type: request_group
+  - _id: req_9c19b06fbb2541d297ec603fea41a07c
+    parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
+    modified: 1604128438555
+    created: 1604128427353
+    url: http://127.0.0.1:3000/postal_addresses
+    name: GET /postal_addresses
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604128427412
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5e366e125bad4d8d81ad127b6e555e28
+    parentId: fld_aea675b67007426bb0cc467611734588
+    modified: 1604127188718
+    created: 1604127173093
+    url: http://127.0.0.1:3000/buildings/ICCS
+    name: GET /buildings/:code
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604127173093
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_aea675b67007426bb0cc467611734588
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604127093884
+    created: 1604127084103
+    name: building
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443260.5
+    _type: request_group
+  - _id: req_92dfeb1223334c5798bfd8dbddf3e34d
+    parentId: fld_aea675b67007426bb0cc467611734588
+    modified: 1604127111396
+    created: 1604127101632
+    url: http://127.0.0.1:3000/buildings
+    name: GET /buildings
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604127101690
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_c7dbe644986f45248e7e9f09f79c5f59
     parentId: fld_2f3c9523166447fa8ad631cc7b489855
     modified: 1604085854608
@@ -86,7 +190,7 @@ resources:
     _type: request
   - _id: req_590328b51a1c4f56a77df555f754893e
     parentId: fld_2f3c9523166447fa8ad631cc7b489855
-    modified: 1604086529876
+    modified: 1604102063659
     created: 1604086418360
     url: http://127.0.0.1:3000/faculties
     name: POST /faculties
@@ -97,8 +201,8 @@ resources:
       text: |-
         { "data": 
         	{
-        		"faculty_id": "12345",
-        		"job_title": "Technician"
+        		"faculty_id": "123453",
+        		"job_title": "Tech"
         	}
         }
     parameters: []
@@ -118,9 +222,9 @@ resources:
     _type: request
   - _id: req_cfcc507bdf12403280e2c0ca1bfd3d73
     parentId: fld_2f3c9523166447fa8ad631cc7b489855
-    modified: 1604087651860
+    modified: 1604102120792
     created: 1604087602808
-    url: http://127.0.0.1:3000/faculties/987654321123
+    url: http://127.0.0.1:3000/faculties/123453
     name: PATCH /faculties/:id
     description: ""
     method: PATCH
@@ -180,7 +284,7 @@ resources:
     _type: request_group
   - _id: req_aa942c790ee64616b9b869ce381bc2cb
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604085925590
+    modified: 1604101947606
     created: 1602500992472
     url: http://127.0.0.1:3000/persons/1
     name: GET /persons/:id
@@ -201,7 +305,7 @@ resources:
     _type: request
   - _id: req_c39a56ffbc6f4eecba349bac732df7b4
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604087076301
+    modified: 1604101996095
     created: 1602715556061
     url: http://127.0.0.1:3000/persons
     name: POST /persons
@@ -236,9 +340,9 @@ resources:
     _type: request
   - _id: req_3832e39ce5b64a169461ea54b8bd6728
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604085929640
+    modified: 1604102018103
     created: 1603658199343
-    url: http://127.0.0.1:3000/persons/1
+    url: http://127.0.0.1:3000/persons/3
     name: PATCH /persons/:id
     description: ""
     method: PATCH
