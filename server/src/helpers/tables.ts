@@ -12,3 +12,8 @@ export const BUILDING_TABLE = {
   tableName: "ubc_building",
   buildingCode: "building_code",
 };
+
+export const POSTAL_TABLE = {
+  tableName: "postal_address",
+  postalCode: "postal_code",
+}

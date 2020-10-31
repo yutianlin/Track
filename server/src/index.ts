@@ -12,6 +12,7 @@ const port = 3000;
 require("./persons/person.controller")(app);
 require("./faculties/faculty.controller")(app);
 require("./buildings/building.controller")(app);
+require("./postals/postal.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
