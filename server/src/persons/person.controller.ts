@@ -9,7 +9,7 @@ const personService = new PersonService();
 
 module.exports = function (app: any) {
   app.get("/persons", async (request: any, response: any) =>
-    response.json(await personService.getPersons())
+    response.json(await personService.getAllPersons())
   );
 
   app.get("/persons/:id", async (request: any, response: any) => {

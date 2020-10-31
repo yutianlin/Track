@@ -8,7 +8,7 @@ const facultyService = new FacultyService();
 
 module.exports = function (app: any) {
   app.get("/faculties", async (request: any, response: any) => {
-    response.json(await facultyService.getFaculties());
+    response.json(await facultyService.getAllFaculties());
   });
 
   app.get("/faculties/:id", async (request: any, response: any) => {

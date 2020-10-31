@@ -20,7 +20,7 @@ export default class PersonService {
     this.queryService = new QueryService();
   }
 
-  getPersons = async () => {
+  getAllPersons = async () => {
     return this.queryService.query(GetAllPersons);
   };
 
