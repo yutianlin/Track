@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-10-31T07:33:51.406Z
+__export_date: 2020-10-31T07:57:45.763Z
 __export_source: insomnia.desktop.app:v2020.4.1
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -180,6 +180,58 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1604129212984
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3fc9262c09e749b3b5c5e32234eb57d3
+    parentId: fld_b4a09fdaf45f4312886354dc78c3d9e4
+    modified: 1604131017688
+    created: 1604130997405
+    url: http://127.0.0.1:3000/entrances/1
+    name: GET /entrances/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604130997405
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b4a09fdaf45f4312886354dc78c3d9e4
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604130966583
+    created: 1604130959209
+    name: entrance
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443251.125
+    _type: request_group
+  - _id: req_4315e8993c954d62b27f0a79c62fbe7b
+    parentId: fld_b4a09fdaf45f4312886354dc78c3d9e4
+    modified: 1604130985291
+    created: 1604130973630
+    url: http://127.0.0.1:3000/entrances
+    name: GET /entrances
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604130973690
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true

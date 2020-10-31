@@ -23,3 +23,8 @@ export const ROOM_TABLE = {
   buildingCode: BUILDING_TABLE.buildingCode,
   roomNumber: "room_number",
 }
+
+export const ENTRANCE_TABLE = {
+  tableName: "entrance",
+  entranceId: "entrance_id",
+}

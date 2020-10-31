@@ -52,10 +52,9 @@ CREATE TABLE class_day(
 );
 
 CREATE TABLE entrance(
-	entrance_code serial,
+	entrance_id serial PRIMARY KEY,
 	room_number varchar(10),
 	building_code varchar(10) NOT NULL,
-	PRIMARY KEY (entrance_code),
 	FOREIGN KEY (room_number, building_code) REFERENCES room(room_number, building_code),
 	FOREIGN KEY (building_code) REFERENCES ubc_building(building_code)
 );
@@ -126,11 +125,11 @@ CREATE TABLE covid_test(
 CREATE TABLE person_time_entrance(
 	person_id integer,
 	start_date timestamp,
-	entrance_code int,
-	PRIMARY KEY (person_id, start_date, entrance_code),
+	entrance_id int,
+	PRIMARY KEY (person_id, start_date, entrance_id),
 	FOREIGN KEY (person_id) REFERENCES person(person_id)
 	    ON DELETE CASCADE,
-	FOREIGN KEY (entrance_code) REFERENCES entrance(entrance_code)
+	FOREIGN KEY (entrance_id) REFERENCES entrance(entrance_id)
 	    ON DELETE CASCADE
 );
 

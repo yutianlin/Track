@@ -353,17 +353,17 @@ INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
 /*
   All the people entered DMP 110 on Oct 9
  */
-INSERT INTO person_time_entrance(entrance_code, start_date, person_id)
+INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
     VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 1);
 
-INSERT INTO person_time_entrance(entrance_code, start_date, person_id)
+INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
     VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 2);
 
-INSERT INTO person_time_entrance(entrance_code, start_date, person_id)
+INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
     VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 3);
 
-INSERT INTO person_time_entrance(entrance_code, start_date, person_id)
+INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
     VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 4);
 
-INSERT INTO person_time_entrance(entrance_code, start_date, person_id)
+INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
     VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 5);
