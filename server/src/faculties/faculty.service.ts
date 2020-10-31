@@ -18,7 +18,7 @@ export default class Faculty {
     this.queryService = new QueryService();
   }
 
-  getFaculties = async () => {
+  getAllFaculties = async () => {
     return this.queryService.query(GetAllFaculties);
   };
 

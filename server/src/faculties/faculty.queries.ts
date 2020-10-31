@@ -5,25 +5,17 @@ import {
   UpdateRow,
 } from "../helpers/queries";
 
-const FACULTY_TABLE = {
-  tableName: "faculty",
-  facultyId: "faculty_id",
-};
+import { FACULTY_TABLE } from "../helpers/tables";
 
-export const GetAllFaculties = GetAllRowsFromTable(FACULTY_TABLE.tableName);
+const { tableName, facultyId } = FACULTY_TABLE;
+
+export const GetAllFaculties = GetAllRowsFromTable(tableName);
 
 export const GetFacultyById = (id: number) =>
-  GetRowsWithSelection(
-    FACULTY_TABLE.tableName,
-    `${FACULTY_TABLE.facultyId} = ${id}`
-  );
+  GetRowsWithSelection(tableName, `${facultyId} = ${id}`);
 
 export const CreateFaculty = (properties: string, values: string) =>
-  InsertRow(FACULTY_TABLE.tableName, properties, values);
+  InsertRow(tableName, properties, values);
 
 export const UpdateFacultyById = (valuePairs: string, id: number) =>
-  UpdateRow(
-    FACULTY_TABLE.tableName,
-    valuePairs,
-    `${FACULTY_TABLE.facultyId} = ${id}`
-  );
+  UpdateRow(tableName, valuePairs, `${facultyId} = ${id}`);

@@ -11,6 +11,7 @@ const port = 3000;
 // setup routes
 require("./persons/person.controller")(app);
 require("./faculties/faculty.controller")(app);
+require("./buildings/building.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
@@ -19,10 +20,12 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "..", "..", "client", 'build')));
+app.use(express.static(path.join(__dirname, "..", "..", "client", "build")));
 
 app.get("/", (request: any, response: any) => {
-    response.sendFile(path.join(__dirname, "..", "..", "client", 'build', 'index.html'));
+  response.sendFile(
+    path.join(__dirname, "..", "..", "client", "build", "index.html")
+  );
 });
 
 var server = app.listen(port, "localhost", () => {

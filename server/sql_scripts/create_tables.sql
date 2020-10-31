@@ -19,7 +19,7 @@ CREATE TABLE postal_address(
 CREATE TABLE ubc_building(
 	building_code varchar(10) PRIMARY KEY,
 	name varchar(100) NOT NULL,
-	postal_code char(6),
+	postal_code char(6) NOT NULL,
 	building_number varchar(100) NOT NULL,
 	street varchar(100) NOT NULL,
 	FOREIGN KEY (postal_code) REFERENCES postal_address(postal_code)
