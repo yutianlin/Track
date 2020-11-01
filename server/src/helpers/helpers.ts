@@ -7,7 +7,7 @@ export const insertValues = (
   types: ExpectedValueTypes
 ): { properties: string; values: string } => {
   const { properties, values } = getPropertiesAndValues(attributes, types);
-  return { properties: parenthesis(properties), values: parenthesis(values) };
+  return { properties: listify(properties), values: listify(values) };
 };
 
 export const updateValues = (
@@ -130,10 +130,6 @@ export const getFromAttributes = (
 
 export const stringify = (s: string): string => {
   return `'${s}'`;
-};
-
-export const parenthesis = (strings: string[], join: string = ", "): string => {
-  return `(${listify(strings, join)})`;
 };
 
 export const listify = (strings: string[], join: string = ", "): string => {

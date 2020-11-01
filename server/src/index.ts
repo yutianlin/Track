@@ -15,9 +15,10 @@ require("./buildings/building.controller")(app);
 require("./postals/postal.controller")(app);
 require("./rooms/room.controller")(app);
 require("./entrances/entrance.controller")(app);
-require("./person_time_entrances/person_time_entrance.controller")(app);
+require("./person_entrances/person_entrance.controller")(app);
 require("./joins/join.controller")(app);
-require("./bike/bike.controller")(app);
+require("./bikes/bike.controller")(app);
+require("./person_bikes/person_bike.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

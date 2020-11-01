@@ -1,3 +1,5 @@
+// Entity Tables
+
 export const PERSON_TABLE = {
   tableName: "person",
   id: "person_id",
@@ -29,14 +31,23 @@ export const ENTRANCE_TABLE = {
   id: "entrance_id",
 };
 
-export const PERSON_TIME_ENTRANCE_TABLE = {
-  tableName: "person_time_entrance",
-  id: PERSON_TABLE.id,
-  date: "start_time",
-  entranceId: ENTRANCE_TABLE.id,
-};
-
 export const BIKE_TABLE = {
   tableName: "shared_bike",
   id: "shared_bike_id"
 }
+
+// Relationship Tables
+
+export const PERSON_TIME_ENTRANCE_TABLE = {
+  tableName: "person_time_entrance",
+  personId: PERSON_TABLE.id,
+  date: "start_time",
+  entranceId: ENTRANCE_TABLE.id,
+};
+
+export const PERSON_BIKE_TABLE = {
+  tableName: "person_shared_bike",
+  personId: PERSON_TABLE.id,
+  bikeId: BIKE_TABLE.id,
+  rentalTime: "rental_time",
+};
