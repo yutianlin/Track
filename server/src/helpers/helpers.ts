@@ -7,7 +7,7 @@ export const insertValues = (
   types: ExpectedValueTypes
 ): { properties: string; values: string } => {
   const { properties, values } = getPropertiesAndValues(attributes, types);
-  return { properties: parenthesis(properties), values: parenthesis(values) };
+  return { properties: listify(properties), values: listify(values) };
 };
 
 export const updateValues = (

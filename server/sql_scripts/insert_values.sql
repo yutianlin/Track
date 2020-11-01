@@ -177,7 +177,7 @@ INSERT INTO shared_bike(shared_bike_id, is_rentable)
     VALUES('123466789', TRUE);
 
 INSERT INTO shared_bike(shared_bike_id, is_rentable)
-    VALUES('123476789', TRUE);
+    VALUES('123476789', FALSE);
 
 INSERT INTO shared_bike(shared_bike_id, is_rentable)
     VALUES('123486789', TRUE);
@@ -273,31 +273,31 @@ INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_cod
  Einstein rode bike 1ac456789 on Oct 4
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '2', '2020-10-04 00:00:00'::TIMESTAMPTZ);
+    VALUES('1ac456789', '2', '2020-10-04T00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Jake rode bike 1ac456789 on Oct 5
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '1', '2020-10-05 00:00:00'::TIMESTAMPTZ);
+    VALUES('1ac456789', '1', '2020-10-05T00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Iron Man rode bike 1ac456789 on Oct 7
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '3', '2020-10-07 00:00:00'::TIMESTAMPTZ);
+    VALUES('1ac456789', '3', '2020-10-07T00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Chris rode bike 1ac456789 on Oct 8
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '4', '2020-10-08 00:00:00'::TIMESTAMPTZ);
+    VALUES('1ac456789', '4', '2020-10-08T00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Richard rode bike 1ac456789 on Oct 9
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '5', '2020-10-09 00:00:00'::TIMESTAMPTZ);
+    VALUES('1ac456789', '5', '2020-10-09T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO notification(category, subject_line, body)
     VALUES('email', 'Covid Contact Notification', 'On Oct 9, 2020, you had an encounter at DMP 110 with someone who tested Covid-19');

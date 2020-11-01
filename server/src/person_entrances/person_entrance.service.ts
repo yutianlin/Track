@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import {
   GetAllRelations,
   CreateRelation,
-} from "./person_time_entrance.queries";
+} from "./person_entrance.queries";
 import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import moment from "moment";
