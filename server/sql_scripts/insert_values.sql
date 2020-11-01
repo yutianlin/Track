@@ -3,19 +3,19 @@
  */
 
 INSERT INTO scheduled_class(start_day, end_day, class_name)
-    VALUES ('2020-09-08'::TIMESTAMP, '2020-12-03'::TIMESTAMP, 'CPSC 304 101');
+    VALUES ('2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'CPSC 304 101');
 
 INSERT INTO scheduled_class(start_day, end_day, class_name)
-    VALUES ('2020-09-08'::TIMESTAMP, '2020-12-03'::TIMESTAMP, 'CPSC 313 101');
+    VALUES ('2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'CPSC 313 101');
 
 INSERT INTO scheduled_class(start_day, end_day, class_name)
-    VALUES ('2020-09-08'::TIMESTAMP, '2020-12-03'::TIMESTAMP, 'MATH 100 101');
+    VALUES ('2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'MATH 100 101');
 
 INSERT INTO scheduled_class(start_day, end_day, class_name)
-    VALUES ('2020-09-08'::TIMESTAMP, '2020-12-03'::TIMESTAMP, 'CHEM 121 102');
+    VALUES ('2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'CHEM 121 102');
 
 INSERT INTO scheduled_class(start_day, end_day, class_name)
-    VALUES ('2020-09-08'::TIMESTAMP, '2020-12-03'::TIMESTAMP, 'PHYS 100 103');
+    VALUES ('2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'PHYS 100 103');
 
 INSERT INTO postal_address(postal_code, city, province)
     VALUES('V6T1Z1', 'Vancouver', 'BC');
@@ -204,31 +204,31 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
  Jake tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 1, 1, FALSE);
+    VALUES('2020-10-05'::TIMESTAMPTZ, 1, 1, FALSE);
 
 /*
  Einstein tested positive
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 2, 1, TRUE);
+    VALUES('2020-10-05'::TIMESTAMPTZ, 2, 1, TRUE);
 
 /*
  Iron Man tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 3, 1, FALSE);
+    VALUES('2020-10-05'::TIMESTAMPTZ, 3, 1, FALSE);
 
 /*
  Chris tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 4, 2, FALSE);
+    VALUES('2020-10-05'::TIMESTAMPTZ, 4, 2, FALSE);
 
 /*
  Richard tested negative
  */
 INSERT INTO covid_test(test_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05'::TIMESTAMP, 5, 3, FALSE);
+    VALUES('2020-10-05'::TIMESTAMPTZ, 5, 3, FALSE);
 
 /*
  CPSC 304 and locations
@@ -273,31 +273,31 @@ INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_cod
  Einstein rode bike 1ac456789 on Oct 4
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '2', '2020-10-04 00:00:00'::TIMESTAMP);
+    VALUES('1ac456789', '2', '2020-10-04 00:00:00'::TIMESTAMPTZ);
 
 /*
  Jake rode bike 1ac456789 on Oct 5
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '1', '2020-10-05 00:00:00'::TIMESTAMP);
+    VALUES('1ac456789', '1', '2020-10-05 00:00:00'::TIMESTAMPTZ);
 
 /*
  Iron Man rode bike 1ac456789 on Oct 7
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '3', '2020-10-07 00:00:00'::TIMESTAMP);
+    VALUES('1ac456789', '3', '2020-10-07 00:00:00'::TIMESTAMPTZ);
 
 /*
  Chris rode bike 1ac456789 on Oct 8
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '4', '2020-10-08 00:00:00'::TIMESTAMP);
+    VALUES('1ac456789', '4', '2020-10-08 00:00:00'::TIMESTAMPTZ);
 
 /*
  Richard rode bike 1ac456789 on Oct 9
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '5', '2020-10-09 00:00:00'::TIMESTAMP);
+    VALUES('1ac456789', '5', '2020-10-09 00:00:00'::TIMESTAMPTZ);
 
 INSERT INTO notification(category, subject_line, body)
     VALUES('email', 'Covid Contact Notification', 'On Oct 9, 2020, you had an encounter at DMP 110 with someone who tested Covid-19');
@@ -315,22 +315,22 @@ INSERT INTO notification(category, subject_line, body)
     VALUES('text', NULL, 'On Oct 10, 2020, you had an encounter at DMP 110 with someone who tested Covid-19');
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(1, 1, '2020-10-11 00:00:00'::TIMESTAMP);
+    VALUES(1, 1, '2020-10-11 00:00:00'::TIMESTAMPTZ);
 
 /*
  Einstein receives an email and an inApp notification
  */
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(1, 2, '2020-10-11 00:00:00'::TIMESTAMP);
+    VALUES(1, 2, '2020-10-11 00:00:00'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(3, 2, '2020-10-11 00:00:00'::TIMESTAMP);
+    VALUES(3, 2, '2020-10-11 00:00:00'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(4, 4, '2020-10-11 00:00:00'::TIMESTAMP);
+    VALUES(4, 4, '2020-10-11 00:00:00'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(5, 4, '2020-10-11 00:00:00'::TIMESTAMP);
+    VALUES(5, 4, '2020-10-11 00:00:00'::TIMESTAMPTZ);
 
 /*
   All the people are in CPSC 304 101
@@ -353,17 +353,17 @@ INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
 /*
   All the people entered DMP 110 on Oct 9
  */
-INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
-    VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 1);
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 1);
 
-INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
-    VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 2);
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 2);
 
-INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
-    VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 3);
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 3);
 
-INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
-    VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 4);
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 4);
 
-INSERT INTO person_time_entrance(entrance_id, start_date, person_id)
-    VALUES(1, '2020-10-09 00:00:00'::TIMESTAMP, 5);
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 5);

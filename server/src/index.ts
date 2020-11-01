@@ -15,6 +15,7 @@ require("./buildings/building.controller")(app);
 require("./postals/postal.controller")(app);
 require("./rooms/room.controller")(app);
 require("./entrances/entrance.controller")(app);
+require("./person_time_entrances/person_time_entrance.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

@@ -22,14 +22,14 @@ module.exports = function (app: any) {
     );
 
     if (error) {
-      response.json({ error: error });
+      response.status(422).json(error);
       return;
     }
 
     try {
       response.json(await facultyService.createFaculty(value));
     } catch (e) {
-      response.json(e);
+      response.status(422).json(e.message);
     }
   });
 
@@ -43,14 +43,14 @@ module.exports = function (app: any) {
       );
 
       if (error) {
-        response.json({ error: error });
+        response.status(422).json(error);
         return;
       }
 
       try {
         response.json(await facultyService.updateFacultyById(id, value));
       } catch (e) {
-        response.json(e);
+        response.status(422).json(e.message);
       }
     }
   );
