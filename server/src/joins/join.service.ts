@@ -10,7 +10,6 @@ export default class Join {
   }
 
   getEntranceInfoById = (id: number) => {
-    console.log(GetEntranceInfoById(id));
     return this.queryService.query(GetEntranceInfoById(id));
   };
 }
