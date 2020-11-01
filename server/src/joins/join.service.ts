@@ -1,6 +1,6 @@
 import QueryService from "../QueryService";
 
-import { GetEntranceInfoById } from "./join.queries";
+import {GetEntranceInfoById, GetPersonAndFacultyInfoById} from "./join.queries";
 
 export default class Join {
   queryService: QueryService;
@@ -12,4 +12,8 @@ export default class Join {
   getEntranceInfoById = (id: number) => {
     return this.queryService.query(GetEntranceInfoById(id));
   };
+
+  getPersonAndFacultyInfoById = (id: number) => {
+    return this.queryService.query(GetPersonAndFacultyInfoById(id));
+  }
 }
