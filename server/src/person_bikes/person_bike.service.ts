@@ -5,6 +5,7 @@ import {
 } from "./person_bike.queries";
 import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
+import { ParameterConstraintError } from "../errors";
 import moment from "moment";
 
 const NOTNULLABLENUMBERPROPERTIES = ["person_id"];
@@ -29,6 +30,8 @@ export default class PersonBikeService {
     types.setNotNullableStrings(NOTNULLABLESTRINGPROPERTIES);
     attributes["rental_time"] = moment().utc().toISOString();
     const { properties, values } = insertValues(attributes, types);
-    return this.queryService.query(CreateRelation(properties, values));
+    const sharedBikes: any[]  = await this.queryService.query(CreateRelation(properties, values, attributes["shared_bike_id"]));
+    if (sharedBikes.length === 0) throw new ParameterConstraintError("shared_bike_id", "bike must be rentable");
+    return sharedBikes;
   };
 }

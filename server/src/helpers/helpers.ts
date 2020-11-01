@@ -132,10 +132,6 @@ export const stringify = (s: string): string => {
   return `'${s}'`;
 };
 
-export const parenthesis = (strings: string[], join: string = ", "): string => {
-  return `(${listify(strings, join)})`;
-};
-
 export const listify = (strings: string[], join: string = ", "): string => {
   return strings.join(join);
 };
