@@ -1,11 +1,11 @@
 export const PERSON_TABLE = {
   tableName: "person",
-  personId: "person_id",
+  id: "person_id",
 };
 
 export const FACULTY_TABLE = {
   tableName: "faculty",
-  facultyId: "faculty_id",
+  id: "faculty_id",
 };
 
 export const BUILDING_TABLE = {
@@ -26,12 +26,17 @@ export const ROOM_TABLE = {
 
 export const ENTRANCE_TABLE = {
   tableName: "entrance",
-  entranceId: "entrance_id",
+  id: "entrance_id",
 };
 
 export const PERSON_TIME_ENTRANCE_TABLE = {
   tableName: "person_time_entrance",
-  personId: PERSON_TABLE.personId,
+  id: PERSON_TABLE.id,
   date: "start_time",
-  entranceId: ENTRANCE_TABLE.entranceId,
+  entranceId: ENTRANCE_TABLE.id,
 };
+
+export const BIKE_TABLE = {
+  tableName: "shared_bike",
+  id: "shared_bike_id"
+}
