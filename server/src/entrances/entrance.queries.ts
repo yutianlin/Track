@@ -1,10 +1,8 @@
 import { GetAllRowsFromTable, GetRowsWithSelection } from "../helpers/queries";
 
-import { ENTRANCE_TABLE } from "../helpers/tables";
+import { ENTRANCE_TABLE as E } from "../helpers/tables";
 
-const { tableName, entranceId } = ENTRANCE_TABLE;
-
-export const GetAllEntrances = GetAllRowsFromTable(tableName);
+export const GetAllEntrances = GetAllRowsFromTable(E.tableName);
 
 export const GetEntranceById = (id: number) =>
-  GetRowsWithSelection(tableName, `${entranceId} = ${id}`);
+  GetRowsWithSelection(E.tableName, `${E.id} = ${id}`);

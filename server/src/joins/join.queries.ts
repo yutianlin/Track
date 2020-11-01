@@ -16,5 +16,5 @@ export const GetEntranceInfoById = (id: number) =>
             ON ${ENTRANCE.tableName}.${BUILDING.buildingCode} = ${BUILDING.tableName}. ${BUILDING.buildingCode}
         INNER JOIN ${POSTAL.tableName} 
             ON ${BUILDING.tableName}.${POSTAL.postalCode} = ${POSTAL.tableName}.${POSTAL.postalCode}`,
-    `${ENTRANCE.entranceId} = ${id}`
+    `${ENTRANCE.id} = ${id}`
   );

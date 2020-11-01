@@ -17,6 +17,7 @@ require("./rooms/room.controller")(app);
 require("./entrances/entrance.controller")(app);
 require("./person_time_entrances/person_time_entrance.controller")(app);
 require("./joins/join.controller")(app);
+require("./bike/bike.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
