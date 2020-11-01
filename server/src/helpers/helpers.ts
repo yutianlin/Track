@@ -1,3 +1,4 @@
+import moment from "moment";
 import { InvalidParameterError } from "../errors";
 import { ExpectedValueTypes } from "./ExpectedValueTypes";
 
@@ -68,6 +69,19 @@ export const getPropertiesAndValues = (
     }
   });
 
+  types.getNotNullableDateTimes().forEach((property) => {
+    properties.push(property);
+    values.push(getDateTimeFromAttributes(attributes, property, false));
+  });
+
+  types.getNullableDateTimes().forEach((property) => {
+    const value = getDateTimeFromAttributes(attributes, property, true);
+    if (value) {
+      properties.push(property);
+      values.push(value);
+    }
+  })
+
   return { properties: properties, values: values };
 };
 
@@ -81,6 +95,24 @@ export const getStringFromAttributes = (
   if (nullable) return null;
   throw new InvalidParameterError(property, "string");
 };
+
+export const getDateTimeFromAttributes = (
+  attributes: any,
+  property: string,
+  nullable: boolean
+): string | null => {
+  if (attributes.hasOwnProperty(property)) {
+    const dateTime = attributes[property];
+
+    if (moment(dateTime, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).isValid()) {
+      return UTCify(stringify(dateTime));
+    } else {
+      throw new InvalidParameterError(property, "Date YYYY-MM-DDTHH:mm:ss.SSSZ");
+    }
+  }
+  if (nullable) return null;
+  throw new InvalidParameterError(property, "Date YYYY-MM-DDTHH:mm:ss.SSSZ");
+}
 
 export const getFromAttributes = (
   attributes: any,
@@ -97,10 +129,14 @@ export const stringify = (s: string): string => {
   return `'${s}'`;
 };
 
-export const parenthesis = (strings: string[]): string => {
-  return `(${listify(strings)})`;
+export const parenthesis = (strings: string[], join: string = ", "): string => {
+  return `(${listify(strings, join)})`;
 };
 
-export const listify = (strings: string[]): string => {
-  return strings.join(", ");
+export const listify = (strings: string[], join: string = ", "): string => {
+  return strings.join(join);
 };
+
+export const UTCify = (s: string): string => {
+  return `${s}::TIMESTAMPTZ`;
+}

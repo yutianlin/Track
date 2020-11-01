@@ -5,8 +5,8 @@
 
 CREATE TABLE scheduled_class (
 	scheduled_class_id serial PRIMARY KEY,
-	start_day timestamp NOT NULL,
-	end_day timestamp NOT NULL,
+	start_day timestamptz NOT NULL,
+	end_day timestamptz NOT NULL,
 	class_name TEXT NOT NULL
 );
 
@@ -112,7 +112,7 @@ CREATE TABLE covid_testing_centre(
 );
 
 CREATE TABLE covid_test(
-	test_time timestamp,
+	test_time timestamptz,
 	person_id integer,
 	covid_testing_centre_id integer,
 	status boolean,
@@ -124,9 +124,9 @@ CREATE TABLE covid_test(
 
 CREATE TABLE person_time_entrance(
 	person_id integer,
-	start_date timestamp,
+	start_time timestamptz,
 	entrance_id int,
-	PRIMARY KEY (person_id, start_date, entrance_id),
+	PRIMARY KEY (person_id, start_time, entrance_id),
 	FOREIGN KEY (person_id) REFERENCES person(person_id)
 	    ON DELETE CASCADE,
 	FOREIGN KEY (entrance_id) REFERENCES entrance(entrance_id)
@@ -136,7 +136,7 @@ CREATE TABLE person_time_entrance(
 CREATE TABLE person_shared_bike(
 	shared_bike_id varchar(100),
 	person_id integer,
-	rental_time timestamp NOT NULL,
+	rental_time timestamptz NOT NULL,
 	PRIMARY KEY(shared_bike_id, person_id, rental_time),
 	FOREIGN KEY (shared_bike_id) REFERENCES shared_bike(shared_bike_id)
 	    ON DELETE CASCADE,
@@ -169,7 +169,7 @@ CREATE TABLE notification(
 CREATE TABLE person_notification(
 	notification_id integer,
 	person_id integer,
-	notification_time timestamp NOT NULL,
+	notification_time timestamptz NOT NULL,
 	PRIMARY KEY(notification_id, person_id),
 	FOREIGN KEY (notification_id) REFERENCES notification(notification_id)
 	    ON DELETE CASCADE,

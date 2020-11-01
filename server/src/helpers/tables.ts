@@ -16,15 +16,22 @@ export const BUILDING_TABLE = {
 export const POSTAL_TABLE = {
   tableName: "postal_address",
   postalCode: "postal_code",
-}
+};
 
 export const ROOM_TABLE = {
   tableName: "room",
   buildingCode: BUILDING_TABLE.buildingCode,
   roomNumber: "room_number",
-}
+};
 
 export const ENTRANCE_TABLE = {
   tableName: "entrance",
   entranceId: "entrance_id",
-}
+};
+
+export const PERSON_TIME_ENTRANCE_TABLE = {
+  tableName: "person_time_entrance",
+  personId: PERSON_TABLE.personId,
+  date: "start_time",
+  entranceId: ENTRANCE_TABLE.entranceId,
+};

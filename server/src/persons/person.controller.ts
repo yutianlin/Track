@@ -22,13 +22,13 @@ module.exports = function (app: any) {
       request.body.data
     );
     if (error) {
-      response.json({ error: error });
+      response.status(422).json(error.message);
       return;
     }
     try {
       response.json(await personService.createPerson(value));
     } catch (e) {
-      response.json(e);
+      response.status(422).json(e.message);
     }
   });
 
@@ -38,13 +38,13 @@ module.exports = function (app: any) {
       request.body.data
     );
     if (error) {
-      response.json({ error: error });
+      response.status(422).json(error.message);
       return;
     }
     try {
       response.json(await personService.updatePersonById(id, value));
     } catch (e) {
-      response.json(e);
+      response.status(422).json(e.message);
     }
   });
 };
