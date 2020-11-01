@@ -1,7 +1,7 @@
 import QueryService from "../QueryService";
 import {
-    GetAllRelations,
-    CreateRelation
+  GetAllRelations,
+  CreateRelation,
 } from "./person_time_entrance.queries";
 import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";

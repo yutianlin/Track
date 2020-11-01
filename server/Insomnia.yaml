@@ -1,7 +1,7 @@
 _type: export
 __export_format: 4
-__export_date: 2020-10-31T07:57:45.763Z
-__export_source: insomnia.desktop.app:v2020.4.1
+__export_date: 2020-11-01T08:24:11.667Z
+__export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
     parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
@@ -32,6 +32,37 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_f38ae36241b84a0ea1903b78a6274c77
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604218870848
+    created: 1604218674678
+    url: http://127.0.0.1:3000/entrance_info/4
+    name: GET /entrance_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604218674733
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
   - _id: req_ff17fa27e03e4e3bbacc1209f80b2b8c
     parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
     modified: 1604128500619
@@ -86,9 +117,9 @@ resources:
     _type: request
   - _id: req_5e366e125bad4d8d81ad127b6e555e28
     parentId: fld_aea675b67007426bb0cc467611734588
-    modified: 1604127188718
+    modified: 1604218788675
     created: 1604127173093
-    url: http://127.0.0.1:3000/buildings/ICCS
+    url: http://127.0.0.1:3000/buildings/MATH
     name: GET /buildings/:code
     description: ""
     method: GET
@@ -138,9 +169,9 @@ resources:
     _type: request
   - _id: req_43245b1238cd4b8ab32cb096bf0d3dc8
     parentId: fld_89508926af434eb6b60a396270989ab3
-    modified: 1604129477067
+    modified: 1604218776831
     created: 1604129243943
-    url: http://127.0.0.1:3000/rooms/DMP/110
+    url: http://127.0.0.1:3000/rooms/MATH/100
     name: GET /rooms/:building_code/:room_number
     description: ""
     method: GET
@@ -190,9 +221,9 @@ resources:
     _type: request
   - _id: req_3fc9262c09e749b3b5c5e32234eb57d3
     parentId: fld_b4a09fdaf45f4312886354dc78c3d9e4
-    modified: 1604131017688
+    modified: 1604218754288
     created: 1604130997405
-    url: http://127.0.0.1:3000/entrances/1
+    url: http://127.0.0.1:3000/entrances/3
     name: GET /entrances/:id
     description: ""
     method: GET
@@ -232,6 +263,69 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1604130973690
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ad9932b3dda046f581f93f9027f539be
+    parentId: fld_9c2ba41f70994624b9034b8e932777f5
+    modified: 1604211700616
+    created: 1604195413825
+    url: http://127.0.0.1:3000/person_time_entrances
+    name: POST /person_time_entrances
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": 
+        	{
+        		"person_id": 5,
+        		"entrance_id": 2
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_09a8d1de40404fd7997f91e7ca90f751
+    authentication: {}
+    metaSortKey: -1604195413825
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_9c2ba41f70994624b9034b8e932777f5
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604210656607
+    created: 1604195194206
+    name: person_time_entrance
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443249.5625
+    _type: request_group
+  - _id: req_ee458f1336e34c04adb33904957c0fbd
+    parentId: fld_9c2ba41f70994624b9034b8e932777f5
+    modified: 1604211199875
+    created: 1604195215527
+    url: http://127.0.0.1:3000/person_time_entrances
+    name: GET /person_time_entrances
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604195215527
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -409,7 +503,7 @@ resources:
     _type: request
   - _id: req_c39a56ffbc6f4eecba349bac732df7b4
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604101996095
+    modified: 1604210301589
     created: 1602715556061
     url: http://127.0.0.1:3000/persons
     name: POST /persons
@@ -424,7 +518,8 @@ resources:
         		"in_app_notification": true,
         		"email": "as@email.com",
         		"phone_number": "7789097890",
-        		"faculty_id": "987654321126"
+        		"faculty_id": 987654321126,
+        		"student_id": 12345
         	}
         }
     parameters: []
