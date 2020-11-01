@@ -4,6 +4,15 @@ export const GetAllRowsFromTable = (tableName: string) =>
 export const GetRowsWithSelection = (tableName: string, selection: string) =>
   `SELECT * FROM ${tableName} WHERE ${selection};`;
 
+export const GetRowsWithProjection = (tableName: string, projection: string) =>
+  `SELECT ${projection} FROM ${tableName};`;
+
+export const GetRowsWithProjectionSelection = (
+  tableName: string,
+  projection: string,
+  selection: string
+) => `SELECT ${projection} FROM ${tableName} WHERE ${selection};`;
+
 export const InsertRow = (
   tableName: string,
   properties: string,

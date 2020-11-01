@@ -80,7 +80,7 @@ export const getPropertiesAndValues = (
       properties.push(property);
       values.push(value);
     }
-  })
+  });
 
   return { properties: properties, values: values };
 };
@@ -104,15 +104,18 @@ export const getDateTimeFromAttributes = (
   if (attributes.hasOwnProperty(property)) {
     const dateTime = attributes[property];
 
-    if (moment(dateTime, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).isValid()) {
+    if (moment(dateTime, "YYYY-MM-DDTHH:mm:ss.SSSZ", true).isValid()) {
       return UTCify(stringify(dateTime));
     } else {
-      throw new InvalidParameterError(property, "Date YYYY-MM-DDTHH:mm:ss.SSSZ");
+      throw new InvalidParameterError(
+        property,
+        "Date YYYY-MM-DDTHH:mm:ss.SSSZ"
+      );
     }
   }
   if (nullable) return null;
   throw new InvalidParameterError(property, "Date YYYY-MM-DDTHH:mm:ss.SSSZ");
-}
+};
 
 export const getFromAttributes = (
   attributes: any,
@@ -139,4 +142,4 @@ export const listify = (strings: string[], join: string = ", "): string => {
 
 export const UTCify = (s: string): string => {
   return `${s}::TIMESTAMPTZ`;
-}
+};
