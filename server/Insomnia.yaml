@@ -1,7 +1,7 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-01T08:24:11.667Z
-__export_source: insomnia.desktop.app:v2020.4.2
+__export_date: 2020-11-01T21:25:50.069Z
+__export_source: insomnia.desktop.app:v2020.4.1
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
     parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
@@ -32,6 +32,37 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_3b69ea649b2045f081cf6a27dbae242a
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604265820164
+    created: 1604265335966
+    url: http://127.0.0.1:3000/person_faculty_info/2
+    name: GET /person_faculty_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604265335966
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
   - _id: req_f38ae36241b84a0ea1903b78a6274c77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1604218870848
@@ -53,16 +84,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604218653911
-    created: 1604218646679
-    name: join
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603636443269.875
-    _type: request_group
   - _id: req_ff17fa27e03e4e3bbacc1209f80b2b8c
     parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
     modified: 1604128500619
