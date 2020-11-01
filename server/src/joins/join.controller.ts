@@ -7,4 +7,9 @@ module.exports = function (app: any) {
     const id = request.params.id;
     response.json(await joinService.getEntranceInfoById(id));
   });
+
+  app.get("/person_faculty_info/:id", async (request: any, response: any) => {
+    const id = request.params.id;
+    response.json(await joinService.getPersonAndFacultyInfoById(id));
+  });
 };
