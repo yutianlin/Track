@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-01T22:07:59.978Z
+__export_date: 2020-11-02T01:48:58.045Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -612,7 +612,7 @@ resources:
     _type: request
   - _id: req_c741ad52edc642bfa681902f8c2b3f26
     parentId: fld_652277bad8eb47e8a86fc932793b2ff8
-    modified: 1604268165988
+    modified: 1604268760697
     created: 1604264349882
     url: http://127.0.0.1:3000/person_bikes
     name: POST /person_bikes
@@ -624,7 +624,7 @@ resources:
         { "data": 
         	{
         		"person_id": 5,
-        		"shared_bike_id": "123476789"
+        		"shared_bike_id": "123466789"
         	}
         }
     parameters: []
