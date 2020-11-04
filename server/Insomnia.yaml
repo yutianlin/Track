@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-04T04:56:03.633Z
+__export_date: 2020-11-04T22:28:12.269Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -673,90 +673,6 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1603636443173
     _type: request_group
-  - _id: req_269653848b08465290530eab2961a687
-    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465500292
-    created: 1604447635140
-    url: http://127.0.0.1:3000/covid_tests/1/1/2020-10-05T07:00:00.000Z
-    name: GET /covid_tests/:pid/:ctcid/:time
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604447635140
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_76131fb2dc624e28ac2fc3b097c5d120
-    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465492541
-    created: 1604447673456
-    url: http://127.0.0.1:3000/covid_tests/1/1
-    name: GET /covid_tests/:pid/:ctcid
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604447616746
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_5ab533cf8c36410d8b598685b8abc5eb
-    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465485248
-    created: 1604447689247
-    url: http://127.0.0.1:3000/covid_tests/1
-    name: GET /covid_tests/:ctcid
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604447612147.5
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_4a9dc5dedce94c35be54b9255c15d618
-    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465474133
-    created: 1604447680859
-    url: http://127.0.0.1:3000/covid_tests/1
-    name: GET /covid_tests/:pid
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604447607549
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
   - _id: req_6bef770653cf47e78a5b20ecf57ed7ac
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
     modified: 1604465679471
