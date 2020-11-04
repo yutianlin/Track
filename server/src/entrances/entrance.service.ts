@@ -1,7 +1,7 @@
 import QueryService from "../QueryService";
 import { GetAllEntrances, GetEntranceById } from "./entrance.queries";
 
-export default class Building {
+export default class Entrance {
   queryService: QueryService;
 
   constructor() {
