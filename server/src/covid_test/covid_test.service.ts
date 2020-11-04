@@ -1,11 +1,7 @@
 import QueryService from "../QueryService";
 import {
     CreateCovidTest,
-    GetAllCovidTests,
-    GetCovidTest,
-    GetCovidTestByCentre,
-    GetCovidTestByPerson,
-    GetCovidTestByPersonAndCentre
+    GetAllCovidTests
 } from "./covid_test.queries";
 import {ExpectedValueTypes} from "../helpers/ExpectedValueTypes";
 import {insertValues} from "../helpers/helpers";
@@ -30,21 +26,5 @@ export default class CovidTest {
 
     getAllCovidTests = async () => {
         return this.queryService.query(GetAllCovidTests);
-    };
-
-    getCovidTestByPerson = async (pId: string) => {
-        return this.queryService.query(GetCovidTestByPerson(pId));
-    };
-
-    getCovidTestByCentre = async (ctcId: string) => {
-        return this.queryService.query(GetCovidTestByCentre(ctcId));
-    };
-
-    getCovidTestByPersonAndCentre = async (pId: string, ctcId: string) => {
-        return this.queryService.query(GetCovidTestByPersonAndCentre(pId, ctcId));
-    };
-
-    getCovidTest = async (pId: string, ctcId: string, time: Date) => {
-        return this.queryService.query(GetCovidTest(pId, ctcId, time));
     };
 }
