@@ -6,7 +6,7 @@ import {
   BUILDING_TABLE as BUILDING,
   POSTAL_TABLE as POSTAL,
   PERSON_TABLE as PERSON,
-  FACULTY_TABLE as FACULTY
+  FACULTY_TABLE as FACULTY,
 } from "../helpers/tables";
 
 export const GetEntranceInfoById = (id: number) =>
@@ -22,9 +22,9 @@ export const GetEntranceInfoById = (id: number) =>
   );
 
 export const GetPersonAndFacultyInfoById = (id: number) =>
-    GetRowsWithSelection(
-        `${PERSON.tableName} 
+  GetRowsWithSelection(
+    `${PERSON.tableName} 
         LEFT JOIN ${FACULTY.tableName} 
             ON ${PERSON.tableName}.${FACULTY.id} = ${FACULTY.tableName}.${FACULTY.id}`,
-        `${PERSON.id} = ${id}`
-    );
+    `${PERSON.id} = ${id}`
+  );

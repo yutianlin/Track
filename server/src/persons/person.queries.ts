@@ -5,7 +5,7 @@ import {
   UpdateRow,
 } from "../helpers/queries";
 
-import { PERSON_TABLE as P} from "../helpers/tables";
+import { PERSON_TABLE as P } from "../helpers/tables";
 
 export const GetAllPersons = GetAllRowsFromTable(P.tableName);
 

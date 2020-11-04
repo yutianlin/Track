@@ -33,20 +33,20 @@ export const ENTRANCE_TABLE = {
 
 export const BIKE_TABLE = {
   tableName: "shared_bike",
-  id: "shared_bike_id"
-}
+  id: "shared_bike_id",
+};
 
 export const COVID_TESTING_CENTRE_TABLE = {
   tableName: "covid_testing_centre",
-  id: "covid_testing_centre_id"
-}
+  id: "covid_testing_centre_id",
+};
 
 export const COVID_TEST_TABLE = {
   tableName: "covid_test",
   personId: PERSON_TABLE.id,
   covidTestingCentreId: COVID_TESTING_CENTRE_TABLE.id,
-  testTime: "test_time"
-}
+  testTime: "test_time",
+};
 
 // Relationship Tables
 
