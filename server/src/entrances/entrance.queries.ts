@@ -5,4 +5,4 @@ import { ENTRANCE_TABLE as E } from "../helpers/tables";
 export const GetAllEntrances = GetAllRowsFromTable(E.tableName);
 
 export const GetEntranceById = (id: number) =>
-  GetRowsWithSelection(E.tableName, `${E.id} = ${id}`);
+  GetRowsWithSelection(E.tableName, `${E.id.getName()} = ${id}`);

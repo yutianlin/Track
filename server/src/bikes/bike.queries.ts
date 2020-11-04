@@ -5,4 +5,4 @@ import { BIKE_TABLE as B} from "../helpers/tables";
 
 export const GetAllBikes = GetAllRowsFromTable(B.tableName);
 
-export const GetBikeById = (id: string) => GetRowsWithSelection(B.tableName, `${B.id} = ${stringify(id)}`);
+export const GetBikeById = (id: string) => GetRowsWithSelection(B.tableName, `${B.id.getName()} = ${stringify(id)}`);

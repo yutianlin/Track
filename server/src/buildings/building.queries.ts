@@ -1,11 +1,9 @@
 import { GetAllRowsFromTable, GetRowsWithSelection } from "../helpers/queries";
 import { stringify } from "../helpers/helpers";
 
-import { BUILDING_TABLE } from "../helpers/tables";
+import { BUILDING_TABLE as B } from "../helpers/tables";
 
-const { tableName, buildingCode } = BUILDING_TABLE;
-
-export const GetAllBuildings = GetAllRowsFromTable(tableName);
+export const GetAllBuildings = GetAllRowsFromTable(B.tableName);
 
 export const GetBuildingByCode = (code: string) =>
-  GetRowsWithSelection(tableName, `${buildingCode} = ${stringify(code)}`);
+  GetRowsWithSelection(B.tableName, `${B.buildingCode.getName()} = ${stringify(code)}`);

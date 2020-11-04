@@ -8,4 +8,4 @@ import {
 export const GetAllRelations = () => GetAllRowsFromTable(PB.tableName);
 
 export const CreateRelation = (properties: string, values: string, bikeId: string) =>
-  InsertRowWithSelectCondition(PB.tableName, properties, values, B.tableName, `${B.id} = ${stringify(bikeId)} AND is_rentable = true`, true);
+  InsertRowWithSelectCondition(PB.tableName, properties, values, B.tableName, `${B.id.getName()} = ${stringify(bikeId)} AND is_rentable = true`, true);
