@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-04T22:28:12.269Z
+__export_date: 2020-11-05T01:51:19.457Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -642,17 +642,210 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_5100f6e4fb954deb89b5d55c8c90122c
-    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465584556
-    created: 1604465461376
-    url: http://127.0.0.1:3000/covid_tests/5/1/2020-10-05T07:00:00.000Z
-    name: POST /covid_test
+  - _id: req_c895c946d0d640079703e37989056a34
+    parentId: fld_658247d9b19f4aa8b0cc0e6494b60d67
+    modified: 1604540822601
+    created: 1604540632147
+    url: http://127.0.0.1:3000/bubble_persons
+    name: POST /bubble_persons
     description: ""
     method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+          {
+            "person_id": 1,
+            "bubble_id": 2
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e50c839271e149389e4d42ca753fb518
+    authentication: {}
+    metaSortKey: -1604540632147
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_658247d9b19f4aa8b0cc0e6494b60d67
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604540594994
+    created: 1604540592354
+    name: bubble_person
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443191.75
+    _type: request_group
+  - _id: req_83033373895748e98cf4edce18d1aff3
+    parentId: fld_658247d9b19f4aa8b0cc0e6494b60d67
+    modified: 1604540732581
+    created: 1604540618078
+    url: http://127.0.0.1:3000/bubble_persons
+    name: GET /bubble_persons
+    description: ""
+    method: GET
     body: {}
     parameters: []
     headers: []
+    authentication: {}
+    metaSortKey: -1604540618139
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_14d13d90e86b4361997f2ca48f1ab802
+    parentId: fld_c86aad6e702c45c295a0bd420fca02cc
+    modified: 1604538217889
+    created: 1604534592013
+    url: http://127.0.0.1:3000/bubbles/1
+    name: PATCH /bubbles/:id
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+        	{
+        		"title": "Project Group 45",
+            "description": "Project Group for CPSC 310"
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_dc84565804d144308bee9ae287b3c67e
+    authentication: {}
+    metaSortKey: -1604534592014
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_c86aad6e702c45c295a0bd420fca02cc
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604534376329
+    created: 1604534350025
+    name: bubble
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443185.5
+    _type: request_group
+  - _id: req_c61ec91cd17b44bb8d74127133985f9b
+    parentId: fld_c86aad6e702c45c295a0bd420fca02cc
+    modified: 1604534992540
+    created: 1604534468710
+    url: http://127.0.0.1:3000/bubbles/1
+    name: GET /bubbles/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604534468710
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a934f86ab8d2420fa3ba5944b9a904e9
+    parentId: fld_c86aad6e702c45c295a0bd420fca02cc
+    modified: 1604535600209
+    created: 1604534388313
+    url: http://127.0.0.1:3000/bubbles
+    name: POST /bubbles
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+          {
+            "bubble_id": 6,
+            "title": "Family",
+            "description": "The fam jam"
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_e212b94a8a9f46a5a1c1ae7937624360
+    authentication: {}
+    metaSortKey: -1604534388313
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fa0acaf29b6a4cf59c6b7299e53b444f
+    parentId: fld_c86aad6e702c45c295a0bd420fca02cc
+    modified: 1604534989320
+    created: 1604534370040
+    url: http://127.0.0.1:3000/bubbles
+    name: GET /bubbles
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604534370100
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5100f6e4fb954deb89b5d55c8c90122c
+    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
+    modified: 1604539291063
+    created: 1604465461376
+    url: http://127.0.0.1:3000/covid_tests
+    name: POST /covid_test
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+        	{
+            "test_time": "2020-10-05T07:00:00.000Z",
+            "person_id": 3,
+            "covid_testing_centre_id": 5,
+            "status": true
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_ee6e0b700d0b4a0aa6d00c9f19706b11
     authentication: {}
     metaSortKey: -1604465461435
     isPrivate: false
@@ -675,9 +868,9 @@ resources:
     _type: request_group
   - _id: req_6bef770653cf47e78a5b20ecf57ed7ac
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604465679471
+    modified: 1604535070567
     created: 1604447598352
-    url: ""
+    url: http://127.0.0.1:3000/covid_tests
     name: GET /covid_tests
     description: ""
     method: GET

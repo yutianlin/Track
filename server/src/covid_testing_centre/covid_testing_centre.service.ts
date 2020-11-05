@@ -15,7 +15,7 @@ export default class CovidTestingCentre {
     return this.queryService.query(GetAllCovidTestingCentres);
   };
 
-  getCovidTestingCentreById = async (id: string) => {
+  getCovidTestingCentreById = async (id: number) => {
     return this.queryService.query(GetCovidTestingCentreById(id));
   };
 }

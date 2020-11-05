@@ -48,6 +48,17 @@ export const COVID_TEST_TABLE = {
   testTime: "test_time",
 };
 
+export const BUBBLE_TABLE = {
+  tableName: "bubble",
+  bubbleId: "bubble_id",
+};
+
+export const BUBBLE_PERSON_TABLE = {
+  tableName: "bubble_person",
+  bubbleId: BUBBLE_TABLE.bubbleId,
+  personId: PERSON_TABLE.id,
+};
+
 // Relationship Tables
 
 export const PERSON_TIME_ENTRANCE_TABLE = {

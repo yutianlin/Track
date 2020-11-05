@@ -21,6 +21,8 @@ require("./bikes/bike.controller")(app);
 require("./person_bikes/person_bike.controller")(app);
 require("./covid_test/covid_test.controller")(app);
 require("./covid_testing_centre/covid_testing_centre.controller")(app);
+require("./bubbles/bubble.controller")(app);
+require("./bubble_person/bubble_person.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

@@ -3,7 +3,6 @@ import {
   GetRowsWithSelection,
   InsertRow,
 } from "../helpers/queries";
-import { stringify } from "../helpers/helpers";
 
 import { COVID_TEST_TABLE } from "../helpers/tables";
 
@@ -19,10 +18,10 @@ export const GetAllCovidTests = GetAllRowsFromTable(tableName);
 export const CreateCovidTest = (properties: string, values: string) =>
   InsertRow(tableName, properties, values);
 
-export const GetCovidTest = (pId: string, ctcId: string, time: Date) =>
+export const GetCovidTest = (pId: number, ctcId: number, time: Date) =>
   GetRowsWithSelection(
     tableName,
-    `${personId} = ${stringify(pId)} AND ${covidTestingCentreId} = ${stringify(
-      ctcId
-    )} AND ${testTime} = ${time}`
+    `${personId} = ${pId} AND
+             ${covidTestingCentreId} = ${ctcId} AND 
+             ${testTime} = ${time}`
   );
