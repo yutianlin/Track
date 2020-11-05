@@ -9,3 +9,9 @@ export class ParameterConstraintError extends Error {
     super(`attribute '${attribute}' has additional constraint '${constraint}' not met`);
   }
 }
+
+export class InvalidTypesError extends Error {
+  constructor(valueType: string) {
+    super(`ExpectedValueTypes is missing string array for type: ${valueType}`);
+  }
+}

@@ -6,4 +6,4 @@ import { BUILDING_TABLE as B } from "../helpers/tables";
 export const GetAllBuildings = GetAllRowsFromTable(B.tableName);
 
 export const GetBuildingByCode = (code: string) =>
-  GetRowsWithSelection(B.tableName, `${B.buildingCode.getName()} = ${stringify(code)}`);
+  GetRowsWithSelection(B.tableName, `${B.columns.buildingCode.getName()} = ${stringify(code)}`);

@@ -4,53 +4,78 @@ import ColumnType from "./ColumnType";
 
 export const PERSON_TABLE = {
   tableName: "person",
-  id: new ColumnType("person_id", "number", false),
-};
+  columns: {
+    id: new ColumnType("person_id", "number", false),
+    name: new ColumnType("name", "string", false),
+    email: new ColumnType("email", "string", true),
+    phoneNum: new ColumnType("phone_number", "string", true),
+    studentId: new ColumnType("student_id", "number", true),
+    facultyId: new ColumnType("faculty_id", "string", true),
+    // Technically false, but there is a default for null
+    inAppNot: new ColumnType("in_app_notification", "boolean", true),
+  }
+} as const;
 
 export const FACULTY_TABLE = {
   tableName: "faculty",
-  id: new ColumnType("faculty_id", "number", false),
-  jobTitle: new ColumnType("job_title", "string", false),
-};
+  columns: {
+    id: new ColumnType("faculty_id", "number", false),
+    jobTitle: new ColumnType("job_title", "string", false),
+  }
+} as const;
 
 export const BUILDING_TABLE = {
   tableName: "ubc_building",
-  buildingCode: new ColumnType("building_code", "string", false),
-};
+  columns: {
+    buildingCode: new ColumnType("building_code", "string", false),
+  }
+} as const;
 
 export const POSTAL_TABLE = {
   tableName: "postal_address",
-  postalCode: new ColumnType("postal_code", "string", false),
-};
+  columns: {
+    postalCode: new ColumnType("postal_code", "string", false),
+  }
+} as const;
 
 export const ROOM_TABLE = {
   tableName: "room",
-  buildingCode: new ColumnType(BUILDING_TABLE.buildingCode.getName(), BUILDING_TABLE.buildingCode.getType(), false),
-  roomNumber: new ColumnType("room_number", "string", false),
-};
+  columns: {
+    buildingCode: new ColumnType(BUILDING_TABLE.columns.buildingCode.getName(), BUILDING_TABLE.columns.buildingCode.getType(), false),
+    roomNumber: new ColumnType("room_number", "string", false),
+  }
+} as const;
 
 export const ENTRANCE_TABLE = {
   tableName: "entrance",
-  id: new ColumnType("entrance_id", "number", false),
-};
+  columns: {
+    id: new ColumnType("entrance_id", "number", false),
+  }
+} as const;
 
 export const BIKE_TABLE = {
   tableName: "shared_bike",
-  id: new ColumnType("shared_bike_id", "number", false),
-}
+  columns: {
+    id: new ColumnType("shared_bike_id", "number", false),
+  }
+} as const;
 
 // Relationship Tables
 
 export const PERSON_TIME_ENTRANCE_TABLE = {
   tableName: "person_time_entrance",
-  personId: new ColumnType(PERSON_TABLE.id.getName(), PERSON_TABLE.id.getType(), false),
-  date: new ColumnType("start_time", "dateTime", false),
-  entranceId: new ColumnType(ENTRANCE_TABLE.id.getName(), ENTRANCE_TABLE.id.getType(), false),
-};
+  columns: {
+    personId: new ColumnType(PERSON_TABLE.columns.id.getName(), PERSON_TABLE.columns.id.getType(), false),
+    date: new ColumnType("start_time", "dateTime", false),
+    entranceId: new ColumnType(ENTRANCE_TABLE.columns.id.getName(), ENTRANCE_TABLE.columns.id.getType(), false),
+  }
+} as const;
 
-export const PERSON_BIKE_TABLE = {
+export const PERSON_TIME_BIKE_TABLE = {
   tableName: "person_shared_bike",
-  personId: new ColumnType(PERSON_TABLE.id.getName(), PERSON_TABLE.id.getType(), false),
-  bikeId: new ColumnType(PERSON_TABLE.id.getName(), PERSON_TABLE.id.getType(), false),
-  rentalTime: new ColumnType("rental_time", "dateTime", false),
-};
+  columns: {
+    personId: new ColumnType(PERSON_TABLE.columns.id.getName(), PERSON_TABLE.columns.id.getType(), false),
+    bikeId: new ColumnType(BIKE_TABLE.columns.id.getName(), BIKE_TABLE.columns.id.getType(), false),
+    rentalTime: new ColumnType("rental_time", "dateTime", false),
+  }
+} as const;
