@@ -8,7 +8,7 @@ export const GetAllRooms = GetAllRowsFromTable(R.tableName);
 export const GetRoomByNumber = (building: string, roomNum: string) =>
   GetRowsWithSelection(
     R.tableName,
-    `${R.columns.buildingCode.getName()} = ${stringify(building)} AND ${R.columns.roomNumber.getName()} = ${stringify(
-      roomNum
-    )}`
+    `${R.columns.buildingCode.getName()} = ${stringify(
+      building
+    )} AND ${R.columns.roomNumber.getName()} = ${stringify(roomNum)}`
   );

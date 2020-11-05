@@ -7,7 +7,7 @@ import {
 } from "./faculty.queries";
 import { insertValues, updateValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
-import { FACULTY_TABLE as F } from "../helpers/tables"
+import { FACULTY_TABLE as F } from "../helpers/tables";
 
 export default class Faculty {
   queryService: QueryService;
@@ -25,7 +25,7 @@ export default class Faculty {
   };
 
   createFaculty = async (attributes: any) => {
-    const types = new ExpectedValueTypes(Object.values(F.columns))
+    const types = new ExpectedValueTypes(Object.values(F.columns));
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateFaculty(properties, values));
   };

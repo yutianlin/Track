@@ -10,7 +10,14 @@ import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { PERSON_TABLE } from "../helpers/tables";
 
 const { tableName, columns } = PERSON_TABLE;
-const expectValues = [columns.email, columns.facultyId, columns.inAppNot, columns.name, columns.phoneNum, columns.studentId];
+const expectValues = [
+  columns.email,
+  columns.facultyId,
+  columns.inAppNot,
+  columns.name,
+  columns.phoneNum,
+  columns.studentId,
+];
 
 export default class PersonService {
   queryService: QueryService;

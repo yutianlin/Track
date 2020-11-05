@@ -31,9 +31,9 @@ export const InsertRowWithSelectCondition = (
   values: string,
   selectTableName: string,
   selection: string,
-  selectionMet: boolean,
-) => 
+  selectionMet: boolean
+) =>
   `INSERT INTO ${insertTableName} (${projection})
     SELECT ${values} WHERE ${selectionMet ? "" : "NOT "}EXISTS (
       SELECT 1 FROM ${selectTableName} WHERE ${selection}
-    ) RETURNING *;`
+    ) RETURNING *;`;
