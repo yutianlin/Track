@@ -102,6 +102,21 @@ export const BUBBLE_TABLE = {
   },
 } as const;
 
+export const SCHEDULED_CLASS_TABLE = {
+  tableName: "scheduled_class",
+  columns: {
+    department: new ColumnType("department", "string", false),
+    code: new ColumnType("code", "string", false),
+    section: new ColumnType("section", "string", false),
+    term: new ColumnType("term", "string", false),
+    year: new ColumnType("year", "string", false),
+    start_date: new ColumnType("start_date", "date", false),
+    end_date: new ColumnType("end_date", "date", false),
+    activity: new ColumnType("activity", "string", false),
+    class_name: new ColumnType("class_name", "string", false)
+  }
+}
+
 // Relationship Tables
 
 export const PERSON_TIME_ENTRANCE_TABLE = {

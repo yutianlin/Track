@@ -3,28 +3,28 @@
  */
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES ('CPSC', '304', '101', 'W1', 2020, 'Lecture', '2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+    VALUES ('CPSC', '304', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1A', 'W1', 2020, 'Tutorial', '2020-09-09'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+    VALUES('CPSC', '304', 'T1A', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1B', 'W1', 2020, 'Tutorial', '2020-09-09'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+    VALUES('CPSC', '304', 'T1B', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1C', 'W1', 2020, 'Tutorial', '2020-09-09'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+    VALUES('CPSC', '304', 'T1C', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '313', '101', 'W1', 2020, 'Lecture', '2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
+    VALUES('CPSC', '313', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('MATH', '100', '101', 'W1', 2020, 'Lecture', '2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Differential Calculus with Applications to Physical Sciences and Engineering');
+    VALUES('MATH', '100', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Differential Calculus with Applications to Physical Sciences and Engineering');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CHEM', '121', '102', 'W1', 2020, 'Lecture', '2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Structure and Bonding in Chemistry');
+    VALUES('CHEM', '121', '102', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Structure and Bonding in Chemistry');
 
 INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('PHYS', '100', '103', 'W1', 2020, 'Lecture', '2020-09-08'::TIMESTAMPTZ, '2020-12-03'::TIMESTAMPTZ, 'Introductory Physics');
+    VALUES('PHYS', '100', '103', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introductory Physics');
 
 
 INSERT INTO postal_address(postal_code, city, province)
@@ -321,16 +321,16 @@ INSERT INTO person_notification(notification_id, person_id, notification_time)
  Einstein receives an email and an inApp notification
  */
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(1, 2, '2020-10-11 00:00:00'::TIMESTAMPTZ);
+    VALUES(1, 2, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(3, 2, '2020-10-11 00:00:00'::TIMESTAMPTZ);
+    VALUES(3, 2, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(4, 4, '2020-10-11 00:00:00'::TIMESTAMPTZ);
+    VALUES(4, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(5, 4, '2020-10-11 00:00:00'::TIMESTAMPTZ);
+    VALUES(5, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
 
 
 -- All the people are in CPSC 304 101

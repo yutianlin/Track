@@ -1,11 +1,11 @@
 export default class ColumnType {
   private name: string;
-  private type: "string" | "boolean" | "dateTime" | "number"; // might want only date later
+  private type: "string" | "boolean" | "dateTime" | "date" | "number";
   private nullable: boolean;
 
   constructor(
     name: string,
-    type: "string" | "boolean" | "dateTime" | "number",
+    type: "string" | "boolean" | "dateTime" | "date" | "number",
     nullable: boolean
   ) {
     this.name = name;
@@ -16,7 +16,7 @@ export default class ColumnType {
   getName(): string {
     return this.name;
   }
-  getType(): "string" | "boolean" | "dateTime" | "number" {
+  getType(): "string" | "boolean" | "dateTime" | "date" | "number" {
     return this.type;
   }
   getNullable(): boolean {
