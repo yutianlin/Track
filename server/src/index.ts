@@ -27,6 +27,7 @@ require("./scheduled_classes/scheduled_class.controller")(app);
 require("./class_days/class_day.controller")(app);
 require("./person_scheduled_classes/person_scheduled_classes.controller")(app);
 require("./notifications/notification.controller")(app);
+require("./person_notifications/person_notification.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

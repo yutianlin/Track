@@ -218,3 +218,11 @@ export const PERSON_SCHEDULED_CLASS_TABLE = {
     ),
   },
 } as const;
+
+export const PERSON_NOTIFICATION_TABLE = {
+  tableName: "person_notification",
+  columns: {
+    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
+    notification_id: new ColumnType(NOTIFICATION_TABLE.columns.notification_id.getName(), NOTIFICATION_TABLE.columns.notification_id.getType(), false)
+  },
+} as const;
