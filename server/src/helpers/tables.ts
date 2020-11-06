@@ -127,7 +127,7 @@ export const CLASS_DAY_TABLE = {
 export const NOTIFICATION_TABLE = {
   tableName: "notification",
   columns: {
-    notification_id: new ColumnType("notification_id", "number", false)
+    notification_id: new ColumnType("notification_id", "number", false),
   },
 } as const;
 
@@ -222,7 +222,15 @@ export const PERSON_SCHEDULED_CLASS_TABLE = {
 export const PERSON_NOTIFICATION_TABLE = {
   tableName: "person_notification",
   columns: {
-    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
-    notification_id: new ColumnType(NOTIFICATION_TABLE.columns.notification_id.getName(), NOTIFICATION_TABLE.columns.notification_id.getType(), false)
+    person_id: new ColumnType(
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
+      false
+    ),
+    notification_id: new ColumnType(
+      NOTIFICATION_TABLE.columns.notification_id.getName(),
+      NOTIFICATION_TABLE.columns.notification_id.getType(),
+      false
+    ),
   },
 } as const;

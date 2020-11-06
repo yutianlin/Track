@@ -1,5 +1,8 @@
 import QueryService from "../QueryService";
-import { GetAllNotifications, GetNotificationById } from "./notification.queries";
+import {
+  GetAllNotifications,
+  GetNotificationById,
+} from "./notification.queries";
 
 export default class Faculty {
   queryService: QueryService;
