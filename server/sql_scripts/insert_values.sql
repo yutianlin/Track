@@ -315,7 +315,7 @@ INSERT INTO notification(category, subject_line, body)
     VALUES('text', NULL, 'On Oct 10, 2020, you had an encounter at DMP 110 with someone who tested Covid-19');
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(1, 1, '2020-10-11 00:00:00'::TIMESTAMPTZ);
+    VALUES(1, 1, '2020-10-11 00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Einstein receives an email and an inApp notification
