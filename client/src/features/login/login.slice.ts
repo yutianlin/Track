@@ -1,7 +1,7 @@
 import {createSlice, Draft} from "@reduxjs/toolkit";
 import {AppThunk, RootState} from "../../app/store";
-import {PersonService} from "../../services/person.service";
-import {PersonState, setPerson} from '../person/person.slice';
+import {personService} from "../../services/person.service";
+import {Person, setPerson} from '../person/person.slice';
 
 interface LoggedInState {
     isLoggedIn: boolean,
@@ -27,7 +27,7 @@ export const loginSlice = createSlice({
 });
 
 export const fetchPerson = (personId: string): AppThunk => dispatch => {
-    PersonService.getPersonById(personId).then((person: PersonState) => {
+    personService.getPersonById(personId).then((person: Person) => {
         dispatch(setPerson(person));
         dispatch(login());
         dispatch(appLoaded())

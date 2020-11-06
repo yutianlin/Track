@@ -8,10 +8,11 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useForm, Controller} from 'react-hook-form'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectIsLoggedIn} from "../login/login.slice";
-import Joi from "joi";
-import {selectPersonState} from "./person.slice";
+import {createPerson, selectPersonState} from "./person.slice";
+import {createPersonSchema} from "./person.schema";
+import {create} from "domain";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -30,22 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const maxNumberLength = Number.MAX_SAFE_INTEGER.toString().length - 1;
-const numberRegex = /^\d+$/;
-const createPersonSchema = Joi.object({
-  name: Joi.string().min(1).required(),
-  email: Joi.string().email({ tlds: {allow: false} }).allow(null, ""),
-  phone_number: Joi.string().regex(numberRegex).allow(null, ""),
-  in_app_notification: Joi.boolean().required(),
-  // Note we convert to string because React Hook form treats empty form as "" and it will complain
-  student_id: Joi.string().max(maxNumberLength).pattern(numberRegex).allow(""),
-  faculty_id: Joi.string().max(maxNumberLength).pattern(numberRegex).allow( ""),
-  job_title: Joi.string().min(1).when('faculty_id',
-    {is: Joi.string(), then: Joi.required(), otherwise: Joi.allow("")})
-});
-
 export default function PersonForm() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
   const personState = useSelector(selectPersonState);
   const classes = useStyles();
   // Use joi to validate here as well
@@ -54,24 +42,22 @@ export default function PersonForm() {
     defaultValues: {
       name: personState.name ?? "",
       email: personState.email ?? "",
-      phone_number: personState.phoneNumber ?? null,
-      in_app_notification: personState.inAppNotification,
-      student_id: personState.studentId?.toString() ?? "",
-      faculty_id: personState.facultyId?.toString() ?? "",
-      job_title: personState.jobTitle ?? ""
+      phone_number: personState.phone_number ?? "",
+      in_app_notification: personState.in_app_notification,
+      student_id: personState.student_id ?? "",
+      faculty_id: personState.faculty_id ?? "",
+      job_title: personState.job_title ?? ""
     }
-  })
-  console.log(errors);
+  });
   // watch changes for faculty number and show job title if they input
-  const facultyNumberWatch = watch("faculty_id");
-  const isFacultyNumberFilledOut = facultyNumberWatch !== "";
+  const isFacultyNumberFilledOut = watch("faculty_id") !== "";
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.paper}>
         <form className={classes.form} noValidate
-              onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
+              onSubmit={handleSubmit((data) => dispatch(createPerson(data)))}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -82,6 +68,7 @@ export default function PersonForm() {
             name="name"
             autoComplete="name"
           />
+          {errors.name && <p>Name is required.</p>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -91,6 +78,7 @@ export default function PersonForm() {
             name="email"
             autoComplete="email"
           />
+          {errors.email && <p>Email was invalid.</p>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -100,6 +88,7 @@ export default function PersonForm() {
             name="phone_number"
             autoComplete="tel"
           />
+          {errors.phone_number && <p>Phone number format was invalid. Proper format: 123456789.</p>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -108,6 +97,7 @@ export default function PersonForm() {
             label="student number (opt)"
             name="student_id"
           />
+          {errors.student_id && <p>Student number was invalid.</p>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -116,26 +106,27 @@ export default function PersonForm() {
             label="faculty number (opt)"
             name="faculty_id"
           />
+          {errors.faculty_id && <p>Faculty number was invalid.</p>}
           {
             isFacultyNumberFilledOut && (
-              <TextField
-                variant="outlined"
-                margin="normal"
-                inputRef={register}
-                fullWidth
-                label="job title (opt)"
-                name="job_title"
-              />
+              <div>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  inputRef={register}
+                  fullWidth
+                  label="job title (opt)"
+                  name="job_title"
+                />
+                {errors.job_title && <p>Job title must be filled if faculty number is.</p>}
+              </div>
             )
           }
           <FormControlLabel
             control={
-              <Controller as={Checkbox} control={control} name="in_app_notification" color="primary"
-                          defaultValue={true}/>}
+              <Controller as={Checkbox} control={control} name="in_app_notification" color="primary"/>}
             label="In-App Notifications?"
           />
-          {errors.name && <p>Name is required.</p>}
-          {errors.faculty_id && <p>{errors.faculty_id.message}</p>}
           <Button
             type="submit"
             fullWidth

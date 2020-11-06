@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Cookies from 'js-cookie';
 import {useDispatch, useSelector} from "react-redux";
@@ -22,7 +21,10 @@ function App() {
   }, []);
 
   return (
-    <PersonForm />
+    <div>
+      {isLoggedIn && <p>Hi {person.name}</p>}
+      <PersonForm />
+    </div>
   );
 }
 
