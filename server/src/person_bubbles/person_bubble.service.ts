@@ -4,7 +4,7 @@ import { insertValues } from "../helpers/helpers";
 import {
   CreateBubblePerson,
   GetAllBubblePersons,
-} from "./bubble_person.queries";
+} from "./person_bubble.queries";
 import { BUBBLE_PERSON_TABLE as BP } from "../helpers/tables";
 
 export default class BubblePerson {

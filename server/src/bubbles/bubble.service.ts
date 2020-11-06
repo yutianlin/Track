@@ -6,7 +6,7 @@ import {
   UpdateBubbleById,
 } from "./bubble.queries";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
-import { insertValues, updateValues } from "../helpers/helpers";
+import { insertValues, setValues } from "../helpers/helpers";
 import { BUBBLE_TABLE as B } from "../helpers/tables";
 
 export default class Bubble {
@@ -38,7 +38,7 @@ export default class Bubble {
       [B.columns.description, B.columns.title],
       true
     );
-    const set = updateValues(attributes, types);
+    const set = setValues(attributes, types);
     await this.queryService.query(UpdateBubbleById(set, id));
     return this.getBubbleById(id);
   };

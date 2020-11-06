@@ -1,5 +1,5 @@
-import BubblePersonService from "./bubble_person.service";
-import { createBubblePersonSchema } from "./bubble_person.schema";
+import BubblePersonService from "./person_bubble.service";
+import { createBubblePersonSchema } from "./person_bubble.schema";
 
 const BodyParser = require("body-parser");
 

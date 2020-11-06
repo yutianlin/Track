@@ -10,9 +10,10 @@ export const insertValues = (
   return { properties: listify(properties), values: listify(values) };
 };
 
-export const updateValues = (
+export const setValues = (
   attributes: any,
-  types: ExpectedValueTypes
+  types: ExpectedValueTypes,
+  join: string = ', '
 ): string => {
   const { properties, values } = getPropertiesAndValues(attributes, types);
 
@@ -20,7 +21,7 @@ export const updateValues = (
     return `${prop} = ${values[i]}`;
   });
 
-  return listify(map);
+  return listify(map, join);
 };
 
 export const getPropertiesAndValues = (
