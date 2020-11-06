@@ -5,7 +5,7 @@ import ColumnType from "./ColumnType";
 export const PERSON_TABLE = {
   tableName: "person",
   columns: {
-    id: new ColumnType("person_id", "number", false),
+    person_id: new ColumnType("person_id", "number", false),
     name: new ColumnType("name", "string", false),
     email: new ColumnType("email", "string", true),
     phoneNum: new ColumnType("phone_number", "string", true),
@@ -66,26 +66,29 @@ export const BIKE_TABLE = {
 
 export const COVID_TESTING_CENTRE_TABLE = {
   tableName: "covid_testing_centre",
-  id: "covid_testing_centre_id",
-};
+  columns: {
+    id: new ColumnType("covid_testing_centre_id", "number", false),
+  }
+} as const;
 
 export const COVID_TEST_TABLE = {
   tableName: "covid_test",
-  personId: PERSON_TABLE.columns.id.getName(),
-  covidTestingCentreId: COVID_TESTING_CENTRE_TABLE.id,
-  testTime: "test_time",
-};
+  columns: {
+    personId: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
+    covid_testing_centre_id: new ColumnType(COVID_TESTING_CENTRE_TABLE.columns.id.getName(), COVID_TESTING_CENTRE_TABLE.columns.id.getType(), false),
+    test_time: new ColumnType("test_time", "dateTime", false),
+    status: new ColumnType("status", "boolean", false),
+  }
+} as const;
 
 export const BUBBLE_TABLE = {
   tableName: "bubble",
-  bubbleId: "bubble_id",
-};
-
-export const BUBBLE_PERSON_TABLE = {
-  tableName: "bubble_person",
-  bubbleId: BUBBLE_TABLE.bubbleId,
-  personId: PERSON_TABLE.columns.id.getName(),
-};
+  columns: {
+    bubble_id: new ColumnType("bubble_id", "number", false),
+    title: new ColumnType("title", "string", false),
+    description: new ColumnType("description", "string", false),
+  }
+} as const;
 
 // Relationship Tables
 
@@ -93,8 +96,8 @@ export const PERSON_TIME_ENTRANCE_TABLE = {
   tableName: "person_time_entrance",
   columns: {
     personId: new ColumnType(
-      PERSON_TABLE.columns.id.getName(),
-      PERSON_TABLE.columns.id.getType(),
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
       false
     ),
     date: new ColumnType("start_time", "dateTime", false),
@@ -110,8 +113,8 @@ export const PERSON_TIME_BIKE_TABLE = {
   tableName: "person_shared_bike",
   columns: {
     personId: new ColumnType(
-      PERSON_TABLE.columns.id.getName(),
-      PERSON_TABLE.columns.id.getType(),
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
       false
     ),
     bikeId: new ColumnType(
@@ -121,4 +124,12 @@ export const PERSON_TIME_BIKE_TABLE = {
     ),
     rentalTime: new ColumnType("rental_time", "dateTime", false),
   },
+} as const;
+
+export const BUBBLE_PERSON_TABLE = {
+  tableName: "bubble_person",
+  columns: {
+    bubble_id: new ColumnType(BUBBLE_TABLE.columns.bubble_id.getName(), BUBBLE_TABLE.columns.bubble_id.getType(), false),
+    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
+  }
 } as const;

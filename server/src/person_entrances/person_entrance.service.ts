@@ -18,7 +18,7 @@ export default class PersonDateEntranceService {
 
   createRelation = async (attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(PE.columns));
-    attributes[PE.columns.date.getName()] = moment().utc().toISOString();
+    attributes[PE.columns.date.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateRelation(properties, values));
   };

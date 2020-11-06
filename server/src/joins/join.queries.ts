@@ -36,5 +36,5 @@ export const GetPersonAndFacultyInfoById = (id: number) =>
             ON ${PERSON.tableName}.${FACULTY.columns.id.getName()} = ${
       FACULTY.tableName
     }.${FACULTY.columns.id.getName()}`,
-    `${PERSON.columns.id.getName()} = ${id}`
+    `${PERSON.columns.person_id.getName()} = ${id}`
   );

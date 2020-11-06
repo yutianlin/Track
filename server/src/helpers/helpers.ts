@@ -102,10 +102,10 @@ export const getDateTimeFromAttributes = (
   nullable: boolean
 ): string | null => {
   if (attributes.hasOwnProperty(property)) {
-    const dateTime = attributes[property];
+    const dateTime: Date = attributes[property];
 
     if (moment(dateTime, "YYYY-MM-DDTHH:mm:ss.SSSZ", true).isValid()) {
-      return UTCify(stringify(dateTime));
+      return UTCify(stringify(dateTime.toJSON()));
     } else {
       throw new InvalidParameterError(
         property,

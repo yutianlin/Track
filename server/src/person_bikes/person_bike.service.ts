@@ -19,7 +19,7 @@ export default class PersonBikeService {
 
   createRelation = async (attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(PB.columns));
-    attributes[PB.columns.rentalTime.getName()] = moment().utc().toISOString();
+    attributes[PB.columns.rentalTime.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
     const sharedBikes: any[] = await this.queryService.query(
       CreateRelation(
