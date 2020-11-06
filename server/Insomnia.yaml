@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-06T08:27:21.978Z
+__export_date: 2020-11-06T20:48:11.158Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -32,6 +32,47 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_47812f33f7ca4c098481f485f21bdd47
+    parentId: fld_f264e450fce84152bc0a2005c88b028d
+    modified: 1604695538913
+    created: 1604695526546
+    url: http://127.0.0.1:3000/scheduled_classes
+    name: GET /scheduled_classes
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604695526546
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f264e450fce84152bc0a2005c88b028d
+    parentId: fld_fcc6a40053924e988157eec92be1f300
+    modified: 1604695518780
+    created: 1604695518780
+    name: scheduled_class
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604695518780
+    _type: request_group
+  - _id: fld_fcc6a40053924e988157eec92be1f300
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604264166317
+    created: 1604264166317
+    name: Entities
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264166317
+    _type: request_group
   - _id: req_ff17fa27e03e4e3bbacc1209f80b2b8c
     parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
     modified: 1604128500619
@@ -62,16 +103,6 @@ resources:
     environment: {}
     environmentPropertyOrder: null
     metaSortKey: -1603950304745
-    _type: request_group
-  - _id: fld_fcc6a40053924e988157eec92be1f300
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604264166317
-    created: 1604264166317
-    name: Entities
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264166317
     _type: request_group
   - _id: req_9c19b06fbb2541d297ec603fea41a07c
     parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
@@ -846,10 +877,10 @@ resources:
     _type: request
   - _id: req_c895c946d0d640079703e37989056a34
     parentId: fld_658247d9b19f4aa8b0cc0e6494b60d67
-    modified: 1604651146910
+    modified: 1604695488469
     created: 1604540632147
-    url: http://127.0.0.1:3000/bubble_persons
-    name: POST /bubble_persons
+    url: http://127.0.0.1:3000/person_bubbles
+    name: POST /person_bubbles
     description: ""
     method: POST
     body:
@@ -857,8 +888,8 @@ resources:
       text: |-
         { "data":
           {
-            "person_id": 3,
-            "bubble_id": 1
+            "person_id": 4,
+            "bubble_id": 2
           }
         }
     parameters: []
@@ -878,9 +909,9 @@ resources:
     _type: request
   - _id: fld_658247d9b19f4aa8b0cc0e6494b60d67
     parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
-    modified: 1604557222559
+    modified: 1604695399125
     created: 1604540592354
-    name: bubble_person
+    name: person_bubble
     description: ""
     environment: {}
     environmentPropertyOrder: null
@@ -888,10 +919,10 @@ resources:
     _type: request_group
   - _id: req_83033373895748e98cf4edce18d1aff3
     parentId: fld_658247d9b19f4aa8b0cc0e6494b60d67
-    modified: 1604540732581
+    modified: 1604695496661
     created: 1604540618078
-    url: http://127.0.0.1:3000/bubble_persons
-    name: GET /bubble_persons
+    url: http://127.0.0.1:3000/person_bubbles
+    name: GET /person_bubbles
     description: ""
     method: GET
     body: {}

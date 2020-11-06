@@ -8,12 +8,12 @@ const jsonParser = BodyParser.json();
 const bubblePersonService = new BubblePersonService();
 
 module.exports = function (app: any) {
-  app.get("/bubble_persons", async (request: any, response: any) => {
+  app.get("/person_bubbles", async (request: any, response: any) => {
     response.json(await bubblePersonService.getAllBubblePersons());
   });
 
   app.post(
-    "/bubble_persons",
+    "/person_bubbles",
     jsonParser,
     async (request: any, response: any) => {
       const { value, error } = await createBubblePersonSchema.validate(

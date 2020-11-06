@@ -6,6 +6,7 @@ export class ExpectedValueTypes {
     ["strings", []],
     ["booleans", []],
     ["dateTimes", []],
+    ["dates", []],
     ["numbers", []],
   ]);
 
@@ -13,6 +14,7 @@ export class ExpectedValueTypes {
     ["strings", []],
     ["booleans", []],
     ["dateTimes", []],
+    ["dates", []],
     ["numbers", []],
   ]);
 
@@ -72,6 +74,22 @@ export class ExpectedValueTypes {
       throw new InvalidTypesError("dateTimes nullable");
     }
     return dateTimes;
+  }
+
+  getNotNullableDates() {
+    const dates = this.notNullable.get("dates");
+    if (!dates) {
+      throw new InvalidTypesError("dates not nullable");
+    }
+    return dates;
+  }
+
+  getNullableDates() {
+    const dates = this.nullable.get("dates");
+    if (!dates) {
+      throw new InvalidTypesError("dates nullable");
+    }
+    return dates;
   }
 
   getNotNullableNumbers() {
