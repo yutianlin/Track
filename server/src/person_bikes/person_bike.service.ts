@@ -4,10 +4,7 @@ import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { ParameterConstraintError } from "../errors";
 import moment from "moment";
-
-const NOTNULLABLENUMBERPROPERTIES = ["person_id"];
-const NOTNULLABLEDATETIMEPROPERTIES = ["rental_time"];
-const NOTNULLABLESTRINGPROPERTIES = ["shared_bike_id"];
+import { PERSON_TIME_BIKE_TABLE as PB } from "../helpers/tables";
 
 export default class PersonBikeService {
   queryService: QueryService;
@@ -21,18 +18,19 @@ export default class PersonBikeService {
   };
 
   createRelation = async (attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNotNullableNumbers(NOTNULLABLENUMBERPROPERTIES);
-    types.setNotNullableDateTimes(NOTNULLABLEDATETIMEPROPERTIES);
-    types.setNotNullableStrings(NOTNULLABLESTRINGPROPERTIES);
-    attributes["rental_time"] = moment().utc().toISOString();
+    const types = new ExpectedValueTypes(Object.values(PB.columns));
+    attributes[PB.columns.rental_time.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
     const sharedBikes: any[] = await this.queryService.query(
-      CreateRelation(properties, values, attributes["shared_bike_id"])
+      CreateRelation(
+        properties,
+        values,
+        attributes[PB.columns.bike_id.getName()]
+      )
     );
     if (sharedBikes.length === 0)
       throw new ParameterConstraintError(
-        "shared_bike_id",
+        PB.columns.bike_id.getName(),
         "bike must be rentable"
       );
     return sharedBikes;

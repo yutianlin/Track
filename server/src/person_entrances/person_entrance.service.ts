@@ -3,9 +3,7 @@ import { GetAllRelations, CreateRelation } from "./person_entrance.queries";
 import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import moment from "moment";
-
-const NOTNULLABLENUMBERPROPERTIES = ["person_id", "entrance_id"];
-const NOTNULLABLEDATETIMEPROPERTIES = ["start_time"];
+import { PERSON_TIME_ENTRANCE_TABLE as PE } from "../helpers/tables";
 
 export default class PersonDateEntranceService {
   queryService: QueryService;
@@ -19,10 +17,8 @@ export default class PersonDateEntranceService {
   };
 
   createRelation = async (attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNotNullableNumbers(NOTNULLABLENUMBERPROPERTIES);
-    types.setNotNullableDateTimes(NOTNULLABLEDATETIMEPROPERTIES);
-    attributes["start_time"] = moment().utc().toISOString();
+    const types = new ExpectedValueTypes(Object.values(PE.columns));
+    attributes[PE.columns.date.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateRelation(properties, values));
   };

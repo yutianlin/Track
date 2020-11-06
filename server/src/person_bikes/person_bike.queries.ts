@@ -1,10 +1,12 @@
 import {
   GetAllRowsFromTable,
-  InsertRow,
   InsertRowWithSelectCondition,
 } from "../helpers/queries";
 import { stringify } from "../helpers/helpers";
-import { PERSON_BIKE_TABLE as PB, BIKE_TABLE as B } from "../helpers/tables";
+import {
+  PERSON_TIME_BIKE_TABLE as PB,
+  BIKE_TABLE as B,
+} from "../helpers/tables";
 
 export const GetAllRelations = () => GetAllRowsFromTable(PB.tableName);
 
@@ -18,6 +20,8 @@ export const CreateRelation = (
     properties,
     values,
     B.tableName,
-    `${B.id} = ${stringify(bikeId)} AND is_rentable = true`,
+    `${B.columns.shared_bike_id.getName()} = ${stringify(
+      bikeId
+    )} AND is_rentable = true`,
     true
   );

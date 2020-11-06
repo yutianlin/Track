@@ -1,11 +1,12 @@
 import { GetAllRowsFromTable, GetRowsWithSelection } from "../helpers/queries";
 import { stringify } from "../helpers/helpers";
 
-import { POSTAL_TABLE } from "../helpers/tables";
+import { POSTAL_TABLE as P } from "../helpers/tables";
 
-const { tableName, postalCode } = POSTAL_TABLE;
-
-export const GetAllPostals = GetAllRowsFromTable(tableName);
+export const GetAllPostals = GetAllRowsFromTable(P.tableName);
 
 export const GetPostalByCode = (code: string) =>
-  GetRowsWithSelection(tableName, `${postalCode} = ${stringify(code)}`);
+  GetRowsWithSelection(
+    P.tableName,
+    `${P.columns.postal_code.getName()} = ${stringify(code)}`
+  );

@@ -13,3 +13,9 @@ export class ParameterConstraintError extends Error {
     );
   }
 }
+
+export class InvalidTypesError extends Error {
+  constructor(valueType: string) {
+    super(`ExpectedValueTypes is missing string array for type: ${valueType}`);
+  }
+}

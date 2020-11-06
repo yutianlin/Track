@@ -2,10 +2,7 @@ import QueryService from "../QueryService";
 import { CreateCovidTest, GetAllCovidTests } from "./covid_test.queries";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { insertValues } from "../helpers/helpers";
-
-const NOTNULLABLENUMBERPROPERTIES = ["person_id", "covid_testing_centre_id"];
-const NOTNULLABLEDATEPROPERTIES = ["test_time"];
-const NOTNULLABLEBOOLEANPROPERTIES = ["status"];
+import { COVID_TEST_TABLE as CT } from "../helpers/tables";
 
 export default class CovidTest {
   queryService: QueryService;
@@ -15,10 +12,7 @@ export default class CovidTest {
   }
 
   createCovidTest = async (attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNotNullableNumbers(NOTNULLABLENUMBERPROPERTIES);
-    types.setNotNullableDateTimes(NOTNULLABLEDATEPROPERTIES);
-    types.setNotNullableBooleans(NOTNULLABLEBOOLEANPROPERTIES);
+    const types = new ExpectedValueTypes(Object.values(CT.columns));
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateCovidTest(properties, values));
   };

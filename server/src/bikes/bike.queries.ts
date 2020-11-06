@@ -6,4 +6,7 @@ import { BIKE_TABLE as B } from "../helpers/tables";
 export const GetAllBikes = GetAllRowsFromTable(B.tableName);
 
 export const GetBikeById = (id: string) =>
-  GetRowsWithSelection(B.tableName, `${B.id} = ${stringify(id)}`);
+  GetRowsWithSelection(
+    B.tableName,
+    `${B.columns.shared_bike_id.getName()} = ${stringify(id)}`
+  );

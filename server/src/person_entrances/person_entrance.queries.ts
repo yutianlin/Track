@@ -1,10 +1,8 @@
 import { GetAllRowsFromTable, InsertRow } from "../helpers/queries";
 
-import { PERSON_TIME_ENTRANCE_TABLE } from "../helpers/tables";
+import { PERSON_TIME_ENTRANCE_TABLE as P } from "../helpers/tables";
 
-const { tableName } = PERSON_TIME_ENTRANCE_TABLE;
-
-export const GetAllRelations = () => GetAllRowsFromTable(tableName);
+export const GetAllRelations = () => GetAllRowsFromTable(P.tableName);
 
 export const CreateRelation = (properties: string, values: string) =>
-  InsertRow(tableName, properties, values);
+  InsertRow(P.tableName, properties, values);

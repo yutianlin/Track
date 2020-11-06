@@ -13,18 +13,30 @@ export const GetEntranceInfoById = (id: number) =>
   GetRowsWithSelection(
     `${ENTRANCE.tableName} 
         LEFT JOIN ${ROOM.tableName} 
-            ON ${ENTRANCE.tableName}.${ROOM.roomNumber} = ${ROOM.tableName}.${ROOM.roomNumber}
+            ON ${ENTRANCE.tableName}.${ROOM.columns.room_number.getName()} = ${
+      ROOM.tableName
+    }.${ROOM.columns.room_number.getName()}
         INNER JOIN ${BUILDING.tableName} 
-            ON ${ENTRANCE.tableName}.${BUILDING.buildingCode} = ${BUILDING.tableName}. ${BUILDING.buildingCode}
+            ON ${
+              ENTRANCE.tableName
+            }.${BUILDING.columns.building_code.getName()} = ${
+      BUILDING.tableName
+    }. ${BUILDING.columns.building_code.getName()}
         INNER JOIN ${POSTAL.tableName} 
-            ON ${BUILDING.tableName}.${POSTAL.postalCode} = ${POSTAL.tableName}.${POSTAL.postalCode}`,
-    `${ENTRANCE.id} = ${id}`
+            ON ${
+              BUILDING.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
+      POSTAL.tableName
+    }.${POSTAL.columns.postal_code.getName()}`,
+    `${ENTRANCE.columns.entrance_id.getName()} = ${id}`
   );
 
 export const GetPersonAndFacultyInfoById = (id: number) =>
   GetRowsWithSelection(
     `${PERSON.tableName} 
         LEFT JOIN ${FACULTY.tableName} 
-            ON ${PERSON.tableName}.${FACULTY.id} = ${FACULTY.tableName}.${FACULTY.id}`,
-    `${PERSON.id} = ${id}`
+            ON ${PERSON.tableName}.${FACULTY.columns.faculty_id.getName()} = ${
+      FACULTY.tableName
+    }.${FACULTY.columns.faculty_id.getName()}`,
+    `${PERSON.columns.person_id.getName()} = ${id}`
   );

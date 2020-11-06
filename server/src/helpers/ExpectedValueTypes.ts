@@ -1,60 +1,92 @@
+import ColumnType from "./ColumnType";
+import { InvalidTypesError } from "../errors";
+
 export class ExpectedValueTypes {
-  private notNullableStrings: string[] = [];
-  private nullableStrings: string[] = [];
-  private notNullableBooleans: string[] = [];
-  private nullableBooleans: string[] = [];
-  private notNullableDateTimes: string[] = [];
-  private nullableDateTimes: string[] = [];
-  private notNullableNumbers: string[] = [];
-  private nullableNumbers: string[] = [];
+  private nullable: Map<string, Array<string>> = new Map([
+    ["strings", []],
+    ["booleans", []],
+    ["dateTimes", []],
+    ["numbers", []],
+  ]);
 
-  setNotNullableStrings(strings: string[]) {
-    this.notNullableStrings = strings;
-  }
-  setNullableStrings(strings: string[]) {
-    this.nullableStrings = strings;
-  }
-  setNotNullableBooleans(booleans: string[]) {
-    this.notNullableBooleans = booleans;
-  }
-  setNullableBooleans(booleans: string[]) {
-    this.nullableBooleans = booleans;
-  }
-  setNotNullableDateTimes(dateTime: string[]) {
-    this.notNullableDateTimes = dateTime;
-  }
-  setNullableDateTimes(dateTime: string[]) {
-    this.nullableDateTimes = dateTime;
-  }
-  setNotNullableNumbers(numbers: string[]) {
-    this.notNullableNumbers = numbers;
-  }
-  setNullableNumbers(numbers: string[]) {
-    this.nullableNumbers = numbers;
+  private notNullable: Map<string, Array<string>> = new Map([
+    ["strings", []],
+    ["booleans", []],
+    ["dateTimes", []],
+    ["numbers", []],
+  ]);
+
+  constructor(columns: ColumnType[], allNullable: boolean = false) {
+    columns.forEach((column) => {
+      if (allNullable || column.getNullable()) {
+        this.nullable.get(`${column.getType()}s`)?.push(column.getName());
+      } else {
+        this.notNullable.get(`${column.getType()}s`)?.push(column.getName());
+      }
+    });
   }
 
-  getNotNullableStrings() {
-    return this.notNullableStrings;
+  getNotNullableStrings(): Array<string> {
+    const strings = this.notNullable.get("strings");
+    if (!strings) {
+      throw new InvalidTypesError("strings not nullable");
+    }
+    return strings;
   }
-  getNullableStrings() {
-    return this.nullableStrings;
+
+  getNullableStrings(): Array<string> {
+    const strings = this.nullable.get("strings");
+    if (!strings) {
+      throw new InvalidTypesError("strings nullable");
+    }
+    return strings;
   }
-  getNotNullableBooleans() {
-    return this.notNullableBooleans;
+
+  getNotNullableBooleans(): Array<string> {
+    const booleans = this.notNullable.get("booleans");
+    if (!booleans) {
+      throw new InvalidTypesError("booleans not nullable");
+    }
+    return booleans;
   }
+
   getNullableBooleans() {
-    return this.nullableBooleans;
+    const booleans = this.nullable.get("booleans");
+    if (!booleans) {
+      throw new InvalidTypesError("booleans nullable");
+    }
+    return booleans;
   }
+
   getNotNullableDateTimes() {
-    return this.notNullableDateTimes;
+    const dateTimes = this.notNullable.get("dateTimes");
+    if (!dateTimes) {
+      throw new InvalidTypesError("dateTimes not nullable");
+    }
+    return dateTimes;
   }
+
   getNullableDateTimes() {
-    return this.nullableDateTimes;
+    const dateTimes = this.nullable.get("dateTimes");
+    if (!dateTimes) {
+      throw new InvalidTypesError("dateTimes nullable");
+    }
+    return dateTimes;
   }
+
   getNotNullableNumbers() {
-    return this.notNullableNumbers;
+    const numbers = this.notNullable.get("numbers");
+    if (!numbers) {
+      throw new InvalidTypesError("numbers not nullable");
+    }
+    return numbers;
   }
+
   getNullableNumbers() {
-    return this.nullableNumbers;
+    const numbers = this.nullable.get("numbers");
+    if (!numbers) {
+      throw new InvalidTypesError("numbers nullable");
+    }
+    return numbers;
   }
 }

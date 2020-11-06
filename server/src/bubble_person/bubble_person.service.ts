@@ -5,8 +5,7 @@ import {
   CreateBubblePerson,
   GetAllBubblePersons,
 } from "./bubble_person.queries";
-
-const NOTNULLABLENUMBERPROPERTIES = ["bubble_id", "person_id"];
+import { BUBBLE_PERSON_TABLE as BP } from "../helpers/tables";
 
 export default class BubblePerson {
   queryService: QueryService;
@@ -20,8 +19,7 @@ export default class BubblePerson {
   };
 
   createBubblePerson = async (attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNotNullableNumbers(NOTNULLABLENUMBERPROPERTIES);
+    const types = new ExpectedValueTypes(Object.values(BP.columns));
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateBubblePerson(properties, values));
   };

@@ -6,12 +6,7 @@ import {
 
 import { COVID_TEST_TABLE } from "../helpers/tables";
 
-const {
-  tableName,
-  personId,
-  covidTestingCentreId,
-  testTime,
-} = COVID_TEST_TABLE;
+const { tableName, columns } = COVID_TEST_TABLE;
 
 export const GetAllCovidTests = GetAllRowsFromTable(tableName);
 
@@ -21,7 +16,7 @@ export const CreateCovidTest = (properties: string, values: string) =>
 export const GetCovidTest = (pId: number, ctcId: number, time: Date) =>
   GetRowsWithSelection(
     tableName,
-    `${personId} = ${pId} AND
-             ${covidTestingCentreId} = ${ctcId} AND 
-             ${testTime} = ${time}`
+    `${columns.person_id.getName()} = ${pId} AND
+             ${columns.covid_testing_centre_id.getName()} = ${ctcId} AND 
+             ${columns.test_time.getName()} = ${time}`
   );
