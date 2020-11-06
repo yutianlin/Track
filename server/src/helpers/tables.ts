@@ -124,6 +124,13 @@ export const CLASS_DAY_TABLE = {
   },
 } as const;
 
+export const NOTIFICATION_TABLE = {
+  tableName: "notification",
+  columns: {
+    notification_id: new ColumnType("notification_id", "number", false)
+  },
+} as const;
+
 // Relationship Tables
 
 export const PERSON_TIME_ENTRANCE_TABLE = {

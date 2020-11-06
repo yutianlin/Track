@@ -26,6 +26,7 @@ require("./person_bubbles/person_bubble.controller")(app);
 require("./scheduled_classes/scheduled_class.controller")(app);
 require("./class_days/class_day.controller")(app);
 require("./person_scheduled_classes/person_scheduled_classes.controller")(app);
+require("./notifications/notification.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
