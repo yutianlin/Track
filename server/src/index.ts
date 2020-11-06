@@ -24,6 +24,7 @@ require("./covid_testing_centres/covid_testing_centre.controller")(app);
 require("./bubbles/bubble.controller")(app);
 require("./person_bubbles/bubble_person.controller")(app);
 require("./scheduled_classes/scheduled_class.controller")(app);
+require("./class_days/class_day.controller")(app);
 
 app.use(bodyParser.json());
 app.use(

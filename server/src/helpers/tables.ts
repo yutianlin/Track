@@ -117,6 +117,13 @@ export const SCHEDULED_CLASS_TABLE = {
   }
 }
 
+export const CLASS_DAY_TABLE = {
+  tableName: "class_day",
+  columns: {
+    // add these if we need to use it
+  }
+}
+
 // Relationship Tables
 
 export const PERSON_TIME_ENTRANCE_TABLE = {
