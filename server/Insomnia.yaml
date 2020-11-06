@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-06T22:12:32.846Z
+__export_date: 2020-11-06T22:52:42.298Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -32,6 +32,68 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_b38ac88343014e69ba4ca495e7d99561
+    parentId: fld_3164a1e486bf42eabc043d4fbad6401f
+    modified: 1604703027067
+    created: 1604703014647
+    url: http://127.0.0.1:3000/notifications
+    name: GET /notifications
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604703014705
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3164a1e486bf42eabc043d4fbad6401f
+    parentId: fld_fcc6a40053924e988157eec92be1f300
+    modified: 1604703005981
+    created: 1604703005981
+    name: notification
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604703005981
+    _type: request_group
+  - _id: fld_fcc6a40053924e988157eec92be1f300
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604264166317
+    created: 1604264166317
+    name: Entities
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264166317
+    _type: request_group
+  - _id: req_685de963d0814aeb9fdb1cff7e153edd
+    parentId: fld_3164a1e486bf42eabc043d4fbad6401f
+    modified: 1604703102219
+    created: 1604703060738
+    url: http://127.0.0.1:3000/notifications/2
+    name: GET /notifications/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604703014655
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_64f413f05d1341b89ba831d057669269
     parentId: fld_27de59dadfd24eccb1d92ac4bc6c9386
     modified: 1604696714754
@@ -62,16 +124,6 @@ resources:
     environment: {}
     environmentPropertyOrder: null
     metaSortKey: -1604696687520
-    _type: request_group
-  - _id: fld_fcc6a40053924e988157eec92be1f300
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604264166317
-    created: 1604264166317
-    name: Entities
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264166317
     _type: request_group
   - _id: req_47812f33f7ca4c098481f485f21bdd47
     parentId: fld_f264e450fce84152bc0a2005c88b028d
