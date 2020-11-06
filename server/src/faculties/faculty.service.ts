@@ -5,7 +5,7 @@ import {
   CreateFaculty,
   UpdateFacultyById,
 } from "./faculty.queries";
-import { insertValues, updateValues } from "../helpers/helpers";
+import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { FACULTY_TABLE as F } from "../helpers/tables";
 
@@ -32,7 +32,7 @@ export default class Faculty {
 
   updateFacultyById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(F.columns), true);
-    const set = updateValues(attributes, types);
+    const set = setValues(attributes, types);
     await this.queryService.query(UpdateFacultyById(set, id));
     return this.getFacultyById(id);
   };

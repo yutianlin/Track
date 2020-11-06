@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-06T20:48:11.158Z
+__export_date: 2020-11-06T22:12:32.846Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -32,6 +32,47 @@ resources:
     description: ""
     scope: null
     _type: workspace
+  - _id: req_64f413f05d1341b89ba831d057669269
+    parentId: fld_27de59dadfd24eccb1d92ac4bc6c9386
+    modified: 1604696714754
+    created: 1604696703706
+    url: http://127.0.0.1:3000/class_days
+    name: GET /class_days
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604696703762
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_27de59dadfd24eccb1d92ac4bc6c9386
+    parentId: fld_fcc6a40053924e988157eec92be1f300
+    modified: 1604696687520
+    created: 1604696687520
+    name: class_day
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604696687520
+    _type: request_group
+  - _id: fld_fcc6a40053924e988157eec92be1f300
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604264166317
+    created: 1604264166317
+    name: Entities
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264166317
+    _type: request_group
   - _id: req_47812f33f7ca4c098481f485f21bdd47
     parentId: fld_f264e450fce84152bc0a2005c88b028d
     modified: 1604695538913
@@ -62,16 +103,6 @@ resources:
     environment: {}
     environmentPropertyOrder: null
     metaSortKey: -1604695518780
-    _type: request_group
-  - _id: fld_fcc6a40053924e988157eec92be1f300
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604264166317
-    created: 1604264166317
-    name: Entities
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264166317
     _type: request_group
   - _id: req_ff17fa27e03e4e3bbacc1209f80b2b8c
     parentId: fld_bc8ec008421a48619b1fe3ccdf1f58a1
@@ -802,6 +833,150 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_1aaa26df21e84ca3b185445090671450
+    parentId: fld_2189f1d0f97d475587f646722408c4b5
+    modified: 1604700661579
+    created: 1604700255533
+    url: http://127.0.0.1:3000/person_scheduled_classes
+    name: GET /person_scheduled_classes
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604700403595
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_2189f1d0f97d475587f646722408c4b5
+    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
+    modified: 1604700242588
+    created: 1604700242588
+    name: person_scheduled_class
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604700242588
+    _type: request_group
+  - _id: fld_5af23c3fa3b64f7da870873e641ddf4d
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604264225150
+    created: 1604264221386
+    name: Relationships
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603950304795
+    _type: request_group
+  - _id: req_0e7fd0e256024090bc7086533ea2196e
+    parentId: fld_2189f1d0f97d475587f646722408c4b5
+    modified: 1604700663299
+    created: 1604700297369
+    url: http://127.0.0.1:3000/person_scheduled_classes
+    name: POST /person_scheduled_classes
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+        	{
+        		"person_id": 5,
+        		"department": "CPSC",
+        		"code": "304",
+        		"section": "T1A",
+        		"term": "W1",
+        		"year": 2020
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_05246f6100b44f08994f228214c0d0a5
+    authentication: {}
+    metaSortKey: -1604700403570
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_59864bd199f64e2994232df871a26a73
+    parentId: fld_2189f1d0f97d475587f646722408c4b5
+    modified: 1604700429848
+    created: 1604700403545
+    url: http://127.0.0.1:3000/person_scheduled_classes
+    name: DELETE /person_scheduled_classes
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+        	{
+        		"person_id": 5,
+        		"department": "CPSC",
+        		"code": "304",
+        		"section": "101",
+        		"term": "W1",
+        		"year": 2020
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_11ce66fb69ec445888554be9b75310fb
+    authentication: {}
+    metaSortKey: -1604700403545
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ee458f1336e34c04adb33904957c0fbd
+    parentId: fld_9c2ba41f70994624b9034b8e932777f5
+    modified: 1604700665578
+    created: 1604195215527
+    url: http://127.0.0.1:3000/person_entrances
+    name: GET /person_entrances
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604195413875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_9c2ba41f70994624b9034b8e932777f5
+    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
+    modified: 1604651223641
+    created: 1604195194206
+    name: person_entrance
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264269661
+    _type: request_group
   - _id: req_ad9932b3dda046f581f93f9027f539be
     parentId: fld_9c2ba41f70994624b9034b8e932777f5
     modified: 1604651216743
@@ -826,47 +1001,6 @@ resources:
         id: pair_09a8d1de40404fd7997f91e7ca90f751
     authentication: {}
     metaSortKey: -1604195413825
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_9c2ba41f70994624b9034b8e932777f5
-    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
-    modified: 1604651223641
-    created: 1604195194206
-    name: person_entrance
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264269661
-    _type: request_group
-  - _id: fld_5af23c3fa3b64f7da870873e641ddf4d
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604264225150
-    created: 1604264221386
-    name: Relationships
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603950304795
-    _type: request_group
-  - _id: req_ee458f1336e34c04adb33904957c0fbd
-    parentId: fld_9c2ba41f70994624b9034b8e932777f5
-    modified: 1604651219427
-    created: 1604195215527
-    url: http://127.0.0.1:3000/person_entrances
-    name: GET /person_entrances
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604195215527
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true

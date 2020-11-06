@@ -5,7 +5,7 @@ import {
   CreatePerson,
   UpdatePersonById,
 } from "./person.queries";
-import { insertValues, updateValues } from "../helpers/helpers";
+import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { PERSON_TABLE } from "../helpers/tables";
 
@@ -42,7 +42,7 @@ export default class PersonService {
 
   updatePersonById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes(expectValues, true);
-    const set = updateValues(attributes, types);
+    const set = setValues(attributes, types);
     await this.queryService.query(UpdatePersonById(set, id));
     return this.getPersonById(id);
   };
