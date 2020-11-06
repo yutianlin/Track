@@ -4,7 +4,7 @@ import { insertValues, setValues } from "../helpers/helpers";
 import {
   CreateRelation,
   GetAllRelations,
-  DeleteRelation
+  DeleteRelation,
 } from "./person_scheduled_classes.queries";
 import { PERSON_SCHEDULED_CLASS_TABLE } from "../helpers/tables";
 
@@ -29,7 +29,7 @@ export default class BubblePerson {
 
   deletePersonScheduledClass = async (attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(columns));
-    const conditions = setValues(attributes, types, ' AND ');
+    const conditions = setValues(attributes, types, " AND ");
     return this.queryService.query(DeleteRelation(conditions));
-  }
+  };
 }

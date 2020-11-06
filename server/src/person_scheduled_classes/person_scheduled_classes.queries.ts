@@ -9,4 +9,5 @@ export const GetAllRelations = () => GetAllRowsFromTable(tableName);
 export const CreateRelation = (properties: string, values: string) =>
   InsertRow(tableName, properties, values);
 
-export const DeleteRelation = (selection: string) => DeleteRow(tableName, selection);
+export const DeleteRelation = (selection: string) =>
+  DeleteRow(tableName, selection);

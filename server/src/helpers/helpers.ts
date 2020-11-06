@@ -13,7 +13,7 @@ export const insertValues = (
 export const setValues = (
   attributes: any,
   types: ExpectedValueTypes,
-  join: string = ', '
+  join: string = ", "
 ): string => {
   const { properties, values } = getPropertiesAndValues(attributes, types);
 
@@ -94,7 +94,7 @@ export const getPropertiesAndValues = (
       properties.push(property);
       values.push(value);
     }
-  })
+  });
 
   return { properties: properties, values: values };
 };
@@ -123,10 +123,7 @@ export const getDateTimeFromAttributes = (
     if (moment(dateTime, dateFormat, true).isValid()) {
       return UTCify(stringify(dateTime.toJSON()));
     } else {
-      throw new InvalidParameterError(
-        property,
-        dateFormat
-      );
+      throw new InvalidParameterError(property, dateFormat);
     }
   }
   if (nullable) return null;

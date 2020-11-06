@@ -113,15 +113,15 @@ export const SCHEDULED_CLASS_TABLE = {
     start_date: new ColumnType("start_date", "date", false),
     end_date: new ColumnType("end_date", "date", false),
     activity: new ColumnType("activity", "string", false),
-    class_name: new ColumnType("class_name", "string", false)
-  }
+    class_name: new ColumnType("class_name", "string", false),
+  },
 } as const;
 
 export const CLASS_DAY_TABLE = {
   tableName: "class_day",
   columns: {
     // add these if we need to use it
-  }
+  },
 } as const;
 
 // Relationship Tables
@@ -179,11 +179,35 @@ export const BUBBLE_PERSON_TABLE = {
 export const PERSON_SCHEDULED_CLASS_TABLE = {
   tableName: "scheduled_class_person",
   columns: {
-    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
-    department: new ColumnType(SCHEDULED_CLASS_TABLE.columns.department.getName(), SCHEDULED_CLASS_TABLE.columns.department.getType(), false),
-    code: new ColumnType(SCHEDULED_CLASS_TABLE.columns.code.getName(), SCHEDULED_CLASS_TABLE.columns.code.getType(), false),
-    section: new ColumnType(SCHEDULED_CLASS_TABLE.columns.section.getName(), SCHEDULED_CLASS_TABLE.columns.section.getType(), false),
-    term: new ColumnType(SCHEDULED_CLASS_TABLE.columns.term.getName(), SCHEDULED_CLASS_TABLE.columns.term.getType(), false),
-    year: new ColumnType(SCHEDULED_CLASS_TABLE.columns.year.getName(), SCHEDULED_CLASS_TABLE.columns.year.getType(), false)
-  }
+    person_id: new ColumnType(
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
+      false
+    ),
+    department: new ColumnType(
+      SCHEDULED_CLASS_TABLE.columns.department.getName(),
+      SCHEDULED_CLASS_TABLE.columns.department.getType(),
+      false
+    ),
+    code: new ColumnType(
+      SCHEDULED_CLASS_TABLE.columns.code.getName(),
+      SCHEDULED_CLASS_TABLE.columns.code.getType(),
+      false
+    ),
+    section: new ColumnType(
+      SCHEDULED_CLASS_TABLE.columns.section.getName(),
+      SCHEDULED_CLASS_TABLE.columns.section.getType(),
+      false
+    ),
+    term: new ColumnType(
+      SCHEDULED_CLASS_TABLE.columns.term.getName(),
+      SCHEDULED_CLASS_TABLE.columns.term.getType(),
+      false
+    ),
+    year: new ColumnType(
+      SCHEDULED_CLASS_TABLE.columns.year.getName(),
+      SCHEDULED_CLASS_TABLE.columns.year.getType(),
+      false
+    ),
+  },
 } as const;
