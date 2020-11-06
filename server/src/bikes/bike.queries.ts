@@ -8,5 +8,5 @@ export const GetAllBikes = GetAllRowsFromTable(B.tableName);
 export const GetBikeById = (id: string) =>
   GetRowsWithSelection(
     B.tableName,
-    `${B.columns.id.getName()} = ${stringify(id)}`
+    `${B.columns.shared_bike_id.getName()} = ${stringify(id)}`
   );

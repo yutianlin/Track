@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { CreateCovidTest, GetAllCovidTests } from "./covid_test.queries";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { insertValues } from "../helpers/helpers";
-import { COVID_TEST_TABLE as CT } from "../helpers/tables"
+import { COVID_TEST_TABLE as CT } from "../helpers/tables";
 
 export default class CovidTest {
   queryService: QueryService;

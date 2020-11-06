@@ -8,5 +8,5 @@ export const GetAllPostals = GetAllRowsFromTable(P.tableName);
 export const GetPostalByCode = (code: string) =>
   GetRowsWithSelection(
     P.tableName,
-    `${P.columns.postalCode.getName()} = ${stringify(code)}`
+    `${P.columns.postal_code.getName()} = ${stringify(code)}`
   );

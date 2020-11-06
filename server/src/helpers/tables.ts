@@ -67,18 +67,30 @@ export const BIKE_TABLE = {
 export const COVID_TESTING_CENTRE_TABLE = {
   tableName: "covid_testing_centre",
   columns: {
-    covid_testing_centre_id: new ColumnType("covid_testing_centre_id", "number", false),
-  }
+    covid_testing_centre_id: new ColumnType(
+      "covid_testing_centre_id",
+      "number",
+      false
+    ),
+  },
 } as const;
 
 export const COVID_TEST_TABLE = {
   tableName: "covid_test",
   columns: {
-    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
-    covid_testing_centre_id: new ColumnType(COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getName(), COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getType(), false),
+    person_id: new ColumnType(
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
+      false
+    ),
+    covid_testing_centre_id: new ColumnType(
+      COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getName(),
+      COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getType(),
+      false
+    ),
     test_time: new ColumnType("test_time", "dateTime", false),
     status: new ColumnType("status", "boolean", false),
-  }
+  },
 } as const;
 
 export const BUBBLE_TABLE = {
@@ -87,7 +99,7 @@ export const BUBBLE_TABLE = {
     bubble_id: new ColumnType("bubble_id", "number", false),
     title: new ColumnType("title", "string", false),
     description: new ColumnType("description", "string", false),
-  }
+  },
 } as const;
 
 // Relationship Tables
@@ -129,7 +141,15 @@ export const PERSON_TIME_BIKE_TABLE = {
 export const BUBBLE_PERSON_TABLE = {
   tableName: "bubble_person",
   columns: {
-    bubble_id: new ColumnType(BUBBLE_TABLE.columns.bubble_id.getName(), BUBBLE_TABLE.columns.bubble_id.getType(), false),
-    person_id: new ColumnType(PERSON_TABLE.columns.person_id.getName(), PERSON_TABLE.columns.person_id.getType(), false),
-  }
+    bubble_id: new ColumnType(
+      BUBBLE_TABLE.columns.bubble_id.getName(),
+      BUBBLE_TABLE.columns.bubble_id.getType(),
+      false
+    ),
+    person_id: new ColumnType(
+      PERSON_TABLE.columns.person_id.getName(),
+      PERSON_TABLE.columns.person_id.getType(),
+      false
+    ),
+  },
 } as const;

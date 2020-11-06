@@ -12,11 +12,11 @@ import { PERSON_TABLE } from "../helpers/tables";
 const { tableName, columns } = PERSON_TABLE;
 const expectValues = [
   columns.email,
-  columns.facultyId,
-  columns.inAppNot,
+  columns.faculty_id,
+  columns.in_app_notification,
   columns.name,
-  columns.phoneNum,
-  columns.studentId,
+  columns.phone_number,
+  columns.student_id,
 ];
 
 export default class PersonService {

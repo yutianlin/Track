@@ -19,18 +19,18 @@ export default class PersonBikeService {
 
   createRelation = async (attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(PB.columns));
-    attributes[PB.columns.rentalTime.getName()] = moment().utc();
+    attributes[PB.columns.rental_time.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
     const sharedBikes: any[] = await this.queryService.query(
       CreateRelation(
         properties,
         values,
-        attributes[PB.columns.bikeId.getName()]
+        attributes[PB.columns.bike_id.getName()]
       )
     );
     if (sharedBikes.length === 0)
       throw new ParameterConstraintError(
-        PB.columns.bikeId.getName(),
+        PB.columns.bike_id.getName(),
         "bike must be rentable"
       );
     return sharedBikes;

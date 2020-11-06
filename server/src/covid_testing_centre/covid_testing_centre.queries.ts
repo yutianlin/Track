@@ -7,4 +7,7 @@ const { tableName, columns } = COVID_TESTING_CENTRE_TABLE;
 export const GetAllCovidTestingCentres = GetAllRowsFromTable(tableName);
 
 export const GetCovidTestingCentreById = (ctcId: number) =>
-  GetRowsWithSelection(tableName, `${columns.id.getName()} = ${ctcId}`);
+  GetRowsWithSelection(
+    tableName,
+    `${columns.covid_testing_centre_id.getName()} = ${ctcId}`
+  );

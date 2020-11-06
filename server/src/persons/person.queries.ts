@@ -16,4 +16,8 @@ export const CreatePerson = (properties: string, values: string) =>
   InsertRow(P.tableName, properties, values);
 
 export const UpdatePersonById = (valuePairs: string, id: number) =>
-  UpdateRow(P.tableName, valuePairs, `${P.columns.person_id.getName()} = ${id}`);
+  UpdateRow(
+    P.tableName,
+    valuePairs,
+    `${P.columns.person_id.getName()} = ${id}`
+  );

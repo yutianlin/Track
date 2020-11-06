@@ -8,5 +8,5 @@ export const GetAllBuildings = GetAllRowsFromTable(B.tableName);
 export const GetBuildingByCode = (code: string) =>
   GetRowsWithSelection(
     B.tableName,
-    `${B.columns.buildingCode.getName()} = ${stringify(code)}`
+    `${B.columns.building_code.getName()} = ${stringify(code)}`
   );

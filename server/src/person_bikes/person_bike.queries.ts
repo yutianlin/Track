@@ -20,6 +20,8 @@ export const CreateRelation = (
     properties,
     values,
     B.tableName,
-    `${B.columns.id.getName()} = ${stringify(bikeId)} AND is_rentable = true`,
+    `${B.columns.shared_bike_id.getName()} = ${stringify(
+      bikeId
+    )} AND is_rentable = true`,
     true
   );
