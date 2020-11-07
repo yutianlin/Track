@@ -5,11 +5,9 @@ import {
   CreateFaculty,
   UpdateFacultyById,
 } from "./faculty.queries";
-import { insertValues, updateValues } from "../helpers/helpers";
+import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
-
-const NOTNULLABLENUMBERPROPERTIES = ["faculty_id"];
-const NOTNULLABLESTRINGPROPERTIES = ["job_title"];
+import { FACULTY_TABLE as F } from "../helpers/tables";
 
 export default class Faculty {
   queryService: QueryService;
@@ -27,17 +25,14 @@ export default class Faculty {
   };
 
   createFaculty = async (attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNotNullableNumbers(NOTNULLABLENUMBERPROPERTIES);
-    types.setNotNullableStrings(NOTNULLABLESTRINGPROPERTIES);
+    const types = new ExpectedValueTypes(Object.values(F.columns));
     const { properties, values } = insertValues(attributes, types);
     return this.queryService.query(CreateFaculty(properties, values));
   };
 
   updateFacultyById = async (id: number, attributes: any) => {
-    const types = new ExpectedValueTypes();
-    types.setNullableStrings(NOTNULLABLESTRINGPROPERTIES);
-    const set = updateValues(attributes, types);
+    const types = new ExpectedValueTypes(Object.values(F.columns), true);
+    const set = setValues(attributes, types);
     await this.queryService.query(UpdateFacultyById(set, id));
     return this.getFacultyById(id);
   };

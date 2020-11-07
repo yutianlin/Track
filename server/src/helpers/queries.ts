@@ -25,15 +25,18 @@ export const UpdateRow = (
   selection: string
 ) => `UPDATE ${tableName} SET ${valuePairs} WHERE ${selection};`;
 
+export const DeleteRow = (tableName: string, selection: string) =>
+  `DELETE FROM ${tableName} WHERE ${selection};`;
+
 export const InsertRowWithSelectCondition = (
   insertTableName: string,
   projection: string,
   values: string,
   selectTableName: string,
   selection: string,
-  selectionMet: boolean,
-) => 
+  selectionMet: boolean
+) =>
   `INSERT INTO ${insertTableName} (${projection})
     SELECT ${values} WHERE ${selectionMet ? "" : "NOT "}EXISTS (
       SELECT 1 FROM ${selectTableName} WHERE ${selection}
-    ) RETURNING *;`
+    ) RETURNING *;`;

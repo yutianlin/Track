@@ -4,10 +4,16 @@
  */
 
 CREATE TABLE scheduled_class (
-	scheduled_class_id serial PRIMARY KEY,
+	department varchar(4) NOT NULL,
+	code varchar(10) NOT NULL,
+	section varchar(10) NOT NULL,
+	term varchar(10) NOT NULL,
+	year INT NOT NULL,
 	start_day timestamptz NOT NULL,
 	end_day timestamptz NOT NULL,
-	class_name TEXT NOT NULL
+	activity varchar(20) NOT NULL,
+	class_name TEXT NOT NULL,
+	PRIMARY KEY (department, code, section, term, year)
 );
 
 CREATE TABLE postal_address(
@@ -38,15 +44,19 @@ CREATE TABLE room(
 
 
 CREATE TABLE class_day(
-	scheduled_class_id int,
+	department varchar(4) NOT NULL,
+	code varchar(10) NOT NULL,
+	section varchar(10) NOT NULL,
+	term varchar(10) NOT NULL,
+	year INT NOT NULL,
 	class_day_id serial,
 	day_of_week varchar(10)
 	    CHECK(day_of_week IN ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'))
 	    NOT NULL,
 	room_number varchar(10),
 	building_code varchar(10),
-	PRIMARY KEY(scheduled_class_id, class_day_id),
-	FOREIGN KEY(scheduled_class_id) REFERENCES scheduled_class
+	PRIMARY KEY(department, code, section, term, year, class_day_id),
+	FOREIGN KEY(department, code, section, term, year) REFERENCES scheduled_class
 	    ON DELETE CASCADE,
     FOREIGN KEY (room_number, building_code) REFERENCES room(room_number, building_code)
 );
@@ -145,12 +155,16 @@ CREATE TABLE person_shared_bike(
 );
 
 CREATE TABLE scheduled_class_person(
-	scheduled_class_id integer,
+	department varchar(4) NOT NULL,
+	code varchar(10) NOT NULL,
+	section varchar(10) NOT NULL,
+	term varchar(10) NOT NULL,
+	year INT NOT NULL,
 	person_id integer,
-	PRIMARY KEY (person_id, scheduled_class_id),
+	PRIMARY KEY (person_id, department, code, section, term, year),
 	FOREIGN KEY (person_id) REFERENCES person(person_id)
 	    ON DELETE CASCADE,
-	FOREIGN KEY (scheduled_class_id) REFERENCES scheduled_class(scheduled_class_id)
+	FOREIGN KEY (department, code, section, term, year) REFERENCES scheduled_class
 	    ON DELETE CASCADE
 );
 

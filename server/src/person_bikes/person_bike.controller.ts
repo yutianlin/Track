@@ -11,22 +11,18 @@ module.exports = function (app: any) {
     response.json(await personBikeService.getAllRelations())
   );
 
-  app.post(
-    "/person_bikes",
-    jsonParser,
-    async (request: any, response: any) => {
-      const { value, error } = await createRelationSchema.validate(
-        request.body.data
-      );
-      if (error) {
-        response.status(422).json(error);
-        return;
-      }
-      try {
-        response.json(await personBikeService.createRelation(value));
-      } catch (e) {
-        response.status(422).json(e.message);
-      }
+  app.post("/person_bikes", jsonParser, async (request: any, response: any) => {
+    const { value, error } = await createRelationSchema.validate(
+      request.body.data
+    );
+    if (error) {
+      response.status(422).json(error);
+      return;
     }
-  );
+    try {
+      response.json(await personBikeService.createRelation(value));
+    } catch (e) {
+      response.status(422).json(e.message);
+    }
+  });
 };

@@ -10,9 +10,10 @@ export const insertValues = (
   return { properties: listify(properties), values: listify(values) };
 };
 
-export const updateValues = (
+export const setValues = (
   attributes: any,
-  types: ExpectedValueTypes
+  types: ExpectedValueTypes,
+  join: string = ", "
 ): string => {
   const { properties, values } = getPropertiesAndValues(attributes, types);
 
@@ -20,7 +21,7 @@ export const updateValues = (
     return `${prop} = ${values[i]}`;
   });
 
-  return listify(map);
+  return listify(map, join);
 };
 
 export const getPropertiesAndValues = (
@@ -82,6 +83,19 @@ export const getPropertiesAndValues = (
     }
   });
 
+  types.getNotNullableDates().forEach((property) => {
+    properties.push(property);
+    values.push(getDateTimeFromAttributes(attributes, property, false, true));
+  });
+
+  types.getNullableDates().forEach((property) => {
+    const value = getDateTimeFromAttributes(attributes, property, true, true);
+    if (value) {
+      properties.push(property);
+      values.push(value);
+    }
+  });
+
   return { properties: properties, values: values };
 };
 
@@ -99,22 +113,21 @@ export const getStringFromAttributes = (
 export const getDateTimeFromAttributes = (
   attributes: any,
   property: string,
-  nullable: boolean
+  nullable: boolean,
+  onlyDate: boolean = false
 ): string | null => {
+  const dateFormat = onlyDate ? "YYYY-MM-DDZ" : "YYYY-MM-DDTHH:mm:ss.SSSZ";
   if (attributes.hasOwnProperty(property)) {
-    const dateTime = attributes[property];
+    const dateTime: Date = attributes[property];
 
-    if (moment(dateTime, "YYYY-MM-DDTHH:mm:ss.SSSZ", true).isValid()) {
-      return UTCify(stringify(dateTime));
+    if (moment(dateTime, dateFormat, true).isValid()) {
+      return UTCify(stringify(dateTime.toJSON()));
     } else {
-      throw new InvalidParameterError(
-        property,
-        "Date YYYY-MM-DDTHH:mm:ss.SSSZ"
-      );
+      throw new InvalidParameterError(property, dateFormat);
     }
   }
   if (nullable) return null;
-  throw new InvalidParameterError(property, "Date YYYY-MM-DDTHH:mm:ss.SSSZ");
+  throw new InvalidParameterError(property, `Date ${dateFormat}`);
 };
 
 export const getFromAttributes = (

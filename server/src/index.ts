@@ -19,6 +19,15 @@ require("./person_entrances/person_entrance.controller")(app);
 require("./joins/join.controller")(app);
 require("./bikes/bike.controller")(app);
 require("./person_bikes/person_bike.controller")(app);
+require("./covid_tests/covid_test.controller")(app);
+require("./covid_testing_centres/covid_testing_centre.controller")(app);
+require("./bubbles/bubble.controller")(app);
+require("./person_bubbles/person_bubble.controller")(app);
+require("./scheduled_classes/scheduled_class.controller")(app);
+require("./class_days/class_day.controller")(app);
+require("./person_scheduled_classes/person_scheduled_classes.controller")(app);
+require("./notifications/notification.controller")(app);
+require("./person_notifications/person_notification.controller")(app);
 
 app.use(bodyParser.json());
 app.use(
