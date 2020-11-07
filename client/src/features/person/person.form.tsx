@@ -54,14 +54,14 @@ export default function PersonForm() {
 
   const onSubmit = async (person: Person) => {
     if (!isLoggedIn) {
-      personService.createPerson(person).then((createdPerson: Person) => {
-        setRemoteError("");
+      try {
+        const createdPerson = await personService.createPerson(person);
         CookieService.setPersonId(createdPerson.person_id as number);
         dispatch(setPerson(createdPerson));
         dispatch(login());
-      }).catch((error) => {
+      } catch (error) {
         setRemoteError(error.message);
-      });
+      }
     }
   }
 

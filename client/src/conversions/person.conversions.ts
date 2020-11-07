@@ -1,5 +1,5 @@
 import {Person} from "../features/person/person.slice";
-import {isPresent, isStringEmpty} from "../util";
+import {isStringEmpty} from "../util";
 import {toRequestJson} from "./conversions.util";
 
 export class PersonConversions {
