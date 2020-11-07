@@ -1,5 +1,5 @@
 import {Person} from "../features/person/person.slice";
-import {isPresent} from "../util";
+import {isPresent, isStringEmpty} from "../util";
 import {toRequestJson} from "./conversions.util";
 
 export class PersonConversions {
@@ -10,7 +10,7 @@ export class PersonConversions {
     }
 
     Object.keys(person).forEach((key: string) => {
-      if (personCopy[key] === "" || !isPresent(personCopy[key])) {
+      if (isStringEmpty(personCopy[key])) {
         delete personCopy[key];
       }
     });

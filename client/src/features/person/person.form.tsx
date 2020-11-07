@@ -1,22 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { joiResolver } from '@hookform/resolvers/joi';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useForm, Controller} from 'react-hook-form'
 import {useDispatch, useSelector} from "react-redux";
-import {selectIsLoggedIn} from "../login/login.slice";
-import {createPerson, selectPersonState} from "./person.slice";
+import {login, selectIsLoggedIn} from "../login/login.slice";
+import {Person, selectPersonState, setPerson} from "./person.slice";
 import {createPersonSchema} from "./person.schema";
-import {create} from "domain";
+import {isStringEmpty} from "../../util";
+import {personService} from "../../services/person.service";
+import {CookieService} from "../../services/cookie.service";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
+  container: {
+    marginTop: theme.spacing(20),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -32,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersonForm() {
+  const [remoteError, setRemoteError] = useState("");
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const personState = useSelector(selectPersonState);
   const classes = useStyles();
-  // Use joi to validate here as well
   const {register, handleSubmit, control, watch, errors} = useForm({
     resolver: joiResolver(createPersonSchema),
     defaultValues: {
@@ -49,15 +50,27 @@ export default function PersonForm() {
       job_title: personState.job_title ?? ""
     }
   });
-  // watch changes for faculty number and show job title if they input
-  const isFacultyNumberFilledOut = watch("faculty_id") !== "";
+  const isFacultyNumberFilledOut = !isStringEmpty(watch("faculty_id"));
+
+  const onSubmit = async (person: Person) => {
+    if (!isLoggedIn) {
+      personService.createPerson(person).then((createdPerson: Person) => {
+        setRemoteError("");
+        CookieService.setPersonId(createdPerson.person_id as number);
+        dispatch(setPerson(createdPerson));
+        dispatch(login());
+      }).catch((error) => {
+        setRemoteError(error.message);
+      });
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
-      <div className={classes.paper}>
+      <div className={classes.container}>
         <form className={classes.form} noValidate
-              onSubmit={handleSubmit((data) => dispatch(createPerson(data)))}>
+              onSubmit={handleSubmit(onSubmit)}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -122,11 +135,17 @@ export default function PersonForm() {
               </div>
             )
           }
-          <FormControlLabel
-            control={
-              <Controller as={Checkbox} control={control} name="in_app_notification" color="primary"/>}
-            label="In-App Notifications?"
-          />
+          <Controller name="in_app_notification" control = {control} render={(props) => (
+            <div>
+              <Checkbox
+                className="input"
+                onChange={(event) => props.onChange(event.target.checked)}
+                checked={props.value}
+              />
+              <label>In-App Notifications?</label>
+            </div>
+          )}/>
+          {errors.in_app_notification && <p>{errors.in_app_notification.message}</p>}
           <Button
             type="submit"
             fullWidth
@@ -136,6 +155,7 @@ export default function PersonForm() {
           >
             {isLoggedIn ? "Update": "Sign Up"}
           </Button>
+          {remoteError && <p>Please ensure that you have at least one active notification setting.</p>}
         </form>
       </div>
     </Container>

@@ -36,5 +36,6 @@ export const fetchPerson = (personId: string): AppThunk => dispatch => {
 
 export const {login, appLoaded} = loginSlice.actions;
 export const selectIsLoggedIn = (state: RootState): boolean => state.login.isLoggedIn;
+export const selectIsAppLoading = (state: RootState): boolean => state.login.isAppLoading;
 
 export default loginSlice.reducer;

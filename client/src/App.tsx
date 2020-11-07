@@ -1,18 +1,21 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Cookies from 'js-cookie';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPerson, selectIsLoggedIn, appLoaded} from "./features/login/login.slice";
-import {selectPersonState} from "./features/person/person.slice";
+import {fetchPerson, selectIsLoggedIn, appLoaded, selectIsAppLoading} from "./features/login/login.slice";
 import PersonForm from "./features/person/person.form";
+import {CookieService} from "./services/cookie.service";
+import NavBar from "./features/nav/navbar";
+import {Route, Switch} from "react-router";
+import Home from "./features/home/home";
+import {editPersonRoute, homeRoute} from "./features/routes";
 
-function App() {
+export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const person = useSelector(selectPersonState);
+  const isAppLoading = useSelector(selectIsAppLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const personId: any = Cookies.get("xd");
+    const personId: string | undefined = CookieService.getPersonId();
     if (personId) {
       dispatch(fetchPerson(personId));
     } else {
@@ -22,10 +25,15 @@ function App() {
 
   return (
     <div>
-      {isLoggedIn && <p>Hi {person.name}</p>}
-      <PersonForm />
+      <NavBar/>
+      {!isAppLoading && !isLoggedIn && <PersonForm/>}
+      {!isAppLoading && isLoggedIn && (
+        <Switch>
+          <Route exact path = '/' component={Home}/>
+          <Route path = {homeRoute} component={Home}/>
+          <Route path= {editPersonRoute} component={PersonForm}/>
+        </Switch>
+      )}
     </div>
   );
 }
-
-export default App;

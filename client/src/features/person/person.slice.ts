@@ -1,10 +1,8 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {AppThunk, RootState} from "../../app/store";
-import {personService} from "../../services/person.service";
-import {login} from "../login/login.slice";
+import {RootState} from "../../app/store";
 
 export interface Person {
-  id?: number,
+  person_id?: number,
   name?: string,
   email?: string,
   phone_number?: string,
@@ -24,7 +22,7 @@ export const personSlice = createSlice({
   initialState: initialState,
   reducers: {
     setPerson: (state: Draft<Person>, action: PayloadAction<Person>) => {
-      state.id = action.payload.id;
+      state.person_id = action.payload.person_id;
       state.name = action.payload.name;
       state.job_title = action.payload.job_title;
       state.faculty_id = action.payload.faculty_id;
@@ -37,12 +35,6 @@ export const personSlice = createSlice({
 });
 
 export const { setPerson } = personSlice.actions;
-export const createPerson = (person: Person): AppThunk => dispatch => {
-  personService.createPerson(person).then((createdPerson: Person) => {
-    dispatch(setPerson(createdPerson));
-    dispatch(login());
-  });
-};
 
 export const selectPersonState = (state: RootState) => state.person
 
