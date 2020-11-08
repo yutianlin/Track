@@ -6,7 +6,7 @@ import {
 } from "./join.queries";
 
 export default class Join {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { GetAllBuildings, GetBuildingByCode } from "./building.queries";
 
 export default class Building {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

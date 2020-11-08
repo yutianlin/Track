@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { GetAllPostals, GetPostalByCode } from "./postal.queries";
 
 export default class Building {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

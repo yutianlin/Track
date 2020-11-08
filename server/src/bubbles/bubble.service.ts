@@ -10,7 +10,7 @@ import { insertValues, setValues } from "../helpers/helpers";
 import { BUBBLE_TABLE as B } from "../helpers/tables";
 
 export default class Bubble {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

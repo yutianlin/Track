@@ -7,7 +7,7 @@ import moment from "moment";
 import { PERSON_TIME_BIKE_TABLE as PB } from "../helpers/tables";
 
 export default class PersonBikeService {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

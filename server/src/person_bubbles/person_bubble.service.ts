@@ -8,7 +8,7 @@ import {
 import { BUBBLE_PERSON_TABLE as BP } from "../helpers/tables";
 
 export default class BubblePerson {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

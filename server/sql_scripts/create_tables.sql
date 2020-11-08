@@ -90,6 +90,9 @@ CREATE TABLE person(
         NOT NULL,
     student_id bigint,
     faculty_id bigint,
+	person_status boolean 
+		DEFAULT FALSE
+		NOT NULL,
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
 	    ON DELETE SET NULL,
 	CONSTRAINT has_notification_setting

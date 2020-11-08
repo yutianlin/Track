@@ -5,7 +5,7 @@ import {
 } from "./notification.queries";
 
 export default class Faculty {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();
