@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-08T07:30:10.966Z
+__export_date: 2020-11-08T23:38:27.446Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -397,9 +397,9 @@ resources:
     _type: request_group
   - _id: req_aa942c790ee64616b9b869ce381bc2cb
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604101947606
+    modified: 1604876899771
     created: 1602500992472
-    url: http://127.0.0.1:3000/persons/1
+    url: http://127.0.0.1:3000/persons/4
     name: GET /persons/:id
     description: ""
     method: GET
@@ -454,7 +454,7 @@ resources:
     _type: request
   - _id: req_3832e39ce5b64a169461ea54b8bd6728
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1604102018103
+    modified: 1604877649901
     created: 1603658199343
     url: http://127.0.0.1:3000/persons/3
     name: PATCH /persons/:id
@@ -465,8 +465,7 @@ resources:
       text: |-
         { "data":
         	{
-        		"phone_number": "123123",
-        		"name": "mew name"
+        		"person_status": true
         	}
         }
     parameters: []
@@ -770,9 +769,9 @@ resources:
     _type: request
   - _id: req_170193e8939a4cbdab0706ec70118c48
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604819930247
+    modified: 1604877013444
     created: 1604817698176
-    url: http://127.0.0.1:3000/covid_tests/person_id/1/test_centre_id/1/input_time/2020-10-06T11:05:03.000Z
+    url: http://127.0.0.1:3000/covid_tests/person_id/4/test_centre_id/5/input_time/2020-11-08T23:09:08.000Z
     name: PATCH
       /covid_tests/:personId/test_centre_id/:testCentreId/input_time/:inputTime
     description: ""
@@ -782,7 +781,7 @@ resources:
       text: |-
         { "data":
         	{
-        		"status": false
+        		"status": true
         	}
         }
     parameters: []
@@ -812,7 +811,7 @@ resources:
     _type: request_group
   - _id: req_5100f6e4fb954deb89b5d55c8c90122c
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604816984911
+    modified: 1604876947723
     created: 1604465461376
     url: http://127.0.0.1:3000/covid_tests
     name: POST /covid_test
@@ -824,8 +823,9 @@ resources:
         { "data":
         	{
             "test_time": "2020-10-05T00:00:00.000Z",
-            "person_id": 3,
-            "covid_testing_centre_id": 5
+            "person_id": 4,
+            "covid_testing_centre_id": 5,
+        		"status": false
         	}
         }
     parameters: []
@@ -1178,6 +1178,27 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1604540618139
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e85955c4bdc14edbb6fc0ea78b78e959
+    parentId: fld_658247d9b19f4aa8b0cc0e6494b60d67
+    modified: 1604878631037
+    created: 1604878185367
+    url: http://127.0.0.1:3000/person_bubbles/person_id/4/bubble_id/2
+    name: DELETE /person_bubbles/person_id/:personId/bubble_id/:bubble_id
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604540618089
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true

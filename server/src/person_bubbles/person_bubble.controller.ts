@@ -9,7 +9,7 @@ const bubblePersonService = new BubblePersonService();
 
 module.exports = function (app: any) {
   app.get("/person_bubbles", async (request: any, response: any) => {
-    response.json(await bubblePersonService.getAllBubblePersons());
+    response.json(await bubblePersonService.getAllPersonBubbles());
   });
 
   app.post(
@@ -24,10 +24,20 @@ module.exports = function (app: any) {
         return;
       }
       try {
-        response.json(await bubblePersonService.createBubblePerson(value));
+        response.json(await bubblePersonService.createPersonBubble(value));
       } catch (e) {
         response.status(422).json(e.message);
       }
+    }
+  );
+
+  app.delete(
+    "/person_bubbles/person_id/:personId/bubble_id/:bubbleId",
+    async (request: any, response: any) => {
+      const { personId, bubbleId } = request.params;
+      response.json(
+        await bubblePersonService.deletePersonBubble(personId, bubbleId)
+      );
     }
   );
 };
