@@ -1,0 +1,19 @@
+@media only screen and (min-width: 960px) {
+    .navbar-links {
+        margin-left: 7vw;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .personButton {
+        max-width: max-content;
+    }
+}
+
+.navbar-links {
+    font-weight: normal;
+}
+
+.personButton {
+    font-weight: normal;
+}
