@@ -51,7 +51,7 @@ export const getPropertiesAndValues = (
 
   types.getNullableBooleans().forEach((property) => {
     const value = getFromAttributes(attributes, property, "boolean", true);
-    if (value) {
+    if (value !== null) {
       properties.push(property);
       values.push(value);
     }
@@ -118,13 +118,18 @@ export const getDateTimeFromAttributes = (
 ): string | null => {
   const dateFormat = onlyDate ? "YYYY-MM-DDZ" : "YYYY-MM-DDTHH:mm:ss.SSSZ";
   if (attributes.hasOwnProperty(property)) {
-    const dateTime: Date = attributes[property];
-
-    if (moment(dateTime, dateFormat, true).isValid()) {
-      return UTCify(stringify(dateTime.toJSON()));
-    } else {
+    const dateTime = moment(attributes[property]).utc();
+    if (
+      !moment(dateTime, dateFormat, true).isValid() ||
+      (onlyDate &&
+        (dateTime.hours() !== 0 ||
+          dateTime.minutes() !== 0 ||
+          dateTime.seconds() !== 0 ||
+          dateTime.milliseconds() !== 0))
+    ) {
       throw new InvalidParameterError(property, dateFormat);
     }
+    return UTCify(stringify(dateTime.toString()));
   }
   if (nullable) return null;
   throw new InvalidParameterError(property, `Date ${dateFormat}`);
