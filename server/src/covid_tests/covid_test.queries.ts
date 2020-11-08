@@ -2,7 +2,9 @@ import {
   GetAllRowsFromTable,
   GetRowsWithSelection,
   InsertRow,
+  UpdateRow,
 } from "../helpers/queries";
+import { UTCify, stringify } from "../helpers/helpers";
 
 import { COVID_TEST_TABLE } from "../helpers/tables";
 
@@ -13,10 +15,16 @@ export const GetAllCovidTests = GetAllRowsFromTable(tableName);
 export const CreateCovidTest = (properties: string, values: string) =>
   InsertRow(tableName, properties, values);
 
-export const GetCovidTest = (pId: number, ctcId: number, time: Date) =>
-  GetRowsWithSelection(
+export const UpdateCovidTestByPK = (
+  personId: number,
+  testingCentreId: number,
+  testInputTime: string,
+  values: string
+) =>
+  UpdateRow(
     tableName,
-    `${columns.person_id.getName()} = ${pId} AND
-             ${columns.covid_testing_centre_id.getName()} = ${ctcId} AND 
-             ${columns.test_time.getName()} = ${time}`
+    values,
+    `${columns.person_id.getName()} = ${personId} AND
+  ${columns.covid_testing_centre_id.getName()} = ${testingCentreId} AND
+  ${columns.test_input_time.getName()} = ${UTCify(stringify(testInputTime))}`
   );

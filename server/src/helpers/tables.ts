@@ -88,8 +88,9 @@ export const COVID_TEST_TABLE = {
       COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getType(),
       false
     ),
-    test_time: new ColumnType("test_time", "dateTime", false),
-    status: new ColumnType("status", "boolean", false),
+    test_time: new ColumnType("test_time", "date", false),
+    test_input_time: new ColumnType("test_input_time", "dateTime", false),
+    status: new ColumnType("status", "boolean", true),
   },
 } as const;
 
