@@ -26,7 +26,7 @@ export const UpdateRow = (
 ) => `UPDATE ${tableName} SET ${valuePairs} WHERE ${selection} RETURNING *;`;
 
 export const DeleteRow = (tableName: string, selection: string) =>
-  `DELETE FROM ${tableName} WHERE ${selection};`;
+  `DELETE FROM ${tableName} WHERE ${selection} RETURNING *;`;
 
 export const InsertRowWithSelectCondition = (
   insertTableName: string,

@@ -4,9 +4,13 @@ import {
   GetAllCovidTests,
   UpdateCovidTestByPK,
 } from "./covid_test.queries";
-import PersonService from "../persons/person.service"
+import PersonService from "../persons/person.service";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
-import { insertValues, setValues, getPropertiesAndValues } from "../helpers/helpers";
+import {
+  insertValues,
+  setValues,
+  getPropertiesAndValues,
+} from "../helpers/helpers";
 import { COVID_TEST_TABLE } from "../helpers/tables";
 import moment from "moment";
 
@@ -25,11 +29,16 @@ export default class CovidTest {
     const types = new ExpectedValueTypes(Object.values(columns));
     attributes[columns.test_input_time.getName()] = moment().utc();
     const { properties, values } = insertValues(attributes, types);
-    const result = await this.queryService.query(CreateCovidTest(properties, values));
-    const status = getPropertiesAndValues(attributes, new ExpectedValueTypes([columns.status], true)).values;
+    const result = await this.queryService.query(
+      CreateCovidTest(properties, values)
+    );
+    const status = getPropertiesAndValues(
+      attributes,
+      new ExpectedValueTypes([columns.status], true)
+    ).values;
     if (status.length === 1 && status[0] === true) {
       await this.testSetToTrueTriggers(result[0][columns.person_id.getName()]);
-    } 
+    }
     return result;
   };
 
@@ -48,7 +57,10 @@ export default class CovidTest {
     const result = await this.queryService.query(
       UpdateCovidTestByPK(personId, testCentreId, inputTime, values)
     );
-    const status = getPropertiesAndValues(attributes, new ExpectedValueTypes([columns.status], true)).values;
+    const status = getPropertiesAndValues(
+      attributes,
+      new ExpectedValueTypes([columns.status], true)
+    ).values;
     if (status.length === 1 && status[0] === true) {
       await this.testSetToTrueTriggers(result[0][columns.person_id.getName()]);
     }
@@ -57,5 +69,5 @@ export default class CovidTest {
 
   private testSetToTrueTriggers = async (personId: number) => {
     this.personService.updatePersonStatusToPositive(personId);
-  }
+  };
 }
