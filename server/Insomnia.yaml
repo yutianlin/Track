@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-06T22:52:42.298Z
+__export_date: 2020-11-08T07:30:10.966Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -768,32 +768,30 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_5100f6e4fb954deb89b5d55c8c90122c
+  - _id: req_170193e8939a4cbdab0706ec70118c48
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604651057290
-    created: 1604465461376
-    url: http://127.0.0.1:3000/covid_tests
-    name: POST /covid_test
+    modified: 1604819930247
+    created: 1604817698176
+    url: http://127.0.0.1:3000/covid_tests/person_id/1/test_centre_id/1/input_time/2020-10-06T11:05:03.000Z
+    name: PATCH
+      /covid_tests/:personId/test_centre_id/:testCentreId/input_time/:inputTime
     description: ""
-    method: POST
+    method: PATCH
     body:
       mimeType: application/json
       text: |-
         { "data":
         	{
-            "test_time": "2020-10-05T12:00:00.000Z",
-            "person_id": 3,
-            "covid_testing_centre_id": 5,
-            "status": true
+        		"status": false
         	}
         }
     parameters: []
     headers:
       - name: Content-Type
         value: application/json
-        id: pair_ee6e0b700d0b4a0aa6d00c9f19706b11
+        id: pair_2894570e46634be39d9fbfe7980f789e
     authentication: {}
-    metaSortKey: -1604465461435
+    metaSortKey: -1604817698176
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -812,6 +810,39 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1603950304695.7812
     _type: request_group
+  - _id: req_5100f6e4fb954deb89b5d55c8c90122c
+    parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
+    modified: 1604816984911
+    created: 1604465461376
+    url: http://127.0.0.1:3000/covid_tests
+    name: POST /covid_test
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        { "data":
+        	{
+            "test_time": "2020-10-05T00:00:00.000Z",
+            "person_id": 3,
+            "covid_testing_centre_id": 5
+        	}
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_ee6e0b700d0b4a0aa6d00c9f19706b11
+    authentication: {}
+    metaSortKey: -1604465461435
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_6bef770653cf47e78a5b20ecf57ed7ac
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
     modified: 1604535070567
@@ -885,6 +916,47 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_9bbfe8803a1f4170a6193d403b4220dc
+    parentId: fld_1bd6e4d46876481a96e09ef20b2f2f7f
+    modified: 1604703923916
+    created: 1604703905415
+    url: http://127.0.0.1:3000/person_notifications
+    name: GET /person_notifications
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604703905473
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_1bd6e4d46876481a96e09ef20b2f2f7f
+    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
+    modified: 1604703898014
+    created: 1604703898014
+    name: person_notification
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604703898014
+    _type: request_group
+  - _id: fld_5af23c3fa3b64f7da870873e641ddf4d
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604264225150
+    created: 1604264221386
+    name: Relationships
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603950304795
+    _type: request_group
   - _id: req_1aaa26df21e84ca3b185445090671450
     parentId: fld_2189f1d0f97d475587f646722408c4b5
     modified: 1604700661579
@@ -915,16 +987,6 @@ resources:
     environment: {}
     environmentPropertyOrder: null
     metaSortKey: -1604700242588
-    _type: request_group
-  - _id: fld_5af23c3fa3b64f7da870873e641ddf4d
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604264225150
-    created: 1604264221386
-    name: Relationships
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603950304795
     _type: request_group
   - _id: req_0e7fd0e256024090bc7086533ea2196e
     parentId: fld_2189f1d0f97d475587f646722408c4b5
