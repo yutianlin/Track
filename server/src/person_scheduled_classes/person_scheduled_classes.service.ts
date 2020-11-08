@@ -11,7 +11,7 @@ import { PERSON_SCHEDULED_CLASS_TABLE } from "../helpers/tables";
 const { tableName, columns } = PERSON_SCHEDULED_CLASS_TABLE;
 
 export default class BubblePerson {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

@@ -23,7 +23,7 @@ export const UpdateRow = (
   tableName: string,
   valuePairs: string,
   selection: string
-) => `UPDATE ${tableName} SET ${valuePairs} WHERE ${selection};`;
+) => `UPDATE ${tableName} SET ${valuePairs} WHERE ${selection} RETURNING *;`;
 
 export const DeleteRow = (tableName: string, selection: string) =>
   `DELETE FROM ${tableName} WHERE ${selection};`;

@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { GetAllEntrances, GetEntranceById } from "./entrance.queries";
 
 export default class Entrance {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

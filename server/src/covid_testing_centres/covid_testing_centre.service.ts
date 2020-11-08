@@ -5,7 +5,7 @@ import {
 } from "./covid_testing_centre.queries";
 
 export default class CovidTestingCentre {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

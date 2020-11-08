@@ -17,10 +17,11 @@ const expectValues = [
   columns.name,
   columns.phone_number,
   columns.student_id,
+  columns.person_status,
 ];
 
 export default class PersonService {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();
@@ -46,4 +47,8 @@ export default class PersonService {
     await this.queryService.query(UpdatePersonById(set, id));
     return this.getPersonById(id);
   };
+
+  updatePersonStatusToPositive = async (id: number) => {
+    await this.queryService.query(UpdatePersonById(`${columns.person_status.getName()} = true`, id));
+  }
 }

@@ -27,7 +27,7 @@ export const setValues = (
 export const getPropertiesAndValues = (
   attributes: any,
   types: ExpectedValueTypes
-): { properties: string[]; values: string[] } => {
+): { properties: string[]; values: any[] } => {
   const properties: string[] = [];
   const values: any[] = [];
 

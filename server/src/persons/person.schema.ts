@@ -16,4 +16,5 @@ export const updatePersonSchema = Joi.object({
   in_app_notification: Joi.boolean(),
   student_id: Joi.string().regex(/^\d+$/),
   faculty_id: Joi.string().regex(/^\d+$/),
+  person_status: Joi.boolean()
 });

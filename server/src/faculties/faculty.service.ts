@@ -10,7 +10,7 @@ import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { FACULTY_TABLE as F } from "../helpers/tables";
 
 export default class Faculty {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

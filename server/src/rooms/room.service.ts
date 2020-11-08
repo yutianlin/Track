@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { GetAllRooms, GetRoomByNumber } from "./room.queries";
 
 export default class Room {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

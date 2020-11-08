@@ -6,7 +6,7 @@ import moment from "moment";
 import { PERSON_TIME_ENTRANCE_TABLE as PE } from "../helpers/tables";
 
 export default class PersonDateEntranceService {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

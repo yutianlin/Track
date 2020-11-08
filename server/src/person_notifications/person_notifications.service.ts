@@ -2,7 +2,7 @@ import QueryService from "../QueryService";
 import { GetAllRelations } from "./person_notification.queries";
 
 export default class PersonDateEntranceService {
-  queryService: QueryService;
+  private queryService: QueryService;
 
   constructor() {
     this.queryService = new QueryService();

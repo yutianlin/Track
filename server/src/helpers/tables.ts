@@ -11,6 +11,7 @@ export const PERSON_TABLE = {
     phone_number: new ColumnType("phone_number", "string", true),
     student_id: new ColumnType("student_id", "number", true),
     faculty_id: new ColumnType("faculty_id", "string", true),
+    person_status: new ColumnType("person_status", "boolean", true),
     // Technically false, but there is a default for null
     in_app_notification: new ColumnType("in_app_notification", "boolean", true),
   },
