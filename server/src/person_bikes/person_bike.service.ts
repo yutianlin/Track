@@ -1,5 +1,5 @@
 import QueryService from "../QueryService";
-import { GetAllRelations, CreateRelation } from "./person_bike.queries";
+import {GetAllRelations, CreateRelation, GetRelationsByPersonId} from "./person_bike.queries";
 import { insertValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { ParameterConstraintError } from "../errors";
@@ -16,6 +16,10 @@ export default class PersonBikeService {
   getAllRelations = async () => {
     return this.queryService.query(GetAllRelations());
   };
+
+  getRelationsByPersonId = async (personId: number) => {
+    return this.queryService.query(GetRelationsByPersonId(personId));
+  }
 
   createRelation = async (attributes: any) => {
     const types = new ExpectedValueTypes(Object.values(PB.columns));

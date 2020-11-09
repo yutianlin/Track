@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-08T23:38:27.446Z
+__export_date: 2020-11-09T12:00:53.456Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -864,6 +864,41 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_9e19a8c2b8ea41bf902ad88f90d039c3
+    parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
+    modified: 1604923227450
+    created: 1604912524492
+    url: http://127.0.0.1:3000/bikes/rent/1ac456789
+    name: /bikes/rent/:id
+    description: ""
+    method: PATCH
+    body: {}
+    parameters: []
+    headers:
+      - name: ""
+        value: ""
+        description: ""
+        id: pair_205faf5b082e4fa9b38a25948f264f18
+    authentication: {}
+    metaSortKey: -1604912524522
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_af5a4876eb18472b80c3cdb595ed1d6c
+    parentId: fld_fcc6a40053924e988157eec92be1f300
+    modified: 1604264211604
+    created: 1604262743169
+    name: bike
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603950304695
+    _type: request_group
   - _id: req_70bd6d9395bc4f879e6909a4cc006b5b
     parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
     modified: 1604262762184
@@ -885,16 +920,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_af5a4876eb18472b80c3cdb595ed1d6c
-    parentId: fld_fcc6a40053924e988157eec92be1f300
-    modified: 1604264211604
-    created: 1604262743169
-    name: bike
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603950304695
-    _type: request_group
   - _id: req_9a0bdadf416648eeb5f5efc331580c5b
     parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
     modified: 1604264525890
@@ -1207,6 +1232,37 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_215b9d13655948c797ff8b13d05d7699
+    parentId: fld_652277bad8eb47e8a86fc932793b2ff8
+    modified: 1604907922644
+    created: 1604906854515
+    url: http://127.0.0.1:3000/person_bikes/10
+    name: /person_bikes/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604906854515
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_652277bad8eb47e8a86fc932793b2ff8
+    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
+    modified: 1604264269611
+    created: 1604264269611
+    name: person_bike
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264269611
+    _type: request_group
   - _id: req_b0a3f1e1163641d4870ed81ce1db6ccd
     parentId: fld_652277bad8eb47e8a86fc932793b2ff8
     modified: 1604458808692
@@ -1228,16 +1284,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_652277bad8eb47e8a86fc932793b2ff8
-    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
-    modified: 1604264269611
-    created: 1604264269611
-    name: person_bike
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264269611
-    _type: request_group
   - _id: req_c741ad52edc642bfa681902f8c2b3f26
     parentId: fld_652277bad8eb47e8a86fc932793b2ff8
     modified: 1604268760697

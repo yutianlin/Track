@@ -63,7 +63,8 @@ export const ENTRANCE_TABLE = {
 export const BIKE_TABLE = {
   tableName: "shared_bike",
   columns: {
-    shared_bike_id: new ColumnType("shared_bike_id", "number", false),
+    shared_bike_id: new ColumnType("shared_bike_id", "string", false),
+    is_rentable: new ColumnType("is_rentable", "boolean", false)
   },
 } as const;
 

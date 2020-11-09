@@ -7,7 +7,11 @@ import {CookieService} from "./services/cookie.service";
 import NavBar from "./features/nav/navbar";
 import {Route, Switch} from "react-router";
 import Home from "./features/home/home";
-import {editPersonRoute, homeRoute} from "./features/routes";
+import {bikeRoute, editPersonRoute, homeRoute, personInfoRoute} from "./features/routes";
+import Bike from "./features/bike/bike";
+import {fetchBikes} from "./features/bike/bike.slice";
+import PersonCard from "./features/person/person.card";
+
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,8 +23,9 @@ export default function App() {
     if (personId) {
       dispatch(fetchPerson(personId));
     } else {
-      dispatch(appLoaded())
+      dispatch(appLoaded());
     }
+    dispatch(fetchBikes());
   }, []);
 
   return (
@@ -31,7 +36,9 @@ export default function App() {
         <Switch>
           <Route exact path = '/' component={Home}/>
           <Route path = {homeRoute} component={Home}/>
-          <Route path= {editPersonRoute} component={PersonForm}/>
+          <Route path = {editPersonRoute} component={PersonForm}/>
+          <Route path = {bikeRoute} component={Bike}/>
+          <Route path = {personInfoRoute} component={PersonCard}/>
         </Switch>
       )}
     </div>

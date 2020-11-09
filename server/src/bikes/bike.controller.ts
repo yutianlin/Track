@@ -11,4 +11,9 @@ module.exports = function (app: any) {
     const id = request.params.id;
     response.json(await bikeService.getBikeById(id));
   });
+
+  app.put("/bikes/rent/:id", async (request: any, response: any) => {
+    const id = request.params.id;
+    response.json(await bikeService.rentBikeIfAvailable(id));
+  });
 };

@@ -1,0 +1,13 @@
+.bike-log-container {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bike-log-text-container {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
