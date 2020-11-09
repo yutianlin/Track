@@ -4,6 +4,9 @@ export const GetAllRowsFromTable = (tableName: string) =>
 export const GetRowsWithSelection = (tableName: string, selection: string) =>
   `SELECT * FROM ${tableName} WHERE ${selection};`;
 
+export const GetRowsWithSelectionWithOrderBy = (tableName: string, selection: string, orderBy: string) =>
+  `SELECT * FROM ${tableName} WHERE ${selection} ${orderBy};`;
+
 export const GetRowsWithProjection = (tableName: string, projection: string) =>
   `SELECT ${projection} FROM ${tableName};`;
 

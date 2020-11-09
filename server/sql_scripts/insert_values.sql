@@ -281,6 +281,9 @@ INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
     VALUES('1ac456789', '1', '2020-10-05T00:00:00Z'::TIMESTAMPTZ);
 
+INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
+    VALUES('1ac456789', '1', '2020-10-10T00:00:00Z'::TIMESTAMPTZ);
+
 /*
  Iron Man rode bike 1ac456789 on Oct 7
  */
