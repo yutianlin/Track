@@ -8,8 +8,8 @@ export const GetRowsWithProjection = (tableName: string, projection: string) =>
   `SELECT ${projection} FROM ${tableName};`;
 
 export const GetRowsWithProjectionSelection = (
-  tableName: string,
   projection: string,
+  tableName: string,
   selection: string
 ) => `SELECT ${projection} FROM ${tableName} WHERE ${selection};`;
 

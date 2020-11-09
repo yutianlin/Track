@@ -36,6 +36,8 @@ export const POSTAL_TABLE = {
   tableName: "postal_address",
   columns: {
     postal_code: new ColumnType("postal_code", "string", false),
+    city: new ColumnType("city", "string", false),
+    province: new ColumnType("province", "string", false)
   },
 } as const;
 
@@ -73,6 +75,11 @@ export const COVID_TESTING_CENTRE_TABLE = {
       "number",
       false
     ),
+    name: new ColumnType(
+        "name",
+        "string",
+        true
+    )
   },
 } as const;
 
@@ -111,7 +118,7 @@ export const SCHEDULED_CLASS_TABLE = {
     code: new ColumnType("code", "string", false),
     section: new ColumnType("section", "string", false),
     term: new ColumnType("term", "string", false),
-    year: new ColumnType("year", "string", false),
+    year: new ColumnType("year", "number", false),
     start_date: new ColumnType("start_date", "date", false),
     end_date: new ColumnType("end_date", "date", false),
     activity: new ColumnType("activity", "string", false),
@@ -122,7 +129,15 @@ export const SCHEDULED_CLASS_TABLE = {
 export const CLASS_DAY_TABLE = {
   tableName: "class_day",
   columns: {
-    // add these if we need to use it
+    department: new ColumnType("department", "string", false),
+    code: new ColumnType("code", "string", false),
+    section: new ColumnType("section", "string", false),
+    term: new ColumnType("term", "string", false),
+    year: new ColumnType("year", "number", false),
+    class_day_id: new ColumnType("year", "string", false),
+    day_of_week: new ColumnType("day_of_week", "string", false),
+    room_number: new ColumnType("room_number", "string", true),
+    building_code: new ColumnType("building_code", "string", true)
   },
 } as const;
 
@@ -130,6 +145,9 @@ export const NOTIFICATION_TABLE = {
   tableName: "notification",
   columns: {
     notification_id: new ColumnType("notification_id", "number", false),
+    category: new ColumnType("category", "number", false),
+    subject_line: new ColumnType("subject_line", "number", true),
+    body: new ColumnType("subject_line", "number", false),
   },
 } as const;
 
