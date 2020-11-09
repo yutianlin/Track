@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {selectIsLoggedIn} from "../login/login.slice";
 import {Button} from "@material-ui/core";
 import {selectPersonState} from "../person/person.slice";
-import {bikeRoute, editPersonRoute, homeRoute} from "../routes";
+import {bikeRoute, editPersonRoute, homeRoute, personInfoRoute} from "../routes";
 import "./navbar.css";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -40,7 +40,7 @@ export default function NavBar() {
         )}
         {isLoggedIn && (
           <Nav className="ml-auto">
-            <LinkContainer to={editPersonRoute}>
+            <LinkContainer to={personInfoRoute}>
               <Button className="personButton" variant="outlined">{person.name}</Button>
             </LinkContainer>
           </Nav>

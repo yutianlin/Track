@@ -19,7 +19,7 @@ import {isStringEmpty} from "../../util";
 export default function Bike() {
   const [history, setHistory]: [PersonBike[], any] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const rentableBikes: Set<string> = new Set(useSelector(selectAllBikes));
+  const rentableBikes: string[] = useSelector(selectAllBikes);
   const personState: Person = useSelector(selectPersonState);
   const classes = formStyles();
   const {register, handleSubmit, errors} = useForm({
@@ -36,7 +36,7 @@ export default function Bike() {
   }, []);
 
   const onSubmit = async (bike: { [shared_bike_id: string]: string }) => {
-    if (!rentableBikes.has(bike.shared_bike_id)) {
+    if (!rentableBikes.includes(bike.shared_bike_id)) {
       setErrorMessage("The bike number does not exist");
     } else {
       try {
@@ -74,7 +74,7 @@ export default function Bike() {
             name="shared_bike_id"
           />
           {errors.shared_bike_id && (<p>Bike number is required.</p>)}
-          {!isStringEmpty(errorMessage) && (<p>{errorMessage}</p>)}
+          {!isStringEmpty(errorMessage) && !errors.shared_bike_id && (<p>{errorMessage}</p>)}
           <Button
             type="submit"
             fullWidth
@@ -82,7 +82,7 @@ export default function Bike() {
             color="primary"
             className={classes.submit}
           >
-            Submit
+            Check-In
           </Button>
         </form>
       </div>

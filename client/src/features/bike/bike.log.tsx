@@ -21,7 +21,7 @@ export default function BikeLog(props: { [bikeHistories: string]: PersonBike[] }
 
     return (
       <div className = "bike-log-container">
-        <h2>Rental Log</h2>
+        <Typography variant = "h5">Rental Log</Typography>
         <div className = "bike-log-text-container">
           {bikeHistoryElements}
         </div>

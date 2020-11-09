@@ -5,11 +5,8 @@
     align-items: center;
 }
 
-.bike-log-container h2 {
-    font-size: 1.5rem;
-}
-
 .bike-log-text-container {
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
