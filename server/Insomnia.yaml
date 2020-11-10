@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-09T12:00:53.456Z
+__export_date: 2020-11-10T06:33:54.888Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -864,41 +864,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_9e19a8c2b8ea41bf902ad88f90d039c3
-    parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
-    modified: 1604923227450
-    created: 1604912524492
-    url: http://127.0.0.1:3000/bikes/rent/1ac456789
-    name: /bikes/rent/:id
-    description: ""
-    method: PATCH
-    body: {}
-    parameters: []
-    headers:
-      - name: ""
-        value: ""
-        description: ""
-        id: pair_205faf5b082e4fa9b38a25948f264f18
-    authentication: {}
-    metaSortKey: -1604912524522
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_af5a4876eb18472b80c3cdb595ed1d6c
-    parentId: fld_fcc6a40053924e988157eec92be1f300
-    modified: 1604264211604
-    created: 1604262743169
-    name: bike
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603950304695
-    _type: request_group
   - _id: req_70bd6d9395bc4f879e6909a4cc006b5b
     parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
     modified: 1604262762184
@@ -920,6 +885,16 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: fld_af5a4876eb18472b80c3cdb595ed1d6c
+    parentId: fld_fcc6a40053924e988157eec92be1f300
+    modified: 1604264211604
+    created: 1604262743169
+    name: bike
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603950304695
+    _type: request_group
   - _id: req_9a0bdadf416648eeb5f5efc331580c5b
     parentId: fld_af5a4876eb18472b80c3cdb595ed1d6c
     modified: 1604264525890
@@ -1232,37 +1207,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_215b9d13655948c797ff8b13d05d7699
-    parentId: fld_652277bad8eb47e8a86fc932793b2ff8
-    modified: 1604907922644
-    created: 1604906854515
-    url: http://127.0.0.1:3000/person_bikes/10
-    name: /person_bikes/:id
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604906854515
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: fld_652277bad8eb47e8a86fc932793b2ff8
-    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
-    modified: 1604264269611
-    created: 1604264269611
-    name: person_bike
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1604264269611
-    _type: request_group
   - _id: req_b0a3f1e1163641d4870ed81ce1db6ccd
     parentId: fld_652277bad8eb47e8a86fc932793b2ff8
     modified: 1604458808692
@@ -1284,6 +1228,16 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: fld_652277bad8eb47e8a86fc932793b2ff8
+    parentId: fld_5af23c3fa3b64f7da870873e641ddf4d
+    modified: 1604264269611
+    created: 1604264269611
+    name: person_bike
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604264269611
+    _type: request_group
   - _id: req_c741ad52edc642bfa681902f8c2b3f26
     parentId: fld_652277bad8eb47e8a86fc932793b2ff8
     modified: 1604268760697
@@ -1295,7 +1249,7 @@ resources:
     body:
       mimeType: application/json
       text: |-
-        { "data": 
+        { "data":
         	{
         		"person_id": 5,
         		"shared_bike_id": "123466789"
@@ -1308,6 +1262,121 @@ resources:
         id: pair_2c61d88f80584ab19cef15b9b8db3a7d
     authentication: {}
     metaSortKey: -1604264349882
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_80d2f8e00e2d430d8a885756e27ece77
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604958233222
+    created: 1604957795520
+    url: http://127.0.0.1:3000/scheduled_class_info/CPSC/304/101/W1/2020
+    name: GET /scheduled_class_info/:dept/:code/:section/:term/:year
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604957795520
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
+  - _id: req_18fff1eabcb746ea872d6b510ff3ddb6
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604956557041
+    created: 1604956542378
+    url: http://127.0.0.1:3000/covid_testing_centre_info/1
+    name: GET /covid_testing_centre_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604956542434
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_997f496dda9f4c279c20e1f8547a3a7f
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604955804074
+    created: 1604955784085
+    url: http://127.0.0.1:3000/person_notification_messages_info/1
+    name: GET /person_notification_messages_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604955784147
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c38ee258430f4bc0b60da3bef0a127fc
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604955241417
+    created: 1604955224240
+    url: http://127.0.0.1:3000/person_bike_info/1
+    name: GET /person_bike_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604955224300
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_69f3a5f93ac54a3493fd4e08ac748bde
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1604945604085
+    created: 1604945584364
+    url: http://127.0.0.1:3000/covid_test_info/1
+    name: GET /covid_test_info/:id
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1604945584364
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -1337,16 +1406,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604218653911
-    created: 1604218646679
-    name: join
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603636443269.875
-    _type: request_group
   - _id: req_f38ae36241b84a0ea1903b78a6274c77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1604218870848
