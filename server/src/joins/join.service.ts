@@ -16,28 +16,28 @@ export default class Join {
     this.queryService = new QueryService();
   }
 
-  getEntranceInfoById = (id: number) => {
-    return this.queryService.query(GetEntranceInfoById(id));
+  getEntranceInfoById = (entrance_id: number) => {
+    return this.queryService.query(GetEntranceInfoById(entrance_id));
   };
 
-  getPersonAndFacultyInfoById = (id: number) => {
-    return this.queryService.query(GetPersonAndFacultyInfoById(id));
+  getPersonAndFacultyInfoById = (person_id: number) => {
+    return this.queryService.query(GetPersonAndFacultyInfoById(person_id));
   };
 
-  getAllCovidTestInfoByPersonId = (id: number) => {
-    return this.queryService.query(GetAllCovidTestInfoByPersonId(id));
+  getAllCovidTestInfoByPersonId = (person_id: number) => {
+    return this.queryService.query(GetAllCovidTestInfoByPersonId(person_id));
   };
 
-  getAllBikeInfoByPersonId = (id: number) => {
-    return this.queryService.query(GetAllPersonBikeInfoById(id));
+  getAllBikeInfoByPersonId = (person_id: number) => {
+    return this.queryService.query(GetAllPersonBikeInfoById(person_id));
   }
 
-  getAllPersonNotificationInfoById = (id: number) => {
-    return this.queryService.query(GetAllPersonNotificationInfoById(id));
+  getAllPersonNotificationInfoById = (person_id: number) => {
+    return this.queryService.query(GetAllPersonNotificationInfoById(person_id));
   }
 
-  getCovidTestingCentreInfoById = (id: number) => {
-    return this.queryService.query(GetCovidTestingCentreInfoById(id));
+  getCovidTestingCentreInfoById = (covid_testing_centre_id: number) => {
+    return this.queryService.query(GetCovidTestingCentreInfoById(covid_testing_centre_id));
   }
 
   getScheduledClassDayInfo = (dept: string, code: string, section: string, term: string, year: number) => {

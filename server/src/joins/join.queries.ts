@@ -13,10 +13,11 @@ import {
     PERSON_NOTIFICATION_TABLE as PERSON_NOTIFICATION,
     NOTIFICATION_TABLE as NOTIFICATION,
     SCHEDULED_CLASS_TABLE as SCHEDULED_CLASS,
-    CLASS_DAY_TABLE as CLASS_DAY, SCHEDULED_CLASS_TABLE
+    CLASS_DAY_TABLE as CLASS_DAY,
+    PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE
 } from "../helpers/tables";
 
-export const GetEntranceInfoById = (id: number) =>
+export const GetEntranceInfoById = (entrance_id: number) =>
   GetRowsWithSelection(
     `${ENTRANCE.tableName} 
         LEFT JOIN ${ROOM.tableName} 
@@ -35,20 +36,20 @@ export const GetEntranceInfoById = (id: number) =>
             }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
-    `${ENTRANCE.columns.entrance_id.getName()} = ${id}`
+    `${ENTRANCE.columns.entrance_id.getName()} = ${entrance_id}`
   );
 
-export const GetPersonAndFacultyInfoById = (id: number) =>
+export const GetPersonAndFacultyInfoById = (person_id: number) =>
   GetRowsWithSelection(
     `${PERSON.tableName} 
         LEFT JOIN ${FACULTY.tableName} 
             ON ${PERSON.tableName}.${FACULTY.columns.faculty_id.getName()} = ${
       FACULTY.tableName
     }.${FACULTY.columns.faculty_id.getName()}`,
-    `${PERSON.columns.person_id.getName()} = ${id}`
+    `${PERSON.columns.person_id.getName()} = ${person_id}`
   );
 
-export const GetAllCovidTestInfoByPersonId = (id: number) =>
+export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
     GetRowsWithProjectionSelection(
         `${PERSON.tableName}.${PERSON.columns.person_id.getName()} ,
         ${PERSON.tableName}.${PERSON.columns.name.getName()},
@@ -74,16 +75,16 @@ export const GetAllCovidTestInfoByPersonId = (id: number) =>
             ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
         POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
-        `${COVID_TEST.tableName}.${COVID_TEST.columns.person_id.getName()} = ${id}`
+        `${COVID_TEST.tableName}.${COVID_TEST.columns.person_id.getName()} = ${person_id}`
   );
 
-export const GetAllPersonBikeInfoById = (id: number) =>
+export const GetAllPersonBikeInfoById = (person_id: number) =>
     GetRowsWithSelection(
         `${PERSON_TIME_BIKE.tableName}`,
-        `${PERSON_TIME_BIKE.columns.person_id.getName()} = ${id}`
+        `${PERSON_TIME_BIKE.columns.person_id.getName()} = ${person_id}`
     );
 
-export const GetAllPersonNotificationInfoById = (id: number) =>
+export const GetAllPersonNotificationInfoById = (person_id: number) =>
     GetRowsWithSelection(
         `${PERSON_NOTIFICATION.tableName}
         LEFT JOIN ${NOTIFICATION.tableName} 
@@ -91,17 +92,17 @@ export const GetAllPersonNotificationInfoById = (id: number) =>
             NOTIFICATION.tableName
         }.${NOTIFICATION.columns.notification_id.getName()} 
         `,
-        `${PERSON_NOTIFICATION.columns.person_id.getName()} = ${id}`
+        `${PERSON_NOTIFICATION.columns.person_id.getName()} = ${person_id}`
     );
 
-export const GetCovidTestingCentreInfoById = (id: number) =>
+export const GetCovidTestingCentreInfoById = (covid_testing_centre_id: number) =>
     GetRowsWithSelection(
         `${COVID_TESTING_CENTRE.tableName}
         LEFT JOIN ${POSTAL.tableName}
             ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
             POSTAL.tableName
         }.${POSTAL.columns.postal_code.getName()}`,
-        `${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${id}`
+        `${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${covid_testing_centre_id}`
     );
 
 export const GetScheduledClassDayInfo = (dept: string, code: string, section: string, term: string, year: number) =>

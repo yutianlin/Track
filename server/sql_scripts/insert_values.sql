@@ -213,6 +213,14 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
     VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
 
+-- Jake tested positive
+INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
+    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
+
+-- Jake tested negative again
+INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
+    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
+
 -- Einstein tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
     VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, TRUE);
@@ -285,6 +293,18 @@ INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
     VALUES('1ac456789', '1', '2020-10-10T00:00:00Z'::TIMESTAMPTZ);
 
 /*
+ Jake rode bike 123466789 on Oct 6
+ */
+INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
+    VALUES('123466789', '1', '2020-10-06T00:00:00Z'::TIMESTAMPTZ);
+
+/*
+ Jake rode bike 1ac456789 on Oct 7
+ */
+INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
+    VALUES('1ac456789', '1', '2020-10-07T00:00:00Z'::TIMESTAMPTZ);
+
+/*
  Iron Man rode bike 1ac456789 on Oct 7
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
@@ -327,7 +347,10 @@ INSERT INTO person_notification(notification_id, person_id, notification_time)
     VALUES(1, 2, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
-    VALUES(3, 2, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);
+    VALUES(3, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ);
+
+INSERT INTO person_notification(notification_id, person_id, notification_time)
+    VALUES(4, 2, '2020-10-13T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time)
     VALUES(4, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ);

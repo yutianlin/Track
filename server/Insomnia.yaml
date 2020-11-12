@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-10T06:33:54.888Z
+__export_date: 2020-11-12T20:25:58.689Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -1303,10 +1303,10 @@ resources:
     _type: request_group
   - _id: req_18fff1eabcb746ea872d6b510ff3ddb6
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604956557041
+    modified: 1605207236345
     created: 1604956542378
     url: http://127.0.0.1:3000/covid_testing_centre_info/1
-    name: GET /covid_testing_centre_info/:id
+    name: GET /covid_testing_centre_info/:covid_testing_centre_id
     description: ""
     method: GET
     body: {}
@@ -1324,10 +1324,10 @@ resources:
     _type: request
   - _id: req_997f496dda9f4c279c20e1f8547a3a7f
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604955804074
+    modified: 1605212614299
     created: 1604955784085
-    url: http://127.0.0.1:3000/person_notification_messages_info/1
-    name: GET /person_notification_messages_info/:id
+    url: http://127.0.0.1:3000/person_notification_messages_info/2
+    name: GET /person_notification_messages_info/:person_id
     description: ""
     method: GET
     body: {}
@@ -1345,10 +1345,10 @@ resources:
     _type: request
   - _id: req_c38ee258430f4bc0b60da3bef0a127fc
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604955241417
+    modified: 1605207207412
     created: 1604955224240
     url: http://127.0.0.1:3000/person_bike_info/1
-    name: GET /person_bike_info/:id
+    name: GET /person_bike_info/:person_id
     description: ""
     method: GET
     body: {}
@@ -1366,10 +1366,10 @@ resources:
     _type: request
   - _id: req_69f3a5f93ac54a3493fd4e08ac748bde
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604945604085
+    modified: 1605207195284
     created: 1604945584364
     url: http://127.0.0.1:3000/covid_test_info/1
-    name: GET /covid_test_info/:id
+    name: GET /covid_test_info/:person_id
     description: ""
     method: GET
     body: {}
@@ -1387,10 +1387,10 @@ resources:
     _type: request
   - _id: req_3b69ea649b2045f081cf6a27dbae242a
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604265820164
+    modified: 1605207177792
     created: 1604265335966
     url: http://127.0.0.1:3000/person_faculty_info/2
-    name: GET /person_faculty_info/:id
+    name: GET /person_faculty_info/:person_id
     description: ""
     method: GET
     body: {}
@@ -1408,10 +1408,10 @@ resources:
     _type: request
   - _id: req_f38ae36241b84a0ea1903b78a6274c77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604218870848
+    modified: 1605207167060
     created: 1604218674678
     url: http://127.0.0.1:3000/entrance_info/4
-    name: GET /entrance_info/:id
+    name: GET /entrance_info/:entrance_id
     description: ""
     method: GET
     body: {}
