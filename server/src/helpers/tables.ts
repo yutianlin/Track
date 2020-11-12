@@ -11,7 +11,7 @@ export const PERSON_TABLE = {
     phone_number: new ColumnType("phone_number", "string", true),
     student_id: new ColumnType("student_id", "number", true),
     faculty_id: new ColumnType("faculty_id", "string", true),
-    person_status: new ColumnType("person_status", "boolean", true),
+    person_status: new ColumnType("person_status", "string", true),
     // Technically false, but there is a default for null
     in_app_notification: new ColumnType("in_app_notification", "boolean", true),
   },
@@ -55,6 +55,8 @@ export const ENTRANCE_TABLE = {
   tableName: "entrance",
   columns: {
     entrance_id: new ColumnType("entrance_id", "number", false),
+    room_number: new ColumnType(ROOM_TABLE.columns.room_number.getName(), ROOM_TABLE.columns.room_number.getType(), true),
+    building_code: new ColumnType(BUILDING_TABLE.columns.building_code.getName(), BUILDING_TABLE.columns.building_code.getType(), false)
   },
 } as const;
 
@@ -122,7 +124,24 @@ export const SCHEDULED_CLASS_TABLE = {
 export const CLASS_DAY_TABLE = {
   tableName: "class_day",
   columns: {
-    // add these if we need to use it
+    room_number: new ColumnType("room_number", "string", false),
+    building_code: new ColumnType("buiding_code", "string", false),
+    day_of_week: new ColumnType("day_of_week", "number", false),
+    department: new ColumnType(SCHEDULED_CLASS_TABLE.columns.department.getName(),
+      SCHEDULED_CLASS_TABLE.columns.department.getType(),
+      false),
+    code: new ColumnType(SCHEDULED_CLASS_TABLE.columns.code.getName(),
+      SCHEDULED_CLASS_TABLE.columns.code.getType(),
+      false),
+    section: new ColumnType(SCHEDULED_CLASS_TABLE.columns.section.getName(),
+      SCHEDULED_CLASS_TABLE.columns.section.getType(),
+      false),
+    term: new ColumnType(SCHEDULED_CLASS_TABLE.columns.term.getName(),
+      SCHEDULED_CLASS_TABLE.columns.term.getType(),
+      false),
+    year: new ColumnType(SCHEDULED_CLASS_TABLE.columns.year.getName(),
+      SCHEDULED_CLASS_TABLE.columns.year.getType(),
+      false),
   },
 } as const;
 

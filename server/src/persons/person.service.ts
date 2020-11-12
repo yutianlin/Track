@@ -4,8 +4,13 @@ import {
   GetPersonById,
   CreatePerson,
   UpdatePersonById,
+  UpdatePersonsByIdStatusToYellow,
 } from "./person.queries";
-import { insertValues, setValues } from "../helpers/helpers";
+import {
+  insertValues,
+  setValues,
+  getPropertiesAndValues,
+} from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { PERSON_TABLE } from "../helpers/tables";
 
@@ -45,12 +50,24 @@ export default class PersonService {
     const types = new ExpectedValueTypes(expectValues, true);
     const set = setValues(attributes, types);
     await this.queryService.query(UpdatePersonById(set, id));
+    const status = getPropertiesAndValues(
+      attributes,
+      new ExpectedValueTypes([columns.person_status])
+    ).values;
+    if (status.length === 1 && status[0] === `'R'`) {
+      await this.triggerWhenStatusSetToRed(id);
+    }
     return this.getPersonById(id);
   };
 
   updatePersonStatusToPositive = async (id: number) => {
     await this.queryService.query(
-      UpdatePersonById(`${columns.person_status.getName()} = true`, id)
+      UpdatePersonById(`${columns.person_status.getName()} = "R"`, id)
     );
+  };
+
+  triggerWhenStatusSetToRed = async (personId: number) => {
+    console.log(await this.queryService.query(UpdatePersonsByIdStatusToYellow(personId, "'2020-11-01T00:00:00.000Z'::TIMESTAMPTZ")));
+    // set related people to yellow status
   };
 }

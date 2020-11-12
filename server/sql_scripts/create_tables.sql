@@ -50,11 +50,11 @@ CREATE TABLE class_day(
 	term varchar(10) NOT NULL,
 	year INT NOT NULL,
 	class_day_id serial,
-	day_of_week varchar(10)
-	    CHECK(day_of_week IN ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'))
+	day_of_week INT
+	    CHECK(day_of_week >= 0 AND day_of_week <= 6)
 	    NOT NULL,
-	room_number varchar(10),
-	building_code varchar(10),
+	room_number varchar(10) NOT NULL,
+	building_code varchar(10) NOT NULL,
 	PRIMARY KEY(department, code, section, term, year, class_day_id),
 	FOREIGN KEY(department, code, section, term, year) REFERENCES scheduled_class
 	    ON DELETE CASCADE,
@@ -90,8 +90,9 @@ CREATE TABLE person(
         NOT NULL,
     student_id bigint,
     faculty_id bigint,
-	person_status boolean 
-		DEFAULT FALSE
+	person_status VARCHAR(1)
+		DEFAULT 'G'
+		CHECK(person_status = 'G' OR person_status = 'Y' OR person_status = 'R')
 		NOT NULL,
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
 	    ON DELETE SET NULL,
