@@ -80,6 +80,16 @@ export const COVID_TESTING_CENTRE_TABLE = {
         "name",
         "string",
         true
+    ),
+    building_number: new ColumnType(
+      "building_number",
+      "string",
+      false
+    ),
+    street_number: new ColumnType(
+      "street_number",
+      "string",
+      false
     )
   },
 } as const;

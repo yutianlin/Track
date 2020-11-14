@@ -51,14 +51,13 @@ export const GetPersonAndFacultyInfoById = (person_id: number) =>
 
 export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
     GetRowsWithProjectionSelection(
-        `${PERSON.tableName}.${PERSON.columns.person_id.getName()} ,
-        ${PERSON.tableName}.${PERSON.columns.name.getName()},
-        ${PERSON.tableName}.${PERSON.columns.person_status.getName()},
-        ${COVID_TEST.tableName}.${COVID_TEST.columns.test_time.getName()},
+        `${COVID_TEST.tableName}.${COVID_TEST.columns.test_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.test_input_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.status.getName()},
         ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
         ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.name.getName()} as CENTRE_NAME,
+        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.building_number.getName()},
+        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.street_number.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.postal_code.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.city.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.province.getName()}`,
@@ -104,6 +103,15 @@ export const GetCovidTestingCentreInfoById = (covid_testing_centre_id: number) =
         }.${POSTAL.columns.postal_code.getName()}`,
         `${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${covid_testing_centre_id}`
     );
+
+export const GetAllCovidTestingCentreInfos = () =>
+  GetAllRowsFromTable(
+    `${COVID_TESTING_CENTRE.tableName}
+        LEFT JOIN ${POSTAL.tableName}
+            ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
+      POSTAL.tableName
+    }.${POSTAL.columns.postal_code.getName()}`
+  );
 
 export const GetScheduledClassDayInfo = (dept: string, code: string, section: string, term: string, year: number) =>
     GetRowsWithSelection(

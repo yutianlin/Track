@@ -1,5 +1,5 @@
 import {RemoteService} from "./remote.service";
-import {BikeConversions} from "../conversions/bike.conversions";
+import {BikeConversions} from "../conversions/bike_conversions";
 import {PersonBike} from "../model/person.bike";
 import {toRequestJson} from "../conversions/conversions.util";
 

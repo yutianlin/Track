@@ -5,12 +5,13 @@ import {fetchPerson, selectIsLoggedIn, appLoaded, selectIsAppLoading} from "./fe
 import PersonForm from "./features/person/person.form";
 import {CookieService} from "./services/cookie.service";
 import NavBar from "./features/nav/navbar";
-import {Route, Switch} from "react-router";
+import {Redirect, Route, Switch} from "react-router";
 import Home from "./features/home/home";
 import {bikeRoute, editPersonRoute, homeRoute, personInfoRoute} from "./features/routes";
 import Bike from "./features/bike/bike";
 import {fetchBikes} from "./features/bike/bike.slice";
 import PersonCard from "./features/person/person.card";
+import {fetchCovidTestingCentres} from "./features/covid_tests/covid_testing_centre.slice";
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
       dispatch(appLoaded());
     }
     dispatch(fetchBikes());
+    dispatch(fetchCovidTestingCentres());
   }, []);
 
   return (
@@ -39,6 +41,7 @@ export default function App() {
           <Route path = {editPersonRoute} component={PersonForm}/>
           <Route path = {bikeRoute} component={Bike}/>
           <Route path = {personInfoRoute} component={PersonCard}/>
+          <Redirect to={homeRoute}/>
         </Switch>
       )}
     </div>
