@@ -9,6 +9,6 @@ export interface CovidTest {
 }
 
 export interface CovidTestInfo {
-  covid_test_info: CovidTest,
+  covid_test: CovidTest,
   covid_testing_centre: CovidTestingCentre
 }

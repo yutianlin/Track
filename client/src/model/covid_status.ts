@@ -1,0 +1,6 @@
+export enum CovidStatus {
+  POSITIVE = "POSITIVE",
+  NEGATIVE = "NEGATIVE",
+  INFECTED = "INFECTED",
+  UNKNOWN = "UNKNOWN"
+}

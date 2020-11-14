@@ -7,3 +7,8 @@ export interface CovidTestingCentre {
   city: string,
   province: string
 }
+
+export function formatAddress(covidTestingCentre: CovidTestingCentre): string {
+  const postalAddress: string = `${covidTestingCentre.city} ${covidTestingCentre.province} ${covidTestingCentre.postal_code}`;
+  return `${covidTestingCentre.building_number} ${covidTestingCentre.street_number}\n${postalAddress}`
+}

@@ -1,11 +1,13 @@
 import {CovidTestInfo} from "../model/covid_test";
+import moment from 'moment-timezone';
+import {userTimezone} from "./conversions.util";
 
 export class CovidTestConversions {
   public static toCovidTestInfos(covidTests: any[]): CovidTestInfo[] {
     return covidTests.map(covidTest => {
       return {
-        covid_test_info: {
-          test_time: covidTest.test_time,
+        covid_test: {
+          test_time: moment(covidTest.test_time).tz(userTimezone),
           test_input_time: covidTest.test_input_time,
           status: covidTest.status
         },

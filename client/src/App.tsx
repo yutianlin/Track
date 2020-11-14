@@ -7,12 +7,12 @@ import {CookieService} from "./services/cookie.service";
 import NavBar from "./features/nav/navbar";
 import {Redirect, Route, Switch} from "react-router";
 import Home from "./features/home/home";
-import {bikeRoute, editPersonRoute, homeRoute, personInfoRoute} from "./features/routes";
+import {bikeRoute, editPersonRoute, homeRoute, personInfoRoute, testsRoute} from "./features/routes";
 import Bike from "./features/bike/bike";
 import {fetchBikes} from "./features/bike/bike.slice";
 import PersonCard from "./features/person/person.card";
 import {fetchCovidTestingCentres} from "./features/covid_tests/covid_testing_centre.slice";
-
+import CovidTestLandingPage from "./features/covid_tests/covid_test_landing_page";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -41,6 +41,7 @@ export default function App() {
           <Route path = {editPersonRoute} component={PersonForm}/>
           <Route path = {bikeRoute} component={Bike}/>
           <Route path = {personInfoRoute} component={PersonCard}/>
+          <Route path = {testsRoute} component={CovidTestLandingPage}/>
           <Redirect to={homeRoute}/>
         </Switch>
       )}

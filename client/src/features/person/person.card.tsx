@@ -4,45 +4,17 @@ import React from 'react';
 import {Button, Card, CardActions, CardContent, Container, Typography} from "@material-ui/core";
 import {LinkContainer} from "react-router-bootstrap";
 import {editPersonRoute} from "../routes";
-import {makeStyles} from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 'fit-content',
-    padding: '1vh 1vw'
-  },
-  cardContainer: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    marginTop: "15vh"
-  },
-  title: {
-    marginBottom: theme.spacing(4)
-  },
-  center: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  body: {
-    fontSize: 14,
-    marginBottom: theme.spacing(1)
-  },
-  editButton: {
-    marginTop: theme.spacing(3)
-  }
-}));
+import {cardStyles} from "../common/card.styles";
 
 export default function PersonCard() {
-  const classes = useStyles();
+  const classes = cardStyles();
   const personState = useSelector(selectPersonState);
 
   return (
     <Container className={classes.cardContainer}>
       <Card className={classes.root}>
         <CardContent className = {classes.center}>
-          <Typography className = {classes.title} variant="h5">{personState.name}</Typography>
+          <Typography className = {classes.titleContainer} variant="h5">{personState.name}</Typography>
           <Container>
             {personState.phone_number && (<Typography className = {classes.body} color = "textSecondary">Number: {personState.phone_number}</Typography>)}
             {personState.email && (<Typography className = {classes.body} color = "textSecondary">Email: {personState.email}</Typography>)}
