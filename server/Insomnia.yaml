@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-15T18:32:15.698Z
+__export_date: 2020-11-15T21:30:51.415Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -990,7 +990,7 @@ resources:
     _type: request_group
   - _id: req_0e7fd0e256024090bc7086533ea2196e
     parentId: fld_2189f1d0f97d475587f646722408c4b5
-    modified: 1604700663299
+    modified: 1605475732074
     created: 1604700297369
     url: http://127.0.0.1:3000/person_scheduled_classes
     name: POST /person_scheduled_classes
@@ -1002,11 +1002,7 @@ resources:
         { "data":
         	{
         		"person_id": 5,
-        		"department": "CPSC",
-        		"code": "304",
-        		"section": "T1A",
-        		"term": "W1",
-        		"year": 2020
+        		"scheduled_class_id": "CPSC 304 T1A W1 2020"
         	}
         }
     parameters: []
@@ -1026,7 +1022,7 @@ resources:
     _type: request
   - _id: req_59864bd199f64e2994232df871a26a73
     parentId: fld_2189f1d0f97d475587f646722408c4b5
-    modified: 1604700429848
+    modified: 1605475743532
     created: 1604700403545
     url: http://127.0.0.1:3000/person_scheduled_classes
     name: DELETE /person_scheduled_classes
@@ -1038,11 +1034,7 @@ resources:
         { "data":
         	{
         		"person_id": 5,
-        		"department": "CPSC",
-        		"code": "304",
-        		"section": "101",
-        		"term": "W1",
-        		"year": 2020
+        		"scheduled_class_id": "CPSC 304 T1A W1 2020"
         	}
         }
     parameters: []
@@ -1341,9 +1333,9 @@ resources:
     _type: request_group
   - _id: req_80d2f8e00e2d430d8a885756e27ece77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1604958233222
+    modified: 1605475642690
     created: 1604957795520
-    url: http://127.0.0.1:3000/scheduled_class_info/CPSC/304/101/W1/2020
+    url: http://127.0.0.1:3000/scheduled_class_info/CPSC 304
     name: GET /scheduled_class_info/:dept/:code/:section/:term/:year
     description: ""
     method: GET
