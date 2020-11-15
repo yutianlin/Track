@@ -1,7 +1,8 @@
 import QueryService from "../QueryService";
 
 import {
-  GetAllCovidTestInfoByPersonId, GetAllCovidTestingCentreInfos,
+  GetAllCovidTestInfoByPersonId,
+  GetAllCovidTestingCentreInfos,
   GetAllPersonBikeInfoById,
   GetAllPersonNotificationInfoById, GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
@@ -41,12 +42,12 @@ export default class Join {
     return this.queryService.query(GetCovidTestingCentreInfoById(covid_testing_centre_id));
   }
 
-  getAllCovidTestingCentreInfos = () => {
-    return this.queryService.query(GetAllCovidTestingCentreInfos());
+  getScheduledClassDayInfo = (scheduled_class_id: string) => {
+    return this.queryService.query(GetScheduledClassDayInfo(scheduled_class_id));
   }
 
-  getScheduledClassDayInfo = (dept: string, code: string, section: string, term: string, year: number) => {
-    return this.queryService.query(GetScheduledClassDayInfo(dept, code, section, term, year));
+  getAllCovidTestingCentreInfos = () => {
+    return this.queryService.query(GetAllCovidTestingCentreInfos());
   }
 
   getPersonEntranceRoomBuildingTimeInfo = (jsonBody: any) => {

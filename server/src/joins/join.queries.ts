@@ -51,7 +51,10 @@ export const GetPersonAndFacultyInfoById = (person_id: number) =>
 
 export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
     GetRowsWithProjectionSelection(
-        `${COVID_TEST.tableName}.${COVID_TEST.columns.test_time.getName()},
+        `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
+        ${PERSON.tableName}.${PERSON.columns.name.getName()},
+        ${PERSON.tableName}.${PERSON.columns.person_status.getName()},
+        ${COVID_TEST.tableName}.${COVID_TEST.columns.test_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.test_input_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.status.getName()},
         ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
@@ -113,20 +116,12 @@ export const GetAllCovidTestingCentreInfos = () =>
     }.${POSTAL.columns.postal_code.getName()}`
   );
 
-export const GetScheduledClassDayInfo = (dept: string, code: string, section: string, term: string, year: number) =>
+export const GetScheduledClassDayInfo = (scheduled_class_id: string) =>
     GetRowsWithSelection(
         `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${CLASS_DAY.tableName}
-            ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.department.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.department.getName()}
-            AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.code.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.code.getName()}
-            AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.section.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.section.getName()}
-            AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.term.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.term.getName()}
-            AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.year.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.year.getName()}`,
-        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.department.getName()} = '${dept}' 
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.code.getName()} = '${code}'
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.section.getName()} = '${section}'
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.term.getName()} = '${term}'
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.year.getName()} = ${year}`
+            ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
+        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} ILIKE '%${scheduled_class_id}%'`
     );
 
 export const GetPersonEntranceRoomBuildingTime = (selections: string, projections: string) =>
