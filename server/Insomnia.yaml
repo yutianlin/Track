@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-15T22:00:27.862Z
+__export_date: 2020-11-15T22:26:07.958Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -1262,6 +1262,37 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_fac7825c5db24a97aba3840ec017644d
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1605478660693
+    created: 1605478647956
+    url: http://127.0.0.1:3000/largest_scheduled_class
+    name: GET /largest_scheduled_class
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1605478647957
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
   - _id: req_f798ee0554814f0d967ae3389e458eeb
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1605477376446
@@ -1283,16 +1314,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604218653911
-    created: 1604218646679
-    name: join
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603636443269.875
-    _type: request_group
   - _id: req_ed64a95dd46d481ca207ae42028fe3d0
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1605411788670
