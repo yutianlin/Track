@@ -121,7 +121,7 @@ export const GetScheduledClassDayInfo = (scheduled_class_id: string) =>
         `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${CLASS_DAY.tableName}
             ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
-        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} LIKE '%${scheduled_class_id}%'`
+        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} ILIKE '%${scheduled_class_id}%'`
     );
 
 export const GetPersonEntranceRoomBuildingTime = (selections: string, projections: string) =>
