@@ -1,5 +1,9 @@
 import JoinService from "./join.service";
 
+const BodyParser = require("body-parser");
+
+const jsonParser = BodyParser.json();
+
 const joinService = new JoinService();
 
 module.exports = function (app: any) {
@@ -33,14 +37,19 @@ module.exports = function (app: any) {
     response.json(await joinService.getCovidTestingCentreInfoById(covid_testing_centre_id));
   });
 
-  // app.get("/scheduled_class_info/:dept/:code/:section/:term/:year", async (request: any, response: any) => {
-  //   const dept = request.params.dept;
-  //   const code = request.params.code;
-  //   const section = request.params.section;
-  //   const term = request.params.term;
-  //   const year = request.params.year;
-  //
-  //   response.json(await joinService.getScheduledClassDayInfo(dept, code, section, term, year));
-  // })
+  app.get("/scheduled_class_info/:dept/:code/:section/:term/:year", async (request: any, response: any) => {
+    const dept = request.params.dept;
+    const code = request.params.code;
+    const section = request.params.section;
+    const term = request.params.term;
+    const year = request.params.year;
+
+    response.json(await joinService.getScheduledClassDayInfo(dept, code, section, term, year));
+  })
+
+  app.get("/peron_entrance_room_building_time", jsonParser, async (request: any, response: any) => {
+    const requestBody = request.body.data;
+    response.json(await joinService.getPersonEntranceRoomBuildingTimeInfo(requestBody));
+  });
 
 };
