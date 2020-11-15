@@ -41,15 +41,6 @@ module.exports = function (app: any) {
     response.json(await joinService.getAllCovidTestingCentreInfos());
   });
 
-  // app.get("/scheduled_class_info/:dept/:code/:section/:term/:year", async (request: any, response: any) => {
-  //   const dept = request.params.dept;
-  //   const code = request.params.code;
-  //   const section = request.params.section;
-  //   const term = request.params.term;
-  //   const year = request.params.year;
-  //
-  //   response.json(await joinService.getScheduledClassDayInfo(dept, code, section, term, year));
-  // })
   app.get("/scheduled_class_info/:dept/:code/:section/:term/:year", async (request: any, response: any) => {
     const dept = request.params.dept;
     const code = request.params.code;
