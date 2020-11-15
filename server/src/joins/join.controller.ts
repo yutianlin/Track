@@ -37,6 +37,10 @@ module.exports = function (app: any) {
     response.json(await joinService.getCovidTestingCentreInfoById(covid_testing_centre_id));
   });
 
+  app.get("/covid_testing_centre_info", async (request: any, response: any) => {
+    response.json(await joinService.getAllCovidTestingCentreInfos());
+  });
+
   app.get("/scheduled_class_info/:dept/:code/:section/:term/:year", async (request: any, response: any) => {
     const dept = request.params.dept;
     const code = request.params.code;

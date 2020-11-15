@@ -80,6 +80,16 @@ export const COVID_TESTING_CENTRE_TABLE = {
         "name",
         "string",
         true
+    ),
+    building_number: new ColumnType(
+      "building_number",
+      "string",
+      false
+    ),
+    street_number: new ColumnType(
+      "street_number",
+      "string",
+      false
     )
   },
 } as const;
@@ -97,7 +107,7 @@ export const COVID_TEST_TABLE = {
       COVID_TESTING_CENTRE_TABLE.columns.covid_testing_centre_id.getType(),
       false
     ),
-    test_time: new ColumnType("test_time", "date", false),
+    test_time: new ColumnType("test_time", "dateTime", false),
     test_input_time: new ColumnType("test_input_time", "dateTime", false),
     status: new ColumnType("status", "boolean", true),
   },

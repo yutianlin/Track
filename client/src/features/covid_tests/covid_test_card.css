@@ -1,0 +1,35 @@
+.covid-test-card-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 5vh;
+}
+
+@media only screen and (max-width: 960px) {
+    .covid-test-card-container {
+        width: 80vw !important;
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    .covid-test-card-container {
+        width: 20vw !important;
+    }
+}
+
+.covid-test-title-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.testing-centre-name {
+    text-align: center;
+}
+
+.covid-card-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
