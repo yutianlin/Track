@@ -51,4 +51,8 @@ module.exports = function (app: any) {
     const searchTerm = request.params.searchTerm;
     response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
   })
+
+  app.get("/largest_scheduled_class", async (request: any, response: any) => {
+    response.json(await joinService.getLargestScheduledClass())
+  })
 };

@@ -5,7 +5,7 @@ import {
   GetAllCovidTestingCentreInfos,
   GetAllPersonBikeInfoById,
   GetAllPersonNotificationInfoById, GetBubbleCountBySearchTerm, GetCovidTestingCentreInfoById,
-  GetEntranceInfoById,
+  GetEntranceInfoById, GetLargestScheduledClass,
   GetPersonAndFacultyInfoById, GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo
 } from "./join.queries";
@@ -58,5 +58,9 @@ export default class Join {
 
   getBubbleCountBySearchTerm = (searchTerm: string) => {
     return this.queryService.query(GetBubbleCountBySearchTerm(searchTerm));
+  }
+
+  getLargestScheduledClass = () => {
+    return this.queryService.query(GetLargestScheduledClass());
   }
 }

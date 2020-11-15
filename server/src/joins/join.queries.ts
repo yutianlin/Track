@@ -1,7 +1,7 @@
 import {
-    GetAllRowsFromTable,
+    GetAllRowsFromTable, GetRowsWithProjectionGroupBy, GetRowsWithProjectionGroupByHaving,
     GetRowsWithProjectionSelection,
-    GetRowsWithProjectionSelectionGroupBy,
+    GetRowsWithProjectionSelectionGroupBy, GetRowsWithProjectionSelectionGroupByHaving,
     GetRowsWithSelection
 } from "../helpers/queries";
 
@@ -21,7 +21,8 @@ import {
     CLASS_DAY_TABLE as CLASS_DAY,
     PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE,
     BUBBLE_PERSON_TABLE as BUBBLE_PERSON,
-    BUBBLE_TABLE as BUBBLE
+    BUBBLE_TABLE as BUBBLE,
+    PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS
 } from "../helpers/tables";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
@@ -169,3 +170,23 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
                  OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
         `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
     );
+
+
+export const GetLargestScheduledClass = () =>
+    GetRowsWithProjectionGroupByHaving(
+        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+                  COUNT(*)`,
+        `${SCHEDULED_CLASS.tableName}
+        LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+        ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+            PERSON_SCHEDULED_CLASS.tableName
+        }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+        `COUNT(*) >= ALL(SELECT COUNT(*) 
+                                FROM ${SCHEDULED_CLASS.tableName}
+                            LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+                            ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+                                 PERSON_SCHEDULED_CLASS.tableName
+                            }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
+                            GROUP BY ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
+    )
