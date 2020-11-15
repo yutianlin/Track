@@ -122,9 +122,32 @@ export const GetScheduledClassDayInfo = (dept: string, code: string, section: st
             AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.section.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.section.getName()}
             AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.term.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.term.getName()}
             AND ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.year.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.year.getName()}`,
-        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.department.getName()} = ${dept} 
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.code.getName()} = ${code}
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.section.getName()} = ${section}
-                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.term.getName()} = ${term}
+        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.department.getName()} = '${dept}' 
+                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.code.getName()} = '${code}'
+                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.section.getName()} = '${section}'
+                 AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.term.getName()} = '${term}'
                  AND ${CLASS_DAY.tableName}.${CLASS_DAY.columns.year.getName()} = ${year}`
     );
+
+export const GetPersonEntranceRoomBuildingTime = (selections: string, projections: string) =>
+    GetRowsWithProjectionSelection(projections, `${PERSON.tableName} 
+     LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName} 
+            ON ${PERSON.tableName}.${PERSON_TIME_ENTRANCE.columns.person_id.getName()} = ${
+        PERSON_TIME_ENTRANCE.tableName
+    }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}
+    INNER JOIN ${ENTRANCE.tableName}
+            ON ${PERSON_TIME_ENTRANCE.tableName}.${ENTRANCE.columns.entrance_id.getName()} = ${
+        ENTRANCE.tableName
+    }.${ENTRANCE.columns.entrance_id.getName()}
+    INNER JOIN ${ROOM.tableName}
+            ON ${ENTRANCE.tableName}.${ROOM.columns.room_number.getName()} = ${
+        ROOM.tableName
+    }.${ROOM.columns.room_number.getName()}
+    INNER JOIN ${BUILDING.tableName} 
+            ON ${ENTRANCE.tableName}.${BUILDING.columns.building_code.getName()} = ${
+        BUILDING.tableName
+    }.${BUILDING.columns.building_code.getName()}
+    INNER JOIN ${POSTAL.tableName} 
+            ON ${BUILDING.tableName}.${POSTAL.columns.postal_code.getName()} = ${
+        POSTAL.tableName
+    }.${POSTAL.columns.postal_code.getName()}`, selections)

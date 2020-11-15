@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-12T20:25:58.689Z
+__export_date: 2020-11-15T18:32:15.698Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -1270,6 +1270,75 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_ed64a95dd46d481ca207ae42028fe3d0
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1605411788670
+    created: 1605399337715
+    url: http://127.0.0.1:3000/peron_entrance_room_building_time
+    name: GET /person_entrance_room_building_time
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        { "data": {
+            "projection": [
+              {
+                "table_name": "person",
+                "columns": ["person_id", "name"]
+              },
+              {
+                "table_name": "person_time_entrance",
+                "columns": ["entrance_id"]
+              }
+            ],
+            "selection": [
+              {
+                "table_name": "person",
+                "filters": [
+                  {
+                    "column": "person_id",
+                    "filter": [1]
+                  }
+                ]
+              },
+              {
+                "table_name": "person_time_entrance",
+                "filters": [
+                  {
+                    "column": "entrance_id",
+                    "filter": [1]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_5a137a74bad1405f8c0471e9baa3b6d7
+    authentication: {}
+    metaSortKey: -1605399337776
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
   - _id: req_80d2f8e00e2d430d8a885756e27ece77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1604958233222
@@ -1291,16 +1360,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604218653911
-    created: 1604218646679
-    name: join
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603636443269.875
-    _type: request_group
   - _id: req_18fff1eabcb746ea872d6b510ff3ddb6
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1605207236345

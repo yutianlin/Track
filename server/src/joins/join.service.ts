@@ -5,9 +5,10 @@ import {
   GetAllPersonBikeInfoById,
   GetAllPersonNotificationInfoById, GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
-  GetPersonAndFacultyInfoById,
+  GetPersonAndFacultyInfoById, GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo
 } from "./join.queries";
+import {getProjectionsFromJson, getSelectionsFromJson} from "../helpers/helpers";
 
 export default class Join {
   private queryService: QueryService;
@@ -48,4 +49,9 @@ export default class Join {
     return this.queryService.query(GetScheduledClassDayInfo(dept, code, section, term, year));
   }
 
+  getPersonEntranceRoomBuildingTimeInfo = (jsonBody: any) => {
+    const selections = getSelectionsFromJson(jsonBody);
+    const projections = getProjectionsFromJson(jsonBody);
+    return this.queryService.query(GetPersonEntranceRoomBuildingTime(selections, projections));
+  }
 }
