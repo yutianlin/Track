@@ -7,6 +7,10 @@ export const formStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  elementsContainer: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   form: {
     width: '100%',
     marginTop: theme.spacing(1),

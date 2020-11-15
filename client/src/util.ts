@@ -11,3 +11,10 @@ export function isStringEmpty(str: string | undefined): boolean {
 export function formatMoment(date: Moment): string {
   return date.calendar().split(" at")[0];
 }
+
+export function cloneAndUpdateAttribute(originalObj: any, key: string, value: any): any {
+  const partialObj: any = {
+    [key]: value
+  };
+  return {...originalObj, ...partialObj};
+}

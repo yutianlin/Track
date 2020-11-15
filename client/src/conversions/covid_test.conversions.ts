@@ -7,7 +7,7 @@ export class CovidTestConversions {
     return covidTests.map(covidTest => {
       return {
         covid_test: {
-          test_time: moment(covidTest.test_time).tz(userTimezone),
+          test_time: moment(covidTest.test_time).tz(userTimezone).toISOString(),
           test_input_time: covidTest.test_input_time,
           status: covidTest.status
         },

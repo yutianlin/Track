@@ -13,19 +13,26 @@ import {createTestRoute} from "../routes";
 
 export default function CovidTestLandingPage() {
   const [tests, setTests]: [CovidTestInfo[], any] = useState([]);
+  const [isLoading, setIsLoading]: [boolean, any] = useState(true);
   const personState: Person = useSelector(selectPersonState);
 
   useEffect(() => {
     covidTestService.getAllCovidTestsForUser(personState.person_id as number)
       .then((covidTestInfos: CovidTestInfo[]) => {
+        setIsLoading(false);
         setTests(covidTestInfos);
       });
   }, []);
-  const covidTestCards: any = tests.map(test => {
-    return <div key={test.covid_test.test_time.toISOString()}>
+
+  const covidTestCards: any = tests.map((test: CovidTestInfo, index: number) => {
+    return <div key={index}>
       <CovidTestCard covidTestInfo={test}/>
     </div>
   });
+
+  if (isLoading) {
+    return <div/>
+  }
 
   return (
     <div className="covid-test-landing-page">

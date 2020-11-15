@@ -2,7 +2,7 @@ import {Moment} from "moment";
 import {CovidTestingCentre} from "./covid_testing_centre";
 
 export interface CovidTest {
-  test_time: Moment,
+  test_time: string,
   status: boolean,
   test_input_time?: Moment,
   person_id?: number

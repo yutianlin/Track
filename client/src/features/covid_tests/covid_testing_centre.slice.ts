@@ -11,7 +11,7 @@ const initialState: CovidTestingCentreState = {
   allCovidTestingCentres: []
 };
 
-export const covidTestsSlice = createSlice({
+export const covidTestingCentreSlice = createSlice({
   name: 'covidTestingCentre',
   initialState: initialState,
   reducers: {
@@ -25,8 +25,8 @@ export const selectAllCovidTestingCentres = (state: RootState) => state.covidTes
 
 export const fetchCovidTestingCentres = (): AppThunk => dispatch => {
   covidTestService.getAllCovidTestingCentres().then((covidTestingCentres: CovidTestingCentre[]) => {
-    dispatch(covidTestsSlice.actions.setCovidTestingCentres(covidTestingCentres));
+    dispatch(covidTestingCentreSlice.actions.setCovidTestingCentres(covidTestingCentres));
   });
 };
 
-export default covidTestsSlice.reducer;
+export default covidTestingCentreSlice.reducer;
