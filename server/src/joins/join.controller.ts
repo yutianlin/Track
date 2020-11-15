@@ -47,4 +47,8 @@ module.exports = function (app: any) {
     response.json(await joinService.getPersonEntranceRoomBuildingTimeInfo(requestBody));
   });
 
+  app.get("/bubble_count_by_term/:searchTerm", async (request: any, response: any) => {
+    const searchTerm = request.params.searchTerm;
+    response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
+  })
 };

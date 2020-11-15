@@ -16,6 +16,21 @@ export const GetRowsWithProjectionSelection = (
   selection: string
 ) => `SELECT ${projection} FROM ${tableName} WHERE ${selection};`;
 
+export const GetRowsWithProjectionSelectionGroupBy = (
+    projection: string,
+    tableName: string,
+    selection: string,
+    group: string
+) => `SELECT ${projection} FROM ${tableName} WHERE ${selection} GROUP BY ${group};`;
+
+export const GetRowsWithProjectionSelectionGroupByHaving = (
+    projection: string,
+    tableName: string,
+    selection: string,
+    group: string,
+    having: string
+) => `SELECT ${projection} FROM ${tableName} WHERE ${selection} GROUP BY ${group} HAVING ${having};`;
+
 export const InsertRow = (
   tableName: string,
   properties: string,
