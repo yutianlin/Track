@@ -1,5 +1,5 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {formStyles} from "../form.styles";
 import {selectCovidTestToEdit} from "./covid_test.slice";
 import {CovidTestInfo} from "../../model/covid_test";
@@ -134,7 +134,7 @@ export default function CovidTestForm(props: { [forCreation: string]: boolean })
               defaultValue={formState.status}
               control={control}
             />
-            {errors.status && <p>When updating your test result, it must be positive or negative.</p>}
+            {errors.status && <p>When updating your test result, the updated status must be positive or negative.</p>}
             <Button
               fullWidth
               type="submit"

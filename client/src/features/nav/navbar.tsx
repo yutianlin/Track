@@ -36,6 +36,9 @@ export default function NavBar() {
             <LinkContainer to={homeRoute}>
               <Nav.Link>Notifications</Nav.Link>
             </LinkContainer>
+            <LinkContainer to={homeRoute}>
+              <Nav.Link>Stats</Nav.Link>
+            </LinkContainer>
           </Nav>
         )}
         {isLoggedIn && (
