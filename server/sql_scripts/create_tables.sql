@@ -178,6 +178,7 @@ CREATE TABLE person_notification(
 	notification_id integer,
 	person_id integer,
 	notification_time timestamptz NOT NULL,
+	is_read boolean NOT NULL,
 	PRIMARY KEY(notification_id, person_id),
 	FOREIGN KEY (notification_id) REFERENCES notification(notification_id)
 	    ON DELETE CASCADE,

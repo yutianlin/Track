@@ -17,6 +17,11 @@ module.exports = function (app: any) {
     response.json(await personService.getPersonById(id));
   });
 
+  app.get("/persons_status/:id", async (request: any, response: any) => {
+    const id = request.params.id;
+    response.json(await personService.getPersonStatusById(id));
+  });
+
   app.post("/persons", jsonParser, async (request: any, response: any) => {
     const { value, error } = await createPersonSchema.validate(
       request.body.data
