@@ -10,6 +10,7 @@ import {faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {LinkContainer} from "react-router-bootstrap";
 import {createTestRoute} from "../routes";
+import moment from "moment-timezone";
 
 export default function CovidTestLandingPage() {
   const [tests, setTests]: [CovidTestInfo[], any] = useState([]);
@@ -24,6 +25,9 @@ export default function CovidTestLandingPage() {
       });
   }, []);
 
+  tests.sort((testA: CovidTestInfo, testB: CovidTestInfo) => {
+    return moment(testB.covid_test.test_time).isAfter(testA.covid_test.test_time) ? 1 : -1;
+  });
   const covidTestCards: any = tests.map((test: CovidTestInfo, index: number) => {
     return <div key={index}>
       <CovidTestCard covidTestInfo={test}/>

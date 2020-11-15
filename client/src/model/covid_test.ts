@@ -1,10 +1,9 @@
-import {Moment} from "moment";
 import {CovidTestingCentre} from "./covid_testing_centre";
 
 export interface CovidTest {
   test_time: string,
   status: boolean,
-  test_input_time?: Moment,
+  test_input_time: string,
   person_id?: number
 }
 

@@ -2,7 +2,13 @@ import Joi from "joi";
 import {CovidStatus} from "../../model/covid_status";
 
 export const createCovidTestSchema = Joi.object({
-  covid_testing_centre_id: Joi.number().positive().required(),
+  covid_testing_centre: Joi.object().unknown(true).required(),
   test_time: Joi.date().required(),
-  status: Joi.string().required().allow(CovidStatus.POSITIVE, CovidStatus.NEGATIVE, CovidStatus.UNKNOWN),
+  status: Joi.string().required(),
+});
+
+export const updateCovidTestSchema = Joi.object({
+  covid_testing_centre: Joi.object().unknown(true).required(),
+  test_time: Joi.date().required(),
+  status: Joi.string().valid(CovidStatus.POSITIVE, CovidStatus.NEGATIVE).required(),
 });
