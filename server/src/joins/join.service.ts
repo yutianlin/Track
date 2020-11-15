@@ -4,7 +4,7 @@ import {
   GetAllCovidTestInfoByPersonId,
   GetAllCovidTestingCentreInfos,
   GetAllPersonBikeInfoById,
-  GetAllPersonNotificationInfoById, GetCovidTestingCentreInfoById,
+  GetAllPersonNotificationInfoById, GetBubbleCountBySearchTerm, GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
   GetPersonAndFacultyInfoById, GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo
@@ -54,5 +54,9 @@ export default class Join {
     const selections = getSelectionsFromJson(jsonBody);
     const projections = getProjectionsFromJson(jsonBody);
     return this.queryService.query(GetPersonEntranceRoomBuildingTime(selections, projections));
+  }
+
+  getBubbleCountBySearchTerm = (searchTerm: string) => {
+    return this.queryService.query(GetBubbleCountBySearchTerm(searchTerm));
   }
 }

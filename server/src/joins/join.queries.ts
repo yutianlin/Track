@@ -1,4 +1,9 @@
-import {GetAllRowsFromTable, GetRowsWithProjectionSelection, GetRowsWithSelection} from "../helpers/queries";
+import {
+    GetAllRowsFromTable,
+    GetRowsWithProjectionSelection,
+    GetRowsWithProjectionSelectionGroupBy,
+    GetRowsWithSelection
+} from "../helpers/queries";
 
 import {
     ENTRANCE_TABLE as ENTRANCE,
@@ -14,7 +19,9 @@ import {
     NOTIFICATION_TABLE as NOTIFICATION,
     SCHEDULED_CLASS_TABLE as SCHEDULED_CLASS,
     CLASS_DAY_TABLE as CLASS_DAY,
-    PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE
+    PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE,
+    BUBBLE_PERSON_TABLE as BUBBLE_PERSON,
+    BUBBLE_TABLE as BUBBLE
 } from "../helpers/tables";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
@@ -146,3 +153,19 @@ export const GetPersonEntranceRoomBuildingTime = (selections: string, projection
             ON ${BUILDING.tableName}.${POSTAL.columns.postal_code.getName()} = ${
         POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`, selections)
+
+export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
+    GetRowsWithProjectionSelectionGroupBy(
+        `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
+                  ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
+                  ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
+                  COUNT(*)`,
+        `${BUBBLE.tableName}
+        LEFT JOIN ${BUBBLE_PERSON.tableName}
+        ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = ${
+         BUBBLE_PERSON.tableName
+        }.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
+        `${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
+                 OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
+        `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
+    );
