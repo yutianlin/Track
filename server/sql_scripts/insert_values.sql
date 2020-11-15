@@ -2,29 +2,29 @@
   The order these queries run is very particular because of all of the foreign key constraints and also because of the ids.
  */
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES ('CPSC', '304', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES ('CPSC 304 101 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1A', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('CPSC 304 T1A W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1B', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('CPSC 304 T1B W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '304', 'T1C', 'W1', 2020, 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('CPSC 304 T1C W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CPSC', '313', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('CPSC 313 101 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('MATH', '100', '101', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Differential Calculus with Applications to Physical Sciences and Engineering');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('MATH 100 101 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Differential Calculus with Applications to Physical Sciences and Engineering');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('CHEM', '121', '102', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Structure and Bonding in Chemistry');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('CHEM 121 102 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Structure and Bonding in Chemistry');
 
-INSERT INTO scheduled_class(department, code, section, term, year, activity, start_day, end_day, class_name)
-    VALUES('PHYS', '100', '103', 'W1', 2020, 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introductory Physics');
+INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
+    VALUES('PHYS 100 103 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introductory Physics');
 
 
 INSERT INTO postal_address(postal_code, city, province)
@@ -239,43 +239,43 @@ INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_cent
 
 
 -- CPSC 304 and locations
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 'tuesday', '110', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 304 101 W1 2020', 'tuesday', '110', 'DMP');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 'thursday', '110', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 304 101 W1 2020', 'thursday', '110', 'DMP');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '304', 'T1A', 'W1', 2020, 'wednesday', '201', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 304 T1A W1 2020', 'wednesday', '201', 'DMP');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '304', 'T1B', 'W1', 2020, 'wednesday', '201', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 304 T1B W1 2020', 'wednesday', '201', 'DMP');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '304', 'T1B', 'W1', 2020, 'tuesday', '301', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 304 T1B W1 2020', 'tuesday', '301', 'DMP');
 
 
 -- CPSC 313 and locations
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '313', '101', 'W1', 2020, 'monday', '110', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 313 101 W1 2020', 'monday', '110', 'DMP');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '313', '101', 'W1', 2020, 'wednesday', '100', 'MATH');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 313 101 W1 2020', 'wednesday', '100', 'MATH');
 
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CPSC', '313', '101', 'W1', 2020, 'friday', '301', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CPSC 313 101 W1 2020', 'friday', '301', 'DMP');
 
 -- Math 100 and locations
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('MATH', '100', '101', 'W1', 2020, 'monday', '301', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('MATH 100 101 W1 2020', 'monday', '301', 'DMP');
 
 -- Chem 121 and locations
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('CHEM', '121', '102', 'W1', 2020, 'wednesday', '301', 'DMP');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('CHEM 121 102 W1 2020', 'wednesday', '301', 'DMP');
 
 -- Phys 100 and locations
-INSERT INTO class_day(department, code, section, term, year, day_of_week, room_number, building_code)
-    VALUES('PHYS', '100', '103', 'W1', 2020, 'friday', '100', 'MATH');
+INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
+    VALUES('PHYS 100 103 W1 2020', 'friday', '100', 'MATH');
 
 /*
  Einstein rode bike 1ac456789 on Oct 4
@@ -360,24 +360,24 @@ INSERT INTO person_notification(notification_id, person_id, notification_time)
 
 
 -- All the people are in CPSC 304 101
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 1);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 101 W1 2020', 1);
 
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 2);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 101 W1 2020', 2);
 
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 3);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 101 W1 2020', 3);
 
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 4);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 101 W1 2020', 4);
 
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', '101', 'W1', 2020, 5);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 101 W1 2020', 5);
 
 -- People in CPSC 304 T1A
-INSERT INTO scheduled_class_person(department, code, section, term, year, person_id)
-    VALUES('CPSC', '304', 'T1A', 'W1', 2020, 2);
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('CPSC 304 T1A W1 2020', 2);
 
 /*
   All the people entered DMP 110 on Oct 9
