@@ -3,7 +3,7 @@ import {
   GetAllPersons,
   GetPersonById,
   CreatePerson,
-  UpdatePersonById,
+  UpdatePersonById, GetPersonStatusById,
 } from "./person.queries";
 import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
@@ -33,6 +33,10 @@ export default class PersonService {
 
   getPersonById = async (id: number) => {
     return this.queryService.query(GetPersonById(id));
+  };
+
+  getPersonStatusById = async (id: number) => {
+    return this.queryService.query(GetPersonStatusById(id));
   };
 
   createPerson = async (attributes: any) => {

@@ -4,9 +4,14 @@ import {
   GetAllCovidTestInfoByPersonId,
   GetAllCovidTestingCentreInfos,
   GetAllPersonBikeInfoById,
-  GetAllPersonNotificationInfoById, GetBubbleCountBySearchTerm, GetCovidTestingCentreInfoById,
+  GetAllPersonNotificationInfoById,
+  GetAllUnreadNotificationsByPersonId,
+  GetBubbleCountBySearchTerm,
+  GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
-  GetPersonAndFacultyInfoById, GetPersonEntranceRoomBuildingTime,
+  GetLargestScheduledClass,
+  GetPersonAndFacultyInfoById,
+  GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo
 } from "./join.queries";
 import {getProjectionsFromJson, getSelectionsFromJson} from "../helpers/helpers";
@@ -58,5 +63,13 @@ export default class Join {
 
   getBubbleCountBySearchTerm = (searchTerm: string) => {
     return this.queryService.query(GetBubbleCountBySearchTerm(searchTerm));
+  }
+
+  getLargestScheduledClass = () => {
+    return this.queryService.query(GetLargestScheduledClass());
+  }
+
+  getAllUnreadNotificationsByPersonId = (personId: number) => {
+    return this.queryService.query(GetAllUnreadNotificationsByPersonId(personId))
   }
 }

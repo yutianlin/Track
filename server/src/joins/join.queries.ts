@@ -1,7 +1,7 @@
 import {
-    GetAllRowsFromTable,
+    GetAllRowsFromTable, GetRowsWithProjectionGroupBy, GetRowsWithProjectionGroupByHaving,
     GetRowsWithProjectionSelection,
-    GetRowsWithProjectionSelectionGroupBy,
+    GetRowsWithProjectionSelectionGroupBy, GetRowsWithProjectionSelectionGroupByHaving,
     GetRowsWithSelection
 } from "../helpers/queries";
 
@@ -21,7 +21,8 @@ import {
     CLASS_DAY_TABLE as CLASS_DAY,
     PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE,
     BUBBLE_PERSON_TABLE as BUBBLE_PERSON,
-    BUBBLE_TABLE as BUBBLE
+    BUBBLE_TABLE as BUBBLE,
+    PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS
 } from "../helpers/tables";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
@@ -152,7 +153,8 @@ export const GetPersonEntranceRoomBuildingTime = (selections: string, projection
     INNER JOIN ${POSTAL.tableName} 
             ON ${BUILDING.tableName}.${POSTAL.columns.postal_code.getName()} = ${
         POSTAL.tableName
-    }.${POSTAL.columns.postal_code.getName()}`, selections)
+    }.${POSTAL.columns.postal_code.getName()}`, selections
+    );
 
 export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
     GetRowsWithProjectionSelectionGroupBy(
@@ -168,4 +170,40 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
         `${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
                  OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
         `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
+    );
+
+
+export const GetLargestScheduledClass = () =>
+    GetRowsWithProjectionGroupByHaving(
+        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+                  COUNT(*)`,
+        `${SCHEDULED_CLASS.tableName}
+        LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+        ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+            PERSON_SCHEDULED_CLASS.tableName
+        }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+        `COUNT(*) >= ALL(SELECT COUNT(*) 
+                                FROM ${SCHEDULED_CLASS.tableName}
+                            LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+                            ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+                                 PERSON_SCHEDULED_CLASS.tableName
+                            }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
+                            GROUP BY ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
+    );
+
+export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
+    GetRowsWithProjectionSelection(
+        `${NOTIFICATION.tableName}.${NOTIFICATION.columns.notification_id.getName()},
+                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.category.getName()},
+                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.subject_line.getName()},
+                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.body.getName()},
+                  ${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.is_read.getName()}`,
+        `${NOTIFICATION.tableName}
+        LEFT JOIN ${PERSON_NOTIFICATION.tableName}
+        ON ${NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
+            PERSON_NOTIFICATION.tableName
+        }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
+        `${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
+                 AND ${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
     );

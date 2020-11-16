@@ -237,5 +237,10 @@ export const PERSON_NOTIFICATION_TABLE = {
       NOTIFICATION_TABLE.columns.notification_id.getType(),
       false
     ),
+    is_read: new ColumnType(
+        "is_read",
+        "string",
+        false
+    )
   },
 } as const;

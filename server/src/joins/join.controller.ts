@@ -51,4 +51,13 @@ module.exports = function (app: any) {
     const searchTerm = request.params.searchTerm;
     response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
   })
+
+  app.get("/largest_scheduled_class", async (request: any, response: any) => {
+    response.json(await joinService.getLargestScheduledClass())
+  })
+
+  app.get("/notifications_unread/:person_id", async (request: any, response: any) => {
+    const person_id = request.params.person_id;
+    response.json(await joinService.getAllUnreadNotificationsByPersonId(person_id));
+  });
 };
