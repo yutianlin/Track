@@ -37,7 +37,7 @@ export const POSTAL_TABLE = {
   columns: {
     postal_code: new ColumnType("postal_code", "string", false),
     city: new ColumnType("city", "string", false),
-    province: new ColumnType("province", "string", false)
+    province: new ColumnType("province", "string", false),
   },
 } as const;
 
@@ -57,7 +57,7 @@ export const ENTRANCE_TABLE = {
   tableName: "entrance",
   columns: {
     entrance_id: new ColumnType("entrance_id", "number", false),
-    building_code: new ColumnType("building_code", "string", false)
+    building_code: new ColumnType("building_code", "string", false),
   },
 } as const;
 
@@ -65,7 +65,7 @@ export const BIKE_TABLE = {
   tableName: "shared_bike",
   columns: {
     shared_bike_id: new ColumnType("shared_bike_id", "string", false),
-    is_rentable: new ColumnType("is_rentable", "boolean", false)
+    is_rentable: new ColumnType("is_rentable", "boolean", false),
   },
 } as const;
 
@@ -77,21 +77,9 @@ export const COVID_TESTING_CENTRE_TABLE = {
       "number",
       false
     ),
-    name: new ColumnType(
-        "name",
-        "string",
-        true
-    ),
-    building_number: new ColumnType(
-      "building_number",
-      "string",
-      false
-    ),
-    street_number: new ColumnType(
-      "street_number",
-      "string",
-      false
-    )
+    name: new ColumnType("name", "string", true),
+    building_number: new ColumnType("building_number", "string", false),
+    street_number: new ColumnType("street_number", "string", false),
   },
 } as const;
 
@@ -141,7 +129,7 @@ export const CLASS_DAY_TABLE = {
     class_day_id: new ColumnType("year", "string", false),
     day_of_week: new ColumnType("day_of_week", "string", false),
     room_number: new ColumnType("room_number", "string", true),
-    building_code: new ColumnType("building_code", "string", true)
+    building_code: new ColumnType("building_code", "string", true),
   },
 } as const;
 
@@ -216,12 +204,10 @@ export const PERSON_SCHEDULED_CLASS_TABLE = {
       false
     ),
     scheduled_class_id: new ColumnType(
-        SCHEDULED_CLASS_TABLE.columns.scheduled_class_id.getName(),
-        SCHEDULED_CLASS_TABLE.columns.scheduled_class_id.getType(),
-        false
+      SCHEDULED_CLASS_TABLE.columns.scheduled_class_id.getName(),
+      SCHEDULED_CLASS_TABLE.columns.scheduled_class_id.getType(),
+      false
     ),
-
-
   },
 } as const;
 
@@ -238,10 +224,6 @@ export const PERSON_NOTIFICATION_TABLE = {
       NOTIFICATION_TABLE.columns.notification_id.getType(),
       false
     ),
-    is_read: new ColumnType(
-        "is_read",
-        "string",
-        false
-    )
+    is_read: new ColumnType("is_read", "string", false),
   },
 } as const;

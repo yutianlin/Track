@@ -1,5 +1,9 @@
 import QueryService from "../QueryService";
-import {GetAllBikes, GetBikeById, ToggleBikeRentableStatus} from "./bike.queries";
+import {
+  GetAllBikes,
+  GetBikeById,
+  ToggleBikeRentableStatus,
+} from "./bike.queries";
 
 export default class Building {
   private queryService: QueryService;
@@ -18,5 +22,5 @@ export default class Building {
 
   rentBikeIfAvailable = async (id: string) => {
     return this.queryService.query(ToggleBikeRentableStatus(id, false));
-  }
+  };
 }

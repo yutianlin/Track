@@ -13,9 +13,12 @@ import {
   GetLargestScheduledClass,
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
-  GetScheduledClassDayInfo
+  GetScheduledClassDayInfo,
 } from "./join.queries";
-import {getProjectionsFromJson, getSelectionsFromJson} from "../helpers/helpers";
+import {
+  getProjectionsFromJson,
+  getSelectionsFromJson,
+} from "../helpers/helpers";
 
 export default class Join {
   private queryService: QueryService;
@@ -38,43 +41,51 @@ export default class Join {
 
   getAllBikeInfoByPersonId = (person_id: number) => {
     return this.queryService.query(GetAllPersonBikeInfoById(person_id));
-  }
+  };
 
   getAllPersonNotificationInfoById = (person_id: number) => {
     return this.queryService.query(GetAllPersonNotificationInfoById(person_id));
-  }
+  };
 
   getCovidTestingCentreInfoById = (covid_testing_centre_id: number) => {
-    return this.queryService.query(GetCovidTestingCentreInfoById(covid_testing_centre_id));
-  }
+    return this.queryService.query(
+      GetCovidTestingCentreInfoById(covid_testing_centre_id)
+    );
+  };
 
   getScheduledClassDayInfo = (scheduled_class_id: string) => {
-    return this.queryService.query(GetScheduledClassDayInfo(scheduled_class_id));
-  }
+    return this.queryService.query(
+      GetScheduledClassDayInfo(scheduled_class_id)
+    );
+  };
 
   getAllCovidTestingCentreInfos = () => {
     return this.queryService.query(GetAllCovidTestingCentreInfos());
-  }
+  };
 
   getPersonEntranceRoomBuildingTimeInfo = (jsonBody: any) => {
     const selections = getSelectionsFromJson(jsonBody);
     const projections = getProjectionsFromJson(jsonBody);
-    return this.queryService.query(GetPersonEntranceRoomBuildingTime(selections, projections));
-  }
+    return this.queryService.query(
+      GetPersonEntranceRoomBuildingTime(selections, projections)
+    );
+  };
 
   getBubbleCountBySearchTerm = (searchTerm: string) => {
     return this.queryService.query(GetBubbleCountBySearchTerm(searchTerm));
-  }
+  };
 
   getLargestScheduledClass = () => {
     return this.queryService.query(GetLargestScheduledClass());
-  }
+  };
 
   getAllUnreadNotificationsByPersonId = (personId: number) => {
-    return this.queryService.query(GetAllUnreadNotificationsByPersonId(personId));
-  }
+    return this.queryService.query(
+      GetAllUnreadNotificationsByPersonId(personId)
+    );
+  };
 
   getFrequentlyUsedBuildings = () => {
-    return this.queryService.query(GetFrequentlyUsedBuilding())
-  }
+    return this.queryService.query(GetFrequentlyUsedBuilding());
+  };
 }

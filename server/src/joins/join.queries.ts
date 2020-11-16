@@ -1,28 +1,31 @@
 import {
-    GetAllRowsFromTable, GetRowsWithProjectionGroupBy, GetRowsWithProjectionGroupByHaving,
-    GetRowsWithProjectionSelection,
-    GetRowsWithProjectionSelectionGroupBy, GetRowsWithProjectionSelectionGroupByHaving,
-    GetRowsWithSelection
+  GetAllRowsFromTable,
+  GetRowsWithProjectionGroupBy,
+  GetRowsWithProjectionGroupByHaving,
+  GetRowsWithProjectionSelection,
+  GetRowsWithProjectionSelectionGroupBy,
+  GetRowsWithProjectionSelectionGroupByHaving,
+  GetRowsWithSelection,
 } from "../helpers/queries";
 
 import {
-    ENTRANCE_TABLE as ENTRANCE,
-    ROOM_TABLE as ROOM,
-    BUILDING_TABLE as BUILDING,
-    POSTAL_TABLE as POSTAL,
-    PERSON_TABLE as PERSON,
-    FACULTY_TABLE as FACULTY,
-    COVID_TEST_TABLE as COVID_TEST,
-    COVID_TESTING_CENTRE_TABLE as COVID_TESTING_CENTRE,
-    PERSON_TIME_BIKE_TABLE as PERSON_TIME_BIKE,
-    PERSON_NOTIFICATION_TABLE as PERSON_NOTIFICATION,
-    NOTIFICATION_TABLE as NOTIFICATION,
-    SCHEDULED_CLASS_TABLE as SCHEDULED_CLASS,
-    CLASS_DAY_TABLE as CLASS_DAY,
-    PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE,
-    BUBBLE_PERSON_TABLE as BUBBLE_PERSON,
-    BUBBLE_TABLE as BUBBLE,
-    PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS
+  ENTRANCE_TABLE as ENTRANCE,
+  ROOM_TABLE as ROOM,
+  BUILDING_TABLE as BUILDING,
+  POSTAL_TABLE as POSTAL,
+  PERSON_TABLE as PERSON,
+  FACULTY_TABLE as FACULTY,
+  COVID_TEST_TABLE as COVID_TEST,
+  COVID_TESTING_CENTRE_TABLE as COVID_TESTING_CENTRE,
+  PERSON_TIME_BIKE_TABLE as PERSON_TIME_BIKE,
+  PERSON_NOTIFICATION_TABLE as PERSON_NOTIFICATION,
+  NOTIFICATION_TABLE as NOTIFICATION,
+  SCHEDULED_CLASS_TABLE as SCHEDULED_CLASS,
+  CLASS_DAY_TABLE as CLASS_DAY,
+  PERSON_TIME_ENTRANCE_TABLE as PERSON_TIME_ENTRANCE,
+  BUBBLE_PERSON_TABLE as BUBBLE_PERSON,
+  BUBBLE_TABLE as BUBBLE,
+  PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS,
 } from "../helpers/tables";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
@@ -58,166 +61,243 @@ export const GetPersonAndFacultyInfoById = (person_id: number) =>
   );
 
 export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
-    GetRowsWithProjectionSelection(
-        `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
+  GetRowsWithProjectionSelection(
+    `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
         ${PERSON.tableName}.${PERSON.columns.name.getName()},
         ${PERSON.tableName}.${PERSON.columns.person_status.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.test_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.test_input_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.status.getName()},
-        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
-        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.name.getName()} as CENTRE_NAME,
-        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.building_number.getName()},
-        ${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.street_number.getName()},
+        ${
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
+        ${
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.name.getName()} as CENTRE_NAME,
+        ${
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.building_number.getName()},
+        ${
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.street_number.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.postal_code.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.city.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.province.getName()}`,
     `${PERSON.tableName}
         LEFT JOIN ${COVID_TEST.tableName}
     ON ${PERSON.tableName}.${COVID_TEST.columns.person_id.getName()} = ${
-        COVID_TEST.tableName
+      COVID_TEST.tableName
     }.${COVID_TEST.columns.person_id.getName()}
         INNER JOIN ${COVID_TESTING_CENTRE.tableName}
-            ON ${COVID_TEST.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${
-        COVID_TESTING_CENTRE.tableName
+            ON ${
+              COVID_TEST.tableName
+            }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${
+      COVID_TESTING_CENTRE.tableName
     }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()}
         INNER JOIN ${POSTAL.tableName}
-            ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
-        POSTAL.tableName
+            ON ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
+      POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
-        `${COVID_TEST.tableName}.${COVID_TEST.columns.person_id.getName()} = ${person_id}`
+    `${
+      COVID_TEST.tableName
+    }.${COVID_TEST.columns.person_id.getName()} = ${person_id}`
   );
 
 export const GetAllPersonBikeInfoById = (person_id: number) =>
-    GetRowsWithSelection(
-        `${PERSON_TIME_BIKE.tableName}`,
-        `${PERSON_TIME_BIKE.columns.person_id.getName()} = ${person_id}`
-    );
+  GetRowsWithSelection(
+    `${PERSON_TIME_BIKE.tableName}`,
+    `${PERSON_TIME_BIKE.columns.person_id.getName()} = ${person_id}`
+  );
 
 export const GetAllPersonNotificationInfoById = (person_id: number) =>
-    GetRowsWithSelection(
-        `${PERSON_NOTIFICATION.tableName}
+  GetRowsWithSelection(
+    `${PERSON_NOTIFICATION.tableName}
         LEFT JOIN ${NOTIFICATION.tableName} 
-            ON ${PERSON_NOTIFICATION.tableName}.${NOTIFICATION.columns.notification_id.getName()} = ${
-            NOTIFICATION.tableName
-        }.${NOTIFICATION.columns.notification_id.getName()} 
+            ON ${
+              PERSON_NOTIFICATION.tableName
+            }.${NOTIFICATION.columns.notification_id.getName()} = ${
+      NOTIFICATION.tableName
+    }.${NOTIFICATION.columns.notification_id.getName()} 
         `,
-        `${PERSON_NOTIFICATION.columns.person_id.getName()} = ${person_id}`
-    );
+    `${PERSON_NOTIFICATION.columns.person_id.getName()} = ${person_id}`
+  );
 
-export const GetCovidTestingCentreInfoById = (covid_testing_centre_id: number) =>
-    GetRowsWithSelection(
-        `${COVID_TESTING_CENTRE.tableName}
+export const GetCovidTestingCentreInfoById = (
+  covid_testing_centre_id: number
+) =>
+  GetRowsWithSelection(
+    `${COVID_TESTING_CENTRE.tableName}
         LEFT JOIN ${POSTAL.tableName}
-            ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
-            POSTAL.tableName
-        }.${POSTAL.columns.postal_code.getName()}`,
-        `${COVID_TESTING_CENTRE.tableName}.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${covid_testing_centre_id}`
-    );
+            ON ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
+      POSTAL.tableName
+    }.${POSTAL.columns.postal_code.getName()}`,
+    `${
+      COVID_TESTING_CENTRE.tableName
+    }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${covid_testing_centre_id}`
+  );
 
 export const GetAllCovidTestingCentreInfos = () =>
   GetAllRowsFromTable(
     `${COVID_TESTING_CENTRE.tableName}
         LEFT JOIN ${POSTAL.tableName}
-            ON ${COVID_TESTING_CENTRE.tableName}.${POSTAL.columns.postal_code.getName()} = ${
+            ON ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`
   );
 
 export const GetScheduledClassDayInfo = (scheduled_class_id: string) =>
-    GetRowsWithSelection(
-        `${SCHEDULED_CLASS.tableName}
+  GetRowsWithSelection(
+    `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${CLASS_DAY.tableName}
-            ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
-        `${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} ILIKE '%${scheduled_class_id}%'`
-    );
+            ON ${
+              SCHEDULED_CLASS.tableName
+            }.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${
+      CLASS_DAY.tableName
+    }.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
+    `${
+      CLASS_DAY.tableName
+    }.${CLASS_DAY.columns.scheduled_class_id.getName()} ILIKE '%${scheduled_class_id}%'`
+  );
 
-export const GetPersonEntranceRoomBuildingTime = (selections: string, projections: string) =>
-    GetRowsWithProjectionSelection(projections, `${PERSON.tableName} 
+export const GetPersonEntranceRoomBuildingTime = (
+  selections: string,
+  projections: string
+) =>
+  GetRowsWithProjectionSelection(
+    projections,
+    `${PERSON.tableName} 
      LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName} 
-            ON ${PERSON.tableName}.${PERSON_TIME_ENTRANCE.columns.person_id.getName()} = ${
-        PERSON_TIME_ENTRANCE.tableName
+            ON ${
+              PERSON.tableName
+            }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()} = ${
+      PERSON_TIME_ENTRANCE.tableName
     }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}
     INNER JOIN ${ENTRANCE.tableName}
-            ON ${PERSON_TIME_ENTRANCE.tableName}.${ENTRANCE.columns.entrance_id.getName()} = ${
-        ENTRANCE.tableName
+            ON ${
+              PERSON_TIME_ENTRANCE.tableName
+            }.${ENTRANCE.columns.entrance_id.getName()} = ${
+      ENTRANCE.tableName
     }.${ENTRANCE.columns.entrance_id.getName()}
     INNER JOIN ${ROOM.tableName}
             ON ${ENTRANCE.tableName}.${ROOM.columns.room_number.getName()} = ${
-        ROOM.tableName
+      ROOM.tableName
     }.${ROOM.columns.room_number.getName()}
     INNER JOIN ${BUILDING.tableName} 
-            ON ${ENTRANCE.tableName}.${BUILDING.columns.building_code.getName()} = ${
-        BUILDING.tableName
+            ON ${
+              ENTRANCE.tableName
+            }.${BUILDING.columns.building_code.getName()} = ${
+      BUILDING.tableName
     }.${BUILDING.columns.building_code.getName()}
     INNER JOIN ${POSTAL.tableName} 
-            ON ${BUILDING.tableName}.${POSTAL.columns.postal_code.getName()} = ${
-        POSTAL.tableName
-    }.${POSTAL.columns.postal_code.getName()}`, selections
-    );
+            ON ${
+              BUILDING.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
+      POSTAL.tableName
+    }.${POSTAL.columns.postal_code.getName()}`,
+    selections
+  );
 
 export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
-    GetRowsWithProjectionSelectionGroupBy(
-        `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
+  GetRowsWithProjectionSelectionGroupBy(
+    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
                   COUNT(*)`,
-        `${BUBBLE.tableName}
+    `${BUBBLE.tableName}
         LEFT JOIN ${BUBBLE_PERSON.tableName}
         ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = ${
-         BUBBLE_PERSON.tableName
-        }.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
-        `${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
-                 OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
-                 OR ${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()} ILIKE '%${searchTerm}%`,
-        `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
-    );
-
+      BUBBLE_PERSON.tableName
+    }.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
+    `${
+      BUBBLE.tableName
+    }.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
+                 OR ${
+                   BUBBLE.tableName
+                 }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
+                 OR ${
+                   BUBBLE_PERSON.tableName
+                 }.${BUBBLE_PERSON.columns.person_id.getName()} ILIKE '%${searchTerm}%`,
+    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
+  );
 
 export const GetLargestScheduledClass = () =>
-    GetRowsWithProjectionGroupByHaving(
-        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+  GetRowsWithProjectionGroupByHaving(
+    `${
+      SCHEDULED_CLASS.tableName
+    }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
                   COUNT(*)`,
-        `${SCHEDULED_CLASS.tableName}
+    `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
-        ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
-            PERSON_SCHEDULED_CLASS.tableName
-        }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
-        `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
-        `COUNT(*) >= ALL(SELECT COUNT(*) 
+        ON ${
+          SCHEDULED_CLASS.tableName
+        }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+      PERSON_SCHEDULED_CLASS.tableName
+    }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+    `${
+      SCHEDULED_CLASS.tableName
+    }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+    `COUNT(*) >= ALL(SELECT COUNT(*) 
                                 FROM ${SCHEDULED_CLASS.tableName}
                             LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
-                            ON ${SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
-                                 PERSON_SCHEDULED_CLASS.tableName
-                            }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
-                            GROUP BY ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
-    );
+                            ON ${
+                              SCHEDULED_CLASS.tableName
+                            }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+      PERSON_SCHEDULED_CLASS.tableName
+    }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
+                            GROUP BY ${
+                              SCHEDULED_CLASS.tableName
+                            }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
+  );
 
 export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
-    GetRowsWithProjectionSelection(
-        `${NOTIFICATION.tableName}.${NOTIFICATION.columns.notification_id.getName()},
-                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.category.getName()},
-                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.subject_line.getName()},
-                  ${NOTIFICATION.tableName}.${NOTIFICATION.columns.body.getName()},
-                  ${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.is_read.getName()}`,
-        `${NOTIFICATION.tableName}
+  GetRowsWithProjectionSelection(
+    `${
+      NOTIFICATION.tableName
+    }.${NOTIFICATION.columns.notification_id.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.category.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.subject_line.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.body.getName()},
+                  ${
+                    PERSON_NOTIFICATION.tableName
+                  }.${PERSON_NOTIFICATION.columns.is_read.getName()}`,
+    `${NOTIFICATION.tableName}
         LEFT JOIN ${PERSON_NOTIFICATION.tableName}
-        ON ${NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
-            PERSON_NOTIFICATION.tableName
-        }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
-        `${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
-                 AND ${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
-    );
+        ON ${
+          NOTIFICATION.tableName
+        }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
+      PERSON_NOTIFICATION.tableName
+    }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
+    `${
+      PERSON_NOTIFICATION.tableName
+    }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
+                 AND ${
+                   PERSON_NOTIFICATION.tableName
+                 }.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
+  );
 
 export const GetFrequentlyUsedBuilding = () =>
-    // Could also add a having, would just need to determine some threshold. Alternatively we could just display top 3 w/ some basic frontend filtering
-    GetRowsWithProjectionGroupBy(
-        `${ENTRANCE.columns.building_code.getName()},
+  // Could also add a having, would just need to determine some threshold. Alternatively we could just display top 3 w/ some basic frontend filtering
+  GetRowsWithProjectionGroupBy(
+    `${ENTRANCE.columns.building_code.getName()},
                   COUNT(*)`,
-        `${ENTRANCE.tableName}
+    `${ENTRANCE.tableName}
         LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName}
-        ON ${ENTRANCE.tableName}.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
-            PERSON_TIME_ENTRANCE.tableName
-        }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
-        `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
-    );
+        ON ${
+          ENTRANCE.tableName
+        }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
+      PERSON_TIME_ENTRANCE.tableName
+    }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
+    `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
+  );

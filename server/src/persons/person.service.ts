@@ -3,7 +3,8 @@ import {
   GetAllPersons,
   GetPersonById,
   CreatePerson,
-  UpdatePersonById, GetPersonStatusById,
+  UpdatePersonById,
+  GetPersonStatusById,
 } from "./person.queries";
 import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
