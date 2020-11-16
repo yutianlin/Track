@@ -22,6 +22,8 @@ import PersonCard from "./features/person/person.card";
 import {fetchCovidTestingCentres} from "./features/covid_tests/covid_testing_centre.slice";
 import CovidTestLandingPage from "./features/covid_tests/covid_test_landing_page";
 import CovidTestForm from "./features/covid_tests/covid_test.form";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -42,6 +44,17 @@ export default function App() {
   return (
     <div>
       <NavBar/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {!isAppLoading && !isLoggedIn && <PersonForm/>}
       {!isAppLoading && isLoggedIn && (
         <Switch>

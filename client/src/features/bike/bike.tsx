@@ -44,7 +44,6 @@ export default function Bike() {
           personState.person_id as number,
           bike.shared_bike_id);
 
-        await bikeService.rentBike(bike.shared_bike_id);
         const newHistory = history.slice();
         newHistory.unshift(personBike);
         setHistory(newHistory);

@@ -4,8 +4,8 @@ import {editTestRoute} from "../routes";
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCircle} from "@fortawesome/free-solid-svg-icons";
-import {formatMoment, isPresent} from "../../util";
-import {CovidTestingCentre, formatAddress} from "../../model/covid_testing_centre";
+import {formatAddress, formatMoment, isPresent} from "../../util";
+import {CovidTestingCentre} from "../../model/covid_testing_centre";
 import {cardStyles} from "../common/card.styles";
 import "./covid_test_card.css";
 import { useHistory } from "react-router-dom";
