@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import {toRequestJson} from "../conversions/conversions.util";
 
 export class RemoteService {
   private static JSON_HEADER: any = {
@@ -8,15 +9,11 @@ export class RemoteService {
   };
 
   public post(url: string, data: any): Promise<AxiosResponse> {
-    return axios.post(url, data, RemoteService.JSON_HEADER);
-  }
-
-  public put(url: string, data: any): Promise<AxiosResponse> {
-    return axios.put(url, data, RemoteService.JSON_HEADER);
+    return axios.post(url, toRequestJson(data), RemoteService.JSON_HEADER);
   }
 
   public patch(url: string, data: any): Promise<AxiosResponse> {
-    return axios.patch(url, data, RemoteService.JSON_HEADER);
+    return axios.patch(url, toRequestJson(data), RemoteService.JSON_HEADER);
   }
 
   public get(url: string): Promise<AxiosResponse> {
