@@ -7,6 +7,9 @@ export const accordionStyles = makeStyles((theme) => ({
     flexBasis: '33.33%',
     flexShrink: 0,
   },
+  root: {
+    width: '40vw'
+  },
   headingGray: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: '33.33%',
@@ -17,4 +20,8 @@ export const accordionStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  notificationBody: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
 }));

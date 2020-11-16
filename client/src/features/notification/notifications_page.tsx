@@ -5,6 +5,8 @@ import {useSelector} from "react-redux";
 import {NotificationModel} from "../../model/notification";
 import { groupBy } from "lodash";
 import {Dictionary} from "@reduxjs/toolkit";
+import NotificationAccordion from "./notification_accordion";
+import "./notifications_page.css";
 
 export default function NotificationsPage() {
   const [notifications, setNotifications]: [Dictionary<NotificationModel[]>, any] = useState({});
@@ -16,7 +18,7 @@ export default function NotificationsPage() {
       .then((notifications: NotificationModel[]) => {
         setIsLoading(false);
         const notificationsGroupedByMessage: Dictionary<NotificationModel[]> = groupBy(notifications, 'body');
-        setNotifications(notifications);
+        setNotifications(notificationsGroupedByMessage);
       });
   }, []);
 
@@ -25,8 +27,26 @@ export default function NotificationsPage() {
   }
 
   if (Object.keys(notifications).length === 0) {
-
+    return (
+      <div className = "notifications_page">
+        <h1>You have no notifications</h1>
+      </div>
+    )
   }
 
-  return (<div></div>)
+  const sortedNotificationKeys = Object.keys(notifications).sort((keyA: any, keyB: any) => {
+    const notificationsA = notifications[keyA] as NotificationModel[];
+    const notificationsB = notifications[keyB] as NotificationModel[];
+    return notificationsA[0].notification_time.isAfter(notificationsB[0].notification_time) ? -1 : 1;
+  })
+
+  const notificationElements = sortedNotificationKeys.map((key: any, index) => {
+    return <NotificationAccordion key = {index} notificationModels={notifications[key] as NotificationModel[]}/>
+  })
+
+  return (
+    <div className = "notifications_page">
+      {notificationElements}
+    </div>
+  )
 }
