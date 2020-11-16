@@ -24,6 +24,7 @@ import {
     BUBBLE_TABLE as BUBBLE,
     PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS
 } from "../helpers/tables";
+import {stringify} from "../helpers/helpers";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
   GetRowsWithSelection(
@@ -131,6 +132,26 @@ export const GetScheduledClassDayInfo = (scheduled_class_id: string) =>
             ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
         `${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} ILIKE '%${scheduled_class_id}%'`
     );
+
+export const GetScheduledClassDayInfoByPersonId = (person_id: string) =>
+  GetRowsWithProjectionSelection(
+    `${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+        ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.start_day.getName()},
+        ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.end_day.getName()},
+        ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.activity.getName()},
+        ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.class_name.getName()},
+        ${CLASS_DAY.tableName}.${CLASS_DAY.columns.building_code.getName()},
+        ${CLASS_DAY.tableName}.${CLASS_DAY.columns.room_number.getName()},
+        ${CLASS_DAY.tableName}.${CLASS_DAY.columns.day_of_week.getName()},
+        ${CLASS_DAY.tableName}.${CLASS_DAY.columns.class_day_id.getName()}`,
+    `${SCHEDULED_CLASS.tableName}
+        LEFT JOIN ${CLASS_DAY.tableName}
+            ON ${SCHEDULED_CLASS.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${CLASS_DAY.tableName}.${CLASS_DAY.columns.scheduled_class_id.getName()}
+        INNER JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+            ON ${SCHEDULED_CLASS.tableName}.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${PERSON_SCHEDULED_CLASS.tableName}.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
+    `${PERSON_SCHEDULED_CLASS.columns.person_id.getName()} = ${person_id}`
+  );
+
 
 export const GetPersonEntranceRoomBuildingTime = (selections: string, projections: string) =>
     GetRowsWithProjectionSelection(projections, `${PERSON.tableName} 

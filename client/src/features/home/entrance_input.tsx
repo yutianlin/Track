@@ -7,7 +7,6 @@ import {formatAddress, isStringEmpty} from "../../util";
 import {useSelector} from "react-redux";
 import {selectPersonState} from "../person/person.slice";
 import { toast } from 'react-toastify';
-import {formStyles} from "../form.styles";
 import './entrance_input.css';
 
 export default function EntranceInput() {
@@ -15,7 +14,6 @@ export default function EntranceInput() {
   const [entrance, setEntrance]: [EntranceInfo | undefined, any] = useState(undefined);
   const [showCheckIn, setShowCheckIn]: [boolean, any] = useState(false);
   const [error, setError] = useState("");
-  const formClasses = formStyles();
 
   const onChange = async (searchTerm: string) => {
     if (searchTerm === "") {
@@ -42,7 +40,7 @@ export default function EntranceInput() {
       const entranceDefined = entrance as EntranceInfo;
       try {
         await entranceService.createPersonEntrance(person.person_id as number, entranceDefined.entrance_id);
-        toast.success("Checked in successfully!");
+        toast.info("Checked in successfully!");
         setError("");
         setShowCheckIn(false);
       } catch (e) {
@@ -61,18 +59,19 @@ export default function EntranceInput() {
     entranceInfo = (
      <div className="entrance-info-container-with-button">
        <div className="entrance-info-container">
-         <Typography color = "textSecondary">
+         <Typography style = {{marginTop: '3vh'}}>
            Building Name: {entranceDefined.name}
          </Typography>
-         <Typography color = "textSecondary">
+         <Typography>
            Address: {formatAddress(entranceDefined)}
          </Typography>
-         <Typography color = "textSecondary">
+         <Typography>
            Room: {`${entranceDefined.building_code} ${entranceDefined.room_number}`}
          </Typography>
        </div>
        {showCheckIn && <Button
          fullWidth
+         style={{marginTop: '3vh'}}
          onClick={onCheckIn}
          size = "large"
          variant="outlined">Check-In</Button>}

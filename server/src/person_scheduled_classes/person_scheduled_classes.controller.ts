@@ -34,17 +34,18 @@ module.exports = function (app: any) {
   );
 
   app.delete(
-    "/person_scheduled_classes",
+    "/person_scheduled_classes/:person_id/:scheduled_class_id",
     jsonParser,
     async (request: any, response: any) => {
-      const { value, error } = await relationSchema.validate(request.body.data);
-      if (error) {
-        response.status(422).json(error.message);
-        return;
-      }
+      const person_id = request.params.person_id;
+      const scheduled_class_id = request.params.scheduled_class_id;
+      const payload = {
+        person_id: person_id,
+        scheduled_class_id: scheduled_class_id
+      };
       try {
         response.json(
-          await personScheduledClassService.deletePersonScheduledClass(value)
+          await personScheduledClassService.deletePersonScheduledClass(payload)
         );
       } catch (e) {
         response.status(422).json(e.message);

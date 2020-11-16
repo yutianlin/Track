@@ -14,6 +14,7 @@ export default class QueryService {
   }
 
   public async query(query: string) {
+    console.log(query);
     const results = await this.pool.query(query);
     return results.rows;
   }

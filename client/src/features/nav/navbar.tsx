@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {selectIsLoggedIn} from "../login/login.slice";
 import {Button} from "@material-ui/core";
 import {selectPersonState} from "../person/person.slice";
-import {bikeRoute, homeRoute, notifications, personInfoRoute, testsRoute} from "../routes";
+import {bikeRoute, homeRoute, notificationsRoute, personInfoRoute, scheduledClassesRoute, testsRoute} from "../routes";
 import "./navbar.css";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -30,10 +30,10 @@ export default function NavBar() {
             <LinkContainer to={bikeRoute}>
               <Nav.Link>Bike</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={homeRoute}>
+            <LinkContainer to={scheduledClassesRoute}>
               <Nav.Link>Class</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={notifications}>
+            <LinkContainer to={notificationsRoute}>
               <Nav.Link>Notifications</Nav.Link>
             </LinkContainer>
             <LinkContainer to={homeRoute}>

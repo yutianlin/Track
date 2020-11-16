@@ -46,6 +46,7 @@ export default function NotificationsPage() {
 
   return (
     <div className = "notifications_page">
+      <h2>Notifications</h2>
       {notificationElements}
     </div>
   )
