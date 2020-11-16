@@ -83,6 +83,7 @@ export default function EntranceInput() {
   return (
     <Container className="entrance-input-container">
       <DebouncedInput
+        label="Check-In"
         placeholder="Entrance Number"
         onDebounce={onChange}
       />

@@ -1,6 +1,6 @@
 import {CovidTestInfo} from "../model/covid_test";
 import moment from 'moment-timezone';
-import {userTimezone} from "./conversions.util";
+import {toIsoString, userTimezone} from "./conversions.util";
 import {CovidTestFormState} from "../features/covid_tests/covid_test.form";
 import {CovidStatus} from "../model/covid_status";
 
@@ -9,8 +9,8 @@ export class CovidTestConversions {
     return covidTests.map(covidTest => {
       return {
         covid_test: {
-          test_time: moment(covidTest.test_time).tz(userTimezone).toISOString(),
-          test_input_time: moment(covidTest.test_input_time).tz(userTimezone).toISOString(),
+          test_time: toIsoString(covidTest.test_time),
+          test_input_time: toIsoString(covidTest.test_input_time),
           status: covidTest.status
         },
         covid_testing_centre: {
