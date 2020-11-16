@@ -54,7 +54,7 @@ export default class PersonService {
 
   updatePersonStatusToPositive = async (id: number) => {
     await this.queryService.query(
-      UpdatePersonById(`${columns.person_status.getName()} = true`, id)
+      UpdatePersonById(`${columns.person_status.getName()} = 'POSITIVE'`, id)
     );
   };
 }

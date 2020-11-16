@@ -11,7 +11,7 @@ export const PERSON_TABLE = {
     phone_number: new ColumnType("phone_number", "string", true),
     student_id: new ColumnType("student_id", "number", true),
     faculty_id: new ColumnType("faculty_id", "string", true),
-    person_status: new ColumnType("person_status", "boolean", true),
+    person_status: new ColumnType("person_status", "string", true),
     // Technically false, but there is a default for null
     in_app_notification: new ColumnType("in_app_notification", "boolean", true),
   },
@@ -110,7 +110,7 @@ export const COVID_TEST_TABLE = {
     ),
     test_time: new ColumnType("test_time", "dateTime", false),
     test_input_time: new ColumnType("test_input_time", "dateTime", false),
-    status: new ColumnType("status", "boolean", true),
+    status: new ColumnType("status", "string", true),
   },
 } as const;
 
