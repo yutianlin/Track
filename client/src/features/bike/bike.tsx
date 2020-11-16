@@ -59,6 +59,7 @@ export default function Bike() {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.container}>
+        <h3>Bikes</h3>
         <form className={classes.form} noValidate
               onSubmit={handleSubmit(onSubmit)}>
           <TextField
