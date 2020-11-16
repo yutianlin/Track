@@ -350,7 +350,7 @@ INSERT INTO person_notification(notification_id, person_id, notification_time, i
     VALUES(3, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, false);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
-    VALUES(4, 2, '2020-10-13T00:00:00Z'::TIMESTAMPTZ, true);
+    VALUES(4, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, true);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
     VALUES(4, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ, false);
