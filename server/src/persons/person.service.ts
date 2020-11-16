@@ -67,7 +67,7 @@ export default class PersonService {
   };
 
   triggerWhenStatusSetToRed = async (personId: number) => {
-    console.log(await this.queryService.query(UpdatePersonsByIdStatusToYellow(personId, "'2020-11-01T00:00:00.000Z'::TIMESTAMPTZ")));
+    console.log(await this.queryService.query(UpdatePersonsByIdStatusToYellow(personId, "'2021-12-02'", "'2021-12-09'")));
     // set related people to yellow status
   };
 }

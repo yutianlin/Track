@@ -1,3 +1,6 @@
+export const UnionQueries = (query1: string, query2: string) =>
+  `(${query1}) UNION (${query2})`;
+
 export const GetAllRowsFromTable = (tableName: string) =>
   `SELECT * FROM ${tableName}`;
 
