@@ -60,4 +60,9 @@ module.exports = function (app: any) {
     const person_id = request.params.person_id;
     response.json(await joinService.getAllUnreadNotificationsByPersonId(person_id));
   });
+
+  app.get("/scheduled_class_info/person_id/:person_id", async (request: any, response: any) => {
+    const person_id = request.params.person_id;
+    response.json(await joinService.getScheduledClassDayInfoByPersonId(person_id));
+  });
 };

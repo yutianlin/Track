@@ -12,8 +12,8 @@ import {
   createTestRoute,
   editPersonRoute,
   editTestRoute,
-  homeRoute, notifications,
-  personInfoRoute,
+  homeRoute, notificationsRoute,
+  personInfoRoute, scheduledClassesRoute,
   testsRoute
 } from "./features/routes";
 import Bike from "./features/bike/bike";
@@ -25,6 +25,7 @@ import CovidTestForm from "./features/covid_tests/covid_test.form";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotificationsPage from "./features/notification/notifications_page";
+import ScheduledClassesPage from "./features/scheduled_class/scheduled_classes";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -65,7 +66,8 @@ export default function App() {
           <Route path = {bikeRoute} component={Bike}/>
           <Route path = {personInfoRoute} component={PersonCard}/>
           <Route path = {testsRoute} component={CovidTestLandingPage}/>
-          <Route path = {notifications} component={NotificationsPage}/>
+          <Route path = {notificationsRoute} component={NotificationsPage}/>
+          <Route path = {scheduledClassesRoute} component={ScheduledClassesPage}/>
           <Route path = {createTestRoute} render={()=> <CovidTestForm forCreation={true}/>}/>
           <Route path = {editTestRoute} render={()=> <CovidTestForm forCreation={false}/>}/>
           <Redirect to={homeRoute}/>
