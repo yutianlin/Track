@@ -60,4 +60,8 @@ module.exports = function (app: any) {
     const person_id = request.params.person_id;
     response.json(await joinService.getAllUnreadNotificationsByPersonId(person_id));
   });
+
+  app.get("/frequently_used_buildings", async (request: any, response: any) => {
+    response.json(await joinService.getFrequentlyUsedBuildings());
+  });
 };

@@ -168,7 +168,8 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
          BUBBLE_PERSON.tableName
         }.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
         `${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
-                 OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
+                 OR ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
+                 OR ${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()} ILIKE '%${searchTerm}%`,
         `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
     );
 
@@ -206,4 +207,17 @@ export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
         }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
         `${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
                  AND ${PERSON_NOTIFICATION.tableName}.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
+    );
+
+export const GetFrequentlyUsedBuilding = () =>
+    // Could also add a having, would just need to determine some threshold. Alternatively we could just display top 3 w/ some basic frontend filtering
+    GetRowsWithProjectionGroupBy(
+        `${ENTRANCE.columns.building_code.getName()},
+                  COUNT(*)`,
+        `${ENTRANCE.tableName}
+        LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName}
+        ON ${ENTRANCE.tableName}.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
+            PERSON_TIME_ENTRANCE.tableName
+        }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
+        `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
     );

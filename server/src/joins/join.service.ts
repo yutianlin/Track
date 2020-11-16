@@ -9,6 +9,7 @@ import {
   GetBubbleCountBySearchTerm,
   GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
+  GetFrequentlyUsedBuilding,
   GetLargestScheduledClass,
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
@@ -70,6 +71,10 @@ export default class Join {
   }
 
   getAllUnreadNotificationsByPersonId = (personId: number) => {
-    return this.queryService.query(GetAllUnreadNotificationsByPersonId(personId))
+    return this.queryService.query(GetAllUnreadNotificationsByPersonId(personId));
+  }
+
+  getFrequentlyUsedBuildings = () => {
+    return this.queryService.query(GetFrequentlyUsedBuilding())
   }
 }

@@ -57,6 +57,7 @@ export const ENTRANCE_TABLE = {
   tableName: "entrance",
   columns: {
     entrance_id: new ColumnType("entrance_id", "number", false),
+    building_code: new ColumnType("building_code", "string", false)
   },
 } as const;
 
