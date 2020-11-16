@@ -5,9 +5,26 @@ import {fetchPerson, selectIsLoggedIn, appLoaded, selectIsAppLoading} from "./fe
 import PersonForm from "./features/person/person.form";
 import {CookieService} from "./services/cookie.service";
 import NavBar from "./features/nav/navbar";
-import {Route, Switch} from "react-router";
+import {Redirect, Route, Switch} from "react-router";
 import Home from "./features/home/home";
-import {editPersonRoute, homeRoute} from "./features/routes";
+import {
+  bikeRoute,
+  createTestRoute,
+  editPersonRoute,
+  editTestRoute,
+  homeRoute, notifications,
+  personInfoRoute,
+  testsRoute
+} from "./features/routes";
+import Bike from "./features/bike/bike";
+import {fetchBikes} from "./features/bike/bike.slice";
+import PersonCard from "./features/person/person.card";
+import {fetchCovidTestingCentres} from "./features/covid_tests/covid_testing_centre.slice";
+import CovidTestLandingPage from "./features/covid_tests/covid_test_landing_page";
+import CovidTestForm from "./features/covid_tests/covid_test.form";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import NotificationsPage from "./features/notification/notifications_page";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,19 +36,39 @@ export default function App() {
     if (personId) {
       dispatch(fetchPerson(personId));
     } else {
-      dispatch(appLoaded())
+      dispatch(appLoaded());
     }
+    dispatch(fetchBikes());
+    dispatch(fetchCovidTestingCentres());
   }, []);
 
   return (
     <div>
       <NavBar/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {!isAppLoading && !isLoggedIn && <PersonForm/>}
       {!isAppLoading && isLoggedIn && (
         <Switch>
           <Route exact path = '/' component={Home}/>
           <Route path = {homeRoute} component={Home}/>
-          <Route path= {editPersonRoute} component={PersonForm}/>
+          <Route path = {editPersonRoute} component={PersonForm}/>
+          <Route path = {bikeRoute} component={Bike}/>
+          <Route path = {personInfoRoute} component={PersonCard}/>
+          <Route path = {testsRoute} component={CovidTestLandingPage}/>
+          <Route path = {notifications} component={NotificationsPage}/>
+          <Route path = {createTestRoute} render={()=> <CovidTestForm forCreation={true}/>}/>
+          <Route path = {editTestRoute} render={()=> <CovidTestForm forCreation={false}/>}/>
+          <Redirect to={homeRoute}/>
         </Switch>
       )}
     </div>

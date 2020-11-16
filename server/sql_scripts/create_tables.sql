@@ -4,16 +4,12 @@
  */
 
 CREATE TABLE scheduled_class (
-	department varchar(4) NOT NULL,
-	code varchar(10) NOT NULL,
-	section varchar(10) NOT NULL,
-	term varchar(10) NOT NULL,
-	year INT NOT NULL,
+	scheduled_class_id varchar(50) NOT NULL,
 	start_day timestamptz NOT NULL,
 	end_day timestamptz NOT NULL,
 	activity varchar(20) NOT NULL,
 	class_name TEXT NOT NULL,
-	PRIMARY KEY (department, code, section, term, year)
+	PRIMARY KEY (scheduled_class_id)
 );
 
 CREATE TABLE postal_address(
@@ -44,19 +40,15 @@ CREATE TABLE room(
 
 
 CREATE TABLE class_day(
-	department varchar(4) NOT NULL,
-	code varchar(10) NOT NULL,
-	section varchar(10) NOT NULL,
-	term varchar(10) NOT NULL,
-	year INT NOT NULL,
+	scheduled_class_id varchar(50) NOT NULL,
 	class_day_id serial,
 	day_of_week INT
 	    CHECK(day_of_week >= 0 AND day_of_week <= 6)
 	    NOT NULL,
-	room_number varchar(10) NOT NULL,
-	building_code varchar(10) NOT NULL,
-	PRIMARY KEY(department, code, section, term, year, class_day_id),
-	FOREIGN KEY(department, code, section, term, year) REFERENCES scheduled_class
+	room_number varchar(10),
+	building_code varchar(10),
+	PRIMARY KEY(scheduled_class_id, class_day_id),
+	FOREIGN KEY(scheduled_class_id) REFERENCES scheduled_class
 	    ON DELETE CASCADE,
     FOREIGN KEY (room_number, building_code) REFERENCES room(room_number, building_code)
 );
@@ -162,16 +154,12 @@ CREATE TABLE person_shared_bike(
 );
 
 CREATE TABLE scheduled_class_person(
-	department varchar(4) NOT NULL,
-	code varchar(10) NOT NULL,
-	section varchar(10) NOT NULL,
-	term varchar(10) NOT NULL,
-	year INT NOT NULL,
+	scheduled_class_id varchar(50) NOT NULL,
 	person_id integer,
-	PRIMARY KEY (person_id, department, code, section, term, year),
+	PRIMARY KEY (person_id, scheduled_class_id),
 	FOREIGN KEY (person_id) REFERENCES person(person_id)
 	    ON DELETE CASCADE,
-	FOREIGN KEY (department, code, section, term, year) REFERENCES scheduled_class
+	FOREIGN KEY (scheduled_class_id) REFERENCES scheduled_class
 	    ON DELETE CASCADE
 );
 
@@ -191,6 +179,7 @@ CREATE TABLE person_notification(
 	notification_id integer,
 	person_id integer,
 	notification_time timestamptz NOT NULL,
+	is_read boolean NOT NULL,
 	PRIMARY KEY(notification_id, person_id),
 	FOREIGN KEY (notification_id) REFERENCES notification(notification_id)
 	    ON DELETE CASCADE,

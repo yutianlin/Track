@@ -1,11 +1,12 @@
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 import React from "react";
 import {useSelector} from "react-redux";
 import {selectIsLoggedIn} from "../login/login.slice";
 import {Button} from "@material-ui/core";
 import {selectPersonState} from "../person/person.slice";
-import {editPersonRoute, homeRoute} from "../routes";
+import {bikeRoute, homeRoute, notifications, personInfoRoute, testsRoute} from "../routes";
 import "./navbar.css";
+import { LinkContainer } from "react-router-bootstrap";
 
 export default function NavBar() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -15,19 +16,36 @@ export default function NavBar() {
     <Navbar bg="light" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Navbar.Brand className="mr-auto" href={homeRoute}>TRACK</Navbar.Brand>
+        <LinkContainer to={homeRoute}>
+          <Navbar.Brand className="mr-auto">TRACK</Navbar.Brand>
+        </LinkContainer>
         {isLoggedIn && (
           <Nav className = "navbar-links">
-            <Nav.Link href={homeRoute}>Bubble</Nav.Link>
-            <Nav.Link href={homeRoute}>Tests</Nav.Link>
-            <Nav.Link href={homeRoute}>Bike</Nav.Link>
-            <Nav.Link href={homeRoute}>Class</Nav.Link>
-            <Nav.Link href={homeRoute}>Notifications</Nav.Link>
+            <LinkContainer to={homeRoute}>
+              <Nav.Link>Bubble</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={testsRoute}>
+              <Nav.Link>Tests</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={bikeRoute}>
+              <Nav.Link>Bike</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={homeRoute}>
+              <Nav.Link>Class</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={notifications}>
+              <Nav.Link>Notifications</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to={homeRoute}>
+              <Nav.Link>Stats</Nav.Link>
+            </LinkContainer>
           </Nav>
         )}
         {isLoggedIn && (
           <Nav className="ml-auto">
-            <Button className="personButton" variant="outlined" href={editPersonRoute}>{person.name}</Button>
+            <LinkContainer to={personInfoRoute}>
+              <Button className="personButton" variant="outlined">{person.name}</Button>
+            </LinkContainer>
           </Nav>
         )}
       </Navbar.Collapse>

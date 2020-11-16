@@ -40,6 +40,10 @@ export default class PersonService {
     return this.queryService.query(GetPersonById(id));
   };
 
+  getPersonStatusById = async (id: number) => {
+    return this.queryService.query(GetPersonStatusById(id));
+  };
+
   createPerson = async (attributes: any) => {
     const types = new ExpectedValueTypes(expectValues);
     const { properties, values } = insertValues(attributes, types);

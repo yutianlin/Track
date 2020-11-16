@@ -157,3 +157,41 @@ export const listify = (strings: string[], join: string = ", "): string => {
 export const UTCify = (s: string): string => {
   return `${s}::TIMESTAMPTZ`;
 };
+
+export const getSelectionsFromJson = (jsonBody: any): string => {
+  const selections = jsonBody.selection;
+  let parsedSelectionsForQuerying = "";
+  for (let selection of selections) {
+    const table_name = selection.table_name;
+    const filters = selection.filters;
+    for (let filter of filters) {
+      const column = filter.column;
+      const filterValue = filter.filter[0];
+      const key = table_name + "." + column;
+      if (parsedSelectionsForQuerying == "") {
+        parsedSelectionsForQuerying = parsedSelectionsForQuerying + key + " = " + filterValue;
+      } else {
+        parsedSelectionsForQuerying = parsedSelectionsForQuerying + " AND " + key + " = " + filterValue;
+      }
+    }
+  }
+  return parsedSelectionsForQuerying;
+}
+
+export const getProjectionsFromJson = (jsonBody: any): string => {
+  const projections = jsonBody.projection;
+  let parsedProjectionForQuerying = "";
+  for (let projection of projections) {
+    const table_name = projection.table_name;
+    const columns = projection.columns;
+    for (let column of columns) {
+      const key = table_name + "." + column
+      if (parsedProjectionForQuerying == "") {
+        parsedProjectionForQuerying = parsedProjectionForQuerying + key;
+      } else {
+        parsedProjectionForQuerying = parsedProjectionForQuerying + ", " + key;
+      }
+    }
+  }
+  return parsedProjectionForQuerying;
+}

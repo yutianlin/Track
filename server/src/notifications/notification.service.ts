@@ -15,6 +15,10 @@ export default class Faculty {
     return this.queryService.query(GetAllNotifications);
   };
 
+  getAllUnreadNotifications = async () => {
+    return this.queryService.query(GetAllNotifications);
+  };
+
   getNotificationById = async (id: number) => {
     return this.queryService.query(GetNotificationById(id));
   };
