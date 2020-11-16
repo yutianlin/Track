@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-15T23:02:43.711Z
+__export_date: 2020-11-16T20:56:45.792Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -832,7 +832,7 @@ resources:
     _type: request_group
   - _id: req_5100f6e4fb954deb89b5d55c8c90122c
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1604876947723
+    modified: 1605557733439
     created: 1604465461376
     url: http://127.0.0.1:3000/covid_tests
     name: POST /covid_test
@@ -846,7 +846,7 @@ resources:
             "test_time": "2020-10-05T00:00:00.000Z",
             "person_id": 4,
             "covid_testing_centre_id": 5,
-        		"status": false
+        		"status": "NEGATIVE"
         	}
         }
     parameters: []
@@ -1283,6 +1283,37 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: req_e4abc9b5663a4e7abe51d56ca39046ee
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1605558899175
+    created: 1605558880840
+    url: http://127.0.0.1:3000/frequently_used_buildings
+    name: GET /frequently_used_buildings
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1605558880840
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
+    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
+    modified: 1604218653911
+    created: 1604218646679
+    name: join
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1603636443269.875
+    _type: request_group
   - _id: req_bef7d929670f40c796a2c9474c634745
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1605480779037
@@ -1304,16 +1335,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_f743221d1bda45eb959c0dadc45e8ef7
-    parentId: wrk_e188ea2ddca7457a9232b418d63c1e45
-    modified: 1604218653911
-    created: 1604218646679
-    name: join
-    description: ""
-    environment: {}
-    environmentPropertyOrder: null
-    metaSortKey: -1603636443269.875
-    _type: request_group
   - _id: req_fac7825c5db24a97aba3840ec017644d
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
     modified: 1605478660693
