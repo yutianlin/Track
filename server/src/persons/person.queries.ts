@@ -1,9 +1,9 @@
 import {
-  GetAllRowsFromTable, GetRowsWithProjectionSelection,
+  GetAllRowsFromTable, 
+  GetRowsWithProjectionSelection,
   GetRowsWithSelection,
   InsertRow,
   UpdateRow,
-  GetRowsWithProjectionSelection,
   UnionQueries
 } from "../helpers/queries";
 
@@ -53,25 +53,24 @@ export const UpdatePersonsByIdStatusToYellow = (personId: number, startTime: str
   `e1.${E.columns.room_number.getName()}, e1.${E.columns.building_code.getName()}`,
   `e1.${E.columns.entrance_id.getName()} IN (${getAllEntrancesUsedAfterGivenTime})`);
 
-  const getRoomsOfClassesUsed = GetRowsWithProjectionSelection(`${SC.tableName} sc1, ${C.tableName} c1, ${PSC.tableName} psc1`,
-  `DISTINCT c1.${C.columns.room_number.getName()}, c1.${C.columns.building_code.getName()}, sc1.${SC.columns.start_date.getName()}, sc1.${SC.columns.end_date.getName()}`,
-  `sc1.${SC.columns.department.getName()} = c1.${C.columns.department.getName()}
-    AND sc1.${SC.columns.code.getName()} = c1.${C.columns.code.getName()}
-    AND sc1.${SC.columns.section.getName()} = c1.${C.columns.section.getName()}
-    AND sc1.${SC.columns.term.getName()} = c1.${C.columns.term.getName()}
-    AND sc1.${SC.columns.year.getName()} = c1.${C.columns.year.getName()}
-    AND psc1.${PSC.columns.department.getName()} = sc1.${SC.columns.department.getName()}
-    AND psc1.${PSC.columns.code.getName()} = sc1.${SC.columns.code.getName()}
-    AND psc1.${PSC.columns.section.getName()} = sc1.${SC.columns.section.getName()}
-    AND psc1.${PSC.columns.term.getName()} = sc1.${SC.columns.term.getName()}
-    AND psc1.${PSC.columns.year.getName()} = sc1.${SC.columns.year.getName()}
-    AND sc1.${SC.columns.start_date.getName()} <= ${endTime}
-    AND sc1.${SC.columns.end_date.getName()} >= ${startTime}`);
+  const getRoomsOfClassesUsed = GetRowsWithProjectionSelection(
+    `${SC.tableName} sc1
+      INNER JOIN ${C.tableName} c1
+        ON sc1.${SC.columns.scheduled_class_id.getName()} = c1.${C.columns.scheduled_class_id.getName()},
+      INNER JOIN ${PSC.tableName} psc1
+        ON sc1.${SC.columns.scheduled_class_id.getName()} = psc1.${PSC.columns.scheduled_class_id.getName()}`,
+    `DISTINCT c1.${C.columns.room_number.getName()},
+      c1.${C.columns.building_code.getName()},
+      sc1.${SC.columns.start_date.getName()},
+      sc1.${SC.columns.end_date.getName()}`,
+    `psc1.${PSC.columns.person_id.getName()} = ${personId}`
+    // `sc1.${SC.columns.start_date.getName()} <= ${endTime}
+    //   AND sc1.${SC.columns.end_date.getName()} >= ${startTime}`
+  );
 
   // const getContaminatedRooms = UnionQueries(getRoomsOfEntrances, getRoomsOfClasses);
 
   // const getPeopleWithClassesInRooms = GetRowsWithProjectionSelection()
 
-  console.log(getRoomsOfClassesUsed);
   return getRoomsOfClassesUsed;
 };
