@@ -5,7 +5,7 @@ import {scheduledClassService} from "../../services/scheduled_class.service";
 import {Person, selectPersonState} from "../person/person.slice";
 import {useSelector} from "react-redux";
 import {groupBy, flatten} from 'lodash';
-import {Container, Typography} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import ScheduledClassAccordion from "./scheduled_class_accordion";
 import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
 import DebouncedInput from "../common/debounced_input";
@@ -80,7 +80,7 @@ export default function ScheduledClasses() {
   if (Object.keys(enrolledClasses).length === 0) {
     enrolledClassElement = <Typography>You are currently not enrolled in any classes</Typography>
   } else {
-    const allEnrolledClasses = Object.keys(enrolledClasses).map((key, index) => {
+    enrolledClassElement = Object.keys(enrolledClasses).map((key, index) => {
       return <ScheduledClassAccordion
         key = {index}
         classDays={enrolledClasses[key] as ClassDay[]}
@@ -88,13 +88,14 @@ export default function ScheduledClasses() {
         actionButtonLabel="Delete"
         icon={faMinus}/>
     });
-    enrolledClassElement = (
-      <div className = "enrolled-class-container">
-        <h3>Enrolled Classes</h3>
-        {allEnrolledClasses}
-      </div>
-    )
   }
+
+  enrolledClassElement = (
+    <div className = "enrolled-class-container">
+      <h3>Enrolled Classes</h3>
+      {enrolledClassElement}
+    </div>
+  )
 
   let searchResultElement: any;
   if (Object.keys(searchedClasses).length === 0) {
@@ -120,7 +121,7 @@ export default function ScheduledClasses() {
         <DebouncedInput
           fullWidth={true}
           label="Search"
-          placeholder="Search for classes"
+          placeholder="Search for classes by course id"
           onDebounce={onSearch}
         />
         {searchResultElement}
