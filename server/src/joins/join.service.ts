@@ -12,7 +12,7 @@ import {
   GetLargestScheduledClass,
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
-  GetScheduledClassDayInfo
+  GetScheduledClassDayInfo, GetScheduledClassDayInfoByPersonId
 } from "./join.queries";
 import {getProjectionsFromJson, getSelectionsFromJson} from "../helpers/helpers";
 
@@ -49,6 +49,10 @@ export default class Join {
 
   getScheduledClassDayInfo = (scheduled_class_id: string) => {
     return this.queryService.query(GetScheduledClassDayInfo(scheduled_class_id));
+  }
+
+  getScheduledClassDayInfoByPersonId = (person_id: string) => {
+    return this.queryService.query(GetScheduledClassDayInfoByPersonId(person_id));
   }
 
   getAllCovidTestingCentreInfos = () => {

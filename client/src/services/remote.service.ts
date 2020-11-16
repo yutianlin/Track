@@ -22,4 +22,8 @@ export class RemoteService {
   public get(url: string): Promise<AxiosResponse> {
     return axios.get(url);
   }
+
+  public delete(url: string): Promise<AxiosResponse> {
+    return axios.delete(url);
+  }
 }

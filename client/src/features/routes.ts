@@ -5,3 +5,5 @@ export const personInfoRoute = "/personInfo";
 export const testsRoute = "/tests";
 export const editTestRoute = "/editTest";
 export const createTestRoute = "/createTest";
+export const notificationsRoute = "/notifications";
+export const scheduledClassesRoute = "/scheduled_classes";

@@ -18,3 +18,12 @@ export function cloneAndUpdateAttribute(originalObj: any, key: string, value: an
   };
   return {...originalObj, ...partialObj};
 }
+
+export function formatAddress(obj: any): string {
+  const postalAddress: string = `${obj.city} ${obj.province} ${obj.postal_code}`;
+  return `${obj.building_number} ${obj.street_number ?? obj.street}\n${postalAddress}`
+}
+
+export function capitalizeFirstLetter(str: string): string {
+  return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+}
