@@ -1,6 +1,5 @@
 import {Person} from "../features/person/person.slice";
 import {isStringEmpty} from "../util";
-import {toRequestJson} from "./conversions.util";
 
 export class PersonConversions {
   private static CREATE_KEYS_TO_EXCLUDE = new Set(["job_title"]);
@@ -12,7 +11,7 @@ export class PersonConversions {
   private static copyAndFilterPerson(person: Person, keysToExclude: Set<string>): any {
     const personCopy: any =  {...person};
     PersonConversions.deleteEmptyFieldsAndKeys(keysToExclude, personCopy);
-    return toRequestJson(personCopy);
+    return personCopy;
   }
 
   private static deleteEmptyFieldsAndKeys(keysToDelete: Set<string>, person: any): void {
@@ -24,15 +23,15 @@ export class PersonConversions {
   }
 
   public static toCreateFacultyRequest(person: Person): any {
-    return toRequestJson({
+    return {
       "faculty_id": person.faculty_id,
       "job_title": person.job_title
-    });
+    };
   }
 
   public static toUpdateFacultyRequest(person: Person): any {
-    return toRequestJson({
+    return {
       "job_title": person.job_title
-    });
+    };
   }
 }

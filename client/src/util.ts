@@ -18,3 +18,8 @@ export function cloneAndUpdateAttribute(originalObj: any, key: string, value: an
   };
   return {...originalObj, ...partialObj};
 }
+
+export function formatAddress(obj: any): string {
+  const postalAddress: string = `${obj.city} ${obj.province} ${obj.postal_code}`;
+  return `${obj.building_number} ${obj.street_number ?? obj.street}\n${postalAddress}`
+}

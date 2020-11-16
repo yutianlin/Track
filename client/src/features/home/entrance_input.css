@@ -1,0 +1,29 @@
+.entrance-input-container {
+    display: flex !important;
+    flex-direction: column;
+    margin-top: 3vh !important;
+}
+
+@media only screen and (max-width: 700px) {
+    .entrance-input-container {
+        width: 70vw !important;
+    }
+}
+
+@media only screen and (min-width: 699px) {
+    .entrance-input-container {
+        width: 20vw !important;
+    }
+}
+
+.entrance-info-container-with-button {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.entrance-info-container {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+}

@@ -14,11 +14,14 @@ import {isStringEmpty} from "../../util";
 import {personService} from "../../services/person.service";
 import {CookieService} from "../../services/cookie.service";
 import {formStyles} from "../form.styles";
+import {useHistory} from "react-router";
+import {personInfoRoute} from "../routes";
 
 export default function PersonForm() {
   const [remoteError, setRemoteError] = useState("");
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const history = useHistory();
   const personState = useSelector(selectPersonState);
   const classes = formStyles();
   const {register, handleSubmit, control, watch, errors} = useForm({
@@ -45,6 +48,7 @@ export default function PersonForm() {
       } else {
         const updatedPerson = await personService.updatePerson(personState.person_id as number, person);
         dispatch(setPerson(updatedPerson));
+        history.push(personInfoRoute);
       }
     } catch (error) {
       setRemoteError(error.message);

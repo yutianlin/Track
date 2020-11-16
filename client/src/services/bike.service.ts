@@ -5,11 +5,6 @@ class PersonService extends RemoteService {
     const response = await this.get(`/bikes`);
     return response.data;
   }
-
-  public async rentBike(bikeId: string): Promise<any[]> {
-    const response = await this.put(`/bikes/rent/${bikeId}`, {});
-    return response.data;
-  }
 }
 
 export const bikeService: PersonService = new PersonService();

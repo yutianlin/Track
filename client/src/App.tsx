@@ -12,7 +12,7 @@ import {
   createTestRoute,
   editPersonRoute,
   editTestRoute,
-  homeRoute,
+  homeRoute, notifications,
   personInfoRoute,
   testsRoute
 } from "./features/routes";
@@ -22,6 +22,9 @@ import PersonCard from "./features/person/person.card";
 import {fetchCovidTestingCentres} from "./features/covid_tests/covid_testing_centre.slice";
 import CovidTestLandingPage from "./features/covid_tests/covid_test_landing_page";
 import CovidTestForm from "./features/covid_tests/covid_test.form";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import NotificationsPage from "./features/notification/notifications_page";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -42,6 +45,17 @@ export default function App() {
   return (
     <div>
       <NavBar/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {!isAppLoading && !isLoggedIn && <PersonForm/>}
       {!isAppLoading && isLoggedIn && (
         <Switch>
@@ -51,6 +65,7 @@ export default function App() {
           <Route path = {bikeRoute} component={Bike}/>
           <Route path = {personInfoRoute} component={PersonCard}/>
           <Route path = {testsRoute} component={CovidTestLandingPage}/>
+          <Route path = {notifications} component={NotificationsPage}/>
           <Route path = {createTestRoute} render={()=> <CovidTestForm forCreation={true}/>}/>
           <Route path = {editTestRoute} render={()=> <CovidTestForm forCreation={false}/>}/>
           <Redirect to={homeRoute}/>
