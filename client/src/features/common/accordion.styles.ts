@@ -23,5 +23,9 @@ export const accordionStyles = makeStyles((theme) => ({
   notificationBody: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  actionContainer: {
+    display: 'flex',
+    marginLeft: 'auto'
   }
 }));

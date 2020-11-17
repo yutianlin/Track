@@ -7,6 +7,7 @@ interface DebouncedInputProps {
   placeholder: string,
   debounceTime?: number,
   label: string,
+  style?: any,
   fullWidth?: boolean
 }
 
@@ -16,6 +17,7 @@ export default function DebouncedInput(
     placeholder,
     debounceTime = 300,
     label = "",
+    style = {},
     fullWidth = false
   }: DebouncedInputProps) {
   const onInputValueChange = debounce(debounceTime, (event) => {
@@ -26,6 +28,7 @@ export default function DebouncedInput(
     <TextField
       placeholder={placeholder}
       label={label}
+      style={style}
       fullWidth={fullWidth}
       onChange={onInputValueChange}
       variant="outlined"/>

@@ -8,7 +8,7 @@ import NavBar from "./features/nav/navbar";
 import {Redirect, Route, Switch} from "react-router";
 import Home from "./features/home/home";
 import {
-  bikeRoute,
+  bikeRoute, bubbleLandingRoute, createBubbleRoute,
   createTestRoute,
   editPersonRoute,
   editTestRoute,
@@ -26,6 +26,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotificationsPage from "./features/notification/notifications_page";
 import ScheduledClassesPage from "./features/scheduled_class/scheduled_classes";
+import BubblePage from "./features/bubble/bubble_page";
+import BubbleForm from "./features/bubble/bubble.form";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -68,6 +70,8 @@ export default function App() {
           <Route path = {testsRoute} component={CovidTestLandingPage}/>
           <Route path = {notificationsRoute} component={NotificationsPage}/>
           <Route path = {scheduledClassesRoute} component={ScheduledClassesPage}/>
+          <Route path = {bubbleLandingRoute} component={BubblePage}/>
+          <Route path = {createBubbleRoute} component={BubbleForm}/>
           <Route path = {createTestRoute} render={()=> <CovidTestForm forCreation={true}/>}/>
           <Route path = {editTestRoute} render={()=> <CovidTestForm forCreation={false}/>}/>
           <Redirect to={homeRoute}/>

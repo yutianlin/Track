@@ -157,15 +157,11 @@ INSERT INTO person(name, email, phone_number, in_app_notification, student_id, f
     VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, 987654321127);
 
 
--- Jake in The Bois
+-- Jake in Project Group 44
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(1,1);
 
--- Chris in The Bois
-INSERT INTO bubble_person(person_id, bubble_id)
-    VALUES(4,1);
-
--- Richard in The Bois
+-- Richard in Project Group 44
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(5,1);
 

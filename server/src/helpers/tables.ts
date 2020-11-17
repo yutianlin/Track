@@ -29,6 +29,7 @@ export const BUILDING_TABLE = {
   tableName: "ubc_building",
   columns: {
     building_code: new ColumnType("building_code", "string", false),
+    name: new ColumnType("name", "string", false)
   },
 } as const;
 
@@ -50,6 +51,7 @@ export const ROOM_TABLE = {
       false
     ),
     room_number: new ColumnType("room_number", "string", false),
+    room_type: new ColumnType("room_type", "string", false)
   },
 } as const;
 
