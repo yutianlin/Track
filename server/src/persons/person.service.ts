@@ -3,7 +3,8 @@ import {
   GetAllPersons,
   GetPersonById,
   CreatePerson,
-  UpdatePersonById, GetPersonStatusById,
+  UpdatePersonById,
+  GetPersonStatusById,
 } from "./person.queries";
 import { insertValues, setValues } from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
@@ -54,7 +55,7 @@ export default class PersonService {
 
   updatePersonStatusToPositive = async (id: number) => {
     await this.queryService.query(
-      UpdatePersonById(`${columns.person_status.getName()} = true`, id)
+      UpdatePersonById(`${columns.person_status.getName()} = 'POSITIVE'`, id)
     );
   };
 }

@@ -169,14 +169,16 @@ export const getSelectionsFromJson = (jsonBody: any): string => {
       const filterValue = filter.filter[0];
       const key = table_name + "." + column;
       if (parsedSelectionsForQuerying == "") {
-        parsedSelectionsForQuerying = parsedSelectionsForQuerying + key + " = " + filterValue;
+        parsedSelectionsForQuerying =
+          parsedSelectionsForQuerying + key + " = " + filterValue;
       } else {
-        parsedSelectionsForQuerying = parsedSelectionsForQuerying + " AND " + key + " = " + filterValue;
+        parsedSelectionsForQuerying =
+          parsedSelectionsForQuerying + " AND " + key + " = " + filterValue;
       }
     }
   }
   return parsedSelectionsForQuerying;
-}
+};
 
 export const getProjectionsFromJson = (jsonBody: any): string => {
   const projections = jsonBody.projection;
@@ -185,7 +187,7 @@ export const getProjectionsFromJson = (jsonBody: any): string => {
     const table_name = projection.table_name;
     const columns = projection.columns;
     for (let column of columns) {
-      const key = table_name + "." + column
+      const key = table_name + "." + column;
       if (parsedProjectionForQuerying == "") {
         parsedProjectionForQuerying = parsedProjectionForQuerying + key;
       } else {
@@ -194,4 +196,4 @@ export const getProjectionsFromJson = (jsonBody: any): string => {
     }
   }
   return parsedProjectionForQuerying;
-}
+};

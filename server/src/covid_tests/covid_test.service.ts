@@ -36,7 +36,7 @@ export default class CovidTest {
       attributes,
       new ExpectedValueTypes([columns.status], true)
     ).values;
-    if (status.length === 1 && status[0] === true) {
+    if (status.length === 1 && status[0] === "POSITIVE") {
       await this.testSetToTrueTriggers(result[0][columns.person_id.getName()]);
     }
     return result;
@@ -61,7 +61,7 @@ export default class CovidTest {
       attributes,
       new ExpectedValueTypes([columns.status], true)
     ).values;
-    if (status.length === 1 && status[0] === true) {
+    if (status.length === 1 && status[0] === "POSITIVE") {
       await this.testSetToTrueTriggers(result[0][columns.person_id.getName()]);
     }
     return result;
