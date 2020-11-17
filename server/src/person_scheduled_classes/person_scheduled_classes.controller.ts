@@ -41,7 +41,7 @@ module.exports = function (app: any) {
       const scheduled_class_id = request.params.scheduled_class_id;
       const payload = {
         person_id: person_id,
-        scheduled_class_id: scheduled_class_id
+        scheduled_class_id: scheduled_class_id,
       };
       try {
         response.json(

@@ -10,11 +10,12 @@ import {
   GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
   GetFrequentlyUsedBuilding,
-  GetLargestScheduledClass, GetPersonAllBubbles,
+  GetLargestScheduledClass,
+  GetPersonAllBubbles,
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo,
-  GetScheduledClassDayInfoByPersonId
+  GetScheduledClassDayInfoByPersonId,
 } from "./join.queries";
 import {
   getProjectionsFromJson,
@@ -61,8 +62,10 @@ export default class Join {
   };
 
   getScheduledClassDayInfoByPersonId = (person_id: string) => {
-    return this.queryService.query(GetScheduledClassDayInfoByPersonId(person_id));
-  }
+    return this.queryService.query(
+      GetScheduledClassDayInfoByPersonId(person_id)
+    );
+  };
 
   getAllCovidTestingCentreInfos = () => {
     return this.queryService.query(GetAllCovidTestingCentreInfos());
@@ -96,5 +99,5 @@ export default class Join {
 
   getPersonAllBubbles = () => {
     return this.queryService.query(GetPersonAllBubbles());
-  }
+  };
 }
