@@ -14,6 +14,7 @@ import {
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo,
+  GetScheduledClassDayInfoByPersonId
 } from "./join.queries";
 import {
   getProjectionsFromJson,
@@ -58,6 +59,10 @@ export default class Join {
       GetScheduledClassDayInfo(scheduled_class_id)
     );
   };
+
+  getScheduledClassDayInfoByPersonId = (person_id: string) => {
+    return this.queryService.query(GetScheduledClassDayInfoByPersonId(person_id));
+  }
 
   getAllCovidTestingCentreInfos = () => {
     return this.queryService.query(GetAllCovidTestingCentreInfos());

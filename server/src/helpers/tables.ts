@@ -115,8 +115,8 @@ export const SCHEDULED_CLASS_TABLE = {
   tableName: "scheduled_class",
   columns: {
     scheduled_class_id: new ColumnType("scheduled_class_id", "string", false),
-    start_date: new ColumnType("start_date", "date", false),
-    end_date: new ColumnType("end_date", "date", false),
+    start_day: new ColumnType("start_day", "date", false),
+    end_day: new ColumnType("end_day", "date", false),
     activity: new ColumnType("activity", "string", false),
     class_name: new ColumnType("class_name", "string", false),
   },
@@ -126,7 +126,7 @@ export const CLASS_DAY_TABLE = {
   tableName: "class_day",
   columns: {
     scheduled_class_id: new ColumnType("scheduled_class_id", "string", false),
-    class_day_id: new ColumnType("year", "string", false),
+    class_day_id: new ColumnType("class_day_id", "string", false),
     day_of_week: new ColumnType("day_of_week", "string", false),
     room_number: new ColumnType("room_number", "string", true),
     building_code: new ColumnType("building_code", "string", true),

@@ -40,5 +40,5 @@ export default function NotificationAccordion({ notificationModels } : Notificat
         </Container>
       </AccordionDetails>
     </Accordion>
-  )
+  );
 }

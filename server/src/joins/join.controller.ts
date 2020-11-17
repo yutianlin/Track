@@ -105,4 +105,9 @@ module.exports = function (app: any) {
   app.get("/frequently_used_buildings", async (request: any, response: any) => {
     response.json(await joinService.getFrequentlyUsedBuildings());
   });
+
+  app.get("/scheduled_class_info/person_id/:person_id", async (request: any, response: any) => {
+    const person_id = request.params.person_id;
+    response.json(await joinService.getScheduledClassDayInfoByPersonId(person_id));
+  });
 };
