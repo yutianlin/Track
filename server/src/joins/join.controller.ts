@@ -110,4 +110,8 @@ module.exports = function (app: any) {
     const person_id = request.params.person_id;
     response.json(await joinService.getScheduledClassDayInfoByPersonId(person_id));
   });
+
+  app.get("/person_in_all_bubbles", async (request: any, response: any) => {
+      response.json(await joinService.getPersonAllBubbles());
+    });
 };

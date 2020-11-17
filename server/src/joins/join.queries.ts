@@ -310,7 +310,7 @@ export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
 export const GetFrequentlyUsedBuilding = () =>
   // Could also add a having, would just need to determine some threshold. Alternatively we could just display top 3 w/ some basic frontend filtering
   GetRowsWithProjectionGroupBy(
-    `${ENTRANCE.columns.building_code.getName()},
+    `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()},
                   COUNT(*)`,
     `${ENTRANCE.tableName}
         LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName}
@@ -321,3 +321,17 @@ export const GetFrequentlyUsedBuilding = () =>
     }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
     `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
   );
+
+
+export const GetPersonAllBubbles = () =>
+    GetRowsWithProjectionSelection(
+        `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
+                   ${PERSON.tableName}.${PERSON.columns.name.getName()}`,
+        `${PERSON.tableName}`,
+        `NOT EXISTS ((SELECT ${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}
+                              FROM ${BUBBLE.tableName})
+                              EXCEPT
+                              (SELECT ${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()}
+                               FROM ${BUBBLE_PERSON.tableName}
+                               WHERE ${PERSON.tableName}.${PERSON.columns.person_id.getName()} = ${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()}))`
+    )

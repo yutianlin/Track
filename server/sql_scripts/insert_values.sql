@@ -173,9 +173,22 @@ INSERT INTO bubble_person(person_id, bubble_id)
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(1,3);
 
--- Chris in ubc random club
+-- Chris in all bubbles
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,1);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,2);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,3);
+
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(4,4);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,5);
 
 
 INSERT INTO shared_bike(shared_bike_id, is_rentable)
