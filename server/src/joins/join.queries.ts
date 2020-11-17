@@ -370,3 +370,26 @@ export const GetPersonAllBubbles = () =>
       BUBBLE_PERSON.tableName
     }.${BUBBLE_PERSON.columns.person_id.getName()}))`
   );
+
+export const GetPersonAllBubblesBySearchTerm = (searchTerm: string) =>
+  GetRowsWithProjectionSelection(
+    `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
+                   ${PERSON.tableName}.${PERSON.columns.name.getName()}`,
+    `${PERSON.tableName}`,
+    `NOT EXISTS ((SELECT ${
+      BUBBLE.tableName
+    }.${BUBBLE.columns.bubble_id.getName()}
+                              FROM ${BUBBLE.tableName}
+                              WHERE ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
+                              OR ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%')
+                              EXCEPT
+                              (SELECT ${
+      BUBBLE_PERSON.tableName
+    }.${BUBBLE_PERSON.columns.bubble_id.getName()}
+                               FROM ${BUBBLE_PERSON.tableName}
+                               WHERE ${
+      PERSON.tableName
+    }.${PERSON.columns.person_id.getName()} = ${
+      BUBBLE_PERSON.tableName
+    }.${BUBBLE_PERSON.columns.person_id.getName()}))`
+  );

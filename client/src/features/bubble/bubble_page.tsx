@@ -9,10 +9,12 @@ import {bubbleService} from "../../services/bubble.service";
 import BubbleAccordionContent from "./bubble_accordion_content";
 import {useHistory} from "react-router";
 import {createBubbleRoute} from "../routes";
+import {SimplifiedPerson} from "../../model/simplified_person";
 
 export default function BubblePage() {
   const [usersBubbles, setUsersBubbles]: [BubbleInfo[], any] = useState([]);
   const [searchedBubbles, setSearchedBubbles]: [BubbleInfo[], any] = useState([]);
+  const [allPeopleText, setAllPeopleText]: [string, any] = useState("");
   const [searchTerm, setSearchTerm]: [string, any] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSearchLoading, setIsSearchLoading] = useState(false);
@@ -40,11 +42,31 @@ export default function BubblePage() {
     setSearchedBubbles(searchedClassesExcludingWhitelist);
   }
 
+  const setAllPeople = (newSearchedClasses: BubbleInfo[], allPeopleInSearched: SimplifiedPerson[]) => {
+    if (newSearchedClasses.length > 0) {
+      if (allPeopleInSearched.length === 0) {
+        setAllPeopleText("There is no person that is a member of all the searched bubbles");
+      } else if (allPeopleInSearched.length === 1) {
+        setAllPeopleText(`${allPeopleInSearched[0].name} is a member of all of the searched bubbles`);
+      } else {
+        const lastPerson = allPeopleInSearched.pop() as SimplifiedPerson;
+        setAllPeopleText(`${allPeopleInSearched.map(_ => _.name).join(", ")} and ${lastPerson.name} are members of all the searched bubbles`);
+      }
+    } else {
+      setAllPeopleText("");
+    }
+  }
+
   const onSearch = async (newSearchTerm: string, whitelistedBubbles: BubbleInfo[] = usersBubbles) => {
     setSearchTerm(newSearchTerm);
     if (newSearchTerm.length > 0) {
       setIsSearchLoading(true);
-      const newSearchedClasses = await bubbleService.getBubbleInfosBySearchTerm(newSearchTerm);
+      const [newSearchedClasses, allPeople] = await Promise.all([
+        bubbleService.getBubbleInfosBySearchTerm(newSearchTerm),
+        bubbleService.getAllPeopleInBubbleBySearchTerm(newSearchTerm)
+      ]);
+
+      setAllPeople(newSearchedClasses, allPeople);
       setIsSearchLoading(false);
       setSearchedBubblesWithoutWhitelist(newSearchedClasses, whitelistedBubbles);
     } else {
@@ -80,7 +102,7 @@ export default function BubblePage() {
     actionButtonLabel: string,
     onActionClick: any): any => {
     return (<ActionAccordion
-      key = {bubble.bubble_id}
+      key={bubble.bubble_id}
       heading={bubble.title}
       id={bubble.bubble_id}
       onActionClick={onActionClick}
@@ -100,10 +122,10 @@ export default function BubblePage() {
   }
 
   userBubbleElement = (
-    <div className = "enrolled-class-container">
+    <div className="enrolled-class-container">
       <h3>Your Bubbles</h3>
       <Button
-        variant = "outlined"
+        variant="outlined"
         style={{marginBottom: '2vh'}}
         onClick={() => history.push(createBubbleRoute)}>
         Create a bubble
@@ -118,9 +140,12 @@ export default function BubblePage() {
       searchResultElement = <Typography>No bubbles were found by the search term.</Typography>
     }
   } else {
-    searchResultElement = searchedBubbles.map(bubble => {
-      return createClassAccordion(bubble, "Add", onAdd);
-    });
+    searchResultElement = (<div>
+      <Typography>{allPeopleText}</Typography>
+      {searchedBubbles.map(bubble => {
+        return createClassAccordion(bubble, "Add", onAdd);
+      })}
+    </div>)
   }
 
   return (

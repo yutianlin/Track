@@ -1,10 +1,16 @@
 import {RemoteService} from "./remote.service";
 import {BubbleInfo} from "../model/bubble_info";
 import {Bubble} from "../model/bubble";
+import {SimplifiedPerson} from "../model/simplified_person";
 
 class BubbleService extends RemoteService {
   public async getBubbleInfosBySearchTerm(searchTerm: string): Promise<BubbleInfo[]> {
     const response = await this.get(`/bubble_count_by_term/${encodeURI(searchTerm)}`);
+    return response.data;
+  }
+
+  public async getAllPeopleInBubbleBySearchTerm(searchTerm: string): Promise<SimplifiedPerson[]> {
+    const response = await this.get(`/persons_in_all_bubbles_by_term/${encodeURI(searchTerm)}`);
     return response.data;
   }
 
