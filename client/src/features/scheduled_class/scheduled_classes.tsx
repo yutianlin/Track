@@ -128,6 +128,7 @@ export default function ScheduledClasses() {
       <div className="search-class-container">
         <h3>Enroll in Classes</h3>
         <DebouncedInput
+          style={{marginBottom: '2vh'}}
           fullWidth={true}
           label="Search"
           placeholder="Search for classes by course id"

@@ -129,6 +129,7 @@ export default function BubblePage() {
       <div className="search-class-container">
         <h3>Join Bubbles</h3>
         <DebouncedInput
+          style={{marginBottom: '2vh'}}
           fullWidth={true}
           label="Search"
           placeholder="Search for bubbles"

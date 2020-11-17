@@ -244,7 +244,7 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
     `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
-                  COUNT(*)`,
+                  COUNT(${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()})`,
     `${BUBBLE.tableName}
         LEFT JOIN ${BUBBLE_PERSON.tableName}
         ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = ${
@@ -264,7 +264,7 @@ export const GetBubbleCountByPersonId = (personId: number) =>
     `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
-                  COUNT(*)`,
+                  COUNT(BP1.${BUBBLE_PERSON.columns.person_id.getName()})`,
     `${BUBBLE.tableName}
         LEFT JOIN ${BUBBLE_PERSON.tableName} BP1
         ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = BP1.${BUBBLE_PERSON.columns.bubble_id.getName()}`,

@@ -16,7 +16,7 @@ import {bubbleLandingRoute} from "../routes";
 export default function BubbleForm() {
   const personState: Person = useSelector(selectPersonState);
   const classes = formStyles();
-  const {register, handleSubmit, control, errors} = useForm({
+  const {register, handleSubmit, errors} = useForm({
     resolver: joiResolver(createBubbleSchema)
   });
   const history = useHistory();
@@ -31,6 +31,7 @@ export default function BubbleForm() {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.container}>
+        <h3>Create a Bubble</h3>
         <form className={classes.form} noValidate
               onSubmit={handleSubmit(onSubmit)}>
           <TextField
@@ -38,6 +39,7 @@ export default function BubbleForm() {
             margin="normal"
             inputRef={register}
             required
+            autoComplete="off"
             fullWidth
             label="Title"
             name="title"
