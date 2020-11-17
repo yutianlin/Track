@@ -100,7 +100,7 @@ export default function ScheduledClasses() {
   let searchResultElement: any;
   if (Object.keys(searchedClasses).length === 0) {
     if (searchTerm !== "" && !isSearchLoading) {
-      searchResultElement = <Typography>No classes were found by the search term.</Typography>
+      searchResultElement = <Typography>No unenrolled classes were found by the search term.</Typography>
     }
   } else {
     searchResultElement = Object.keys(searchedClasses).map((key, index) => {

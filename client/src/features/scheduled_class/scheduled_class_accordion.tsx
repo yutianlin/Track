@@ -1,6 +1,6 @@
 import {ClassDay} from "../../model/class_day";
 import React from "react";
-import {capitalizeFirstLetter, formatMoment} from "../../util";
+import {capitalize, formatMoment} from "../../util";
 import {makeStyles} from "@material-ui/core/styles";
 import {accordionStyles} from "../common/accordion.styles";
 import {Accordion, AccordionDetails, AccordionSummary, Button, Container} from "@material-ui/core";
@@ -39,7 +39,7 @@ export default function ScheduledClassAccordion({classDays, onActionClick, actio
     return (
       <div className = {dayClasses.dayContainer}>
         <Typography color = "textSecondary">
-          Day: {`${capitalizeFirstLetter(classDay.day_of_week)}`}
+          Day: {`${capitalize(classDay.day_of_week)}`}
         </Typography>
         <Typography color = "textSecondary">
           Room: {`${classDay.building_code} ${classDay.room_number}`}
@@ -66,7 +66,7 @@ export default function ScheduledClassAccordion({classDays, onActionClick, actio
           {classId}
         </Typography>
         <Typography className={accordionClasses.secondaryHeading}>
-          {capitalizeFirstLetter(classDays[0].activity)}
+          {capitalize(classDays[0].activity)}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
