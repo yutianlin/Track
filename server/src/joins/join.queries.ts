@@ -261,19 +261,18 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
 
 export const GetBubbleCountByPersonId = (personId: number) =>
   GetRowsWithProjectionSelectionGroupBy(
-    `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
-                  ${PERSON.tableName}.${PERSON.columns.name.getName()},
+    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
+                  ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
+                  ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
                   COUNT(*)`,
-    `${PERSON.tableName}
-        LEFT JOIN ${BUBBLE_PERSON.tableName}
-        ON ${PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()} = ${
-      BUBBLE_PERSON.tableName
-    }.${BUBBLE_PERSON.columns.person_id.getName()}`,
-    `${
-      BUBBLE_PERSON.tableName
-    }.${BUBBLE_PERSON.columns.person_id.getName()} = ${personId}`,
-    `${PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()}`
-  );
+    `${BUBBLE.tableName}
+        LEFT JOIN ${BUBBLE_PERSON.tableName} BP1
+        ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = BP1.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
+    `BP1.${BUBBLE_PERSON.columns.bubble_id.getName()} IN (
+    SELECT BP2.${BUBBLE_PERSON.columns.bubble_id.getName()} 
+    FROM ${BUBBLE_PERSON.tableName} BP2
+    WHERE BP2.${BUBBLE_PERSON.columns.person_id.getName()} = ${personId})`,
+    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`);
 
 export const GetLargestScheduledClass = () =>
   GetRowsWithProjectionGroupByHaving(

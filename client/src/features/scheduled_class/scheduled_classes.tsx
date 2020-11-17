@@ -6,10 +6,10 @@ import {Person, selectPersonState} from "../person/person.slice";
 import {useSelector} from "react-redux";
 import {groupBy, flatten} from 'lodash';
 import {Typography} from "@material-ui/core";
-import ScheduledClassAccordion from "./scheduled_class_accordion";
-import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
+import ActionAccordion from "../common/action_accordion";
 import DebouncedInput from "../common/debounced_input";
 import "./scheduled_class.css";
+import ScheduledClassAccordionContent from "./scheduled_class_accordion_content";
 
 export default function ScheduledClasses() {
   const [enrolledClasses, setEnrolledClasses]: [Dictionary<ClassDay[]>, any] = useState({});
@@ -41,13 +41,13 @@ export default function ScheduledClasses() {
     setSearchedClasses(groupBy(searchedClassesWithoutEnrolled, "scheduled_class_id"));
   }
 
-  const onSearch = async (newSearchTerm: string) => {
+  const onSearch = async (newSearchTerm: string, whitelistedClasses = enrolledClasses) => {
     setSearchTerm(newSearchTerm);
     if (newSearchTerm.length > 0) {
       setIsSearchLoading(true);
       const newSearchedClasses = await scheduledClassService.getScheduledClassesByQueryString(newSearchTerm);
       setIsSearchLoading(false);
-      setSearchedClassesWithoutEnrolled(newSearchedClasses, enrolledClasses);
+      setSearchedClassesWithoutEnrolled(newSearchedClasses, whitelistedClasses);
     } else {
       setSearchedClasses({});
     }
@@ -57,7 +57,7 @@ export default function ScheduledClasses() {
                                      scheduled_class_id: string): Promise<void> => {
     await endpointFn(personState.person_id as number, scheduled_class_id);
     const newEnrolledClasses = await refreshEnrolledClasses();
-    setSearchedClassesWithoutEnrolled(flatten(Object.values(searchedClasses)) as ClassDay[], newEnrolledClasses);
+    await onSearch(searchTerm, newEnrolledClasses);
   }
 
   const onAdd = async (scheduled_class_id: string) => {
@@ -76,17 +76,31 @@ export default function ScheduledClasses() {
     return <div/>
   }
 
+  const createClassAccordion = (
+    classDayDict: Dictionary<ClassDay[]>,
+    key: string,
+    index: number,
+    actionButtonLabel: string,
+    onActionClick: any): any => {
+    const classDays: ClassDay[] = classDayDict[key] as ClassDay[];
+    return <ActionAccordion
+      key = {index}
+      heading={classDays[0].scheduled_class_id}
+      id={classDays[0].scheduled_class_id}
+      secondaryHeading={classDays[0].activity}
+      onActionClick={onActionClick}
+      actionButtonLabel={actionButtonLabel}>
+      <ScheduledClassAccordionContent classDays={classDays}/>
+    </ActionAccordion>
+  }
+
+
   let enrolledClassElement: any;
   if (Object.keys(enrolledClasses).length === 0) {
     enrolledClassElement = <Typography>You are currently not enrolled in any classes</Typography>
   } else {
     enrolledClassElement = Object.keys(enrolledClasses).map((key, index) => {
-      return <ScheduledClassAccordion
-        key = {index}
-        classDays={enrolledClasses[key] as ClassDay[]}
-        onActionClick={onDelete}
-        actionButtonLabel="Delete"
-        icon={faMinus}/>
+      return createClassAccordion(enrolledClasses, key, index, "Remove", onDelete);
     });
   }
 
@@ -100,16 +114,11 @@ export default function ScheduledClasses() {
   let searchResultElement: any;
   if (Object.keys(searchedClasses).length === 0) {
     if (searchTerm !== "" && !isSearchLoading) {
-      searchResultElement = <Typography>No unenrolled classes were found by the search term.</Typography>
+      searchResultElement = <Typography>No classes were found by the search term.</Typography>
     }
   } else {
     searchResultElement = Object.keys(searchedClasses).map((key, index) => {
-      return <ScheduledClassAccordion
-        key={index}
-        classDays={searchedClasses[key] as ClassDay[]}
-        onActionClick={onAdd}
-        actionButtonLabel="Add"
-        icon={faPlus}/>
+      return createClassAccordion(searchedClasses, key, index, "Add", onAdd);
     });
   }
 

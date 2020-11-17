@@ -69,7 +69,7 @@ export default function EntranceInput() {
            Room Type: {capitalizeAndRemoveUnderscores(entranceDefined.room_type)}
          </Typography>
          <Typography>
-           Entrance Id: {entranceDefined.entrance_id}
+           Entrance Number: {entranceDefined.entrance_id}
          </Typography>
        </div>
        {showCheckIn && <Button

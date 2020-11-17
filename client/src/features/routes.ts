@@ -7,3 +7,5 @@ export const editTestRoute = "/editTest";
 export const createTestRoute = "/createTest";
 export const notificationsRoute = "/notifications";
 export const scheduledClassesRoute = "/scheduled_classes";
+export const bubbleLandingRoute = "/bubble_landing";
+export const createBubbleRoute = "/create_bubble";
