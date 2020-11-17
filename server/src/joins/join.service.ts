@@ -5,7 +5,7 @@ import {
   GetAllCovidTestingCentreInfos,
   GetAllPersonBikeInfoById,
   GetAllPersonNotificationInfoById,
-  GetAllUnreadNotificationsByPersonId,
+  GetAllUnreadNotificationsByPersonId, GetBubbleCountByPersonId,
   GetBubbleCountBySearchTerm,
   GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
@@ -81,6 +81,10 @@ export default class Join {
 
   getBubbleCountBySearchTerm = (searchTerm: string) => {
     return this.queryService.query(GetBubbleCountBySearchTerm(searchTerm));
+  };
+
+  getBubbleCountByPersonId= (personId: number) => {
+    return this.queryService.query(GetBubbleCountByPersonId(personId));
   };
 
   getLargestScheduledClass = () => {

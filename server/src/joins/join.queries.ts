@@ -257,12 +257,25 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
     }.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
                  OR ${
                    BUBBLE.tableName
-                 }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
-                 OR ${
-                   BUBBLE_PERSON.tableName
-                 }.${BUBBLE_PERSON.columns.person_id.getName()} ILIKE '%${searchTerm}%`,
+                 }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
     `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
   );
+
+export const GetBubbleCountByPersonId = (personId: number) =>
+    GetRowsWithProjectionSelectionGroupBy(
+        `${PERSON.tableName}.${PERSON.columns.person_id.getName()},
+                  ${PERSON.tableName}.${PERSON.columns.name.getName()},
+                  COUNT(*)`,
+        `${PERSON.tableName}
+        LEFT JOIN ${BUBBLE_PERSON.tableName}
+        ON ${PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()} = ${
+            BUBBLE_PERSON.tableName
+        }.${BUBBLE_PERSON.columns.person_id.getName()}`,
+        `${
+            BUBBLE_PERSON.tableName
+        }.${BUBBLE_PERSON.columns.person_id.getName()} = ${personId}`,
+        `${PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()}`
+    );
 
 export const GetLargestScheduledClass = () =>
   GetRowsWithProjectionGroupByHaving(

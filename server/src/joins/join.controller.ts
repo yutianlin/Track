@@ -81,12 +81,20 @@ module.exports = function (app: any) {
   );
 
   app.get(
-    "/bubble_count_by_term/:searchTerm",
+    "/bubble_count_by_id/:personId",
     async (request: any, response: any) => {
-      const searchTerm = request.params.searchTerm;
-      response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
+      const personId = request.params.personId;
+      response.json(await joinService.getBubbleCountByPersonId(personId));
     }
   );
+
+    app.get(
+        "/bubble_count_by_term/:searchTerm",
+        async (request: any, response: any) => {
+            const searchTerm = request.params.searchTerm;
+            response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
+        }
+    );
 
   app.get("/largest_scheduled_class", async (request: any, response: any) => {
     response.json(await joinService.getLargestScheduledClass());

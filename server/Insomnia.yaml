@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-17T03:52:58.635Z
+__export_date: 2020-11-17T04:50:04.903Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -1440,7 +1440,7 @@ resources:
     _type: request
   - _id: req_f798ee0554814f0d967ae3389e458eeb
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605480528571
+    modified: 1605588561910
     created: 1605477177650
     url: http://127.0.0.1:3000/bubble_count_by_term/CPSC
     name: GET /bubble_count_by_term/:searchTerm
@@ -1451,6 +1451,27 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1605477177650
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f62bd661e4fb4dd2a46758bab097b444
+    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
+    modified: 1605588590354
+    created: 1605588584232
+    url: http://127.0.0.1:3000/bubble_count_by_term/4
+    name: GET /bubble_count_by_id/:personId
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1605438257713
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
