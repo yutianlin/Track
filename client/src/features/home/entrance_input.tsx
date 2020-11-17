@@ -3,7 +3,7 @@ import {EntranceInfo} from "../../model/entrance_info";
 import {entranceService} from "../../services/entrance.service";
 import DebouncedInput from "../common/debounced_input";
 import {Button, Container, Typography} from "@material-ui/core";
-import {capitalizeAndRemoveUnderscores, capitalize, formatAddress, isStringEmpty} from "../../util";
+import {formatAddress, isStringEmpty} from "../../util";
 import {useSelector} from "react-redux";
 import {selectPersonState} from "../person/person.slice";
 import { toast } from 'react-toastify';
@@ -52,7 +52,7 @@ export default function EntranceInput() {
   let entranceInfo: any;
   if (entrance === undefined) {
     if (!isStringEmpty(error)) {
-      entranceInfo = <Typography style = {{marginTop: '3vh'}}>{error}</Typography>
+      entranceInfo = <Typography>{error}</Typography>
     }
   } else {
     const entranceDefined = entrance as EntranceInfo;
@@ -63,13 +63,10 @@ export default function EntranceInput() {
            Building Name: {entranceDefined.name}
          </Typography>
          <Typography>
+           Address: {formatAddress(entranceDefined)}
+         </Typography>
+         <Typography>
            Room: {`${entranceDefined.building_code} ${entranceDefined.room_number}`}
-         </Typography>
-         <Typography>
-           Room Type: {capitalizeAndRemoveUnderscores(entranceDefined.room_type)}
-         </Typography>
-         <Typography>
-           Entrance Id: {entranceDefined.entrance_id}
          </Typography>
        </div>
        {showCheckIn && <Button
