@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <Container className = "hello">
       <h1 className = "welcome-message">Welcome {person.name}!</h1>
+      <h1>You are {person.person_status}</h1>
       <EntranceInput/>
     </Container>
   )

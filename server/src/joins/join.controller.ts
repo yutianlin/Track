@@ -109,7 +109,7 @@ module.exports = function (app: any) {
   });
 
   app.get(
-    "/notifications_unread/:person_id",
+    "/inApp_notifications_unread/:person_id",
     async (request: any, response: any) => {
       const person_id = request.params.person_id;
       response.json(

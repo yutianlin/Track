@@ -304,24 +304,9 @@ export const GetLargestScheduledClass = () =>
   );
 
 export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
-  GetRowsWithProjectionSelection(
-    `${
-      NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.notification_id.getName()},
-                  ${
-      NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.category.getName()},
-                  ${
-      NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.subject_line.getName()},
-                  ${
-      NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.body.getName()},
-                  ${
-      PERSON_NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.is_read.getName()}`,
-    `${NOTIFICATION.tableName}
-        LEFT JOIN ${PERSON_NOTIFICATION.tableName}
+  GetRowsWithSelection(
+    `${PERSON_NOTIFICATION.tableName}
+        LEFT JOIN ${NOTIFICATION.tableName}
         ON ${
       NOTIFICATION.tableName
     }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
@@ -329,10 +314,13 @@ export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
     }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
     `${
       PERSON_NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
+    }.${PERSON_NOTIFICATION.columns.person_id.getName()} = ${personId}
                  AND ${
       PERSON_NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
+    }.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE
+                 AND ${
+      NOTIFICATION.tableName
+    }.${NOTIFICATION.columns.category.getName()} = 'inApp'`
   );
 
 export const GetFrequentlyUsedBuilding = () =>

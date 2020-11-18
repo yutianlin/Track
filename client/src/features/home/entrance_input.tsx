@@ -3,7 +3,7 @@ import {EntranceInfo} from "../../model/entrance_info";
 import {entranceService} from "../../services/entrance.service";
 import DebouncedInput from "../common/debounced_input";
 import {Button, Container, Typography} from "@material-ui/core";
-import {capitalizeAndRemoveUnderscores, capitalize, formatAddress, isStringEmpty} from "../../util";
+import {capitalizeAndRemoveUnderscores, isStringEmpty} from "../../util";
 import {useSelector} from "react-redux";
 import {selectPersonState} from "../person/person.slice";
 import { toast } from 'react-toastify';

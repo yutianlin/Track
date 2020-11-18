@@ -1,5 +1,6 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
+import {CovidStatus} from "../../model/covid_status";
 
 export interface Person {
   person_id?: number,
@@ -10,11 +11,13 @@ export interface Person {
   // Made these into strings to make form inputs easier
   student_id?: string,
   faculty_id?: string,
-  job_title?: string
+  job_title?: string,
+  person_status?: CovidStatus
 }
 
 const initialState: Person = {
-  in_app_notification: true
+  in_app_notification: true,
+  person_status: CovidStatus.NEGATIVE
 };
 
 export const personSlice = createSlice({
@@ -30,11 +33,14 @@ export const personSlice = createSlice({
       state.in_app_notification = action.payload.in_app_notification;
       state.email = action.payload.email;
       state.phone_number = action.payload.phone_number;
+    },
+    setPersonStatus: (state: Draft<Person>, action: PayloadAction<CovidStatus>) => {
+      state.person_status = action.payload;
     }
   }
 });
 
-export const { setPerson } = personSlice.actions;
+export const { setPerson, setPersonStatus } = personSlice.actions;
 
 export const selectPersonState = (state: RootState) => state.person
 

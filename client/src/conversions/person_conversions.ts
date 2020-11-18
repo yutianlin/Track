@@ -2,7 +2,7 @@ import {Person} from "../features/person/person.slice";
 import {isStringEmpty} from "../util";
 
 export class PersonConversions {
-  private static CREATE_KEYS_TO_EXCLUDE = new Set(["job_title"]);
+  private static CREATE_KEYS_TO_EXCLUDE = new Set(["job_title", "person_status"]);
 
   public static toPersonRequest(person: Person): any {
     return PersonConversions.copyAndFilterPerson(person, PersonConversions.CREATE_KEYS_TO_EXCLUDE);

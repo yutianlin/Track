@@ -33,3 +33,9 @@ export function capitalize(str: string): string {
 export function capitalizeAndRemoveUnderscores(str: string): string {
   return capitalize(str.replace("_", " "));
 }
+
+export function wait(timeout: number): Promise<any> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), timeout);
+  });
+}
