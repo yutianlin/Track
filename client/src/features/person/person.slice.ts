@@ -33,6 +33,7 @@ export const personSlice = createSlice({
       state.in_app_notification = action.payload.in_app_notification;
       state.email = action.payload.email;
       state.phone_number = action.payload.phone_number;
+      state.person_status = action.payload.person_status ?? CovidStatus.NEGATIVE;
     },
     setPersonStatus: (state: Draft<Person>, action: PayloadAction<CovidStatus>) => {
       state.person_status = action.payload;

@@ -87,7 +87,6 @@ CREATE TABLE person(
 		NOT NULL,
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
 	    ON DELETE SET NULL,
-	CHECK(person_status = 'NEGATIVE' OR person_status = 'POSITIVE' OR person_status = 'INFECTED'),
 	CONSTRAINT has_notification_setting
 	    CHECK(in_app_notification = TRUE OR phone_number is not NULL OR email is not NULL)
 );

@@ -55,7 +55,7 @@ export const startStatusPoll = (personId: number | string): AppThunk => async di
             }
           );
           notificationService.markNotificationAsRead(personId, unreadNotification.notification_id);
-        })
+        });
       }
     } catch (e) {
       console.log(e);

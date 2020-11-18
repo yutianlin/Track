@@ -8,22 +8,13 @@ import {CovidStatus} from "../model/covid_status";
 class PersonService extends RemoteService {
     public async getPersonById(personId: string): Promise<Person> {
         const response: AxiosResponse = await super.get(`/person_faculty_info/${personId}`);
-        return response.data[0];
+        return PersonConversions.toPerson(response.data[0]);
     }
 
     public async getPersonStatusById(personId: number | string): Promise<CovidStatus> {
         const response: AxiosResponse = await super.get(`/persons_status/${personId}`);
         const statusString = response.data[0]["person_status"] as string;
-        switch(statusString) {
-            case CovidStatus.POSITIVE.toString():
-                return CovidStatus.POSITIVE;
-            case CovidStatus.NEGATIVE.toString():
-                return CovidStatus.NEGATIVE;
-            case CovidStatus.INFECTED.toString():
-                return CovidStatus.INFECTED;
-            default:
-                return CovidStatus.UNKNOWN;
-        }
+        return PersonConversions.toCovidStatus(statusString);
     }
 
     public async createPerson(person: Person): Promise<Person> {
