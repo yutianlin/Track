@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {selectPersonState} from "../person/person.slice";
 import './home.css';
 import EntranceInput from "./entrance_input";
-import {CardContent, Container} from "@material-ui/core";
+import {Container} from "@material-ui/core";
 import {CovidStatus} from "../../model/covid_status";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircle} from "@fortawesome/free-solid-svg-icons";
@@ -34,7 +34,7 @@ export default function Home() {
     <Container className = "hello">
       <h1 className = "welcome-message">{greeting}</h1>
       <div style = {{display: "flex", alignItems: "center"}}>
-        <h3 style={{marginRight: "10px"}}>{statusMessage}</h3>
+        <h1 style={{marginRight: "10px"}}>{statusMessage}</h1>
         <FontAwesomeIcon icon = {faCircle} color={circleColor} size="2x"/>
       </div>
       <EntranceInput/>
