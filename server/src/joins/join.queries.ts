@@ -1,10 +1,9 @@
 import {
   GetAllRowsFromTable,
-  GetRowsWithProjectionGroupBy,
   GetRowsWithProjectionGroupByHaving,
   GetRowsWithProjectionSelection,
   GetRowsWithProjectionSelectionGroupBy,
-  GetRowsWithProjectionSelectionGroupByHaving,
+  GetRowsWithProjectionGroupByHavingOrder,
   GetRowsWithSelection,
 } from "../helpers/queries";
 
@@ -341,8 +340,7 @@ export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
   );
 
 export const GetFrequentlyUsedBuilding = () =>
-  // Could also add a having, would just need to determine some threshold. Alternatively we could just display top 3 w/ some basic frontend filtering
-  GetRowsWithProjectionGroupBy(
+    GetRowsWithProjectionGroupByHavingOrder(
     `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()},
                   COUNT(*)`,
     `${ENTRANCE.tableName}
@@ -352,7 +350,9 @@ export const GetFrequentlyUsedBuilding = () =>
         }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
       PERSON_TIME_ENTRANCE.tableName
     }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
-    `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
+    `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`,
+      `COUNT(*) > 0`,
+      `COUNT(*) desc LIMIT 3`
   );
 
 export const GetPersonAllBubbles = () =>
