@@ -226,31 +226,31 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
 
 -- Jake tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Jake tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Jake tested negative again
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Einstein tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, 'POSITIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, false);
 
 -- Iron Man tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, false);
 
 -- Chris tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, false);
 
 -- Richard tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, false);
 
 
 -- CPSC 304 and locations

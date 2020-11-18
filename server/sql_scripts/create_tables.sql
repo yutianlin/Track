@@ -122,7 +122,7 @@ CREATE TABLE covid_test(
 	test_input_time timestamptz,
 	person_id integer,
 	covid_testing_centre_id integer,
-	status varchar (20),
+	status BOOLEAN,
 	PRIMARY KEY (test_input_time, person_id, covid_testing_centre_id),
 	FOREIGN KEY (person_id) REFERENCES Person,
 	FOREIGN KEY (covid_testing_centre_id) REFERENCES covid_testing_centre(covid_testing_centre_id)

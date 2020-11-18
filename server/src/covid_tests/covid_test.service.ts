@@ -36,7 +36,7 @@ export default class CovidTest {
       attributes,
       new ExpectedValueTypes([columns.status], true)
     ).values;
-    if (status.length === 1 && status[0] === "POSITIVE") {
+    if (status.length === 1 && status[0] === true) {
       await this.testSetToTrueTriggers(result[0][columns.person_id.getName()]);
     }
     return result;
@@ -68,6 +68,7 @@ export default class CovidTest {
   };
 
   private testSetToTrueTriggers = async (personId: number) => {
+    console.log('here');
     this.personService.updatePersonStatusToPositive(personId);
   };
 }

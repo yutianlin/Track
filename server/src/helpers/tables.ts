@@ -109,7 +109,7 @@ export const COVID_TEST_TABLE = {
     ),
     test_time: new ColumnType("test_time", "dateTime", false),
     test_input_time: new ColumnType("test_input_time", "dateTime", false),
-    status: new ColumnType("status", "string", true),
+    status: new ColumnType("status", "boolean", true),
   },
 } as const;
 
