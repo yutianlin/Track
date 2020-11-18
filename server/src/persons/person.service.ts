@@ -62,7 +62,10 @@ export default class PersonService {
       new ExpectedValueTypes([columns.person_status])
     ).values;
 
-    delete attributes[columns.person_status.getName()];
+    if (attributes.hasOwnProperty(columns.person_status.getName()) && attributes[columns.person_status.getName()] === 'R') {
+      delete attributes[columns.person_status.getName()];
+    }
+
     const set = setValues(attributes, types);
 
     if (set !== "") {
@@ -107,8 +110,6 @@ export default class PersonService {
       )
     );
     const set = listify(personIdsPossiblyInfected.map((pId) => pId.person_id));
-    console.log(
-      await this.queryService.query(UpdatePersonsByIdStatusToYellow(set))
-    );
+    await this.queryService.query(UpdatePersonsByIdStatusToYellow(set))
   };
 }
