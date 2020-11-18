@@ -27,6 +27,7 @@ import {
   BUBBLE_TABLE as BUBBLE,
   PERSON_SCHEDULED_CLASS_TABLE as PERSON_SCHEDULED_CLASS,
 } from "../helpers/tables";
+import { stringify } from "../helpers/helpers";
 
 export const GetEntranceInfoById = (entrance_id: number) =>
   GetRowsWithProjectionSelection(
@@ -42,8 +43,8 @@ export const GetEntranceInfoById = (entrance_id: number) =>
     }.${ROOM.columns.room_number.getName()}
         INNER JOIN ${BUILDING.tableName} 
             ON ${
-      ENTRANCE.tableName
-    }.${BUILDING.columns.building_code.getName()} = ${
+              ENTRANCE.tableName
+            }.${BUILDING.columns.building_code.getName()} = ${
       BUILDING.tableName
     }.${BUILDING.columns.building_code.getName()}`,
     `${ENTRANCE.columns.entrance_id.getName()} = ${entrance_id}`
@@ -68,17 +69,17 @@ export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
         ${COVID_TEST.tableName}.${COVID_TEST.columns.test_input_time.getName()},
         ${COVID_TEST.tableName}.${COVID_TEST.columns.status.getName()},
         ${
-      COVID_TESTING_CENTRE.tableName
-    }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()},
         ${
-      COVID_TESTING_CENTRE.tableName
-    }.${COVID_TESTING_CENTRE.columns.name.getName()} as CENTRE_NAME,
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.name.getName()} as CENTRE_NAME,
         ${
-      COVID_TESTING_CENTRE.tableName
-    }.${COVID_TESTING_CENTRE.columns.building_number.getName()},
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.building_number.getName()},
         ${
-      COVID_TESTING_CENTRE.tableName
-    }.${COVID_TESTING_CENTRE.columns.street_number.getName()},
+          COVID_TESTING_CENTRE.tableName
+        }.${COVID_TESTING_CENTRE.columns.street_number.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.postal_code.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.city.getName()},
         ${POSTAL.tableName}.${POSTAL.columns.province.getName()}`,
@@ -89,14 +90,14 @@ export const GetAllCovidTestInfoByPersonId = (person_id: number) =>
     }.${COVID_TEST.columns.person_id.getName()}
         INNER JOIN ${COVID_TESTING_CENTRE.tableName}
             ON ${
-      COVID_TEST.tableName
-    }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${
+              COVID_TEST.tableName
+            }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()} = ${
       COVID_TESTING_CENTRE.tableName
     }.${COVID_TESTING_CENTRE.columns.covid_testing_centre_id.getName()}
         INNER JOIN ${POSTAL.tableName}
             ON ${
-      COVID_TESTING_CENTRE.tableName
-    }.${POSTAL.columns.postal_code.getName()} = ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
     `${
@@ -115,8 +116,8 @@ export const GetAllPersonNotificationInfoById = (person_id: number) =>
     `${PERSON_NOTIFICATION.tableName}
         LEFT JOIN ${NOTIFICATION.tableName} 
             ON ${
-      PERSON_NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.notification_id.getName()} = ${
+              PERSON_NOTIFICATION.tableName
+            }.${NOTIFICATION.columns.notification_id.getName()} = ${
       NOTIFICATION.tableName
     }.${NOTIFICATION.columns.notification_id.getName()} 
         `,
@@ -130,8 +131,8 @@ export const GetCovidTestingCentreInfoById = (
     `${COVID_TESTING_CENTRE.tableName}
         LEFT JOIN ${POSTAL.tableName}
             ON ${
-      COVID_TESTING_CENTRE.tableName
-    }.${POSTAL.columns.postal_code.getName()} = ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
     `${
@@ -144,8 +145,8 @@ export const GetAllCovidTestingCentreInfos = () =>
     `${COVID_TESTING_CENTRE.tableName}
         LEFT JOIN ${POSTAL.tableName}
             ON ${
-      COVID_TESTING_CENTRE.tableName
-    }.${POSTAL.columns.postal_code.getName()} = ${
+              COVID_TESTING_CENTRE.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`
   );
@@ -155,8 +156,8 @@ export const GetScheduledClassDayInfo = (scheduled_class_id: string) =>
     `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${CLASS_DAY.tableName}
             ON ${
-      SCHEDULED_CLASS.tableName
-    }.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${
+              SCHEDULED_CLASS.tableName
+            }.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${
       CLASS_DAY.tableName
     }.${CLASS_DAY.columns.scheduled_class_id.getName()}`,
     `${
@@ -170,17 +171,17 @@ export const GetScheduledClassDayInfoByPersonId = (person_id: string) =>
       SCHEDULED_CLASS.tableName
     }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
         ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.start_day.getName()},
+          SCHEDULED_CLASS.tableName
+        }.${SCHEDULED_CLASS.columns.start_day.getName()},
         ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.end_day.getName()},
+          SCHEDULED_CLASS.tableName
+        }.${SCHEDULED_CLASS.columns.end_day.getName()},
         ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.activity.getName()},
+          SCHEDULED_CLASS.tableName
+        }.${SCHEDULED_CLASS.columns.activity.getName()},
         ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.class_name.getName()},
+          SCHEDULED_CLASS.tableName
+        }.${SCHEDULED_CLASS.columns.class_name.getName()},
         ${CLASS_DAY.tableName}.${CLASS_DAY.columns.building_code.getName()},
         ${CLASS_DAY.tableName}.${CLASS_DAY.columns.room_number.getName()},
         ${CLASS_DAY.tableName}.${CLASS_DAY.columns.day_of_week.getName()},
@@ -188,14 +189,14 @@ export const GetScheduledClassDayInfoByPersonId = (person_id: string) =>
     `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${CLASS_DAY.tableName}
             ON ${
-      SCHEDULED_CLASS.tableName
-    }.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${
+              SCHEDULED_CLASS.tableName
+            }.${CLASS_DAY.columns.scheduled_class_id.getName()} = ${
       CLASS_DAY.tableName
     }.${CLASS_DAY.columns.scheduled_class_id.getName()}
         INNER JOIN ${PERSON_SCHEDULED_CLASS.tableName}
             ON ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+              SCHEDULED_CLASS.tableName
+            }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
       PERSON_SCHEDULED_CLASS.tableName
     }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
     `${PERSON_SCHEDULED_CLASS.columns.person_id.getName()} = ${person_id}`
@@ -210,14 +211,14 @@ export const GetPersonEntranceRoomBuildingTime = (
     `${PERSON.tableName} 
      LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName} 
             ON ${
-      PERSON.tableName
-    }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()} = ${
+              PERSON.tableName
+            }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()} = ${
       PERSON_TIME_ENTRANCE.tableName
     }.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}
     INNER JOIN ${ENTRANCE.tableName}
             ON ${
-      PERSON_TIME_ENTRANCE.tableName
-    }.${ENTRANCE.columns.entrance_id.getName()} = ${
+              PERSON_TIME_ENTRANCE.tableName
+            }.${ENTRANCE.columns.entrance_id.getName()} = ${
       ENTRANCE.tableName
     }.${ENTRANCE.columns.entrance_id.getName()}
     INNER JOIN ${ROOM.tableName}
@@ -226,14 +227,14 @@ export const GetPersonEntranceRoomBuildingTime = (
     }.${ROOM.columns.room_number.getName()}
     INNER JOIN ${BUILDING.tableName} 
             ON ${
-      ENTRANCE.tableName
-    }.${BUILDING.columns.building_code.getName()} = ${
+              ENTRANCE.tableName
+            }.${BUILDING.columns.building_code.getName()} = ${
       BUILDING.tableName
     }.${BUILDING.columns.building_code.getName()}
     INNER JOIN ${POSTAL.tableName} 
             ON ${
-      BUILDING.tableName
-    }.${POSTAL.columns.postal_code.getName()} = ${
+              BUILDING.tableName
+            }.${POSTAL.columns.postal_code.getName()} = ${
       POSTAL.tableName
     }.${POSTAL.columns.postal_code.getName()}`,
     selections
@@ -244,7 +245,9 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
     `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()},
                   ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()},
-                  COUNT(${BUBBLE_PERSON.tableName}.${BUBBLE_PERSON.columns.person_id.getName()})`,
+                  COUNT(${
+                    BUBBLE_PERSON.tableName
+                  }.${BUBBLE_PERSON.columns.person_id.getName()})`,
     `${BUBBLE.tableName}
         LEFT JOIN ${BUBBLE_PERSON.tableName}
         ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = ${
@@ -254,8 +257,8 @@ export const GetBubbleCountBySearchTerm = (searchTerm: string) =>
       BUBBLE.tableName
     }.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%' 
                  OR ${
-      BUBBLE.tableName
-    }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
+                   BUBBLE.tableName
+                 }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'`,
     `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
   );
 
@@ -267,12 +270,15 @@ export const GetBubbleCountByPersonId = (personId: number) =>
                   COUNT(BP1.${BUBBLE_PERSON.columns.person_id.getName()})`,
     `${BUBBLE.tableName}
         LEFT JOIN ${BUBBLE_PERSON.tableName} BP1
-        ON ${BUBBLE.tableName}.${BUBBLE_PERSON.columns.bubble_id.getName()} = BP1.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
+        ON ${
+          BUBBLE.tableName
+        }.${BUBBLE_PERSON.columns.bubble_id.getName()} = BP1.${BUBBLE_PERSON.columns.bubble_id.getName()}`,
     `BP1.${BUBBLE_PERSON.columns.bubble_id.getName()} IN (
     SELECT BP2.${BUBBLE_PERSON.columns.bubble_id.getName()} 
     FROM ${BUBBLE_PERSON.tableName} BP2
     WHERE BP2.${BUBBLE_PERSON.columns.person_id.getName()} = ${personId})`,
-    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`);
+    `${BUBBLE.tableName}.${BUBBLE.columns.bubble_id.getName()}`
+  );
 
 export const GetLargestScheduledClass = () =>
   GetRowsWithProjectionGroupByHaving(
@@ -283,8 +289,8 @@ export const GetLargestScheduledClass = () =>
     `${SCHEDULED_CLASS.tableName}
         LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
         ON ${
-      SCHEDULED_CLASS.tableName
-    }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+          SCHEDULED_CLASS.tableName
+        }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
       PERSON_SCHEDULED_CLASS.tableName
     }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
     `${
@@ -294,33 +300,45 @@ export const GetLargestScheduledClass = () =>
                                 FROM ${SCHEDULED_CLASS.tableName}
                             LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
                             ON ${
-      SCHEDULED_CLASS.tableName
-    }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
+                              SCHEDULED_CLASS.tableName
+                            }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
       PERSON_SCHEDULED_CLASS.tableName
     }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
                             GROUP BY ${
-      SCHEDULED_CLASS.tableName
-    }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
+                              SCHEDULED_CLASS.tableName
+                            }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()})`
   );
 
 export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
-  GetRowsWithSelection(
-    `${PERSON_NOTIFICATION.tableName}
-        LEFT JOIN ${NOTIFICATION.tableName}
-        ON ${
+  GetRowsWithProjectionSelection(
+    `${
       NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
+    }.${NOTIFICATION.columns.notification_id.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.category.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.subject_line.getName()},
+                  ${
+                    NOTIFICATION.tableName
+                  }.${NOTIFICATION.columns.body.getName()},
+                  ${
+                    PERSON_NOTIFICATION.tableName
+                  }.${PERSON_NOTIFICATION.columns.is_read.getName()}`,
+    `${NOTIFICATION.tableName}
+        LEFT JOIN ${PERSON_NOTIFICATION.tableName}
+        ON ${
+          NOTIFICATION.tableName
+        }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${
       PERSON_NOTIFICATION.tableName
     }.${PERSON_NOTIFICATION.columns.notification_id.getName()}`,
     `${
       PERSON_NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.person_id.getName()} = ${personId}
+    }.${PERSON_NOTIFICATION.columns.notification_id.getName()} = ${personId}
                  AND ${
-      PERSON_NOTIFICATION.tableName
-    }.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE
-                 AND ${
-      NOTIFICATION.tableName
-    }.${NOTIFICATION.columns.category.getName()} = 'inApp'`
+                   PERSON_NOTIFICATION.tableName
+                 }.${PERSON_NOTIFICATION.columns.is_read.getName()} = FALSE`
   );
 
 export const GetFrequentlyUsedBuilding = () =>
@@ -331,8 +349,8 @@ export const GetFrequentlyUsedBuilding = () =>
     `${ENTRANCE.tableName}
         LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName}
         ON ${
-      ENTRANCE.tableName
-    }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
+          ENTRANCE.tableName
+        }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
       PERSON_TIME_ENTRANCE.tableName
     }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()}`,
     `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()}`
@@ -349,12 +367,12 @@ export const GetPersonAllBubbles = () =>
                               FROM ${BUBBLE.tableName})
                               EXCEPT
                               (SELECT ${
-      BUBBLE_PERSON.tableName
-    }.${BUBBLE_PERSON.columns.bubble_id.getName()}
+                                BUBBLE_PERSON.tableName
+                              }.${BUBBLE_PERSON.columns.bubble_id.getName()}
                                FROM ${BUBBLE_PERSON.tableName}
                                WHERE ${
-      PERSON.tableName
-    }.${PERSON.columns.person_id.getName()} = ${
+                                 PERSON.tableName
+                               }.${PERSON.columns.person_id.getName()} = ${
       BUBBLE_PERSON.tableName
     }.${BUBBLE_PERSON.columns.person_id.getName()}))`
   );
@@ -368,16 +386,20 @@ export const GetPersonAllBubblesBySearchTerm = (searchTerm: string) =>
       BUBBLE.tableName
     }.${BUBBLE.columns.bubble_id.getName()}
                               FROM ${BUBBLE.tableName}
-                              WHERE ${BUBBLE.tableName}.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
-                              OR ${BUBBLE.tableName}.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%')
+                              WHERE ${
+                                BUBBLE.tableName
+                              }.${BUBBLE.columns.description.getName()} ILIKE '%${searchTerm}%'
+                              OR ${
+                                BUBBLE.tableName
+                              }.${BUBBLE.columns.title.getName()} ILIKE '%${searchTerm}%')
                               EXCEPT
                               (SELECT ${
-      BUBBLE_PERSON.tableName
-    }.${BUBBLE_PERSON.columns.bubble_id.getName()}
+                                BUBBLE_PERSON.tableName
+                              }.${BUBBLE_PERSON.columns.bubble_id.getName()}
                                FROM ${BUBBLE_PERSON.tableName}
                                WHERE ${
-      PERSON.tableName
-    }.${PERSON.columns.person_id.getName()} = ${
+                                 PERSON.tableName
+                               }.${PERSON.columns.person_id.getName()} = ${
       BUBBLE_PERSON.tableName
     }.${BUBBLE_PERSON.columns.person_id.getName()}))`
   );

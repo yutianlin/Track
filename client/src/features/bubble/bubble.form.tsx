@@ -48,8 +48,6 @@ export default function BubbleForm() {
           <TextField
             variant="outlined"
             margin="normal"
-            multiline
-            rows={4}
             inputRef={register}
             fullWidth
             required

@@ -4,11 +4,19 @@ import {
   GetPersonById,
   CreatePerson,
   UpdatePersonById,
+  UpdatePersonsByIdStatusToYellow,
+  GetPersonsPossiblyInfected,
   GetPersonStatusById,
 } from "./person.queries";
-import { insertValues, setValues } from "../helpers/helpers";
+import {
+  insertValues,
+  setValues,
+  getPropertiesAndValues,
+  listify,
+} from "../helpers/helpers";
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { PERSON_TABLE } from "../helpers/tables";
+import moment from "moment";
 
 const { tableName, columns } = PERSON_TABLE;
 const expectValues = [
@@ -48,14 +56,60 @@ export default class PersonService {
 
   updatePersonById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes(expectValues, true);
+
+    const status = getPropertiesAndValues(
+      attributes,
+      new ExpectedValueTypes([columns.person_status])
+    ).values;
+
+    if (attributes.hasOwnProperty(columns.person_status.getName()) && attributes[columns.person_status.getName()] === 'R') {
+      delete attributes[columns.person_status.getName()];
+    }
+
     const set = setValues(attributes, types);
-    await this.queryService.query(UpdatePersonById(set, id));
+
+    if (set !== "") {
+      await this.queryService.query(UpdatePersonById(set, id));
+    }
+
+    if (status.length === 1 && status[0] === `'R'`) {
+      await this.updatePersonStatusToPositive(id);
+    }
     return this.getPersonById(id);
   };
 
   updatePersonStatusToPositive = async (id: number) => {
+    // if already infected, do nothing
+    const person = await this.getPersonById(id);
+    if (
+      person.length === 0 ||
+      person[0][columns.person_status.getName()] === "R"
+    ) {
+      return;
+    }
+
     await this.queryService.query(
-      UpdatePersonById(`${columns.person_status.getName()} = 'POSITIVE'`, id)
+      UpdatePersonById(`${columns.person_status.getName()} = 'R'`, id)
     );
+    await this.triggerWhenStatusSetToRed(id);
+  };
+
+  triggerWhenStatusSetToRed = async (personId: number) => {
+    const dateNow = moment.utc();
+    const dateNowFormatted = dateNow.format("YYYY-MM-DD");
+    const dateTwoWeeksAgoFormatted = dateNow
+      .subtract(2, "weeks")
+      .format("YYYY-MM-DD");
+    const personIdsPossiblyInfected: {
+      person_id: string;
+    }[] = await this.queryService.query(
+      GetPersonsPossiblyInfected(
+        personId,
+        `'${dateTwoWeeksAgoFormatted}Z'`,
+        `'${dateNowFormatted}Z'`
+      )
+    );
+    const set = listify(personIdsPossiblyInfected.map((pId) => pId.person_id));
+    await this.queryService.query(UpdatePersonsByIdStatusToYellow(set))
   };
 }

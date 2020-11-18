@@ -42,8 +42,8 @@ CREATE TABLE room(
 CREATE TABLE class_day(
 	scheduled_class_id varchar(50) NOT NULL,
 	class_day_id serial,
-	day_of_week varchar(10)
-	    CHECK(day_of_week IN ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'))
+	day_of_week INT
+	    CHECK(day_of_week >= 0 AND day_of_week <= 6)
 	    NOT NULL,
 	room_number varchar(10),
 	building_code varchar(10),
@@ -82,8 +82,9 @@ CREATE TABLE person(
         NOT NULL,
     student_id bigint,
     faculty_id bigint,
-	person_status varchar (20)
-		DEFAULT 'NEGATIVE'
+	person_status VARCHAR(1)
+		DEFAULT 'G'
+		CHECK(person_status = 'G' OR person_status = 'Y' OR person_status = 'R')
 		NOT NULL,
     FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
 	    ON DELETE SET NULL,
@@ -121,7 +122,7 @@ CREATE TABLE covid_test(
 	test_input_time timestamptz,
 	person_id integer,
 	covid_testing_centre_id integer,
-	status varchar (20),
+	status BOOLEAN,
 	PRIMARY KEY (test_input_time, person_id, covid_testing_centre_id),
 	FOREIGN KEY (person_id) REFERENCES Person,
 	FOREIGN KEY (covid_testing_centre_id) REFERENCES covid_testing_centre(covid_testing_centre_id)

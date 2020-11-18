@@ -59,7 +59,16 @@ export const ENTRANCE_TABLE = {
   tableName: "entrance",
   columns: {
     entrance_id: new ColumnType("entrance_id", "number", false),
-    building_code: new ColumnType("building_code", "string", false),
+    room_number: new ColumnType(
+      ROOM_TABLE.columns.room_number.getName(),
+      ROOM_TABLE.columns.room_number.getType(),
+      true
+    ),
+    building_code: new ColumnType(
+      BUILDING_TABLE.columns.building_code.getName(),
+      BUILDING_TABLE.columns.building_code.getType(),
+      false
+    ),
   },
 } as const;
 
@@ -100,7 +109,7 @@ export const COVID_TEST_TABLE = {
     ),
     test_time: new ColumnType("test_time", "dateTime", false),
     test_input_time: new ColumnType("test_input_time", "dateTime", false),
-    status: new ColumnType("status", "string", true),
+    status: new ColumnType("status", "boolean", true),
   },
 } as const;
 
