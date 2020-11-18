@@ -1,5 +1,7 @@
 export const UnionQueries = (query1: string, query2: string) =>
-  `(${query1}) UNION (${query2})`;
+  `(${query1}) 
+  UNION 
+  (${query2})`;
 
 export const GetAllRowsFromTable = (tableName: string) =>
   `SELECT * FROM ${tableName}`;
@@ -11,13 +13,15 @@ export const GetRowsWithSelectionWithOrderBy = (tableName: string, selection: st
   `SELECT * FROM ${tableName} WHERE ${selection} ${orderBy};`;
 
 export const GetRowsWithProjection = (tableName: string, projection: string) =>
-  `SELECT ${projection} FROM ${tableName};`;
+  `SELECT ${projection} FROM ${tableName}`;
 
 export const GetRowsWithProjectionSelection = (
   projection: string,
   tableName: string,
   selection: string
-) => `SELECT ${projection} FROM ${tableName} WHERE ${selection}`;
+) => `SELECT ${projection}
+  FROM ${tableName}
+  WHERE ${selection}`;
 
 export const GetRowsWithProjectionSelectionGroupBy = (
     projection: string,

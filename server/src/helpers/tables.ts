@@ -128,8 +128,8 @@ export const SCHEDULED_CLASS_TABLE = {
   tableName: "scheduled_class",
   columns: {
     scheduled_class_id: new ColumnType("scheduled_class_id", "string", false),
-    start_date: new ColumnType("start_date", "date", false),
-    end_date: new ColumnType("end_date", "date", false),
+    start_day: new ColumnType("start_day", "date", false),
+    end_day: new ColumnType("end_day", "date", false),
     activity: new ColumnType("activity", "string", false),
     class_name: new ColumnType("class_name", "string", false),
   },
