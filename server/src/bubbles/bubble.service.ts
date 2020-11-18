@@ -1,6 +1,6 @@
 import QueryService from "../QueryService";
 import {
-  CreateBubble,
+  CreateBubble, DeleteBubbleById,
   GetAllBubbles,
   GetBubbleById,
   UpdateBubbleById,
@@ -42,4 +42,8 @@ export default class Bubble {
     await this.queryService.query(UpdateBubbleById(set, id));
     return this.getBubbleById(id);
   };
+
+  deleteBubbleById = async (id: number) => {
+    return this.queryService.query(DeleteBubbleById(id));
+  }
 }

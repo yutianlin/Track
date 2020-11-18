@@ -359,13 +359,13 @@ INSERT INTO person_notification(notification_id, person_id, notification_time, i
  Einstein receives an email and an inApp notification
  */
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
-    VALUES(1, 2, '2020-10-11T00:00:00Z'::TIMESTAMPTZ, false);
+    VALUES(1, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, false);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
     VALUES(3, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, false);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
-    VALUES(4, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, true);
+    VALUES(4, 2, '2020-10-12T00:00:00Z'::TIMESTAMPTZ, false);
 
 INSERT INTO person_notification(notification_id, person_id, notification_time, is_read)
     VALUES(4, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ, false);

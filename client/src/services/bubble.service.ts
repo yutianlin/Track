@@ -34,6 +34,10 @@ class BubbleService extends RemoteService {
     const response = await this.post("/bubbles", bubble);
     return response.data[0];
   }
+
+  public async deleteBubbleById(bubble_id: number): Promise<void> {
+    await this.delete(`/bubbles/${bubble_id}`);
+  }
 }
 
 export const bubbleService = new BubbleService();

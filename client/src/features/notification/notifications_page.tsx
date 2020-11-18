@@ -17,7 +17,7 @@ export default function NotificationsPage() {
     notificationService.getNotifications(personState.person_id as number)
       .then((notifications: NotificationModel[]) => {
         setIsLoading(false);
-        const notificationsGroupedByMessage: Dictionary<NotificationModel[]> = groupBy(notifications, 'body');
+        const notificationsGroupedByMessage: Dictionary<NotificationModel[]> = groupBy(notifications, (notification) => notification.notification_time.toISOString());
         setNotifications(notificationsGroupedByMessage);
       });
   }, []);

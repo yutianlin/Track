@@ -1,4 +1,5 @@
 import {
+  DeleteRow,
   GetAllRowsFromTable,
   GetRowsWithSelection,
   InsertRow,
@@ -18,3 +19,6 @@ export const CreateBubble = (properties: string, values: string) =>
 
 export const UpdateBubbleById = (valuePairs: string, id: number) =>
   UpdateRow(tableName, valuePairs, `${columns.bubble_id.getName()} = ${id}`);
+
+export const DeleteBubbleById = (id: number) =>
+  DeleteRow(tableName, `${columns.bubble_id.getName()} = ${id}`);

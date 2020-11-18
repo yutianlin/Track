@@ -7,7 +7,12 @@ export interface ClassDay {
   activity: string,
   class_name: string,
   class_day_id: number,
-  day_of_week: string,
+  day_of_week: DayOfWeek,
   room_number: string,
   building_code: string
+}
+
+interface DayOfWeek {
+  day_name: string,
+  day_number: number
 }
