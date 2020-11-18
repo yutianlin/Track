@@ -38,7 +38,7 @@ export const getPropertiesAndValues = (
 
   types.getNullableStrings().forEach((property) => {
     const value = getStringFromAttributes(attributes, property, true);
-    if (value) {
+    if (value !== undefined) {
       properties.push(property);
       values.push(value);
     }
@@ -103,10 +103,15 @@ export const getStringFromAttributes = (
   attributes: any,
   property: string,
   nullable: boolean
-): string | null => {
-  if (attributes.hasOwnProperty(property))
-    return stringify(attributes[property]);
-  if (nullable) return null;
+): string | null | undefined => {
+  if (attributes.hasOwnProperty(property)) {
+    if (nullable && attributes[property] === null) {
+      return null;
+    } else {
+      return stringify(attributes[property]);
+    }
+  }
+  if (nullable) return undefined;
   throw new InvalidParameterError(property, "string");
 };
 

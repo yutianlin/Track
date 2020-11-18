@@ -3,10 +3,18 @@ import {isPresent, isStringEmpty} from "../util";
 import {CovidStatus} from "../model/covid_status";
 
 export class PersonConversions {
-  private static CREATE_KEYS_TO_EXCLUDE = new Set(["job_title", "person_status"]);
+  private static KEYS_TO_EXCLUDE = new Set(["job_title", "person_status"]);
+  private static UPDATE_NULLABLE_KEYS = new Set(["email", "phone_number", "student_id", "faculty_id"])
 
   public static toPersonRequest(person: Person): any {
-    return PersonConversions.copyAndFilterPerson(person, PersonConversions.CREATE_KEYS_TO_EXCLUDE);
+    return PersonConversions.copyAndFilterPerson(person, PersonConversions.KEYS_TO_EXCLUDE);
+  }
+
+  public static toUpdatePersonRequest(person: Person): any {
+    const personCopy: any =  {...person};
+    PersonConversions.deleteKeysToExclude(PersonConversions.KEYS_TO_EXCLUDE, personCopy);
+    PersonConversions.setNullableFields(PersonConversions.UPDATE_NULLABLE_KEYS, personCopy);
+    return personCopy;
   }
 
   public static toPerson(response: any): Person {
@@ -33,13 +41,30 @@ export class PersonConversions {
 
   private static copyAndFilterPerson(person: Person, keysToExclude: Set<string>): any {
     const personCopy: any =  {...person};
-    PersonConversions.deleteEmptyFieldsAndKeys(keysToExclude, personCopy);
+    PersonConversions.deleteEmptyFieldsAndKeys(personCopy);
+    PersonConversions.deleteKeysToExclude(keysToExclude, personCopy);
     return personCopy;
   }
 
-  private static deleteEmptyFieldsAndKeys(keysToDelete: Set<string>, person: any): void {
+  private static deleteKeysToExclude(keysToDelete: Set<string>, person: any): void {
     Object.keys(person).forEach((key: string) => {
-      if (isStringEmpty(person[key]) || keysToDelete.has(key)) {
+      if (keysToDelete.has(key)) {
+        delete person[key];
+      }
+    });
+  }
+
+  private static setNullableFields(nullableFields: Set<string>, person: any): void {
+    Object.keys(person).forEach((key: string) => {
+      if (nullableFields.has(key) && isStringEmpty(person[key])) {
+        person[key] = null;
+      }
+    });
+  }
+
+  private static deleteEmptyFieldsAndKeys(person: any): void {
+    Object.keys(person).forEach((key: string) => {
+      if (isStringEmpty(person[key])) {
         delete person[key];
       }
     });
