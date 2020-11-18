@@ -12,9 +12,7 @@ import Button from "@material-ui/core/Button";
 import {formStyles} from "../form.styles";
 import BikeLog from "./bike.log";
 import {selectAllBikes} from "./bike.slice";
-import {bikeService} from "../../services/bike.service";
 import {isStringEmpty} from "../../util";
-
 
 export default function Bike() {
   const [history, setHistory]: [PersonBike[], any] = useState([]);
@@ -58,6 +56,7 @@ export default function Bike() {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.container}>
+        <h3>Bikes</h3>
         <form className={classes.form} noValidate
               onSubmit={handleSubmit(onSubmit)}>
           <TextField

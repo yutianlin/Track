@@ -163,15 +163,11 @@ INSERT INTO person(name, email, phone_number, in_app_notification, student_id, f
     VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, 987654321127);
 
 
--- Jake in The Bois
+-- Jake in Project Group 44
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(1,1);
 
--- Chris in The Bois
-INSERT INTO bubble_person(person_id, bubble_id)
-    VALUES(4,1);
-
--- Richard in The Bois
+-- Richard in Project Group 44
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(5,1);
 
@@ -179,9 +175,22 @@ INSERT INTO bubble_person(person_id, bubble_id)
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(1,3);
 
--- Chris in ubc random club
+-- Chris in all bubbles
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,1);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,2);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,3);
+
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(4,4);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,5);
 
 
 INSERT INTO shared_bike(shared_bike_id, is_rentable)
@@ -217,31 +226,31 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
 
 -- Jake tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
 
 -- Jake tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
+    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
 
 -- Jake tested negative again
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, FALSE);
+    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
 
 -- Einstein tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, TRUE);
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, 'POSITIVE');
 
 -- Iron Man tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, FALSE);
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, 'NEGATIVE');
 
 -- Chris tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, FALSE);
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, 'NEGATIVE');
 
 -- Richard tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, FALSE);
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, 'NEGATIVE');
 
 
 -- CPSC 304 and locations

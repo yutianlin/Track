@@ -59,6 +59,7 @@ export default function PersonForm() {
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.container}>
+        <h3>{isLoggedIn ? "Edit Info" : "Create an Account"}</h3>
         <form className={classes.form} noValidate
               onSubmit={handleSubmit(onSubmit)}>
           <TextField

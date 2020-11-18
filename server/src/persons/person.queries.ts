@@ -24,7 +24,11 @@ export const GetPersonById = (id: number) =>
   GetRowsWithSelection(P.tableName, `${P.columns.person_id.getName()} = ${id}`);
 
 export const GetPersonStatusById = (id: number) =>
-  GetRowsWithProjectionSelection(P.columns.person_status.getName(), P.tableName, `${P.columns.person_id.getName()} = ${id}`)
+  GetRowsWithProjectionSelection(
+    P.columns.person_status.getName(),
+    P.tableName,
+    `${P.columns.person_id.getName()} = ${id}`
+  );
 
 export const CreatePerson = (properties: string, values: string) =>
   InsertRow(P.tableName, properties, values);
