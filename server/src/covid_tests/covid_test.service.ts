@@ -68,7 +68,6 @@ export default class CovidTest {
   };
 
   private testSetToTrueTriggers = async (personId: number) => {
-    console.log('here');
     this.personService.updatePersonStatusToPositive(personId);
   };
 }

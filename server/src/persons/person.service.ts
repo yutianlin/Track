@@ -5,7 +5,6 @@ import {
   CreatePerson,
   UpdatePersonById,
   UpdatePersonsByIdStatusToYellow,
-  GetPersonsPossiblyInfected,
   GetPersonStatusById,
 } from "./person.queries";
 import {
@@ -17,6 +16,8 @@ import {
 import { ExpectedValueTypes } from "../helpers/ExpectedValueTypes";
 import { PERSON_TABLE } from "../helpers/tables";
 import moment from "moment";
+import BubblePersonService from "../person_bubbles/person_bubble.service";
+import JoinService from "../joins/join.service";
 
 const { tableName, columns } = PERSON_TABLE;
 const expectValues = [
@@ -31,9 +32,13 @@ const expectValues = [
 
 export default class PersonService {
   private queryService: QueryService;
+  private personBubbleService: BubblePersonService;
+  private joinService: JoinService;
 
   constructor() {
     this.queryService = new QueryService();
+    this.personBubbleService = new BubblePersonService();
+    this.joinService = new JoinService();
   }
 
   getAllPersons = async () => {
@@ -62,7 +67,10 @@ export default class PersonService {
       new ExpectedValueTypes([columns.person_status])
     ).values;
 
-    if (attributes.hasOwnProperty(columns.person_status.getName()) && attributes[columns.person_status.getName()] === 'R') {
+    if (
+      attributes.hasOwnProperty(columns.person_status.getName()) &&
+      attributes[columns.person_status.getName()] === "R"
+    ) {
       delete attributes[columns.person_status.getName()];
     }
 
@@ -96,20 +104,51 @@ export default class PersonService {
 
   triggerWhenStatusSetToRed = async (personId: number) => {
     const dateNow = moment.utc();
-    const dateNowFormatted = dateNow.format("YYYY-MM-DD");
-    const dateTwoWeeksAgoFormatted = dateNow
+    const dateNowFormatted = `'${dateNow.format("YYYY-MM-DD")}Z'`;
+    const dateTwoWeeksAgoFormatted = `'${dateNow
       .subtract(2, "weeks")
-      .format("YYYY-MM-DD");
-    const personIdsPossiblyInfected: {
+      .format("YYYY-MM-DD")}Z'`;
+
+    const personIdsFromBubble: {
       person_id: string;
-    }[] = await this.queryService.query(
-      GetPersonsPossiblyInfected(
-        personId,
-        `'${dateTwoWeeksAgoFormatted}Z'`,
-        `'${dateNowFormatted}Z'`
-      )
+    }[] = await this.personBubbleService.getAllPersonIdsInBubbleWithPerson(
+      personId
     );
-    const set = listify(personIdsPossiblyInfected.map((pId) => pId.person_id));
-    await this.queryService.query(UpdatePersonsByIdStatusToYellow(set))
+    console.log(personIdsFromBubble);
+    const personIdsFromEntrance: {
+      person_id: string;
+    }[] = await this.joinService.getPersonsUsedSameRoomAsPersonbyEntrance(
+      personId,
+      dateTwoWeeksAgoFormatted,
+      dateNowFormatted
+    );
+    console.log(personIdsFromEntrance);
+    const personIdsFromClass: {
+      person_id: string;
+    }[] = await this.joinService.getPersonsUsedSameRoomAsPersonByClass(
+      personId,
+      dateTwoWeeksAgoFormatted,
+      dateNowFormatted
+    );
+    console.log(personIdsFromClass);
+    const personIdsFromBuilding: {
+      person_id: string;
+    }[] = await this.joinService.getPersonsUsedSameBuildingsAsPerson(
+      personId,
+      dateTwoWeeksAgoFormatted,
+      dateNowFormatted
+    );
+    console.log(personIdsFromBuilding);
+
+    const personIdsPossiblyInfected = listify(
+      [
+        ...personIdsFromBubble,
+        ...personIdsFromEntrance,
+        ...personIdsFromClass,
+      ].map((pId) => pId.person_id)
+    );
+    await this.queryService.query(
+      UpdatePersonsByIdStatusToYellow(personIdsPossiblyInfected)
+    );
   };
 }

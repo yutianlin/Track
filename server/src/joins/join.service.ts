@@ -18,13 +18,16 @@ import {
   GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo,
   GetScheduledClassDayInfoByPersonId,
+  GetPersonsUsedSameRoomAsAPersonByEntrance,
+  GetPersonsUsedSameRoomAsAPersonByClass,
+  GetPersonsUsedBuildingsUsedByAPerson,
 } from "./join.queries";
 import {
   getProjectionsFromJson,
   getSelectionsFromJson,
 } from "../helpers/helpers";
 
-export default class Join {
+export default class JoinService {
   private queryService: QueryService;
 
   constructor() {
@@ -109,5 +112,35 @@ export default class Join {
 
   getPersonAllBubbles = () => {
     return this.queryService.query(GetPersonAllBubbles());
+  };
+
+  getPersonsUsedSameRoomAsPersonbyEntrance = (
+    personId: number,
+    startDate: string,
+    endDate: string
+  ) => {
+    return this.queryService.query(
+      GetPersonsUsedSameRoomAsAPersonByEntrance(personId, startDate, endDate)
+    );
+  };
+
+  getPersonsUsedSameRoomAsPersonByClass = (
+    personId: number,
+    startDate: string,
+    endDate: string
+  ) => {
+    return this.queryService.query(
+      GetPersonsUsedSameRoomAsAPersonByClass(personId, startDate, endDate)
+    );
+  };
+
+  getPersonsUsedSameBuildingsAsPerson = (
+    personId: number,
+    startDate: string,
+    endDate: string
+  ) => {
+    return this.queryService.query(
+      GetPersonsUsedBuildingsUsedByAPerson(personId, startDate, endDate)
+    );
   };
 }
