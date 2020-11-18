@@ -4,9 +4,9 @@ export const createCovidTestSchema = Joi.object({
   person_id: Joi.number().positive().required(),
   covid_testing_centre_id: Joi.number().positive().required(),
   test_time: Joi.date().required(),
-  status: Joi.string(),
+  status: Joi.boolean(),
 });
 
 export const updateCovidTestSchema = Joi.object({
-  status: Joi.string().required(),
+  status: Joi.boolean().required(),
 });

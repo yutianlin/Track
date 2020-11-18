@@ -88,6 +88,9 @@ INSERT INTO entrance(room_number, building_code)
     VALUES('110', 'DMP');
 
 INSERT INTO entrance(room_number, building_code)
+    VALUES('110', 'DMP');
+
+INSERT INTO entrance(room_number, building_code)
     VALUES('201', 'DMP');
 
 INSERT INTO entrance(room_number, building_code)
@@ -101,6 +104,9 @@ INSERT INTO entrance(room_number, building_code)
 
 INSERT INTO entrance(room_number, building_code)
     VALUES('X841', 'ICCS');
+
+INSERT INTO entrance(building_code)
+    VALUES('ICCS');
 
 INSERT INTO bubble(title, description)
     VALUES('Project Group 44', 'Project Group for CPSC 304');
@@ -220,71 +226,71 @@ INSERT INTO covid_testing_centre(building_number, street_number, postal_code, na
 
 -- Jake tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Jake tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-15Z'::TIMESTAMPTZ, '2020-10-16T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Jake tested negative again
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, 'NEGATIVE');
+    VALUES('2020-10-25Z'::TIMESTAMPTZ, '2020-10-26T11:05:03.000Z'::TIMESTAMPTZ, 1, 1, false);
 
 -- Einstein tested positive
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, 'POSITIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:00:00.000Z'::TIMESTAMPTZ, 2, 1, false);
 
 -- Iron Man tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T10:45:00.854Z'::TIMESTAMPTZ, 3, 1, false);
 
 -- Chris tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-06T11:45:00.854Z'::TIMESTAMPTZ, 4, 2, false);
 
 -- Richard tested negative
 INSERT INTO covid_test(test_time, test_input_time, person_id, covid_testing_centre_id, status)
-    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, 'NEGATIVE');
+    VALUES('2020-10-05Z'::TIMESTAMPTZ, '2020-10-05T00:45:00.854Z'::TIMESTAMPTZ, 5, 3, false);
 
 
 -- CPSC 304 and locations
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 304 101 W1 2020', 'tuesday', '110', 'DMP');
+    VALUES('CPSC 304 101 W1 2020', 2, '110', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 304 101 W1 2020', 'thursday', '110', 'DMP');
+    VALUES('CPSC 304 101 W1 2020', 4, '110', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 304 T1A W1 2020', 'wednesday', '201', 'DMP');
+    VALUES('CPSC 304 T1A W1 2020', 3, '201', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 304 T1B W1 2020', 'wednesday', '201', 'DMP');
+    VALUES('CPSC 304 T1B W1 2020', 3, '201', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 304 T1B W1 2020', 'tuesday', '301', 'DMP');
+    VALUES('CPSC 304 T1B W1 2020', 2, '301', 'DMP');
 
 
 -- CPSC 313 and locations
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 313 101 W1 2020', 'monday', '110', 'DMP');
+    VALUES('CPSC 313 101 W1 2020', 1, '110', 'DMP');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 313 101 W1 2020', 'wednesday', '100', 'MATH');
+    VALUES('CPSC 313 101 W1 2020', 3, '100', 'MATH');
 
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CPSC 313 101 W1 2020', 'friday', '301', 'DMP');
+    VALUES('CPSC 313 101 W1 2020', 5, '301', 'DMP');
 
 -- Math 100 and locations
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('MATH 100 101 W1 2020', 'monday', '301', 'DMP');
+    VALUES('MATH 100 101 W1 2020', 1, '301', 'DMP');
 
 -- Chem 121 and locations
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('CHEM 121 102 W1 2020', 'wednesday', '301', 'DMP');
+    VALUES('CHEM 121 102 W1 2020', 3, '301', 'DMP');
 
 -- Phys 100 and locations
 INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_code)
-    VALUES('PHYS 100 103 W1 2020', 'friday', '100', 'MATH');
+    VALUES('PHYS 100 103 W1 2020', 5, '100', 'MATH');
 
 /*
  Einstein rode bike 1ac456789 on Oct 4
@@ -379,29 +385,33 @@ INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
     VALUES('CPSC 304 101 W1 2020', 3);
 
 INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
-    VALUES('CPSC 304 101 W1 2020', 4);
-
-INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
     VALUES('CPSC 304 101 W1 2020', 5);
 
 -- People in CPSC 304 T1A
 INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
     VALUES('CPSC 304 T1A W1 2020', 2);
 
+-- People in MATH 100 101
+INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
+    VALUES('MATH 100 101 W1 2020', 4);
+    
 /*
   All the people entered DMP 110 on Oct 9
  */
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 1);
+    VALUES(1, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 1);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 2);
+    VALUES(1, '2020-11-08T00:00:00.000Z'::TIMESTAMPTZ, 2);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 3);
+    VALUES(2, '2020-11-07T00:00:00.000Z'::TIMESTAMPTZ, 3);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 4);
+    VALUES(3, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 4);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 5);
+    VALUES(1, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 5);
+
+INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
+    VALUES(8, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 2);

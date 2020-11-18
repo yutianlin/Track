@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-17T04:50:04.903Z
+__export_date: 2020-11-18T14:59:12.957Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
   - _id: req_34a2f11a88d549a6b2c1b47576fe2bd0
@@ -416,27 +416,6 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_c6cfbb3286c341a39285b5e7a5706688
-    parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1605479640727
-    created: 1605479634733
-    url: http://127.0.0.1:3000/persons_status/4
-    name: GET /persons_status/:id
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1602715556081.3125
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
   - _id: req_c39a56ffbc6f4eecba349bac732df7b4
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
     modified: 1604210301589
@@ -475,9 +454,9 @@ resources:
     _type: request
   - _id: req_3832e39ce5b64a169461ea54b8bd6728
     parentId: fld_fa367acdd0824f988aba7f7ec2f45c7f
-    modified: 1605583971297
+    modified: 1605663680150
     created: 1603658199343
-    url: http://127.0.0.1:3000/persons/3
+    url: http://127.0.0.1:3000/persons/2
     name: PATCH /persons/:id
     description: ""
     method: PATCH
@@ -486,7 +465,7 @@ resources:
       text: |-
         { "data":
         	{
-        		"person_status": "POSITIVE"
+        		"person_status": "R"
         	}
         }
     parameters: []
@@ -790,9 +769,9 @@ resources:
     _type: request
   - _id: req_170193e8939a4cbdab0706ec70118c48
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1605583995168
+    modified: 1605711528373
     created: 1604817698176
-    url: http://127.0.0.1:3000/covid_tests/person_id/4/test_centre_id/5/input_time/2020-11-08T23:09:08.000Z
+    url: http://127.0.0.1:3000/covid_tests/person_id/1/test_centre_id/1/input_time/2020-10-06T11:05:03.000Z
     name: PATCH
       /covid_tests/:personId/test_centre_id/:testCentreId/input_time/:inputTime
     description: ""
@@ -802,7 +781,7 @@ resources:
       text: |-
         { "data":
         	{
-        		"status": "POSITIVE"
+        		"status": true
         	}
         }
     parameters: []
@@ -832,7 +811,7 @@ resources:
     _type: request_group
   - _id: req_5100f6e4fb954deb89b5d55c8c90122c
     parentId: fld_d305cd81b7f94aa2ba3374b1cfab249b
-    modified: 1605583985225
+    modified: 1605664087847
     created: 1604465461376
     url: http://127.0.0.1:3000/covid_tests
     name: POST /covid_test
@@ -846,7 +825,7 @@ resources:
             "test_time": "2020-10-05T00:00:00.000Z",
             "person_id": 4,
             "covid_testing_centre_id": 5,
-        		"status": "NEGATIVE"
+        		"status": "POSITIVE"
         	}
         }
     parameters: []
@@ -1036,7 +1015,7 @@ resources:
     _type: request_group
   - _id: req_0e7fd0e256024090bc7086533ea2196e
     parentId: fld_2189f1d0f97d475587f646722408c4b5
-    modified: 1605475732074
+    modified: 1605428460500
     created: 1604700297369
     url: http://127.0.0.1:3000/person_scheduled_classes
     name: POST /person_scheduled_classes
@@ -1047,8 +1026,12 @@ resources:
       text: |-
         { "data":
         	{
-        		"person_id": 5,
-        		"scheduled_class_id": "CPSC 304 T1A W1 2020"
+        		"person_id": 3,
+        		"department": "PHYS",
+        		"code": "100",
+        		"section": "103",
+        		"term": "W1",
+        		"year": 2020
         	}
         }
     parameters: []
@@ -1068,15 +1051,25 @@ resources:
     _type: request
   - _id: req_59864bd199f64e2994232df871a26a73
     parentId: fld_2189f1d0f97d475587f646722408c4b5
-    modified: 1605507839444
+    modified: 1604700429848
     created: 1604700403545
-    url: http://127.0.0.1:3000/person_scheduled_classes/5/CPSC 304 101 W1 2020
+    url: http://127.0.0.1:3000/person_scheduled_classes
     name: DELETE /person_scheduled_classes
     description: ""
     method: DELETE
     body:
       mimeType: application/json
-      text: ""
+      text: |-
+        { "data":
+        	{
+        		"person_id": 5,
+        		"department": "CPSC",
+        		"code": "304",
+        		"section": "101",
+        		"term": "W1",
+        		"year": 2020
+        	}
+        }
     parameters: []
     headers:
       - name: Content-Type
@@ -1125,7 +1118,7 @@ resources:
     _type: request_group
   - _id: req_ad9932b3dda046f581f93f9027f539be
     parentId: fld_9c2ba41f70994624b9034b8e932777f5
-    modified: 1604651216743
+    modified: 1605427244590
     created: 1604195413825
     url: http://127.0.0.1:3000/person_entrances
     name: POST /person_entrances
@@ -1136,8 +1129,8 @@ resources:
       text: |-
         { "data":
         	{
-        		"person_id": 5,
-        		"entrance_id": 2
+        		"person_id": 3,
+        		"entrance_id": 6
         	}
         }
     parameters: []
@@ -1323,19 +1316,19 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_e55ad76b0d93467097a0abbe14763201
+  - _id: req_80d2f8e00e2d430d8a885756e27ece77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605585018322
-    created: 1605584900289
-    url: http://127.0.0.1:3000/person_in_all_bubbles
-    name: GET /person_in_all_bubbles
+    modified: 1604958233222
+    created: 1604957795520
+    url: http://127.0.0.1:3000/scheduled_class_info/CPSC/304/101/W1/2020
+    name: GET /scheduled_class_info/:dept/:code/:section/:term/:year
     description: ""
     method: GET
     body: {}
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1605584900355
+    metaSortKey: -1604957795520
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -1354,238 +1347,11 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1603636443269.875
     _type: request_group
-  - _id: req_e4abc9b5663a4e7abe51d56ca39046ee
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605558899175
-    created: 1605558880840
-    url: http://127.0.0.1:3000/frequently_used_buildings
-    name: GET /frequently_used_buildings
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605558880840
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_b81c6a088a834ebcbb1eb72bae32a7a1
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605503844980
-    created: 1605503837241
-    url: http://127.0.0.1:3000/scheduled_class_info/person_id/2
-    name: GET /scheduled_class_info/person_id/:person_id
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605503837241
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_bef7d929670f40c796a2c9474c634745
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605480779037
-    created: 1605480545660
-    url: http://127.0.0.1:3000/notifications_unread/1
-    name: GET /notifications_unread/:person_id
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605480545660
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_fac7825c5db24a97aba3840ec017644d
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605478660693
-    created: 1605478647956
-    url: http://127.0.0.1:3000/largest_scheduled_class
-    name: GET /largest_scheduled_class
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605478647957
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_f798ee0554814f0d967ae3389e458eeb
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605588561910
-    created: 1605477177650
-    url: http://127.0.0.1:3000/bubble_count_by_term/CPSC
-    name: GET /bubble_count_by_term/:searchTerm
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605477177650
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_f62bd661e4fb4dd2a46758bab097b444
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605588590354
-    created: 1605588584232
-    url: http://127.0.0.1:3000/bubble_count_by_term/4
-    name: GET /bubble_count_by_id/:personId
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605438257713
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_ed64a95dd46d481ca207ae42028fe3d0
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605411788670
-    created: 1605399337715
-    url: http://127.0.0.1:3000/peron_entrance_room_building_time
-    name: GET /person_entrance_room_building_time
-    description: ""
-    method: GET
-    body:
-      mimeType: application/json
-      text: |-
-        { "data": {
-            "projection": [
-              {
-                "table_name": "person",
-                "columns": ["person_id", "name"]
-              },
-              {
-                "table_name": "person_time_entrance",
-                "columns": ["entrance_id"]
-              }
-            ],
-            "selection": [
-              {
-                "table_name": "person",
-                "filters": [
-                  {
-                    "column": "person_id",
-                    "filter": [1]
-                  }
-                ]
-              },
-              {
-                "table_name": "person_time_entrance",
-                "filters": [
-                  {
-                    "column": "entrance_id",
-                    "filter": [1]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-    parameters: []
-    headers:
-      - name: Content-Type
-        value: application/json
-        id: pair_5a137a74bad1405f8c0471e9baa3b6d7
-    authentication: {}
-    metaSortKey: -1605399337776
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_b99995578be241e0b19cd23b94215428
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605583876253
-    created: 1605315175880
-    url: http://127.0.0.1:3000/covid_testing_centre_info
-    name: GET /covid_testing_centre_info
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1605315175880
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: req_80d2f8e00e2d430d8a885756e27ece77
-    parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605504215357
-    created: 1604957795520
-    url: http://127.0.0.1:3000/scheduled_class_info/cpsc
-    name: GET /scheduled_class_info/:dept/:code/:section/:term/:year
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers: []
-    authentication: {}
-    metaSortKey: -1604957795520
-    isPrivate: false
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
   - _id: req_18fff1eabcb746ea872d6b510ff3ddb6
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605207236345
+    modified: 1605425547635
     created: 1604956542378
-    url: http://127.0.0.1:3000/covid_testing_centre_info/1
+    url: http://127.0.0.1:3000/covid_testing_centre_info/4
     name: GET /covid_testing_centre_info/:covid_testing_centre_id
     description: ""
     method: GET
@@ -1604,7 +1370,7 @@ resources:
     _type: request
   - _id: req_997f496dda9f4c279c20e1f8547a3a7f
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605212614299
+    modified: 1605424899450
     created: 1604955784085
     url: http://127.0.0.1:3000/person_notification_messages_info/2
     name: GET /person_notification_messages_info/:person_id
@@ -1625,7 +1391,7 @@ resources:
     _type: request
   - _id: req_c38ee258430f4bc0b60da3bef0a127fc
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605207207412
+    modified: 1605424859228
     created: 1604955224240
     url: http://127.0.0.1:3000/person_bike_info/1
     name: GET /person_bike_info/:person_id
@@ -1688,9 +1454,9 @@ resources:
     _type: request
   - _id: req_f38ae36241b84a0ea1903b78a6274c77
     parentId: fld_f743221d1bda45eb959c0dadc45e8ef7
-    modified: 1605207167060
+    modified: 1605427235153
     created: 1604218674678
-    url: http://127.0.0.1:3000/entrance_info/4
+    url: http://127.0.0.1:3000/entrance_info/6
     name: GET /entrance_info/:entrance_id
     description: ""
     method: GET
