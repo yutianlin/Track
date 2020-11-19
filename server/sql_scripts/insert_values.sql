@@ -403,7 +403,7 @@ INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
     VALUES('MATH 100 101 W1 2020', 4);
     
 /*
-  All the people entered DMP 110 on Oct 9
+  4 people entered DMP 110, 1 person entered DMP 210, and 1 person entered ICCS on 11/09
  */
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
     VALUES(1, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 1);

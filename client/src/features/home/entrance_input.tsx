@@ -56,6 +56,13 @@ export default function EntranceInput() {
     }
   } else {
     const entranceDefined = entrance as EntranceInfo;
+    let roomName: string;
+    if (isStringEmpty(entranceDefined.room_number)) {
+      roomName = `Building Code: ${entranceDefined.building_code}`;
+    } else {
+      roomName = `Room Type: ${entranceDefined.building_code} ${entranceDefined.room_number}`
+    }
+
     entranceInfo = (
      <div className="entrance-info-container-with-button">
        <div className="entrance-info-container">
@@ -63,11 +70,11 @@ export default function EntranceInput() {
            Building Name: {entranceDefined.name}
          </Typography>
          <Typography>
-           Room: {`${entranceDefined.building_code} ${entranceDefined.room_number}`}
+           {roomName}
          </Typography>
-         <Typography>
+         {entranceDefined.room_type && <Typography>
            Room Type: {capitalizeAndRemoveUnderscores(entranceDefined.room_type)}
-         </Typography>
+         </Typography>}
          <Typography>
            Entrance Number: {entranceDefined.entrance_id}
          </Typography>

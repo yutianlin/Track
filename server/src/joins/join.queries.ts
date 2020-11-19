@@ -35,7 +35,7 @@ export const GetEntranceInfoById = (entrance_id: number) =>
     ${BUILDING.tableName}.${BUILDING.columns.building_code.getName()},
     ${BUILDING.tableName}.${BUILDING.columns.name.getName()}`,
     `${ENTRANCE.tableName} 
-        INNER JOIN ${ROOM.tableName} 
+        LEFT JOIN ${ROOM.tableName} 
             ON ${ENTRANCE.tableName}.${ROOM.columns.room_number.getName()} = ${
       ROOM.tableName
     }.${ROOM.columns.room_number.getName()}
