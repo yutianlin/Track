@@ -10,10 +10,9 @@ import {
   GetBubbleCountBySearchTerm,
   GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
-  GetFrequentlyUsedBuilding,
+  GetFrequentlyUsedBuildings,
   GetLargestScheduledClass,
-  GetPersonAllBubbles,
-  GetPersonAllBubblesBySearchTerm,
+  GetPersonAllBubbles, GetPersonAllBubblesBySearchTerm,
   GetPersonAndFacultyInfoById,
   GetPersonEntranceRoomBuildingTime,
   GetScheduledClassDayInfo,
@@ -91,7 +90,7 @@ export default class Join {
 
   getPersonsInBubblesBySearchTerm = (searchTerm: string) => {
     return this.queryService.query(GetPersonAllBubblesBySearchTerm(searchTerm));
-  };
+  }
 
   getLargestScheduledClass = () => {
     return this.queryService.query(GetLargestScheduledClass());
@@ -104,7 +103,7 @@ export default class Join {
   };
 
   getFrequentlyUsedBuildings = () => {
-    return this.queryService.query(GetFrequentlyUsedBuilding());
+    return this.queryService.query(GetFrequentlyUsedBuildings());
   };
 
   getPersonAllBubbles = () => {

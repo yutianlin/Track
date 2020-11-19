@@ -12,12 +12,15 @@ export default function ScheduledClassAccordionContent({classDays}: ScheduledCla
   const dayClasses = accordionContentStyles();
   const startDay: string = formatMoment(classDays[0].start_day);
   const endDay: string = formatMoment(classDays[0].end_day);
+  classDays.sort((classDayA: ClassDay, classDayB: ClassDay) => {
+    return classDayA.day_of_week.day_number - classDayB.day_of_week.day_number;
+  });
 
   const dayInfos = classDays.map(classDay => {
     return (
-      <div className = {dayClasses.dayContainer} key={classDay.day_of_week}>
+      <div className = {dayClasses.dayContainer} key={classDay.day_of_week.day_number}>
         <Typography color = "textSecondary">
-          Day: {`${capitalize(classDay.day_of_week)}`}
+          Day: {`${capitalize(classDay.day_of_week.day_name)}`}
         </Typography>
         <Typography color = "textSecondary">
           Room: {`${classDay.building_code} ${classDay.room_number}`}

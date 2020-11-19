@@ -10,7 +10,7 @@ import {
   homeRoute,
   notificationsRoute,
   personInfoRoute,
-  scheduledClassesRoute,
+  scheduledClassesRoute, statsRoute,
   testsRoute
 } from "../routes";
 import "./navbar.css";
@@ -44,7 +44,7 @@ export default function NavBar() {
             <LinkContainer to={notificationsRoute}>
               <Nav.Link>Notifications</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={homeRoute}>
+            <LinkContainer to={statsRoute}>
               <Nav.Link>Stats</Nav.Link>
             </LinkContainer>
           </Nav>

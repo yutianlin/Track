@@ -9,3 +9,4 @@ export const notificationsRoute = "/notifications";
 export const scheduledClassesRoute = "/scheduled_classes";
 export const bubbleLandingRoute = "/bubble_landing";
 export const createBubbleRoute = "/create_bubble";
+export const statsRoute = "/stats";

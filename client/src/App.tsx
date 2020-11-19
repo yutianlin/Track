@@ -13,7 +13,7 @@ import {
   editPersonRoute,
   editTestRoute,
   homeRoute, notificationsRoute,
-  personInfoRoute, scheduledClassesRoute,
+  personInfoRoute, scheduledClassesRoute, statsRoute,
   testsRoute
 } from "./features/routes";
 import Bike from "./features/bike/bike";
@@ -28,6 +28,7 @@ import NotificationsPage from "./features/notification/notifications_page";
 import ScheduledClassesPage from "./features/scheduled_class/scheduled_classes";
 import BubblePage from "./features/bubble/bubble_page";
 import BubbleForm from "./features/bubble/bubble.form";
+import StatsPage from "./features/stats/stats_page";
 
 export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -72,6 +73,7 @@ export default function App() {
           <Route path = {scheduledClassesRoute} component={ScheduledClassesPage}/>
           <Route path = {bubbleLandingRoute} component={BubblePage}/>
           <Route path = {createBubbleRoute} component={BubbleForm}/>
+          <Route path = {statsRoute} component={StatsPage}/>
           <Route path = {createTestRoute} render={()=> <CovidTestForm forCreation={true}/>}/>
           <Route path = {editTestRoute} render={()=> <CovidTestForm forCreation={false}/>}/>
           <Redirect to={homeRoute}/>

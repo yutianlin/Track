@@ -56,6 +56,7 @@ export default class PersonService {
 
   updatePersonById = async (id: number, attributes: any) => {
     const types = new ExpectedValueTypes(expectValues, true);
+    console.log(JSON.stringify(types));
 
     const status = getPropertiesAndValues(
       attributes,
@@ -67,6 +68,7 @@ export default class PersonService {
     }
 
     const set = setValues(attributes, types);
+    console.log(JSON.stringify(set));
 
     if (set !== "") {
       await this.queryService.query(UpdatePersonById(set, id));

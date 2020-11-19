@@ -29,7 +29,7 @@ export const BUILDING_TABLE = {
   tableName: "ubc_building",
   columns: {
     building_code: new ColumnType("building_code", "string", false),
-    name: new ColumnType("name", "string", false),
+    name: new ColumnType("name", "string", false)
   },
 } as const;
 
@@ -51,7 +51,7 @@ export const ROOM_TABLE = {
       false
     ),
     room_number: new ColumnType("room_number", "string", false),
-    room_type: new ColumnType("room_type", "string", false),
+    room_type: new ColumnType("room_type", "string", false)
   },
 } as const;
 
@@ -148,9 +148,9 @@ export const NOTIFICATION_TABLE = {
   tableName: "notification",
   columns: {
     notification_id: new ColumnType("notification_id", "number", false),
-    category: new ColumnType("category", "number", false),
-    subject_line: new ColumnType("subject_line", "number", true),
-    body: new ColumnType("subject_line", "number", false),
+    category: new ColumnType("category", "string", false),
+    subject_line: new ColumnType("subject_line", "string", true),
+    body: new ColumnType("body", "string", false),
   },
 } as const;
 
