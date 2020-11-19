@@ -2,22 +2,33 @@
 
 Track is a web app for UBC students keep everyone safe from COVID-19. It is used to track where they have been, what circle of acquaintances they have, and what classes they are taking. When someone they have potentially come in contact with contracts COVID-19, they would be notified so that they could take the necessary next steps to prevent further spread of the disease.
 
-# Technical infrastructure of the project:
+## Technical infrastructure of the project:
 
 The project is separated into two main folders, the client as the front-end components visible to the user, and the server as the back-end components with a RESTful API design. This is why anything that could be done by the client, is also achievable by API calls to the server.
 
 The tech stack that was used includes Node.js (Typescript), React, CSS, Postgresql. Additional tools including Insomnia, Prettier, Yarn, NPM, joi, React Bootstrap, Redux, Express.js were also used.
 
-The entrance to the server is the `src/index.ts` file, it gives access to all the controllers (API endpoints). Each entity and relationship belongs in its own file in `src/`, with corresponding controller, schema (if necessary), service, and queries file. There are also additional folders named `src/joins` and `src/helpers` that supports any queries using multiple tables and helper functionalities (commonly used queries, tables column names as constants, parsers, etc.) respectively. 
+
+### Server
+
+The entrance to the server is the `src/index.ts` file, it gives access to all the controllers (API endpoints). Each entity and relationship belongs in its own file in `src/`, with corresponding controller, schema (if necessary), service, and queries file. There are also additional folders named `src/joins` and `src/helpers` that supports any queries using multiple tables and helper functionalities (commonly used queries, tables column names as constants, parsers, etc.) respectively.
+
 In the `src/` there are also commonly used errors in `src/errors.ts` and a `src/QueryService.ts` that communicates directly with the database. Please not that the QueryService will load all Postgres settings from the `.env` file, and will also log any queries that it processes on the console.
+
 In the `sql_scripts` lives the scripts that automizes Postgres table creation and data insert.
 
-The entrance to the client is the `src/index.tsx` which loads the app and associated router. The routes are loaded in the `src/App.tsx` file. 
+
+### Client
+
+The entrance to the client is the `src/index.tsx` which loads the app and associated router. The routes are loaded in the `src/App.tsx` file.
+
 The querying to the backend is done by the different services in the `src/services` folder, where there is a file corresponding to each category of service e.g. `src/services/covid_test.service.ts` It includes an additional service that handles a simplistic authentication using a cookie that doesn't expire.
+
 The `src/model` folder contains all the data models that will need to be used by the front-end. The `src/conversions` folder does the translation between the JSON that is returned by the API and the data model that is consumed.
+
 All the react redux forms, CSS formatting, interaction are defined by category in the `src/features`.
 
-# To setup the project:
+## To setup the project:
 
 1. Install yarn, node.js, homebrew, npm
 
@@ -70,7 +81,7 @@ Going to localhost:3000/ will load the last built files,
 for client hot reload go to localhost:3000
 
 
-Troubleshoot Suggestions:
+### Troubleshooting Suggestions:
 
 * Make sure that your psql user has read write permissions
 
@@ -86,6 +97,6 @@ Troubleshoot Suggestions:
 
 * If Google and the link below has not been helpful in setting up your environment, please contact me ASAP by email at me@yutianlin.com
 
-Additional Details:
+### Additional Details:
 
 - refer to `https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/` for more information
