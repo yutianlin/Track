@@ -10,7 +10,7 @@ import {
   GetBubbleCountBySearchTerm,
   GetCovidTestingCentreInfoById,
   GetEntranceInfoById,
-  GetFrequentlyUsedBuilding,
+  GetFrequentlyUsedBuildings,
   GetLargestScheduledClass,
   GetPersonAllBubbles, GetPersonAllBubblesBySearchTerm,
   GetPersonAndFacultyInfoById,
@@ -103,7 +103,7 @@ export default class Join {
   };
 
   getFrequentlyUsedBuildings = () => {
-    return this.queryService.query(GetFrequentlyUsedBuilding());
+    return this.queryService.query(GetFrequentlyUsedBuildings());
   };
 
   getPersonAllBubbles = () => {

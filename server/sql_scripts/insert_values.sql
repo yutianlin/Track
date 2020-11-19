@@ -167,6 +167,16 @@ INSERT INTO person(name, email, phone_number, in_app_notification, student_id, f
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(1,1);
 
+-- Jake, Chris, and Richard in The Bois
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(1,2);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(5,2);
+
+INSERT INTO bubble_person(person_id, bubble_id)
+    VALUES(4,2);
+
 -- Richard in Project Group 44
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(5,1);
@@ -179,9 +189,6 @@ INSERT INTO bubble_person(person_id, bubble_id)
 
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(4,1);
-
-INSERT INTO bubble_person(person_id, bubble_id)
-    VALUES(4,2);
 
 INSERT INTO bubble_person(person_id, bubble_id)
     VALUES(4,3);
@@ -374,7 +381,7 @@ INSERT INTO person_notification(notification_id, person_id, notification_time, i
     VALUES(5, 4, '2020-10-11T00:00:00Z'::TIMESTAMPTZ, false);
 
 
--- All the people are in CPSC 304 101
+-- People in CPSC 304 101
 INSERT INTO scheduled_class_person(scheduled_class_id, person_id)
     VALUES('CPSC 304 101 W1 2020', 1);
 

@@ -35,7 +35,7 @@ export const GetEntranceInfoById = (entrance_id: number) =>
     ${BUILDING.tableName}.${BUILDING.columns.building_code.getName()},
     ${BUILDING.tableName}.${BUILDING.columns.name.getName()}`,
     `${ENTRANCE.tableName} 
-        LEFT JOIN ${ROOM.tableName} 
+        INNER JOIN ${ROOM.tableName} 
             ON ${ENTRANCE.tableName}.${ROOM.columns.room_number.getName()} = ${
       ROOM.tableName
     }.${ROOM.columns.room_number.getName()}
@@ -284,8 +284,8 @@ export const GetLargestScheduledClass = () =>
       SCHEDULED_CLASS.tableName
     }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
                   COUNT(*)`,
-    `${SCHEDULED_CLASS.tableName}
-        LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+    `${PERSON_SCHEDULED_CLASS.tableName}
+        INNER JOIN ${SCHEDULED_CLASS.tableName}
         ON ${
           SCHEDULED_CLASS.tableName
         }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
@@ -296,7 +296,7 @@ export const GetLargestScheduledClass = () =>
     }.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}`,
     `COUNT(*) >= ALL(SELECT COUNT(*) 
                                 FROM ${SCHEDULED_CLASS.tableName}
-                            LEFT JOIN ${PERSON_SCHEDULED_CLASS.tableName}
+                            INNER JOIN ${PERSON_SCHEDULED_CLASS.tableName}
                             ON ${
                               SCHEDULED_CLASS.tableName
                             }.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = ${
@@ -344,12 +344,12 @@ export const GetAllUnreadNotificationsByPersonId = (personId: number) =>
                  AND ${PERSON.tableName}.${PERSON.columns.in_app_notification.getName()} = TRUE`
   );
 
-export const GetFrequentlyUsedBuilding = () =>
+export const GetFrequentlyUsedBuildings = () =>
     GetRowsWithProjectionGroupByHavingOrder(
     `${ENTRANCE.tableName}.${ENTRANCE.columns.building_code.getName()},
                   COUNT(*)`,
-    `${ENTRANCE.tableName}
-        LEFT JOIN ${PERSON_TIME_ENTRANCE.tableName}
+    `${PERSON_TIME_ENTRANCE.tableName}
+        INNER JOIN ${ENTRANCE.tableName}
         ON ${
           ENTRANCE.tableName
         }.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = ${
