@@ -236,5 +236,6 @@ export const PERSON_NOTIFICATION_TABLE = {
       false
     ),
     is_read: new ColumnType("is_read", "string", false),
+    notification_time: new ColumnType("notification_time", "dateTime", false),
   },
 } as const;

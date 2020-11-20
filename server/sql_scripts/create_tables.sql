@@ -169,7 +169,7 @@ CREATE TABLE notification(
 	    CHECK(category = 'email' OR category ='inApp' or category = 'text')
 	    NOT NULL,
 	subject_line varchar(100),
-	body varchar(100) NOT NULL,
+	body varchar(1000) NOT NULL,
 	CONSTRAINT subject_line_constraint
 	    CHECK(category = 'email' AND subject_line IS NOT NULL OR
 	         (category = 'inApp' or category = 'text') AND subject_line IS NULL)

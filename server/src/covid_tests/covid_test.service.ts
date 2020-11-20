@@ -62,13 +62,12 @@ export default class CovidTest {
       new ExpectedValueTypes([columns.status], true)
     ).values;
     if (status.length === 1 && status[0] === true) {
-      await this.testSetToTrueTriggers(personId);
+      await this.testSetToTrueTriggers(personId, `${moment(inputTime).utc().subtract(2, "weeks").format("YYYY-MM-DD")}Z`);
     }
     return result;
   };
 
-  private testSetToTrueTriggers = async (personId: number) => {
-    console.log('here');
-    this.personService.updatePersonStatusToPositive(personId);
+  private testSetToTrueTriggers = async (personId: number, startTime?: string) => {
+    this.personService.updatePersonStatusToPositive(personId, startTime);
   };
 }

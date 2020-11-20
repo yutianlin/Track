@@ -5,12 +5,13 @@ import {
   CreateRelation,
   GetAllRelations,
   DeleteRelation,
+  GetPersonsInSameClass,
 } from "./person_scheduled_classes.queries";
 import { PERSON_SCHEDULED_CLASS_TABLE } from "../helpers/tables";
 
 const { tableName, columns } = PERSON_SCHEDULED_CLASS_TABLE;
 
-export default class BubblePerson {
+export default class PersonScheduledClassesService {
   private queryService: QueryService;
 
   constructor() {
@@ -31,5 +32,9 @@ export default class BubblePerson {
     const types = new ExpectedValueTypes(Object.values(columns));
     const conditions = setValues(attributes, types, " AND ");
     return this.queryService.query(DeleteRelation(conditions));
+  };
+
+  getPersonsInSameClass = async (personId: number) => {
+    return this.queryService.query(GetPersonsInSameClass(personId));
   };
 }
