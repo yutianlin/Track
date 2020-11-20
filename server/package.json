@@ -19,7 +19,8 @@
     "moment": "^2.29.1",
     "pg": "^8.4.0",
     "prettier": "^2.1.2",
-    "tsc-watch": "^4.2.9"
+    "tsc-watch": "^4.2.9",
+    "twilio": "^3.52.0"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",

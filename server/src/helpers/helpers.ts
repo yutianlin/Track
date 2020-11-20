@@ -152,7 +152,7 @@ export const getFromAttributes = (
 };
 
 export const stringify = (s: string): string => {
-  return `'${s.split("'").join("''")}'`;
+  return `'${s.split("'").join("")}'`;
 };
 
 export const listify = (strings: string[], join: string = ", "): string => {

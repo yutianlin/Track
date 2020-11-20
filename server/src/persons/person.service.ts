@@ -1,4 +1,5 @@
 import QueryService from "../QueryService";
+import TwilioService from "../TwilioService";
 import {
   GetAllPersons,
   GetPersonById,
@@ -36,6 +37,7 @@ const expectValues = [
 
 export default class PersonService {
   private queryService: QueryService;
+  private twilioService: TwilioService;
   private personBubbleService: BubblePersonService;
   private joinService: JoinService;
   private personScheduledClassesService: PersonScheduledClassesService;
@@ -44,6 +46,7 @@ export default class PersonService {
 
   constructor() {
     this.queryService = new QueryService();
+    this.twilioService = new TwilioService();
     this.personBubbleService = new BubblePersonService();
     this.joinService = new JoinService();
     this.personScheduledClassesService = new PersonScheduledClassesService();
@@ -289,6 +292,7 @@ export default class PersonService {
     if (person.phone_number) {
       const notificationPhone = this.notificationService.createPhoneNotification(message);
       sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationPhone)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+      this.twilioService.sendSMS(person.phone_number, message);
     }
     
     return Promise.all(sentPromises).then(() => {

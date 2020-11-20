@@ -142,13 +142,13 @@ INSERT INTO person(name, email, phone_number, in_app_notification, student_id, f
     VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Albert Einstein', NULL, 6041234567, TRUE, NULL, 987654321123);
+    VALUES('Albert Einstein', NULL, 6049927931, TRUE, NULL, 987654321123);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Iron Man', NULL, 6041234568, TRUE, NULL, 987654321124);
+    VALUES('Iron Man', NULL, 6138900916, TRUE, NULL, 987654321124);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', 6041234578, FALSE, 1234151565, NULL);
+    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', 6043187640, FALSE, 1234151565, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
     VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, 123456789, NULL);
