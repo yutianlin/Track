@@ -88,21 +88,19 @@ module.exports = function (app: any) {
     }
   );
 
-  app.get(
-    "/bubble_count_by_term/:searchTerm",
-    async (request: any, response: any) => {
-      const searchTerm = request.params.searchTerm;
-      response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
-    }
-  );
+    app.get(
+        "/bubble_count_by_term/:searchTerm",
+        async (request: any, response: any) => {
+            const searchTerm = request.params.searchTerm;
+            response.json(await joinService.getBubbleCountBySearchTerm(searchTerm));
+        }
+    );
 
   app.get(
     "/persons_in_all_bubbles_by_term/:searchTerm",
     async (request: any, response: any) => {
       const searchTerm = request.params.searchTerm;
-      response.json(
-        await joinService.getPersonsInBubblesBySearchTerm(searchTerm)
-      );
+      response.json(await joinService.getPersonsInBubblesBySearchTerm(searchTerm));
     }
   );
 
@@ -111,7 +109,7 @@ module.exports = function (app: any) {
   });
 
   app.get(
-    "/notifications_unread/:person_id",
+    "/inApp_notifications_unread/:person_id",
     async (request: any, response: any) => {
       const person_id = request.params.person_id;
       response.json(

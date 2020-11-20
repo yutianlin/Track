@@ -1,12 +1,40 @@
-# cpsc-304-project
+# TRACK
 
-To setup the project:
+Track is a web app for UBC students, faculty and staff to keep everyone safe from the spread of COVID-19. It is used to track where they have been, what circle of acquaintances they have, and for students - what classes they are taking. When someone they have potentially come in contact with contracts COVID-19, they are notified so that they could take the necessary next steps to prevent further spread of the disease.
+
+## Technical infrastructure of the project:
+
+The project is separated into two main folders, the client as the front-end components visible to the user, and the server as the back-end components with a RESTful API design. Thus, anything that can be done by accomplished by the client can also be achieved through API calls to the server.
+
+The tech stack includes Node.js (Typescript), React, CSS, Postgresql. Additional tools including Insomnia, Prettier, Yarn, NPM, Joi, React Bootstrap, Redux, and Express.js.
+
+
+### Server
+
+The entrance to the server is the `src/index.ts` file, it gives access to all the controllers (API endpoints). Each entity and relationship belongs in its own file in `src/`, with corresponding controller, schema (if necessary), service, and queries file. There are also additional folders named `src/joins` and `src/helpers` that supports any queries using multiple tables and helper functionalities (commonly used queries, tables column names as constants, parsers, etc.) respectively.
+
+In the `src/` there are also commonly used errors in `src/errors.ts` and a `src/QueryService.ts` that communicates directly with the database. Please not that the QueryService will load all Postgres settings from the `.env` file, and will also log any queries that it processes on the console.
+
+In the `sql_scripts` lives the scripts that automates Postgres table creation and data insert.
+
+
+### Client
+
+The entrance to the client is the `src/index.tsx` which loads the app and associated router. The routes are loaded in the `src/App.tsx` file.
+
+The querying to the backend is done by the different services in the `src/services` folder, where there is a file corresponding to each category of service e.g. `src/services/covid_test.service.ts` It includes an additional service that handles a simplistic authentication using a cookie that does not expire.
+
+The `src/model` folder contains all the data models that are used by the front-end. The `src/conversions` folder does the translation between the JSON that is returned by the API and the data model that is consumed.
+
+All the react redux forms, CSS formatting, interaction are defined by category in the `src/features`.
+
+## To setup the project:
 
 1. Install yarn, node.js, homebrew, npm
 
 1. `brew install postgresql`
 
-1. Setup Postgres Database on terminal, (`<variable>` indicates a variable you could fill in)\
+1. Setup Postgres Database on terminal, (`<variable>` indicates a variable to be filled in)\
    `brew services start postgresql`\
    `psql postgres`\
    postgres=# `CREATE ROLE <custom role name> WITH LOGIN PASSWORD '<password for role>';`\
@@ -49,26 +77,25 @@ cpsc-304-project/client$ `yarn start`
 
 The client will run in localhost:5000, while the server runs in localhost:3000
 
-Going to localhost:3000/ will load the last built files, 
-for client hot reload go to localhost:3000
+Going to localhost:3000/ will load the last built files. For client hot reload go to localhost:3000
 
 
-Troubleshoot Suggestions:
+### Troubleshooting Suggestions:
 
 * Make sure that your psql user has read write permissions
 
-* If `yarn updateData` fails (you could tell on the console that some tables are not created or inserted properly) go to `sql_scripts` folder and run `source reset_tables.sh`. For this script to run, the `.env` file must be setup properly with your psql details.
+* If `yarn updateData` fails (you should be able to tell through the console that some tables were not created or inserted properly) go to `sql_scripts` folder and run `source reset_tables.sh`. For this script to run, the `.env` file must be setup properly with your psql details.
 
-* If anything relating yarn, Node.js, or npm is not working, please upgrade your version, for your reference, I am using yarn 1.22.5, node v10.22.0, npm 6.14.6
+* If anything relating yarn, Node.js, or npm is not working, please upgrade your version, for your reference, we have used yarn 1.22.5, node v10.22.0, npm 6.14.6
 
 * If any of these commands are not working, take a look at the corresponding `package.json` file to see the command it is running, and you could always run them separately or run similar commands.
 
-* Please note that we are using TypeScript, so you would have to compile your files before running, that should be done when you run `yarn start`, but if anything goes wrong, you could manually compile the files and run it. If there are still problems, try deleting your `dist/` folder and recompiling.
+* Please note that we are using TypeScript, so you will have to compile your files before running, that should be done when you run `yarn start`, but if anything goes wrong, you can manually compile the files and run it. If there are still problems, try deleting your `dist/` folder and recompiling.
 
-* You could access any of the endpoints on Postman or Curl if you prefer, but we do not have preloaded scripts for you to run.
+* You can access any of the endpoints on Postman or Curl if you prefer, but we do not have preloaded scripts for you to run.
 
-* If Google and the link below has not been helpful in setting up your environment, please contact me ASAP by email at me@yutianlin.com
+* If Google and the link below has not been helpful in setting up your environment, please contact Yutian Lin ASAP by email at me@yutianlin.com
 
-Additional Details:
+### Additional Details:
 
 - refer to `https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/` for more information

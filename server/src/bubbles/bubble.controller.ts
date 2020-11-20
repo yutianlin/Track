@@ -47,4 +47,9 @@ module.exports = function (app: any) {
       response.status(422).json(e.message);
     }
   });
+
+  app.delete("/bubbles/:id", async (request: any, response: any) => {
+    const id = request.params.id;
+    response.json(await bubbleService.deleteBubbleById(id));
+  });
 };

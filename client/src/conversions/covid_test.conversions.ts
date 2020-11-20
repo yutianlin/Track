@@ -1,6 +1,5 @@
 import {CovidTestInfo} from "../model/covid_test";
-import moment from 'moment-timezone';
-import {toIsoString, userTimezone} from "./conversions.util";
+import {toIsoString} from "./conversions.util";
 import {CovidTestFormState} from "../features/covid_tests/covid_test.form";
 import {CovidStatus} from "../model/covid_status";
 

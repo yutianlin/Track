@@ -74,11 +74,15 @@ export default function BubblePage() {
     }
   }
 
+  const refreshPage = async () => {
+    const newBubbles = await refreshBubbles();
+    await onSearch(searchTerm, newBubbles);
+  }
+
   const onActionButtonClick = async (endpointFn: (a: number, b: string) => Promise<any>,
                                      bubble_id: string): Promise<void> => {
     await endpointFn(personState.person_id as number, bubble_id);
-    const newBubbles = await refreshBubbles();
-    await onSearch(searchTerm, newBubbles);
+    await refreshPage();
   }
 
   const onAdd = async (bubble_id: string) => {
@@ -93,6 +97,11 @@ export default function BubblePage() {
       bubble_id);
   }
 
+  const onDeleteBubble = async (bubble: BubbleInfo) => {
+    await bubbleService.deleteBubbleById(bubble.bubble_id);
+    await refreshPage();
+  }
+
   if (isLoading) {
     return <div/>
   }
@@ -100,6 +109,7 @@ export default function BubblePage() {
   const createClassAccordion = (
     bubble: BubbleInfo,
     actionButtonLabel: string,
+    canDelete: boolean,
     onActionClick: any): any => {
     return (<ActionAccordion
       key={bubble.bubble_id}
@@ -107,7 +117,10 @@ export default function BubblePage() {
       id={bubble.bubble_id}
       onActionClick={onActionClick}
       actionButtonLabel={actionButtonLabel}>
-      <BubbleAccordionContent bubble={bubble}/>
+      <BubbleAccordionContent
+        bubble={bubble}
+        canDelete={canDelete}
+        onDelete={onDeleteBubble}/>
     </ActionAccordion>);
   }
 
@@ -117,7 +130,7 @@ export default function BubblePage() {
     userBubbleElement = <Typography>You are not in any bubbles.</Typography>
   } else {
     userBubbleElement = usersBubbles.map(bubble => {
-      return createClassAccordion(bubble, "Remove", onDelete);
+      return createClassAccordion(bubble, "Remove", true, onDelete);
     });
   }
 
@@ -143,7 +156,7 @@ export default function BubblePage() {
     searchResultElement = (<div>
       <Typography>{allPeopleText}</Typography>
       {searchedBubbles.map(bubble => {
-        return createClassAccordion(bubble, "Add", onAdd);
+        return createClassAccordion(bubble, "Add", false, onAdd);
       })}
     </div>)
   }

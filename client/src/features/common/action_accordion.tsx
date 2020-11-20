@@ -3,7 +3,7 @@ import {accordionStyles} from "./accordion.styles";
 import {Accordion, AccordionDetails, AccordionSummary, Button, Container} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronDown, IconDefinition} from "@fortawesome/free-solid-svg-icons";
+import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import "./action_accordion.css";
 
 interface ScheduledClassProps {

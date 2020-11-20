@@ -4,7 +4,7 @@ import {ClassDay} from "../../model/class_day";
 import {scheduledClassService} from "../../services/scheduled_class.service";
 import {Person, selectPersonState} from "../person/person.slice";
 import {useSelector} from "react-redux";
-import {groupBy, flatten} from 'lodash';
+import {groupBy} from 'lodash';
 import {Typography} from "@material-ui/core";
 import ActionAccordion from "../common/action_accordion";
 import DebouncedInput from "../common/debounced_input";

@@ -1,12 +1,15 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import {BubbleInfo} from "../../model/bubble_info";
+import {Button} from "@material-ui/core";
 
 interface BubbleAccordionContentProps {
-  bubble: BubbleInfo
+  bubble: BubbleInfo,
+  canDelete: boolean,
+  onDelete: (bubble: BubbleInfo) => any
 }
 
-export default function BubbleAccordionContent({ bubble }: BubbleAccordionContentProps) {
+export default function BubbleAccordionContent({ bubble, canDelete, onDelete }: BubbleAccordionContentProps) {
   return (
     <div style = {{display: 'flex', flexDirection: 'column'}}>
       <Typography style = {{marginBottom: '2vh'}}>
@@ -18,6 +21,14 @@ export default function BubbleAccordionContent({ bubble }: BubbleAccordionConten
       <Typography color="textSecondary">
         Person Count: {bubble.count}
       </Typography>
+      {canDelete &&
+      (<Button
+          size="small"
+          style={{marginTop: '2vh'}}
+          onClick={() => onDelete(bubble)}>
+          Delete Bubble
+        </Button>
+      )}
     </div>
   )
 }

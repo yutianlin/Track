@@ -70,6 +70,15 @@ export const GetRowsWithProjectionGroupByHaving = (
 ) =>
   `SELECT ${projection} FROM ${tableName} GROUP BY ${group} HAVING ${having};`;
 
+export const GetRowsWithProjectionGroupByHavingOrder = (
+    projection: string,
+    tableName: string,
+    group: string,
+    having: string,
+    order: string
+) =>
+    `SELECT ${projection} FROM ${tableName} GROUP BY ${group} HAVING ${having} ORDER BY ${order};`;
+
 export const InsertRow = (
   tableName: string,
   properties: string,

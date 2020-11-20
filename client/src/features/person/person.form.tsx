@@ -7,7 +7,7 @@ import {joiResolver} from '@hookform/resolvers/joi';
 import Container from '@material-ui/core/Container';
 import {useForm, Controller} from 'react-hook-form'
 import {useDispatch, useSelector} from "react-redux";
-import {login, selectIsLoggedIn} from "../login/login.slice";
+import {login, startStatusPoll, selectIsLoggedIn} from "../login/login.slice";
 import {Person, selectPersonState, setPerson} from "./person.slice";
 import {createPersonSchema} from "./person.schema";
 import {isStringEmpty} from "../../util";
@@ -44,6 +44,7 @@ export default function PersonForm() {
         const createdPerson = await personService.createPerson(person);
         CookieService.setPersonId(createdPerson.person_id as number);
         dispatch(setPerson(createdPerson));
+        dispatch(startStatusPoll(createdPerson.person_id as number));
         dispatch(login());
       } else {
         const updatedPerson = await personService.updatePerson(personState.person_id as number, person);

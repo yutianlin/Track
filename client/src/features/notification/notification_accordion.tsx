@@ -15,9 +15,6 @@ export default function NotificationAccordion({ notificationModels } : Notificat
   const dateString = `Sent on: ${formatMoment(notificationModels[0].notification_time)}`;
   const categoryString = `Sent through: ${notificationModels.map(model => model.category).join(", ")}`;
   const message = `Message: ${notificationModels[0].body}`;
-  const isNotRead: boolean = notificationModels.some(model => {
-    return model.category === NotificationCategory.IN_APP && !model.is_read
-  });
   const classes = accordionStyles();
 
   return (
@@ -25,13 +22,13 @@ export default function NotificationAccordion({ notificationModels } : Notificat
       <AccordionSummary
         expandIcon = {<FontAwesomeIcon icon = {faChevronDown} color="black" size="sm"/>}
       >
-        <Typography className={isNotRead ? classes.heading : classes.headingGray}>
+        <Typography className={classes.heading}>
           {dateString}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Container className={classes.notificationBody}>
-          <Typography color = "textSecondary">
+          <Typography style={{marginBottom: '2vh'}}>
             {message}
           </Typography>
           <Typography color = "textSecondary">
