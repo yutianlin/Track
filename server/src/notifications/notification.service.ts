@@ -30,4 +30,16 @@ export default class NotificationService {
       CreateNotification("'inApp'", null, stringify(message))
     );
   };
+
+  createPhoneNotification = async (message: string) => {
+    return this.queryService.query(
+      CreateNotification("'text'", null, stringify(message))
+    );
+  }
+
+  createEmailNotification = async (subject: string, message: string) => {
+    return this.queryService.query(
+      CreateNotification("'email'", stringify(subject), stringify(message))
+    );
+  }
 }

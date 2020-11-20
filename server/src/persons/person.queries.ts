@@ -13,13 +13,6 @@ export const GetAllPersons = GetAllRowsFromTable(P.tableName);
 export const GetPersonById = (id: number) =>
   GetRowsWithSelection(P.tableName, `${P.columns.person_id.getName()} = ${id}`);
 
-export const GetPersonNameById = (id: number) =>
-  GetRowsWithProjectionSelection(
-    P.columns.name.getName(),
-    P.tableName,
-    `${P.columns.person_id.getName()} = ${id}`
-  );
-
 export const GetPersonStatusById = (id: number) =>
   GetRowsWithProjectionSelection(
     P.columns.person_status.getName(),

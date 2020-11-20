@@ -6,7 +6,6 @@ import {
   UpdatePersonById,
   UpdatePersonsByIdStatusToYellow,
   GetPersonStatusById,
-  GetPersonNameById,
 } from "./person.queries";
 import {
   insertValues,
@@ -59,10 +58,6 @@ export default class PersonService {
   getPersonById = async (id: number) => {
     return this.queryService.query(GetPersonById(id));
   };
-
-  getPersonNameById = async (id: number) => {
-    return this.queryService.query(GetPersonNameById(id));
-  }
 
   getPersonStatusById = async (id: number) => {
     return this.queryService.query(GetPersonStatusById(id));
@@ -204,12 +199,25 @@ export default class PersonService {
     classRoomPersons: {person_id: any, room_number: any, building_code: any, scheduled_class_id: any}[],
     buildingPersons: {person_id: any, building_code: any}[],
     ) => {
-    const personName = (await this.getPersonNameById(personId))[0]['name'];
-    // const timeNow = moment().utc().toISOString();
-    console.log(personName);
+    const person: {person_id: any, name: any, email: any, phone_number: any, student_id: any, faculty_id: any} = (await this.getPersonById(personId))[0];
+    console.log(person);
     const personMessagesBundle: string[] = [];
     const tempMessage: string[][] = [];
-    const beginMessage = `You should go into self isolation as you have come in contact with ${personName} who is confirmed with COVID-19 on ${timeNow}, and may have been contagious since ${startTime} by:`
+
+    let personRole = "";
+    if (person.faculty_id && person.student_id) {
+      personRole = `faculty member (${person.faculty_id}) and a student (${person.student_id})`;
+    } else if (person.faculty_id) {
+      personRole = `faculty member (${person.faculty_id})`;
+    } else if (person.student_id) {
+      personRole = `student (${person.student_id})`;
+    } else {
+      personRole = `visitor`;
+    }
+
+    const subject = `TRACK Notification: ${person.name} is Infected with COVID-19`;
+    const beginMessage = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow}, and may have been contagious since ${startTime}.
+    You should go into self isolation since you have been in contact with ${person.name} in this contagious time period by:`
     
     allIdsPossiblyInfected.forEach(pi => {
       personMessagesBundle[pi] = beginMessage;
@@ -220,36 +228,41 @@ export default class PersonService {
     const uniqueBubblePersonIds = new Set(bubblePersons.map(bp => bp.person_id));
     uniqueBubblePersonIds.forEach(ubpi => tempMessage[ubpi] = []);
     bubblePersons.forEach(bp => tempMessage[bp.person_id].push(bp.title));
-    uniqueBubblePersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${personMessagesBundle[ubpi]} being in the same bubble (${listify(tempMessage[ubpi])})`);
+    uniqueBubblePersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${personMessagesBundle[ubpi]} 
+    Being in the same bubble (${listify(tempMessage[ubpi])})`);
 
     // deals with rooms by entrance
     const uniqueEntrancePersonIds = new Set(entranceRoomPersons.map((erp) => erp.person_id));
     uniqueEntrancePersonIds.forEach((uepi) => (tempMessage[uepi] = []));
     entranceRoomPersons.forEach(erp => tempMessage[erp.person_id].push(`${erp.building_code} ${erp.room_number} at ${moment(erp.start_time).utc().toISOString()}`));
-    uniqueEntrancePersonIds.forEach(uepi => personMessagesBundle[uepi] = `${personMessagesBundle[uepi]} being in the same room in the same day (${listify(tempMessage[uepi])})`);
+    uniqueEntrancePersonIds.forEach(uepi => personMessagesBundle[uepi] = `${personMessagesBundle[uepi]} 
+    Being in the same room in the same day (${listify(tempMessage[uepi])})`);
 
     // deals with rooms by classrooms
     const uniqueClassRoomPersonIds = new Set(classRoomPersons.map(crp => crp.person_id));
     uniqueClassRoomPersonIds.forEach(ucrpi => tempMessage[ucrpi] = []);
     classRoomPersons.forEach(crp => tempMessage[crp.person_id].push(`${crp.scheduled_class_id} in ${crp.building_code} ${crp.room_number}`));
-    uniqueClassRoomPersonIds.forEach(ucrpi => personMessagesBundle[ucrpi] = `${personMessagesBundle[ucrpi]} having a class in a room visited by ${personName} on the same day (${listify(tempMessage[ucrpi])})`);
+    uniqueClassRoomPersonIds.forEach(ucrpi => personMessagesBundle[ucrpi] = `${personMessagesBundle[ucrpi]} 
+    Having a class in a room visited by ${person.name} on the same day (${listify(tempMessage[ucrpi])})`);
 
     // deals with scheduled class
     const uniqueScheduledClassPersonIds = new Set(scheduledClassPersons.map(scp => scp.person_id));
     uniqueScheduledClassPersonIds.forEach(uscpi => tempMessage[uscpi] = []);
     scheduledClassPersons.forEach(scp => tempMessage[scp.person_id].push(scp.scheduled_class_id));
-    uniqueScheduledClassPersonIds.forEach(uscpi => personMessagesBundle[uscpi] = `${personMessagesBundle[uscpi]} also note that you are in the same class(es) (${listify(tempMessage[uscpi])})`);
+    uniqueScheduledClassPersonIds.forEach(uscpi => personMessagesBundle[uscpi] = `${personMessagesBundle[uscpi]} 
+    Also note that you are in the same class(es) (${listify(tempMessage[uscpi])})`);
 
     // deals with additional buildings
     buildingPersons = buildingPersons.filter(bp => !(allIdsPossiblyInfected.includes(bp.person_id)));
     const uniqueBuildingPersonIds = new Set(buildingPersons.map(bp => bp.person_id));
     uniqueBuildingPersonIds.forEach(ubpi => tempMessage[ubpi] = []);
     buildingPersons.forEach(bp => tempMessage.push(bp.building_code));
-    uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `You have been in the same buildings as ${personName} who is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. These are the shared buildings: ${listify(tempMessage[ubpi])}`);
+    uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. 
+    You have not shared any rooms, bubbles or classes, but these are the shared buildings between the two of you in the period that they are contagious: ${listify(tempMessage[ubpi])}`);
 
     // Sends all messages
     const sentPromises: Promise<any>[] = [];
-    ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id])));
+    ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id], subject)));
     return Promise.all(sentPromises).then(() => {
       console.log('all messages sent');
       return;
@@ -259,9 +272,28 @@ export default class PersonService {
     })
   }
 
-  private sendMessageToPerson = async (personId: number, message: string) => {
-    message = message.split("'").join("''");
-    const notification = await this.notificationService.createInAppNotification(message);
-    return this.personNotificationService.createRelation(personId, notification[0][NOTIFICATION_TABLE.columns.notification_id.getName()]);
+  private sendMessageToPerson = async (personId: number, message: string, subject: string) => {
+    const person: {person_id: any, name: any, email: any, phone_number: any, student_id: any, faculty_id: any} = (await this.getPersonById(personId))[0];
+    const sentPromises: Promise<any>[] = [];
+    
+    const notificationInApp = this.notificationService.createInAppNotification(message);
+    sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationInApp)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+    
+    if (person.email) {
+      const notificationEmail = this.notificationService.createEmailNotification(subject, message);
+      sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationEmail)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+    }
+
+    if (person.phone_number) {
+      const notificationPhone = this.notificationService.createPhoneNotification(message);
+      sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationPhone)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+    }
+    
+    return Promise.all(sentPromises).then(() => {
+      return;
+    }).catch((e) => {
+      console.log(e);
+      return;
+    })
   }
 }
