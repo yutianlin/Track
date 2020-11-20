@@ -27,6 +27,7 @@ export const GetPersonsInSameClass = (personId: number) => {
 
   return GetRowsWithSelection(
     `${tableName} p1`,
-    `${columns.scheduled_class_id.getName()} IN (${classes})`
+    `${columns.person_id.getName()} <> ${personId}
+      AND ${columns.scheduled_class_id.getName()} IN (${classes})`
   );
 };
