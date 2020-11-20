@@ -3,8 +3,9 @@ import {
   GetAllRowsFromTable,
   InsertRow,
   GetRowsWithProjectionSelection,
+  GetRowsWithProjectionSelectionOrderBy,
 } from "../helpers/queries";
-import { BUBBLE_PERSON_TABLE } from "../helpers/tables";
+import { BUBBLE_PERSON_TABLE, BUBBLE_TABLE } from "../helpers/tables";
 
 const { tableName, columns } = BUBBLE_PERSON_TABLE;
 
@@ -25,10 +26,15 @@ export const GetAllPersonIdsInBubbleWithPerson = (personId: number) => {
     `${tableName} bp2`,
     `bp2.${columns.person_id.getName()} = ${personId}`
   );
-  const getAllPersonsFromBubbleIds = GetRowsWithProjectionSelection(
-    `DISTINCT(bp1.${columns.person_id.getName()})`,
-    `${tableName} bp1`,
-    `bp1.${columns.bubble_id.getName()} IN (${getAllContaminatedBubbleIds})`
+  const getAllPersonsFromBubbleIds = GetRowsWithProjectionSelectionOrderBy(
+    `bp1.${columns.person_id.getName()}, bp1.${columns.bubble_id.getName()}, b1.${BUBBLE_TABLE.columns.title.getName()}`,
+    `${tableName} bp1
+      INNER JOIN ${
+        BUBBLE_TABLE.tableName
+      } b1 ON bp1.${columns.bubble_id.getName()} = b1.${columns.bubble_id.getName()}`,
+    `bp1.${columns.person_id.getName()} <> ${personId}
+      AND bp1.${columns.bubble_id.getName()} IN (${getAllContaminatedBubbleIds})`,
+    `bp1.${columns.person_id.getName()}`
   );
 
   return getAllPersonsFromBubbleIds;

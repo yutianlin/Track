@@ -1,12 +1,14 @@
 import {
   GetAllRowsFromTable,
   GetRowsWithProjection,
+  GetRowsWithProjectionOrderBy,
   GetRowsWithProjectionGroupBy,
   GetRowsWithProjectionGroupByHaving,
   GetRowsWithProjectionSelection,
   GetRowsWithProjectionSelectionGroupBy,
   GetRowsWithSelection,
   UnionQueries,
+  GetRowsWithProjectionSelectionOrderBy,
 } from "../helpers/queries";
 
 import {
@@ -452,14 +454,18 @@ export const GetPersonsUsedSameRoomAsAPersonByEntrance = (
 ) => {
   const getRoomsUsed = GetRoomsUsedByAPerson(personId, startDay, endDay);
 
-  const getPeopleUsedEntranceToRooms = GetRowsWithProjection(
+  const getPeopleUsedEntranceToRooms = GetRowsWithProjectionOrderBy(
     `used_rooms t1
       INNER JOIN ${ENTRANCE.tableName} e2
         ON e2.${ENTRANCE.columns.building_code.getName()} = t1.${CLASS_DAY.columns.building_code.getName()}
           AND e2.${ENTRANCE.columns.room_number.getName()} = t1.${CLASS_DAY.columns.room_number.getName()}
       INNER JOIN ${PERSON_TIME_ENTRANCE.tableName} pe2
         ON pe2.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = e2.${ENTRANCE.columns.entrance_id.getName()}`,
-    `DISTINCT pe2.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}`
+    `DISTINCT pe2.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}, 
+      pe2.${PERSON_TIME_ENTRANCE.columns.date.getName()},
+      e2.${ENTRANCE.columns.room_number.getName()},
+      e2.${ENTRANCE.columns.building_code.getName()}`,
+    `pe2.${PERSON_TIME_ENTRANCE.columns.date.getName()}`
   );
 
   const getPeopleUsedRooms = `WITH used_rooms AS (${getRoomsUsed})
@@ -475,8 +481,11 @@ export const GetPersonsUsedSameRoomAsAPersonByClass = (
 ) => {
   const getRoomsUsed = GetRoomsUsedByAPerson(personId, startDay, endDay);
 
-  const getPersonsInClassToRooms = GetRowsWithProjectionSelection(
-    `DISTINCT psc2.${PERSON_SCHEDULED_CLASS.columns.person_id.getName()}`,
+  const getPersonsInClassToRooms = GetRowsWithProjectionSelectionOrderBy(
+    `DISTINCT psc2.${PERSON_SCHEDULED_CLASS.columns.person_id.getName()}, 
+      psc2.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+      c2.${CLASS_DAY.columns.room_number.getName()},
+      c2.${CLASS_DAY.columns.building_code.getName()}`,
     `${PERSON_SCHEDULED_CLASS.tableName} psc2
       INNER JOIN ${SCHEDULED_CLASS.tableName} sc2
         ON psc2.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = sc2.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}
@@ -487,7 +496,10 @@ export const GetPersonsUsedSameRoomAsAPersonByClass = (
           AND c2.${CLASS_DAY.columns.building_code.getName()} = t2.${CLASS_DAY.columns.building_code.getName()}`,
     `sc2.${SCHEDULED_CLASS.columns.start_day.getName()} <= ${endDay}
       AND sc2.${SCHEDULED_CLASS.columns.end_day.getName()} >= ${startDay}
-      AND (sc2.${SCHEDULED_CLASS.columns.start_day.getName()} + ((EXTRACT(DOW FROM sc2.${SCHEDULED_CLASS.columns.start_day.getName()} at time zone 'UTC') :: BIGINT - c2.${CLASS_DAY.columns.day_of_week.getName()} + 7) % 7) * interval '1 day') <= ${endDay}`
+      AND (sc2.${SCHEDULED_CLASS.columns.start_day.getName()} + ((EXTRACT(DOW FROM sc2.${SCHEDULED_CLASS.columns.start_day.getName()} at time zone 'UTC') :: BIGINT - c2.${CLASS_DAY.columns.day_of_week.getName()} + 7) % 7) * interval '1 day') <= ${endDay}`,
+    `psc2.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()},
+      c2.${CLASS_DAY.columns.building_code.getName()},
+      c2.${CLASS_DAY.columns.room_number.getName()}`
   );
 
   const getPeopleUsedRooms = `WITH used_rooms AS (${getRoomsUsed})
@@ -537,11 +549,13 @@ export const GetPersonsUsedBuildingsUsedByAPerson = (
         ON e2.${ENTRANCE.columns.building_code.getName()} = t1.${CLASS_DAY.columns.building_code.getName()}
       INNER JOIN ${PERSON_TIME_ENTRANCE.tableName} pe2
         ON pe2.${PERSON_TIME_ENTRANCE.columns.entrance_id.getName()} = e2.${ENTRANCE.columns.entrance_id.getName()}`,
-    `DISTINCT pe2.${PERSON_TIME_ENTRANCE.columns.person_id.getName()}`
+    `DISTINCT pe2.${PERSON_TIME_ENTRANCE.columns.person_id.getName()},
+      e2.${ENTRANCE.columns.building_code.getName()}`
   );
 
   const getPeopleInClassesToBuildings = GetRowsWithProjectionSelection(
-    `DISTINCT psc2.${PERSON_SCHEDULED_CLASS.columns.person_id.getName()}`,
+    `DISTINCT psc2.${PERSON_SCHEDULED_CLASS.columns.person_id.getName()},
+      c2.${CLASS_DAY.columns.building_code.getName()}`,
     `${PERSON_SCHEDULED_CLASS.tableName} psc2
       INNER JOIN ${SCHEDULED_CLASS.tableName} sc2
         ON psc2.${PERSON_SCHEDULED_CLASS.columns.scheduled_class_id.getName()} = sc2.${SCHEDULED_CLASS.columns.scheduled_class_id.getName()}

@@ -18,6 +18,9 @@ export const GetRowsWithSelectionWithOrderBy = (
 export const GetRowsWithProjection = (tableName: string, projection: string) =>
   `SELECT ${projection} FROM ${tableName}`;
 
+export const GetRowsWithProjectionOrderBy = (tableName: string, projection: string, orderBy: string) =>
+  `SELECT ${projection} FROM ${tableName} ORDER BY ${orderBy}`;
+
 export const GetRowsWithProjectionSelection = (
   projection: string,
   tableName: string,
@@ -25,6 +28,16 @@ export const GetRowsWithProjectionSelection = (
 ) => `SELECT ${projection}
   FROM ${tableName}
   WHERE ${selection}`;
+
+export const GetRowsWithProjectionSelectionOrderBy = (
+  projection: string,
+  tableName: string,
+  selection: string,
+  orderBy: string
+) => `SELECT ${projection}
+    FROM ${tableName}
+    WHERE ${selection}
+    ORDER BY ${orderBy}`;
 
 export const GetRowsWithProjectionSelectionGroupBy = (
   projection: string,

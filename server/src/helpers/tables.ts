@@ -150,7 +150,7 @@ export const NOTIFICATION_TABLE = {
     notification_id: new ColumnType("notification_id", "number", false),
     category: new ColumnType("category", "number", false),
     subject_line: new ColumnType("subject_line", "number", true),
-    body: new ColumnType("subject_line", "number", false),
+    body: new ColumnType("body", "number", false),
   },
 } as const;
 
@@ -236,5 +236,6 @@ export const PERSON_NOTIFICATION_TABLE = {
       false
     ),
     is_read: new ColumnType("is_read", "string", false),
+    notification_time: new ColumnType("notification_time", "dateTime", false),
   },
 } as const;

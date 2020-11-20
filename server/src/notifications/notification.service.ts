@@ -2,9 +2,11 @@ import QueryService from "../QueryService";
 import {
   GetAllNotifications,
   GetNotificationById,
+  CreateNotification,
 } from "./notification.queries";
+import { stringify } from "../helpers/helpers";
 
-export default class Faculty {
+export default class NotificationService {
   private queryService: QueryService;
 
   constructor() {
@@ -21,5 +23,11 @@ export default class Faculty {
 
   getNotificationById = async (id: number) => {
     return this.queryService.query(GetNotificationById(id));
+  };
+
+  createInAppNotification = async (message: string) => {
+    return this.queryService.query(
+      CreateNotification("'inApp'", null, stringify(message))
+    );
   };
 }
