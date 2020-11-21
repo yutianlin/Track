@@ -59,7 +59,7 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 1. cpsc-304-project/client\$ `yarn`
 
-To access all service endpoints directly without client:
+### To access all service endpoints directly without client:
 
 1. Install Insomnia
 
@@ -69,7 +69,7 @@ To access all service endpoints directly without client:
 
 1. Run endpoints by clicking `Send` button
 
-To start the project, in two terminals:
+### To start the project, in two terminals:
 
 cpsc-304-project/server$ `yarn start`
 
@@ -78,6 +78,40 @@ cpsc-304-project/client$ `yarn start`
 The client will run in localhost:5000, while the server runs in localhost:3000
 
 Going to localhost:3000/ will load the last built files. For client hot reload go to localhost:3000
+
+### Optional Setup to Get Mobile Notifications:
+
+1. Get a Twilio free trial at https://www.twilio.com/try-twilio
+
+1. Get a Twilio number with your Twilio account
+
+1. Modify contents in `.env` to match your setup\
+   `TWILIO_ACC_SID=<ACCOUNT SID>`\
+   `TWILIO_AUTH_TOKEN=<AUTH TOKEN>`\
+   `TWILIO_PHONE_NUM=<PHONE NUMBER>`\
+   `TWILIO_SEND=TRUE` set this to true to send text messages
+   
+1. Add any phone numbers you will be texting to https://www.twilio.com/console/phone-numbers/verified
+
+### Optional Setup to Get Email Notifications:
+
+1. Enable Gmail API https://developers.google.com/gmail/api/quickstart/nodejs (I recommend to do this with a throwaway Google account, since too many messages may make Google think you are spamming people and freeze your account)
+
+1. Download the credentials file
+
+1. Modify contents in `.env` to match your setup (details are in the downloaded `credentials.json`)\
+   `GMAIL_CLIENT_ID=<client_id>`\
+   `GMAIL_PROJECT_ID=<project_id>`\
+   `GMAIL_AUTH_URI=<auth_uri>`\
+   `GMAIL_TOKEN_URI=<token_uri>`\
+   `GMAIL_AUTH_PROVIDER=<auth_provider_x509_cert_url>`\
+   `GMAIL_CLIENT_SECRET=<client_secret>`\
+   `GMAIL_REDIRECT_URI=<redirect_uris[0]>` I believe the default is `urn:ietf:wg:oauth:2.0:oob`\
+   `GMAIL_SENDER=cpsc304.project.track@gmail.com`\
+   `GMAIL_SEND=TRUE` set this to true to send email notifications
+   
+1. On first run, it will ask for you to authenticate the app on a url through the console. Please be careful with this, since it will send emails to anyone 
+who has their emails in person's table in any row that is directly impacted by a person becoming infected. The default emails in the script are our emails.
 
 
 ### Troubleshooting Suggestions:
