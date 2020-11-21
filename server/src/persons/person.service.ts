@@ -1,5 +1,6 @@
 import QueryService from "../QueryService";
 import TwilioService from "../TwilioService";
+import GmailService from "../GmailService";
 import {
   GetAllPersons,
   GetPersonById,
@@ -38,6 +39,7 @@ const expectValues = [
 export default class PersonService {
   private queryService: QueryService;
   private twilioService: TwilioService;
+  private gmailService: GmailService;
   private personBubbleService: BubblePersonService;
   private joinService: JoinService;
   private personScheduledClassesService: PersonScheduledClassesService;
@@ -47,6 +49,7 @@ export default class PersonService {
   constructor() {
     this.queryService = new QueryService();
     this.twilioService = new TwilioService();
+    this.gmailService = new GmailService();
     this.personBubbleService = new BubblePersonService();
     this.joinService = new JoinService();
     this.personScheduledClassesService = new PersonScheduledClassesService();
@@ -269,7 +272,7 @@ export default class PersonService {
     const sentPromises: Promise<any>[] = [];
     ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id], subject)));
     return Promise.all(sentPromises).then(() => {
-      console.log('all messages sent');
+      console.log('all messages sent (not include texts and emails)');
       return;
     }).catch((e) => {
       console.log(e);
@@ -287,6 +290,7 @@ export default class PersonService {
     if (person.email) {
       const notificationEmail = this.notificationService.createEmailNotification(subject, message);
       sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationEmail)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+      this.gmailService.sendEmail(person.email, subject, message);
     }
 
     if (person.phone_number) {

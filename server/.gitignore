@@ -10,6 +10,7 @@ package-lock.json
 # Ignore sensitive files
 .env
 id_rsa
+token.json
 
 # Ignore intermediate
 .DS_Store
