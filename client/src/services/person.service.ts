@@ -24,7 +24,7 @@ class PersonService extends RemoteService {
             faculty = createdFaculty.data[0];
         }
         const createdPerson: AxiosResponse = await super.post("persons", PersonConversions.toPersonRequest(person));
-        return Promise.resolve({...createdPerson.data[0], ...faculty});
+        return Promise.resolve(PersonConversions.toPerson({...createdPerson.data[0], ...faculty}));
     }
 
     public async updatePerson(personId: number, person: Person): Promise<Person> {
@@ -40,7 +40,7 @@ class PersonService extends RemoteService {
             }
         }
         const updatedPerson: AxiosResponse = await super.patch(`persons/${personId}`, PersonConversions.toUpdatePersonRequest(person));
-        return Promise.resolve({...updatedPerson.data[0], ...faculty});
+        return Promise.resolve(PersonConversions.toPerson({...updatedPerson.data[0], ...faculty}));
     }
 }
 

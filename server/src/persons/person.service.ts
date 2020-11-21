@@ -104,7 +104,7 @@ export default class PersonService {
     return this.getPersonById(id);
   };
 
-  updatePersonStatusToPositive = async (id: number, startTime?: string) => {
+  updatePersonStatusToPositive = async (id: number, startDate?: string, startTime?: string) => {
     // if already infected, do nothing
     const person = await this.getPersonById(id);
     if (
@@ -117,18 +117,20 @@ export default class PersonService {
     await this.queryService.query(
       UpdatePersonById(`${columns.person_status.getName()} = 'R'`, id)
     );
-    await this.triggerWhenStatusSetToRed(id);
+    await this.triggerWhenStatusSetToRed(id, startDate, startTime);
   };
 
-  triggerWhenStatusSetToRed = async (personId: number, startTime?: string) => {
-    const dateNow = moment().utc();
-    const dateNowUnquote = `${dateNow.format("YYYY-MM-DD")}Z`
-    const startTimeUnquote = startTime ?? `${dateNow
+  triggerWhenStatusSetToRed = async (personId: number, startDate?: string, startTime?: string) => {
+    const timeNow = moment().utc();
+    const dateNowUnquote = `${moment(timeNow).utc().format("YYYY-MM-DD")}Z`
+    const startDateUnquote = startDate ?? `${moment(timeNow).utc()
       .subtract(2, "weeks")
       .format("YYYY-MM-DD")}Z`
     const dateNowFormatted = stringify(dateNowUnquote);
-    const startTimeFormatted = stringify(startTimeUnquote);
+    const startDateFormatted = stringify(startDateUnquote);
 
+    const timeNowFormatted = `'${moment(timeNow).utc().format("YYYY-MM-DDTHH:mm:ss.SSS")}Z'`
+    const startTimeFormatted = startTime ?? `'${moment(timeNow).utc().subtract(2, "weeks").format("YYYY-MM-DDTHH:mm:ss.SSS")}Z'`;
     const personIdsFromBubble: {
       person_id: any,
       bubble_id: any,
@@ -145,7 +147,7 @@ export default class PersonService {
       start_time: any,
     }[] = await this.joinService.getPersonsUsedSameRoomAsPersonbyEntrance(
       personId,
-      startTimeFormatted,
+      startDateFormatted,
       dateNowFormatted
     );
     console.log(personIdsFromEntrance);
@@ -157,7 +159,7 @@ export default class PersonService {
       room_number: any,
     }[] = await this.joinService.getPersonsUsedSameRoomAsPersonByClass(
       personId,
-      startTimeFormatted,
+      startDateFormatted,
       dateNowFormatted
     );
     console.log(personIdsFromClass);
@@ -167,24 +169,34 @@ export default class PersonService {
       building_code: any
     }[] = await this.joinService.getPersonsUsedSameBuildingsAsPerson(
       personId,
-      startTimeFormatted,
+      startDateFormatted,
       dateNowFormatted
     );
     console.log(personIdsFromBuilding);
+
+    const personIdsFromBike: {
+      person_id: any,
+      shared_bike_id: any,
+      rental_time: any,
+    }[] = await this.joinService.getPersonsUsedSameBikeAsPerson(personId, startTimeFormatted, timeNowFormatted);
+    console.log(personIdsFromBike);
 
     const personIdsPossiblyInfected = Array.from(new Set([
       ...personIdsFromBubble,
       ...personIdsFromEntrance,
       ...personIdsFromClass,
+      ...personIdsFromBike
     ].map((pId) => pId.person_id)));
 
 
     const personIdsPossiblyInfectedString = listify(personIdsPossiblyInfected);
 
-    await this.queryService.query(
-      UpdatePersonsByIdStatusToYellow(personIdsPossiblyInfectedString)
-    );
-
+    if (personIdsPossiblyInfectedString) {
+      await this.queryService.query(
+        UpdatePersonsByIdStatusToYellow(personIdsPossiblyInfectedString)
+      );
+    }
+    
     const personIdsFromSchedule: {
       person_id: any,
       scheduled_class_id: any,
@@ -193,7 +205,7 @@ export default class PersonService {
     );
     console.log(personIdsFromSchedule);
 
-    await this.createMessagesForRelatedPersons(startTimeUnquote, dateNowUnquote, personId, personIdsPossiblyInfected, personIdsFromBubble, personIdsFromSchedule, personIdsFromEntrance, personIdsFromClass, personIdsFromBuilding)
+    await this.createMessagesForRelatedPersons(startDateUnquote, dateNowUnquote, personId, personIdsPossiblyInfected, personIdsFromBubble, personIdsFromSchedule, personIdsFromEntrance, personIdsFromClass, personIdsFromBike, personIdsFromBuilding)
   };
 
   createMessagesForRelatedPersons = async (
@@ -205,6 +217,7 @@ export default class PersonService {
     scheduledClassPersons: {person_id: any, scheduled_class_id: any}[],
     entranceRoomPersons: {person_id: any, room_number: any, building_code: any, start_time: any}[],
     classRoomPersons: {person_id: any, room_number: any, building_code: any, scheduled_class_id: any}[],
+    bikePersons: {person_id: any, shared_bike_id: any, rental_time: any}[],
     buildingPersons: {person_id: any, building_code: any}[],
     ) => {
     const person: {person_id: any, name: any, email: any, phone_number: any, student_id: any, faculty_id: any} = (await this.getPersonById(personId))[0];
@@ -253,6 +266,13 @@ export default class PersonService {
     uniqueClassRoomPersonIds.forEach(ucrpi => personMessagesBundle[ucrpi] = `${personMessagesBundle[ucrpi]} 
     Having a class in a room visited by ${person.name} on the same day (${listify(tempMessage[ucrpi])})\n`);
 
+    // deals with bikes
+    const uniqueBikePersonIds = new Set(bikePersons.map(bp => bp.person_id));
+    uniqueBikePersonIds.forEach(ubpi => tempMessage[ubpi] = []);
+    bikePersons.forEach(bp => tempMessage[bp.person_id].push(`${bp.shared_bike_id} rented at ${moment(bp.rental_time).utc().toISOString()}`));
+    uniqueBikePersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${personMessagesBundle[ubpi]}
+    Having shared the same bikes as ${person.name} on the same day (${listify(tempMessage[ubpi])})\n`)
+
     // deals with scheduled class
     const uniqueScheduledClassPersonIds = new Set(scheduledClassPersons.map(scp => scp.person_id));
     uniqueScheduledClassPersonIds.forEach(uscpi => tempMessage[uscpi] = []);
@@ -264,10 +284,10 @@ export default class PersonService {
     buildingPersons = buildingPersons.filter(bp => !(allIdsPossiblyInfected.includes(bp.person_id)));
     const uniqueBuildingPersonIds = new Set(buildingPersons.map(bp => bp.person_id));
     uniqueBuildingPersonIds.forEach(ubpi => tempMessage[ubpi] = []);
-    buildingPersons.forEach(bp => tempMessage.push(bp.building_code));
+    buildingPersons.forEach(bp => tempMessage[bp.person_id].push(bp.building_code));
     uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. \n
     You have not shared any rooms, bubbles or classes, but these are the shared buildings between the two of you in the period that they are contagious: ${listify(tempMessage[ubpi])}`);
-
+    
     // Sends all messages
     const sentPromises: Promise<any>[] = [];
     ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id], subject)));

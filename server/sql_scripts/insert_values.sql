@@ -300,16 +300,16 @@ INSERT INTO class_day(scheduled_class_id, day_of_week, room_number, building_cod
  Einstein rode bike 1ac456789 on Oct 4
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '2', '2020-10-04T00:00:00Z'::TIMESTAMPTZ);
+    VALUES('1ac456789', '2', '2020-11-16T10:00:00Z'::TIMESTAMPTZ);
 
 /*
  Jake rode bike 1ac456789 on Oct 5
  */
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '1', '2020-10-05T00:00:00Z'::TIMESTAMPTZ);
+    VALUES('1ac456789', '1', '2020-11-16T00:00:00Z'::TIMESTAMPTZ);
 
 INSERT INTO person_shared_bike(shared_bike_id, person_id, rental_time)
-    VALUES('1ac456789', '1', '2020-10-10T00:00:00Z'::TIMESTAMPTZ);
+    VALUES('1ac456789', '1', '2020-11-10T00:00:00Z'::TIMESTAMPTZ);
 
 /*
  Jake rode bike 123466789 on Oct 6
@@ -415,7 +415,7 @@ INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
     VALUES(3, '2020-10-09T00:00:00.000Z'::TIMESTAMPTZ, 4);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
-    VALUES(1, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 5);
+    VALUES(1, '2020-11-09T01:00:00.000Z'::TIMESTAMPTZ, 5);
 
 INSERT INTO person_time_entrance(entrance_id, start_time, person_id)
     VALUES(8, '2020-11-09T00:00:00.000Z'::TIMESTAMPTZ, 2);

@@ -20,6 +20,7 @@ import {
   GetPersonsUsedSameRoomAsAPersonByEntrance,
   GetPersonsUsedSameRoomAsAPersonByClass,
   GetPersonsUsedBuildingsUsedByAPerson,
+  GetPersonsUsedBikeByAPerson
 } from "./join.queries";
 import {
   getProjectionsFromJson,
@@ -142,4 +143,14 @@ export default class JoinService {
       GetPersonsUsedBuildingsUsedByAPerson(personId, startDate, endDate)
     );
   };
+
+  getPersonsUsedSameBikeAsPerson = (
+    personId: number,
+    startTime: string,
+    endTime: string
+  ) => {
+    return this.queryService.query(
+      GetPersonsUsedBikeByAPerson(personId, startTime, endTime)
+    );
+  }
 }
