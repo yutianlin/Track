@@ -26,6 +26,10 @@
   color: rgb(112, 76, 182);
 }
 
+.Toastify__toast-body {
+ white-space: pre-line !important;
+}
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);

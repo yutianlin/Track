@@ -108,7 +108,7 @@ export const getStringFromAttributes = (
     if (nullable && attributes[property] === null) {
       return null;
     } else {
-      return stringify(attributes[property]);
+      return stringify(attributes[property].toString());
     }
   }
   if (nullable) return undefined;

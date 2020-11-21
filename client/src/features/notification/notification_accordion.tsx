@@ -28,7 +28,7 @@ export default function NotificationAccordion({ notificationModels } : Notificat
       </AccordionSummary>
       <AccordionDetails>
         <Container className={classes.notificationBody}>
-          <Typography style={{marginBottom: '2vh'}}>
+          <Typography style={{marginBottom: '2vh', whiteSpace: 'pre-line'}}>
             {message}
           </Typography>
           <Typography color = "textSecondary">

@@ -12,9 +12,6 @@ INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, cl
     VALUES('CPSC 304 T1B W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
-    VALUES('CPSC 304 T1C W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
-
-INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
     VALUES('CPSC 313 101 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
 
 INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
@@ -142,13 +139,13 @@ INSERT INTO person(name, email, phone_number, in_app_notification, student_id, f
     VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Albert Einstein', NULL, 6049927931, TRUE, NULL, 987654321123);
+    VALUES('Albert Einstein', NULL, NULL, TRUE, NULL, 987654321123);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Iron Man', NULL, 6138900916, TRUE, NULL, 987654321124);
+    VALUES('Iron Man', NULL, NULL, TRUE, NULL, 987654321124);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', 6043187640, FALSE, 1234151565, NULL);
+    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', NULL, FALSE, 1234151565, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
     VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, 123456789, NULL);
