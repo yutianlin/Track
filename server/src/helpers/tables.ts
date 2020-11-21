@@ -138,7 +138,7 @@ export const CLASS_DAY_TABLE = {
   columns: {
     scheduled_class_id: new ColumnType("scheduled_class_id", "string", false),
     class_day_id: new ColumnType("class_day_id", "string", false),
-    day_of_week: new ColumnType("day_of_week", "string", false),
+    day_of_week: new ColumnType("day_of_week", "number", false),
     room_number: new ColumnType("room_number", "string", true),
     building_code: new ColumnType("building_code", "string", true),
   },
