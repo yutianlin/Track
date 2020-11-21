@@ -67,7 +67,7 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 1. cpsc-304-project/server\$ `yarn updateData`
 
-1. cpsc-304-project/client\$ `yarn` (do this if you want to build the client files, otherwise you can load the last build by going to localhost:3000 directly)
+1. cpsc-304-project/client\$ `yarn` (optional, do this if you want to build the client files, otherwise you can load the last build by going to localhost:3000 directly)
 
 ### To access all service endpoints directly without client:
 
