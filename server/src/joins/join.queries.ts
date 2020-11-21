@@ -541,11 +541,6 @@ export const GetPersonsUsedBuildingsUsedByAPerson = (
       AND pe1.${PERSON_TIME_ENTRANCE.columns.date.getName()} - interval '1 day' <= ${endDay}`
   );
 
-  // const getBuildingsOfEntrancesUsed = GetRowsWithProjectionSelection(
-  //   `e1.${ENTRANCE.columns.building_code.getName()}`,
-  //   `${ENTRANCE.tableName} e1`,
-  //   `e1.${ENTRANCE.columns.entrance_id.getName()} IN (${getAllEntrancesUsedAfterGivenTime})`
-  // );
   const getBuildingsOfEntrancesUsed = GetRowsWithProjection(
     `${ENTRANCE.tableName} e1
       INNER JOIN (${getAllEntrancesUsedAfterGivenTime}) eu1

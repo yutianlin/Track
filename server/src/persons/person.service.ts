@@ -191,10 +191,12 @@ export default class PersonService {
 
     const personIdsPossiblyInfectedString = listify(personIdsPossiblyInfected);
 
-    await this.queryService.query(
-      UpdatePersonsByIdStatusToYellow(personIdsPossiblyInfectedString)
-    );
-
+    if (personIdsPossiblyInfectedString) {
+      await this.queryService.query(
+        UpdatePersonsByIdStatusToYellow(personIdsPossiblyInfectedString)
+      );
+    }
+    
     const personIdsFromSchedule: {
       person_id: any,
       scheduled_class_id: any,
