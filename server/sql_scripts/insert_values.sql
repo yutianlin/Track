@@ -12,9 +12,6 @@ INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, cl
     VALUES('CPSC 304 T1B W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
 
 INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
-    VALUES('CPSC 304 T1C W1 2020', 'Tutorial', '2020-09-09Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Introduction to Relational Databases');
-
-INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
     VALUES('CPSC 313 101 W1 2020', 'Lecture', '2020-09-08Z'::TIMESTAMPTZ, '2020-12-03Z'::TIMESTAMPTZ, 'Computer Hardware and Operating Systems');
 
 INSERT INTO scheduled_class(scheduled_class_id, activity, start_day, end_day, class_name)
@@ -139,28 +136,28 @@ INSERT INTO faculty(faculty_id, job_title)
     VALUES(987654321127, 'Lecturer');
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jake Smith', 'fake_email_pls_dont_use@gmail.com', NULL, FALSE, 123456789, NULL);
+    VALUES('Jake Smith', 'ylin0504@gmail.com', NULL, FALSE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Albert Einstein', NULL, 6041234567, TRUE, NULL, 987654321123);
+    VALUES('Albert Einstein', NULL, NULL, TRUE, NULL, 987654321123);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Iron Man', NULL, 6041234568, TRUE, NULL, 987654321124);
+    VALUES('Iron Man', NULL, NULL, TRUE, NULL, 987654321124);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Chris Evans', 'fake_email_pls_dont_use2@gmail.com', 6041234578, FALSE, 1234151565, NULL);
+    VALUES('Chris Evans', 'ylin0504@gmail.com', NULL, FALSE, 1234151565, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Richard Man', 'fake_email_pls_dont_use3@gmail.com', NULL, FALSE, 123456789, NULL);
+    VALUES('Richard Man', NULL, NULL, TRUE, 123456789, NULL);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Associate', 'fake_email_pls_dont_use7@gmail.com', NULL, FALSE, NULL, 987654321125);
+    VALUES('Jolly Associate', NULL, NULL, TRUE, NULL, 987654321125);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Assistant', 'fake_email_pls_dont_use5@gmail.com', NULL, FALSE, NULL, 987654321126);
+    VALUES('Jolly Assistant', NULL, NULL, TRUE, NULL, 987654321126);
 
 INSERT INTO person(name, email, phone_number, in_app_notification, student_id, faculty_id)
-    VALUES('Jolly Lecturer', 'fake_email_pls_dont_use6@gmail.com', NULL, FALSE, NULL, 987654321127);
+    VALUES('Jolly Lecturer', NULL, NULL, TRUE, NULL, 987654321127);
 
 
 -- Jake in Project Group 44

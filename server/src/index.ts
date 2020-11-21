@@ -1,3 +1,5 @@
+import GmailService from "./GmailService";
+
 // important configuration files to load
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
@@ -46,6 +48,8 @@ app.get("/", (request: any, response: any) => {
 
 var server = app.listen(port, "localhost", () => {
   process.env.TZ = "UTC";
+  // Authenticate email
+  new GmailService();
   var host = server.address().address;
   var port = server.address().port;
   console.log("App listening at http://%s:%s", host, port);

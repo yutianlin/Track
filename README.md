@@ -46,12 +46,22 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 1. cpsc-304-project/server\$ `cp .env.example .env`
 
+1. Optional create Twilio account to send SMS messages https://www.twilio.com/try-twilio
+
 1. Modify contents in `.env` to match your setup\
    `POSTGRES_USER=<custom role name>`\
    `POSTGRES_PASSWORD=<password for role>`\
    `POSTGRES_HOST=localhost`\
    `POSTGRES_DATABASE=<database name>`\
    `POSTGRES_PORT=5432` is the default, but if you changed it, change this
+
+1. Only if you are using Twilio, modify these contents in `.env` to match your twilio details
+   `TWILIO_ACC_SID=<Twilio account sid>`
+   `TWILIO_AUTH_TOKEN=<Twilio authorization token>`\
+   `TWILIO_PHONE_NUM=<Twilio phone number>`\
+   `TWILIO_SEND="TRUE"` remember to set this to `"TRUE"` to receive messages
+
+1. Only if you are using Twilio, make sure that all the numbers are registered with your Twilio account at https://www.twilio.com/console/phone-numbers/verified if not it will console log an error
 
 1. cpsc-304-project/server\$ `yarn`
 

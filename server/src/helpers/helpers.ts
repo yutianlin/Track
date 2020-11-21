@@ -108,7 +108,7 @@ export const getStringFromAttributes = (
     if (nullable && attributes[property] === null) {
       return null;
     } else {
-      return stringify(attributes[property]);
+      return stringify(attributes[property].toString());
     }
   }
   if (nullable) return undefined;
@@ -152,7 +152,7 @@ export const getFromAttributes = (
 };
 
 export const stringify = (s: string): string => {
-  return `'${s.split("'").join("''")}'`;
+  return `'${s.split("'").join("")}'`;
 };
 
 export const listify = (strings: string[], join: string = ", "): string => {

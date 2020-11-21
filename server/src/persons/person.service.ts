@@ -1,4 +1,6 @@
 import QueryService from "../QueryService";
+import TwilioService from "../TwilioService";
+import GmailService from "../GmailService";
 import {
   GetAllPersons,
   GetPersonById,
@@ -36,6 +38,8 @@ const expectValues = [
 
 export default class PersonService {
   private queryService: QueryService;
+  private twilioService: TwilioService;
+  private gmailService: GmailService;
   private personBubbleService: BubblePersonService;
   private joinService: JoinService;
   private personScheduledClassesService: PersonScheduledClassesService;
@@ -44,6 +48,8 @@ export default class PersonService {
 
   constructor() {
     this.queryService = new QueryService();
+    this.twilioService = new TwilioService();
+    this.gmailService = new GmailService();
     this.personBubbleService = new BubblePersonService();
     this.joinService = new JoinService();
     this.personScheduledClassesService = new PersonScheduledClassesService();
@@ -218,7 +224,7 @@ export default class PersonService {
     }
 
     const subject = `TRACK Notification: ${person.name} is Infected with COVID-19`;
-    const beginMessage = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow}, and may have been contagious since ${startTime}.
+    const beginMessage = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow}, and may have been contagious since ${startTime}.\n
     You should go into self isolation since you have been in contact with ${person.name} in this contagious time period by:`
     
     allIdsPossiblyInfected.forEach(pi => {
@@ -231,42 +237,42 @@ export default class PersonService {
     uniqueBubblePersonIds.forEach(ubpi => tempMessage[ubpi] = []);
     bubblePersons.forEach(bp => tempMessage[bp.person_id].push(bp.title));
     uniqueBubblePersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${personMessagesBundle[ubpi]} 
-    Being in the same bubble (${listify(tempMessage[ubpi])})`);
+    Being in the same bubble (${listify(tempMessage[ubpi])})\n`);
 
     // deals with rooms by entrance
     const uniqueEntrancePersonIds = new Set(entranceRoomPersons.map((erp) => erp.person_id));
     uniqueEntrancePersonIds.forEach((uepi) => (tempMessage[uepi] = []));
     entranceRoomPersons.forEach(erp => tempMessage[erp.person_id].push(`${erp.building_code} ${erp.room_number} at ${moment(erp.start_time).utc().toISOString()}`));
     uniqueEntrancePersonIds.forEach(uepi => personMessagesBundle[uepi] = `${personMessagesBundle[uepi]} 
-    Being in the same room in the same day (${listify(tempMessage[uepi])})`);
+    Being in the same room in the same day (${listify(tempMessage[uepi])})\n`);
 
     // deals with rooms by classrooms
     const uniqueClassRoomPersonIds = new Set(classRoomPersons.map(crp => crp.person_id));
     uniqueClassRoomPersonIds.forEach(ucrpi => tempMessage[ucrpi] = []);
     classRoomPersons.forEach(crp => tempMessage[crp.person_id].push(`${crp.scheduled_class_id} in ${crp.building_code} ${crp.room_number}`));
     uniqueClassRoomPersonIds.forEach(ucrpi => personMessagesBundle[ucrpi] = `${personMessagesBundle[ucrpi]} 
-    Having a class in a room visited by ${person.name} on the same day (${listify(tempMessage[ucrpi])})`);
+    Having a class in a room visited by ${person.name} on the same day (${listify(tempMessage[ucrpi])})\n`);
 
     // deals with scheduled class
     const uniqueScheduledClassPersonIds = new Set(scheduledClassPersons.map(scp => scp.person_id));
     uniqueScheduledClassPersonIds.forEach(uscpi => tempMessage[uscpi] = []);
     scheduledClassPersons.forEach(scp => tempMessage[scp.person_id].push(scp.scheduled_class_id));
     uniqueScheduledClassPersonIds.forEach(uscpi => personMessagesBundle[uscpi] = `${personMessagesBundle[uscpi]} 
-    Also note that you are in the same class(es) (${listify(tempMessage[uscpi])})`);
+    Also note that you are in the same class(es) (${listify(tempMessage[uscpi])})\n`);
 
     // deals with additional buildings
     buildingPersons = buildingPersons.filter(bp => !(allIdsPossiblyInfected.includes(bp.person_id)));
     const uniqueBuildingPersonIds = new Set(buildingPersons.map(bp => bp.person_id));
     uniqueBuildingPersonIds.forEach(ubpi => tempMessage[ubpi] = []);
     buildingPersons.forEach(bp => tempMessage.push(bp.building_code));
-    uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. 
+    uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. \n
     You have not shared any rooms, bubbles or classes, but these are the shared buildings between the two of you in the period that they are contagious: ${listify(tempMessage[ubpi])}`);
 
     // Sends all messages
     const sentPromises: Promise<any>[] = [];
     ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id], subject)));
     return Promise.all(sentPromises).then(() => {
-      console.log('all messages sent');
+      console.log('all messages sent (not include texts and emails)');
       return;
     }).catch((e) => {
       console.log(e);
@@ -284,11 +290,13 @@ export default class PersonService {
     if (person.email) {
       const notificationEmail = this.notificationService.createEmailNotification(subject, message);
       sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationEmail)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+      this.gmailService.sendEmail(person.email, subject, message);
     }
 
     if (person.phone_number) {
       const notificationPhone = this.notificationService.createPhoneNotification(message);
       sentPromises.push(this.personNotificationService.createRelation(personId, (await notificationPhone)[0][NOTIFICATION_TABLE.columns.notification_id.getName()]));
+      this.twilioService.sendSMS(person.phone_number, message);
     }
     
     return Promise.all(sentPromises).then(() => {
