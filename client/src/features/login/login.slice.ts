@@ -51,10 +51,10 @@ export const startStatusPoll = (personId: number | string): AppThunk => async di
       if (unreadNotifications.length > 0) {
         unreadNotifications.forEach(unreadNotification => {
           toast.error(unreadNotification.body, {
+              onOpen: () => notificationService.markNotificationAsRead(personId, unreadNotification.notification_id),
               autoClose: false
             }
           );
-          notificationService.markNotificationAsRead(personId, unreadNotification.notification_id);
         });
       }
     } catch (e) {

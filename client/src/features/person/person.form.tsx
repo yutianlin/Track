@@ -16,6 +16,8 @@ import {CookieService} from "../../services/cookie.service";
 import {formStyles} from "../form.styles";
 import {useHistory} from "react-router";
 import {personInfoRoute} from "../routes";
+import {fetchBikes} from "../bike/bike.slice";
+import {fetchCovidTestingCentres} from "../covid_tests/covid_testing_centre.slice";
 
 export default function PersonForm() {
   const [remoteError, setRemoteError] = useState("");
@@ -44,6 +46,8 @@ export default function PersonForm() {
         const createdPerson = await personService.createPerson(person);
         CookieService.setPersonId(createdPerson.person_id as number);
         dispatch(setPerson(createdPerson));
+        dispatch(fetchBikes());
+        dispatch(fetchCovidTestingCentres());
         dispatch(startStatusPoll(createdPerson.person_id as number));
         dispatch(login());
       } else {
