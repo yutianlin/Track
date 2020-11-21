@@ -83,7 +83,7 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 cpsc-304-project/server$ `yarn start`
 
-cpsc-304-project/client$ `yarn start`
+cpsc-304-project/client$ `yarn start` (optional, you can go to localhost:3000 to run the last built client files)
 
 The client will run in localhost:5000, while the server runs in localhost:3000
 
