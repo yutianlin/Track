@@ -1,6 +1,7 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
 import {CovidStatus} from "../../model/covid_status";
+import {isStringEmpty} from "../../util";
 
 export interface Person {
   person_id?: number,
@@ -33,7 +34,7 @@ export const personSlice = createSlice({
       state.in_app_notification = action.payload.in_app_notification;
       state.email = action.payload.email;
       state.phone_number = action.payload.phone_number;
-      state.person_status = action.payload.person_status ?? CovidStatus.NEGATIVE;
+      state.person_status = action.payload.person_status;
     },
     setPersonStatus: (state: Draft<Person>, action: PayloadAction<CovidStatus>) => {
       state.person_status = action.payload;
