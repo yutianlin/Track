@@ -267,7 +267,7 @@ export default class PersonService {
     // deals with bikes
     const uniqueBikePersonIds = new Set(bikePersons.map(bp => bp.person_id));
     uniqueBikePersonIds.forEach(ubpi => tempMessage[ubpi] = []);
-    bikePersons.forEach(bp => tempMessage[bp.person_id].push(`${bp.shared_bike_id} rented at ${bp.rental_time}`));
+    bikePersons.forEach(bp => tempMessage[bp.person_id].push(`${bp.shared_bike_id} rented at ${moment(bp.rental_time).utc().toISOString()}`));
     uniqueBikePersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${personMessagesBundle[ubpi]}
     Having shared the same bikes as ${person.name} on the same day (${listify(tempMessage[ubpi])})\n`)
 
