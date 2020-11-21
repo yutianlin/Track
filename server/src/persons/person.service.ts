@@ -284,10 +284,10 @@ export default class PersonService {
     buildingPersons = buildingPersons.filter(bp => !(allIdsPossiblyInfected.includes(bp.person_id)));
     const uniqueBuildingPersonIds = new Set(buildingPersons.map(bp => bp.person_id));
     uniqueBuildingPersonIds.forEach(ubpi => tempMessage[ubpi] = []);
-    buildingPersons.forEach(bp => tempMessage.push(bp.building_code));
+    buildingPersons.forEach(bp => tempMessage[bp.person_id].push(bp.building_code));
     uniqueBuildingPersonIds.forEach(ubpi => personMessagesBundle[ubpi] = `${person.name} who is a ${personRole} is confirmed with COVID-19 on ${timeNow} and may have been contagious since ${startTime}. \n
     You have not shared any rooms, bubbles or classes, but these are the shared buildings between the two of you in the period that they are contagious: ${listify(tempMessage[ubpi])}`);
-
+    
     // Sends all messages
     const sentPromises: Promise<any>[] = [];
     ([...allIdsPossiblyInfected, ...Array.from(uniqueBuildingPersonIds)]).forEach(id => sentPromises.push(this.sendMessageToPerson(id, personMessagesBundle[id], subject)));
