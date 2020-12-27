@@ -44,7 +44,7 @@ All the react redux forms, CSS formatting, interaction are defined by category i
    postgres=> `CREATE DATABASE <database name>;`\
    postgres=> `\c <database name>`\
 
-1. cpsc-304-project/server\$ `cp .env.example .env`
+1. track/server\$ `cp .env.example .env`
 
 1. Optional create Twilio account to send SMS messages https://www.twilio.com/try-twilio
 
@@ -63,11 +63,11 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 1. Only if you are using Twilio, make sure that all the numbers are registered with your Twilio account at https://www.twilio.com/console/phone-numbers/verified if not it will console log an error
 
-1. cpsc-304-project/server\$ `yarn`
+1. track/server\$ `yarn`
 
-1. cpsc-304-project/server\$ `yarn updateData`
+1. track/server\$ `yarn updateData`
 
-1. cpsc-304-project/client\$ `yarn` (optional, do this if you want to build the client files, otherwise you can load the last build by going to localhost:3000 directly)
+1. track/client\$ `yarn` (optional, do this if you want to build the client files, otherwise you can load the last build by going to localhost:3000 directly)
 
 ### To access all service endpoints directly without client:
 
@@ -75,15 +75,15 @@ All the react redux forms, CSS formatting, interaction are defined by category i
 
 1. Import Insomnia.yaml file to Insomnia
 
-1. cpsc-304-project/server$ `yarn start`
+1. track/server$ `yarn start`
 
 1. Run endpoints by clicking `Send` button
 
 ### To start the project, in two terminals:
 
-cpsc-304-project/server$ `yarn start`
+track/server$ `yarn start`
 
-cpsc-304-project/client$ `yarn start` (optional, you can go to localhost:3000 to run the last built client files)
+track/client$ `yarn start` (optional, you can go to localhost:3000 to run the last built client files)
 
 The client will run in localhost:5000, while the server runs in localhost:3000
 
@@ -117,7 +117,7 @@ Going to localhost:3000/ will load the last built files. For client hot reload g
    `GMAIL_AUTH_PROVIDER=<auth_provider_x509_cert_url>`\
    `GMAIL_CLIENT_SECRET=<client_secret>`\
    `GMAIL_REDIRECT_URI=<redirect_uris[0]>` I believe the default is `urn:ietf:wg:oauth:2.0:oob`\
-   `GMAIL_SENDER=cpsc304.project.track@gmail.com`\
+   `GMAIL_SENDER=<you email that you registered with>`\
    `GMAIL_SEND=TRUE` set this to true to send email notifications
    
 1. On first run, it will ask for you to authenticate the app on a url through the console. Please be careful with this, since it will send emails to anyone 
